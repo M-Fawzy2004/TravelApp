@@ -2,9 +2,17 @@
 class Assets {
   Assets._();
   
-  /// Assets for imagesOnboardingImage
-  /// assets/images/onboarding_image.png
-  static const String imagesOnboardingImage = "assets/images/onboarding_image.png";
+  /// Assets for imagesAppleLogo
+  /// assets/images/apple_logo.png
+  static const String imagesAppleLogo = "assets/images/apple_logo.png";
+
+  /// Assets for imagesGoogleLogo
+  /// assets/images/google_logo.png
+  static const String imagesGoogleLogo = "assets/images/google_logo.png";
+
+  /// Assets for imagesOnboardingCarsOnRoad
+  /// assets/images/onboarding_cars_on_road.jpg
+  static const String imagesOnboardingCarsOnRoad = "assets/images/onboarding_cars_on_road.jpg";
 
   /// Assets for imagesTravelLogo
   /// assets/images/travel_logo.png

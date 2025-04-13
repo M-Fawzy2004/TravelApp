@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:travel_app/feature/login/presentation/view/login_view.dart';
 import 'package:travel_app/feature/onboarding/onboarding_view.dart';
 
 abstract class AppRouter {
-  static const kHomeView = '/HomeView';
-  static const kSearchView = '/SearchView';
-  static const kDetailsView = '/BookDetailsView';
+  static const loginView = '/loginView';
   static var router = GoRouter(
     routes: [
       GoRoute(
@@ -14,12 +13,12 @@ abstract class AppRouter {
           return const OnboardingView();
         },
       ),
-      // GoRoute(
-      //   path: kHomeView,
-      //   builder: (BuildContext context, GoRouterState state) {
-      //     return const HomeView();
-      //   },
-      // ),
+      GoRoute(
+        path: loginView,
+        builder: (BuildContext context, GoRouterState state) {
+          return const LoginView();
+        },
+      ),
     ],
   );
 }
