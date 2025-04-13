@@ -13,15 +13,23 @@ class CustomTextFormField extends StatefulWidget {
     this.inputTextStyle,
     this.fillColor,
     this.onSaved,
+    this.keyboardType,
+    this.readOnly,
+    this.textAlign,
+    this.controller,
   });
 
   final String? hintText;
   final EdgeInsetsGeometry? contentPadding;
   final Widget? suffixIcon;
   final bool? obscureText;
+  final bool? readOnly;
   final TextStyle? inputTextStyle;
   final Color? fillColor;
   final Function(String?)? onSaved;
+  final TextInputType? keyboardType;
+  final TextAlign? textAlign;
+  final TextEditingController? controller;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -53,8 +61,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           return null;
         }
       },
+      controller: widget.controller,
       obscureText: widget.obscureText ?? false,
       style: Styles.font14DarkGreyExtraBold,
+      readOnly: widget.readOnly ?? false,
+      keyboardType: widget.keyboardType,
+      textAlign: widget.textAlign ?? TextAlign.start,
       decoration: InputDecoration(
         isDense: true,
         contentPadding: widget.contentPadding ??
@@ -63,10 +75,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               horizontal: 16.w,
             ),
         hintText: widget.hintText,
-        hintStyle:
-            widget.inputTextStyle ?? Styles.font14DarkGreyExtraBold,
+        hintStyle: widget.inputTextStyle ?? Styles.font14DarkGreyExtraBold,
         filled: true,
-        fillColor: widget.fillColor ?? AppColors.lightGrey,
+        fillColor: widget.fillColor ?? AppColors.grey,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
           borderSide: BorderSide(

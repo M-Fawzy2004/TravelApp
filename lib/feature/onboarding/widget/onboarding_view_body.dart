@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -31,6 +33,13 @@ class OnboardingViewBody extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.grey,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.black.withOpacity(0.25),
+                    blurRadius: 4,
+                    offset: const Offset(0, 7),
+                  ),
+                ],
                 borderRadius: BorderRadius.circular(15.r),
               ),
               child: Padding(

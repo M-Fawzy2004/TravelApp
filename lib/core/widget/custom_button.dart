@@ -31,11 +31,11 @@ class CustomButton extends StatelessWidget {
       style: ButtonStyle(
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 15.0),
+            borderRadius: BorderRadius.circular(borderRadius ?? 10.0),
           ),
         ),
         backgroundColor: WidgetStatePropertyAll(
-          backgroundColor ?? AppColors.primaryColor,
+          backgroundColor ?? AppColors.black,
         ),
         padding: WidgetStateProperty.all<EdgeInsets>(
           EdgeInsets.symmetric(

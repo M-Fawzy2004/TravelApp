@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 extension Navigation on BuildContext {
-  void push(Widget widget) =>
-      Navigator.of(this).push(MaterialPageRoute(builder: (context) => widget));
-
   void pushNamedAndRemoveUntil(String routeName, {Object? arguments}) {
     Navigator.of(this).pushNamedAndRemoveUntil(
       routeName,
