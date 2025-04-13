@@ -54,7 +54,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         }
       },
       obscureText: widget.obscureText ?? false,
-      style: Styles.font14DarkGreyExtraBold,
+      style: Styles.body14PrimaryExtraBold(context),
       decoration: InputDecoration(
         isDense: true,
         contentPadding: widget.contentPadding ??
@@ -63,7 +63,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               horizontal: 16.w,
             ),
         hintText: widget.hintText,
-        hintStyle: widget.inputTextStyle ?? Styles.font14DarkGreyExtraBold,
+        hintStyle:
+            widget.inputTextStyle ?? Styles.body14PrimaryExtraBold(context),
         filled: true,
         fillColor: widget.fillColor ?? AppColors.lightGrey,
         focusedBorder: OutlineInputBorder(

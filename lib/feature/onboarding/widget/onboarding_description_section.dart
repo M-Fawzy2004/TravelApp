@@ -18,13 +18,13 @@ class OnboardingDescriptionSection extends StatelessWidget {
           Text(
             textAlign: TextAlign.center,
             LocaleKeys.OnboardingView_details.tr(),
-            style: Styles.font14DarkGreyBold,
+            style: Styles.body14PrimarySemiBold(context),
           ),
           heightBox(10),
           Text(
             textAlign: TextAlign.center,
             LocaleKeys.OnboardingView_details2.tr(),
-            style: Styles.font14DarkGreyBold,
+            style: Styles.body14PrimarySemiBold(context),
           ),
         ],
       ),

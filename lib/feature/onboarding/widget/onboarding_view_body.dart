@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/utils/assets.dart';
@@ -16,11 +17,12 @@ class OnboardingViewBody extends StatelessWidget {
       children: [
         Image.asset(
           Assets.imagesOnboardingImage,
+          height: 600.h,
         ),
         heightBox(40),
         Text(
           LocaleKeys.OnboardingView_welcome.tr(),
-          style: Styles.font20ExtraBlackBold,
+          style: Styles.headline20Bold(context),
         ),
         heightBox(20),
         OnboardingDescriptionSection(),
@@ -29,7 +31,7 @@ class OnboardingViewBody extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: CustomButton(
             buttonText: LocaleKeys.OnboardingView_start.tr(),
-            textStyle: Styles.font16BlackBold,
+            textStyle: Styles.button16PrimaryBold(context),
             onPressed: () {},
           ),
         ),
