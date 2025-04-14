@@ -12,6 +12,8 @@ class CustomButton extends StatelessWidget {
   final String buttonText;
   final TextStyle textStyle;
   final VoidCallback onPressed;
+  final bool isEnabled;
+
   const CustomButton({
     super.key,
     this.borderRadius,
@@ -23,6 +25,7 @@ class CustomButton extends StatelessWidget {
     required this.buttonText,
     required this.textStyle,
     required this.onPressed,
+    this.isEnabled = true,
   });
 
   @override
@@ -47,7 +50,7 @@ class CustomButton extends StatelessWidget {
           Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 50.h),
         ),
       ),
-      onPressed: onPressed,
+      onPressed: isEnabled ? onPressed : null,
       child: Text(
         buttonText,
         style: textStyle,

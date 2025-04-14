@@ -1,31 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/core/widget/custom_text_form_field.dart';
+import 'package:travel_app/feature/login/presentation/view/widget/phone_text_field.dart';
 
-class PhoneNumberField extends StatefulWidget {
-  const PhoneNumberField({super.key});
+class PhoneNumberField extends StatelessWidget {
+  final Country selectedCountry;
+  final VoidCallback onCountryTap;
+  final Function(bool, String) onPhoneValidation;
 
-  @override
-  State<PhoneNumberField> createState() => _PhoneNumberFieldState();
-}
-
-class _PhoneNumberFieldState extends State<PhoneNumberField> {
-  Country selectedCountry = Country(
-    phoneCode: '20',
-    countryCode: 'EG',
-    e164Sc: 0,
-    geographic: true,
-    level: 1,
-    name: 'Egypt',
-    example: 'Egypt',
-    displayName: 'Egypt',
-    displayNameNoCountryCode: 'EG',
-    e164Key: '',
-  );
+  const PhoneNumberField({
+    super.key,
+    required this.selectedCountry,
+    required this.onCountryTap,
+    required this.onPhoneValidation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,41 +23,18 @@ class _PhoneNumberFieldState extends State<PhoneNumberField> {
       children: [
         Expanded(
           flex: 5,
-          child: CustomTextFormField(
-            textAlign: TextAlign.left,
-            keyboardType: TextInputType.phone,
-            hintText: 'ادخل رقم الهاتف',
+          child: PhoneTextField(
+            countryCode: selectedCountry.countryCode,
+            onValidationChanged: onPhoneValidation,
           ),
         ),
         widthBox(10),
         Expanded(
           flex: 2,
           child: GestureDetector(
-            onTap: () {
-              showCountryPicker(
-                countryListTheme: CountryListThemeData(
-                  textStyle: Styles.font16BlackBold,
-                  backgroundColor: AppColors.lightGrey,
-                  bottomSheetHeight: 550.h,
-                  flagSize: 22,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                context: context,
-                showPhoneCode: true,
-                onSelect: (Country country) {
-                  setState(() {
-                    selectedCountry = country;
-                  });
-                },
-              );
-            },
+            onTap: onCountryTap,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
                 color: AppColors.grey,
                 borderRadius: BorderRadius.circular(10),
