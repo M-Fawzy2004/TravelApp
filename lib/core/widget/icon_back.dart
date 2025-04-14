@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/extension.dart';
 import 'package:travel_app/core/theme/app_color.dart';
-
 
 class IconBack extends StatelessWidget {
   const IconBack({super.key});
@@ -9,16 +9,20 @@ class IconBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 40.h,
+      width: 40.w,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(10.r),
         color: AppColors.lightGrey,
       ),
-      child: FittedBox(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: IconButton(
           onPressed: () {
             context.pop();
           },
           icon: Icon(
+            size: 18,
             Icons.arrow_back_ios,
             color: AppColors.black,
           ),

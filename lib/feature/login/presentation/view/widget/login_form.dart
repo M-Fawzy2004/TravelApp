@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/core/helper/app_router.dart';
 import 'package:travel_app/core/helper/spacing.dart';
@@ -52,6 +53,7 @@ class _LoginFormState extends State<LoginForm> {
         showPhoneCode: true,
         countryListTheme: CountryListThemeData(
           borderRadius: BorderRadius.circular(15),
+          bottomSheetHeight: 500.h,
         ),
         onSelect: (Country country) {
           setState(() {
