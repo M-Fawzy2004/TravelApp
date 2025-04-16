@@ -22,6 +22,10 @@ class Assets {
   /// assets/images/onboarding_cars_on_road.jpg
   static const String imagesOnboardingCarsOnRoad = "assets/images/onboarding_cars_on_road.jpg";
 
+  /// Assets for imagesOnboardingImage
+  /// assets/images/onboarding_image.jpg
+  static const String imagesOnboardingImage = "assets/images/onboarding_image.jpg";
+
   /// Assets for imagesTravelLogo
   /// assets/images/travel_logo.png
   static const String imagesTravelLogo = "assets/images/travel_logo.png";

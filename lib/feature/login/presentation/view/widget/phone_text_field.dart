@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/styles.dart';
@@ -45,13 +44,13 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
 
   void _updateRegexForCountry(String countryCode) {
     switch (countryCode) {
-      case 'EG': 
+      case 'EG':
         _phoneRegex = RegExp(r'^01[0125][0-9]{8}$');
         break;
-      case 'SA': 
+      case 'SA':
         _phoneRegex = RegExp(r'^05[0-9]{8}$');
         break;
-      case 'AE': 
+      case 'AE':
         _phoneRegex = RegExp(r'^(05|04|02|03|06|07|09)[0-9]{7,8}$');
         break;
       default:
@@ -62,7 +61,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
   void _validateNumber(String value) {
     String cleanNumber = value.replaceAll(RegExp(r'[^0-9]'), '');
     bool isValid = _phoneRegex.hasMatch(cleanNumber);
-    
+
     String? newErrorText;
     if (cleanNumber.isEmpty) {
       newErrorText = 'الرجاء إدخال رقم الهاتف';
@@ -71,13 +70,13 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
     } else {
       newErrorText = null;
     }
-    
+
     if (newErrorText != _errorText) {
       setState(() {
         _errorText = newErrorText;
       });
     }
-    
+
     widget.onValidationChanged?.call(isValid, cleanNumber);
   }
 
@@ -109,6 +108,10 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         ),
         filled: true,
         fillColor: AppColors.grey,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: BorderSide.none,
+        ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide(

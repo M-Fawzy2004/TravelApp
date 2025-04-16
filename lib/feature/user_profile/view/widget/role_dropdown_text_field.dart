@@ -41,14 +41,18 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
               value: 'كابتن',
               child: Text(
                 'كابتن',
-                style: Styles.font16BlackBold,
+                style: Styles.font16BlackBold.copyWith(
+                  fontFamily: 'font',
+                ),
               ),
             ),
             DropdownMenuItem(
               value: 'راكب',
               child: Text(
                 'راكب',
-                style: Styles.font16BlackBold,
+                style: Styles.font16BlackBold.copyWith(
+                  fontFamily: 'font',
+                ),
               ),
             ),
           ],
