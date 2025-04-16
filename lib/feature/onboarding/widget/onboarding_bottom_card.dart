@@ -48,7 +48,7 @@ class OnBoardingBottomCard extends StatelessWidget {
                 Spacer(),
                 CustomButton(
                   onPressed: () {
-                    context.push(AppRouter.loginView);
+                    context.go(AppRouter.loginView);
                   },
                   buttonText: 'ابدء رحلتك الان',
                   textStyle: Styles.font16WhiteBold,

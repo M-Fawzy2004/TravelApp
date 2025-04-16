@@ -50,16 +50,6 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  Future<void> signInWithEmail(String email, String password) async {
-    emit(AuthLoading());
-    try {
-      final user = await authService.signInWithEmail(email, password);
-      emit(AuthAuthenticated(user));
-    } catch (e) {
-      emit(AuthError(e.toString()));
-    }
-  }
-
   Future<void> signOut() async {
     emit(AuthLoading());
     try {

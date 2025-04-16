@@ -233,68 +233,12 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signInWithEmail(
-      String email, String password) async {
-    try {
-      final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      final user = userCredential.user;
-
-      if (user != null) {
-        if (!user.emailVerified) {
-          return Left(
-              AuthFailure(message: 'لم يتم التحقق من البريد الإلكتروني'));
-        }
-
-        final existingUser = await _getUserFromFirestore(user.uid);
-        if (existingUser != null) {
-          return Right(existingUser);
-        } else {
-          final newUser = UserModel(
-            id: user.uid,
-            phoneNumber: '',
-            email: user.email ?? '',
-            isEmailVerified: user.emailVerified,
-          );
-          await _saveUserToFirestore(newUser);
-          return Right(newUser);
-        }
-      } else {
-        return Left(AuthFailure(
-            message: 'فشل تسجيل الدخول باستخدام البريد الإلكتروني'));
-      }
-    } on FirebaseAuthException catch (e) {
-      return Left(AuthFailure(
-          message: e.message ?? 'فشل تسجيل الدخول بالبريد الإلكتروني'));
-    } catch (e) {
-      return Left(AuthFailure(message: e.toString()));
-    }
-  }
-
-  @override
   Future<Either<Failure, void>> sendEmailVerification() async {
     try {
       final user = _firebaseAuth.currentUser;
       if (user != null) {
         await user.sendEmailVerification();
         return const Right(null);
-      } else {
-        return Left(AuthFailure(message: 'لم يتم تسجيل دخول أي مستخدم'));
-      }
-    } catch (e) {
-      return Left(AuthFailure(message: e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, bool>> isEmailVerified() async {
-    try {
-      final user = _firebaseAuth.currentUser;
-      if (user != null) {
-        await user.reload();
-        return Right(user.emailVerified);
       } else {
         return Left(AuthFailure(message: 'لم يتم تسجيل دخول أي مستخدم'));
       }

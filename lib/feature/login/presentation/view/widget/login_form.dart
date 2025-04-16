@@ -65,14 +65,6 @@ class _LoginFormState extends State<LoginForm> {
           image: Assets.imagesGoogleLogo,
           text: 'الدخول بواسطه جوجل',
         ),
-        heightBox(10),
-        SocialLogin(
-          onTap: () {
-            context.push(AppRouter.loginwithEmail);
-          },
-          image: Assets.imagesMailLogo,
-          text: 'الدخول بواسطه البريد الالكتروني',
-        ),
       ],
     );
   }

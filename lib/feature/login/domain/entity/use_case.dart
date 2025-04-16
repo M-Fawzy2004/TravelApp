@@ -51,17 +51,6 @@ class SignInWithApple implements UseCase<UserEntity, NoParams> {
   }
 }
 
-class SignInWithEmail implements UseCase<UserEntity, EmailPasswordParams> {
-  final AuthRepository repository;
-
-  SignInWithEmail(this.repository);
-
-  @override
-  Future<Either<Failure, UserEntity>> call(EmailPasswordParams params) {
-    return repository.signInWithEmail(params.email, params.password);
-  }
-}
-
 class SaveUserData implements UseCase<void, UserEntity> {
   final AuthRepository repository;
 
