@@ -7,7 +7,16 @@ import 'package:travel_app/core/widget/custom_text_form_field.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 
 class RoleDropdownTextField extends StatefulWidget {
-  const RoleDropdownTextField({super.key});
+  final Function(String?)? onRoleSelected;
+  final Function(String?)? onVehicleTypeSelected;
+  final TextEditingController? seatCountController;
+
+  const RoleDropdownTextField({
+    super.key,
+    this.onRoleSelected,
+    this.onVehicleTypeSelected,
+    this.seatCountController,
+  });
 
   @override
   State<RoleDropdownTextField> createState() => _RoleDropdownTextFieldState();
@@ -16,7 +25,6 @@ class RoleDropdownTextField extends StatefulWidget {
 class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
   String? selectedRole;
   String? selectedVehicleType;
-  final TextEditingController seatCountController = TextEditingController();
 
   final List<String> vehicleTypes = [
     'ملاكي',
@@ -59,6 +67,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
           onChanged: (value) {
             setState(() {
               selectedRole = value;
+              widget.onRoleSelected?.call(value);
             });
           },
           decoration: customInputDecoration(
@@ -85,6 +94,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
             onChanged: (value) {
               setState(() {
                 selectedVehicleType = value;
+                widget.onVehicleTypeSelected?.call(value);
               });
             },
             decoration: customInputDecoration(labelText: 'نوع المركبة'),
@@ -92,7 +102,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
           heightBox(20),
           CustomTextFormField(
             hintText: 'عدد المقاعد',
-            controller: seatCountController,
+            controller: widget.seatCountController,
             keyboardType: TextInputType.number,
           ),
         ],

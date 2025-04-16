@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/feature/login/presentation/view/widget/login_form.dart';
+import 'package:travel_app/feature/login/presentation/view/widget/login_form_bloc_listener.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -33,11 +33,10 @@ class LoginViewBody extends StatelessWidget {
               'من فضلك ادخل رقم هاتفك',
               style: Styles.font20ExtraBlackBold,
             ),
-            LoginForm(),
+            LoginFormBlocListener(),
           ],
         ),
       ),
     );
   }
 }
-

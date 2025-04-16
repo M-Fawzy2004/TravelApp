@@ -24,7 +24,15 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authService.verifyOTP(verificationId, code);
-      emit(AuthAuthenticated(user));
+
+      // Check if user profile is complete
+      if (user.firstName == null || user.firstName!.isEmpty) {
+        // User needs to complete profile
+        emit(AuthAuthenticated(user));
+      } else {
+        // User profile is complete, authentication is successful
+        emit(AuthAuthenticated(user));
+      }
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -33,8 +41,23 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signInWithGoogle() async {
     emit(AuthLoading());
     try {
-      final user = await authService.signInWithGoogle();
-      emit(AuthAuthenticated(user));
+      var user = await authService.signInWithGoogle();
+
+      // Check if user profile is incomplete
+      if (user.firstName == null || user.firstName!.isEmpty) {
+        final updatedUser = user.copyWith(
+          firstName: '',
+          lastName: '',
+          city: '',
+          role: null,
+          vehicleType: null,
+          seatCount: null,
+        );
+        await authService.saveUserData(updatedUser);
+        emit(AuthAuthenticated(updatedUser));
+      } else {
+        emit(AuthAuthenticated(user));
+      }
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -43,8 +66,22 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signInWithApple() async {
     emit(AuthLoading());
     try {
-      final user = await authService.signInWithApple();
-      emit(AuthAuthenticated(user));
+      var user = await authService.signInWithApple();
+
+      if (user.firstName == null || user.firstName!.isEmpty) {
+        final updatedUser = user.copyWith(
+          firstName: '',
+          lastName: '',
+          city: '',
+          role: null,
+          vehicleType: null,
+          seatCount: null,
+        );
+        await authService.saveUserData(updatedUser);
+        emit(AuthAuthenticated(updatedUser));
+      } else {
+        emit(AuthAuthenticated(user));
+      }
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -65,6 +102,8 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await authService.saveUserData(user);
       emit(AuthSaved(user));
+      // Update to authenticated state with updated user data
+      emit(AuthAuthenticated(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }

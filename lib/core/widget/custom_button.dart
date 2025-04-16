@@ -11,7 +11,7 @@ class CustomButton extends StatelessWidget {
   final double? buttonHeight;
   final String buttonText;
   final TextStyle textStyle;
-  final VoidCallback onPressed;
+  final void Function()? onPressed;
   final bool isEnabled;
 
   const CustomButton({

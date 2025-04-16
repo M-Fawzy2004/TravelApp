@@ -53,7 +53,8 @@ class AuthService {
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           if (!completer.isCompleted) {
-            completer.completeError(Exception('انتهاء مهلة الاسترجاع التلقائي لـ OTP'));
+            completer.completeError(
+                Exception('انتهاء مهلة الاسترجاع التلقائي لـ OTP'));
           }
         },
         timeout: const Duration(seconds: 60),
@@ -97,7 +98,8 @@ class AuthService {
         throw Exception('تم إلغاء تسجيل الدخول إلى Google');
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
@@ -139,18 +141,20 @@ class AuthService {
       final user = userCredential.user;
 
       if (user != null) {
-        String? firstName = appleCredential.givenName ?? user.displayName?.split(' ').first;
-        String? lastName = appleCredential.familyName ?? user.displayName?.split(' ').last;
+        String? firstName =
+            appleCredential.givenName ?? user.displayName?.split(' ').first;
+        String? lastName =
+            appleCredential.familyName ?? user.displayName?.split(' ').last;
 
-        // Create or update user with Apple credentials
-        final userModel = await _getUserFromFirestore(user.uid) ?? UserModel(
-          id: user.uid,
-          phoneNumber: user.phoneNumber ?? '',
-          email: user.email ?? '',
-          firstName: firstName,
-          lastName: lastName,
-          isEmailVerified: user.emailVerified,
-        );
+        final userModel = await _getUserFromFirestore(user.uid) ??
+            UserModel(
+              id: user.uid,
+              phoneNumber: user.phoneNumber ?? '',
+              email: user.email ?? '',
+              firstName: firstName ?? '',
+              lastName: lastName ?? '',
+              isEmailVerified: user.emailVerified,
+            );
 
         await saveUserData(userModel);
         return userModel;
@@ -273,8 +277,8 @@ class AuthService {
           id: user.uid,
           phoneNumber: user.phoneNumber ?? '',
           email: user.email,
-          firstName: user.displayName?.split(' ').first,
-          lastName: user.displayName?.split(' ').last,
+          firstName: '',
+          lastName: '',
           isEmailVerified: user.emailVerified,
         );
         await saveUserData(newUser);
@@ -287,9 +291,11 @@ class AuthService {
 
   // Helper functions for Apple Sign In
   String generateNonce([int length = 32]) {
-    const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+    const charset =
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
     final random = Random.secure();
-    return List.generate(length, (_) => charset[random.nextInt(charset.length)]).join();
+    return List.generate(length, (_) => charset[random.nextInt(charset.length)])
+        .join();
   }
 
   String sha256ofString(String input) {

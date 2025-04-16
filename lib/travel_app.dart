@@ -1,7 +1,11 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:loader_overlay/loader_overlay.dart'; // ✨ import overlay
 import 'package:travel_app/core/helper/app_router.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 
@@ -11,7 +15,7 @@ class TravelApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
+      const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: Brightness.dark,
       ),
@@ -20,23 +24,34 @@ class TravelApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(440, 956),
       minTextAdapt: true,
-      child: MaterialApp.router(
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-          Locale('ar'), 
-        ],
-        debugShowCheckedModeBanner: false,
-        routerConfig: AppRouter.router,
-        theme: ThemeData(
-          fontFamily: 'font',
-          primaryColor: AppColors.primaryColor,
-          scaffoldBackgroundColor: AppColors.white,
-        ),
-      ),
+      builder: (context, child) {
+        return GlobalLoaderOverlay(
+          overlayColor: Colors.black.withOpacity(0.5),
+          overlayWholeScreen: true,
+          useDefaultLoading: false,
+          overlayWidgetBuilder: (_) => const Center(
+            child: SpinKitDoubleBounce(
+              color: AppColors.primaryColor,
+              size: 50.0,
+            ),
+          ),
+          child: MaterialApp.router(
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [Locale('ar')],
+            debugShowCheckedModeBanner: false,
+            routerConfig: AppRouter.router,
+            theme: ThemeData(
+              fontFamily: 'font',
+              primaryColor: AppColors.primaryColor,
+              scaffoldBackgroundColor: AppColors.white,
+            ),
+          ),
+        );
+      },
     );
   }
 }
