@@ -45,7 +45,7 @@ class _UserPofileBlocListenerState extends State<UserPofileBlocListener> {
         } else if (state is AuthAuthenticated) {
           if (state.user.firstName != null &&
               state.user.firstName!.isNotEmpty) {
-            context.go(AppRouter.homeView);
+            context.go(AppRouter.mainView);
           }
         } else if (state is AuthError) {
           CustomFlushBar.showMessage(

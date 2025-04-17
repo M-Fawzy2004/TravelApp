@@ -1,10 +1,8 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
-import 'package:go_router/go_router.dart';
-import 'package:travel_app/core/helper/app_router.dart';
-import 'package:travel_app/core/services/auth_service.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travel_app/core/theme/app_color.dart';
+import 'package:travel_app/core/widget/custom_app_bar.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
@@ -12,18 +10,29 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authService = GetIt.instance<AuthService>();
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () async {
-            await authService.signOut();
-            context.go(AppRouter.loginView);
-          },
-          icon: Icon(Icons.arrow_back_ios),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.h),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: CustomAppBar(),
         ),
       ),
-      body: HomeViewBody(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      floatingActionButton: FloatingActionButton(
+        shape: CircleBorder(),
+        mini: true,
+        backgroundColor: AppColors.grey,
+        onPressed: () {},
+        child: FaIcon(
+          FontAwesomeIcons.add,
+          size: 15.sp.h,
+        ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        child: HomeViewBody(),
+      ),
     );
   }
 }

@@ -43,16 +43,13 @@ class _UserProfileBodyState extends State<UserProfileBody> {
       _lastNameController.text = user.lastName ?? '';
       _cityController.text = user.city ?? '';
 
-      // Check if this is a phone login or other login type
       isPhoneLogin = user.email?.isEmpty ?? true;
 
       if (isPhoneLogin) {
-        // If phone login, we already have the phone number
         fullPhoneNumber = user.phoneNumber;
         isPhoneValid = fullPhoneNumber.isNotEmpty;
         requirePhoneVerification = false;
       } else {
-        // If email/apple login, we might need phone verification
         fullPhoneNumber = user.phoneNumber;
         isPhoneValid = fullPhoneNumber.isNotEmpty;
         requirePhoneVerification = fullPhoneNumber.isEmpty;

@@ -39,7 +39,7 @@ class _LoginFormBlocListenerState extends State<LoginFormBlocListener> {
           if (state.user.firstName == null || state.user.firstName!.isEmpty) {
             context.go(AppRouter.userProfile);
           } else {
-            context.go(AppRouter.homeView);
+            context.go(AppRouter.mainView);
           }
         } else if (state is AuthError) {
           CustomFlushBar.showMessage(

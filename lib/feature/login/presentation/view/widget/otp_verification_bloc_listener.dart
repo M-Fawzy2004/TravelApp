@@ -39,19 +39,19 @@ class _OtpVerificationBlocListenerState
             isLoading = false;
           });
         }
-        
+
         if (state is AuthAuthenticated) {
           CustomFlushBar.showMessage(
             context: context,
             message: "تم التحقق بنجاح",
           );
-          
+
           if (state.user.firstName == null || state.user.firstName!.isEmpty) {
             // User needs to complete profile
             context.push(AppRouter.userProfile);
           } else {
             // User has a complete profile
-            context.go(AppRouter.homeView);
+            context.go(AppRouter.mainView);
           }
         } else if (state is AuthError) {
           CustomFlushBar.showMessage(

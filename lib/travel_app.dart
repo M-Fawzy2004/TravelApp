@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:loader_overlay/loader_overlay.dart'; // ✨ import overlay
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:travel_app/core/helper/app_router.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 
@@ -46,6 +46,9 @@ class TravelApp extends StatelessWidget {
             routerConfig: AppRouter.router,
             theme: ThemeData(
               fontFamily: 'font',
+              appBarTheme: AppBarTheme(
+                color: AppColors.grey,
+              ),
               primaryColor: AppColors.primaryColor,
               scaffoldBackgroundColor: AppColors.white,
             ),
