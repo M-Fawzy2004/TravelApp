@@ -42,9 +42,8 @@ class _LoginFormBlocListenerState extends State<LoginFormBlocListener> {
             context.go(AppRouter.mainView);
           }
         } else if (state is AuthError) {
-          CustomFlushBar.showMessage(
-            context,
-            state.message,
+          CustomFlushBarWidget(
+            message: 'حدث خطأ أثناء التسجيل',
           );
         }
       },

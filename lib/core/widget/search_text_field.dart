@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,6 +16,10 @@ class SearchTextField extends StatelessWidget {
     return TextField(
       style: Styles.font16BlackBold,
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(
+          vertical: 15.h,
+          horizontal: 16.w,
+        ),
         fillColor: AppColors.grey,
         filled: true,
         hintText: 'بحث عن رحلة معينه....',
@@ -21,7 +27,7 @@ class SearchTextField extends StatelessWidget {
           fontWeight: FontWeight.w900,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: BorderSide.none,
         ),
         suffixIcon: Padding(

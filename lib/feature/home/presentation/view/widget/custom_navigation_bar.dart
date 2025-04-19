@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -35,7 +37,7 @@ class CustomNavigationBar extends StatelessWidget {
           duration: Duration(milliseconds: 200),
           color: AppColors.grey,
           activeColor: AppColors.primaryColor,
-          tabBackgroundColor: AppColors.lightGrey,
+          tabBackgroundColor: AppColors.grey,
           iconSize: 20.h,
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 7.h),
           tabs: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/widget/search_text_field.dart';
 
 class SearchBarDelegate extends SliverPersistentHeaderDelegate {
@@ -12,7 +13,7 @@ class SearchBarDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 10.h),
       color: Theme.of(context).scaffoldBackgroundColor,
       child: const SearchTextField(),
     );

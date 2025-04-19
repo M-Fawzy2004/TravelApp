@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:travel_app/feature/add_travel/presentation/view/add_delivery_view.dart';
-import 'package:travel_app/feature/add_travel/presentation/view/add_trips_view.dart';
+import 'package:travel_app/feature/add_travel/presentation/view/add_travel_view.dart';
 import 'package:travel_app/feature/home/presentation/view/main_view.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/map_view.dart';
 import 'package:travel_app/feature/login/presentation/view/login_view.dart';
@@ -16,8 +15,8 @@ abstract class AppRouter {
   static const mainView = '/mainView';
   static const userProfile = '/userProfile';
   static const mapView = '/mapView';
-  static const addTrips = '/addTrips';
-  static const addDelivery = '/addDelivery';
+  static const addTravel = '/addTravel';
+
   static var router = GoRouter(
     initialLocation: '/',
     redirect: (context, state) {
@@ -76,15 +75,9 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path: addTrips,
+        path: addTravel,
         builder: (BuildContext context, GoRouterState state) {
-          return const AddTripsView();
-        },
-      ),
-      GoRoute(
-        path: addDelivery,
-        builder: (BuildContext context, GoRouterState state) {
-          return const AddDeliveryView();
+          return const AddTravelView();
         },
       ),
     ],

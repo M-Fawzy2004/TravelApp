@@ -25,7 +25,7 @@ InputDecoration customInputDecoration({String? labelText}) {
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.r),
       borderSide: BorderSide(
-        color: AppColors.lightGrey,
+        color: AppColors.grey,
         width: 2.w,
       ),
     ),

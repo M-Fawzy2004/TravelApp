@@ -20,25 +20,24 @@ class _CategorySelectorState extends State<CategoryFilter> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        // Filter section
-        Row(
-          children: List.generate(filterText.length, (index) {
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  isSelected = index;
-                });
-              },
-              child: CategoryFilterItem(
-                text: filterText[index],
-                isSelected: isSelected == index,
-              ),
-            );
-          }),
-        ),
-      ],
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: List.generate(filterText.length, (index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                isSelected = index;
+              });
+            },
+            child: CategoryFilterItem(
+              text: filterText[index],
+              isSelected: isSelected == index,
+            ),
+          );
+        }),
+      ),
     );
   }
 }

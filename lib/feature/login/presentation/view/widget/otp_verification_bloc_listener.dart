@@ -41,22 +41,19 @@ class _OtpVerificationBlocListenerState
         }
 
         if (state is AuthAuthenticated) {
-          CustomFlushBar.showMessage(
-            context,
-            "تم التحقق بنجاح",
-          );
-
           if (state.user.firstName == null || state.user.firstName!.isEmpty) {
             // User needs to complete profile
             context.push(AppRouter.userProfile);
           } else {
             // User has a complete profile
+            CustomFlushBarWidget(
+              message: 'تم التسجيل بنجاح',
+            );
             context.go(AppRouter.mainView);
           }
         } else if (state is AuthError) {
-          CustomFlushBar.showMessage(
-            context,
-            state.message,
+          CustomFlushBarWidget(
+            message: 'برجاء إعاده إدخال رمز التحقق الصالح',
           );
         }
       },

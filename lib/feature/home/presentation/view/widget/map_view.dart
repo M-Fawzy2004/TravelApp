@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, avoid_print
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -189,9 +191,8 @@ class _MapViewState extends State<MapView> {
         point.longitude >= 24.0;
 
     if (!isInEgypt) {
-      CustomFlushBar.showMessage(
-        context,
-        "يرجى اختيار نقطة داخل مصر فقط",
+      CustomFlushBarWidget(
+        message: 'الموقع غير صالح، يرجى تحديد الموقع في مصر',
       );
 
       return;

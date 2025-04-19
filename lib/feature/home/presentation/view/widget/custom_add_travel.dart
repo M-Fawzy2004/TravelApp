@@ -30,7 +30,7 @@ class CustomAddTravel extends StatelessWidget {
           builder: (context) => Padding(
             padding: const EdgeInsets.all(16.0),
             child: SizedBox(
-              height: 200.h,
+              height: 120.h,
               width: double.infinity,
               child: Column(
                 children: [
@@ -38,7 +38,7 @@ class CustomAddTravel extends StatelessWidget {
                     height: 10.h,
                     width: 70.w,
                     decoration: BoxDecoration(
-                      color: AppColors.lightGrey,
+                      color: AppColors.grey,
                       borderRadius: BorderRadius.circular(20.r),
                     ),
                   ),
@@ -50,16 +50,9 @@ class CustomAddTravel extends StatelessWidget {
                   heightBox(10),
                   AddTripButton(
                     onTap: () {
-                      context.push(AppRouter.addTrips);
+                      context.push(AppRouter.addTravel);
                     },
-                    text: 'رحله',
-                  ),
-                  heightBox(10),
-                  AddTripButton(
-                    onTap: () {
-                      context.push(AppRouter.addDelivery);
-                    },
-                    text: 'توصيل',
+                    text: 'أضف رحلتك أو عرض توصيلك',
                   ),
                 ],
               ),

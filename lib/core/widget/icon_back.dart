@@ -13,7 +13,7 @@ class IconBack extends StatelessWidget {
       width: 40.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
-        color: AppColors.lightGrey,
+        color: AppColors.grey,
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.w),

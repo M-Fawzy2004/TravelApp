@@ -64,7 +64,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         }
       },
       controller: widget.controller,
-      maxLines: widget.maxLines,
+      maxLines: widget.maxLines ?? 1,
       obscureText: widget.obscureText ?? false,
       style: Styles.font14DarkGreyExtraBold,
       readOnly: widget.readOnly ?? false,

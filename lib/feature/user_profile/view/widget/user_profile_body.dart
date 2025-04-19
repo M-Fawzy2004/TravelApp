@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/core/helper/show_message.dart' as CustomFlushBar;
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/core/utils/app_flush_bar.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/core/widget/custom_text_form_field.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
