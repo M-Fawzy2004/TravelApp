@@ -37,8 +37,8 @@ class _UserPofileBlocListenerState extends State<UserPofileBlocListener> {
 
         if (state is AuthSaved) {
           CustomFlushBar.showMessage(
-            context: context,
-            message: "تم حفظ البيانات بنجاح",
+            context,
+            "تم حفظ البيانات بنجاح",
           );
         } else if (state is AuthCodeSent) {
           context.push(AppRouter.otpVerf, extra: state.user.id);
@@ -49,8 +49,8 @@ class _UserPofileBlocListenerState extends State<UserPofileBlocListener> {
           }
         } else if (state is AuthError) {
           CustomFlushBar.showMessage(
-            context: context,
-            message: state.message,
+            context,
+            state.message,
           );
         }
       },

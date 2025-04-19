@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 
 class CustomFlushBar {
-  static Future showMessage({
-    required BuildContext context,
-    required String message,
+  static Future<void> showMessage(
+    BuildContext context,
+    String message, {
     Color backgroundStartColor = AppColors.primaryColor,
     Color backgroundEndColor = AppColors.darkGrey,
     Color shadowColor = Colors.blue,
@@ -27,7 +27,7 @@ class CustomFlushBar {
         )
       ],
       borderRadius: BorderRadius.circular(8),
-      margin: EdgeInsets.all(8),
+      margin: const EdgeInsets.all(8),
     ).show(context);
   }
 }

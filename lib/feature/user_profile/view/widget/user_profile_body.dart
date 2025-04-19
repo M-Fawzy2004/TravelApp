@@ -75,16 +75,16 @@ class _UserProfileBodyState extends State<UserProfileBody> {
         _lastNameController.text.isEmpty ||
         selectedRole == null) {
       CustomFlushBar.showMessage(
-        context: context,
-        message: 'الرجاء إدخال جميع البيانات المطلوبة',
+        context,
+        'الرجاء إدخال جميع البيانات المطلوبة',
       );
       return;
     }
 
     if (!isPhoneLogin && (fullPhoneNumber.isEmpty || !isPhoneValid)) {
       CustomFlushBar.showMessage(
-        context: context,
-        message: 'الرجاء إدخال رقم هاتف صحيح',
+        context,
+        'الرجاء إدخال رقم هاتف صحيح',
       );
       return;
     }

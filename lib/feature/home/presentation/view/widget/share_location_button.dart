@@ -16,7 +16,9 @@ class ShareLocationButton extends StatelessWidget {
       child: Align(
         alignment: Alignment.bottomRight,
         child: ElevatedButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            // context.push(AppRouter.mapView);
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primaryColor,
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),

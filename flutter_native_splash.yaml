@@ -3,5 +3,5 @@ flutter_native_splash:
   image: assets/images/travel_logo.png
   # Following are specific parameters for Android 12+.
   android_12:
-    image: assets/images/travel_logo.png
+    image: assets/images/travel_logo_splash_android12.png
     color: "#ffffff"

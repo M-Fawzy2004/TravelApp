@@ -25,7 +25,7 @@ class HomeViewBody extends StatelessWidget {
           child: DetailsLocation(),
         ),
         SliverToBoxAdapter(
-          child: heightBox(10),
+          child: heightBox(20),
         ),
         SliverToBoxAdapter(
           child: CategoryFilter(),

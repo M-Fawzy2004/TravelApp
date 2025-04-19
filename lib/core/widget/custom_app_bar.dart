@@ -1,37 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../theme/styles.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
+    required this.title,
+    this.isAction = false,
+    this.isLeading = false,
+    this.iconLeading,
+    this.iconAction,
   });
+
+  final String title;
+  final bool isAction;
+  final bool isLeading;
+  final IconButton? iconLeading;
+  final IconButton? iconAction;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      scrolledUnderElevation: 0,
       title: Text(
-        'الرئيسيه',
+        title,
         style: Styles.font20ExtraBlackBold,
       ),
       centerTitle: true,
-      leading: IconButton(
-        onPressed: () {},
-        icon: Icon(
-          FontAwesomeIcons.cartShopping,
-          size: 20.h,
-        ),
-      ),
-      actions: [
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            FontAwesomeIcons.bell,
-          ),
-        ),
-      ],
+      leading: isLeading ? iconLeading : null,
+      actions: isAction && iconAction != null ? [iconAction!] : null,
     );
   }
 }

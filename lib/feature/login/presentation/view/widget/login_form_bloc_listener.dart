@@ -43,8 +43,8 @@ class _LoginFormBlocListenerState extends State<LoginFormBlocListener> {
           }
         } else if (state is AuthError) {
           CustomFlushBar.showMessage(
-            context: context,
-            message: state.message,
+            context,
+            state.message,
           );
         }
       },

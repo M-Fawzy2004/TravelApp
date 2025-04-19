@@ -29,7 +29,11 @@ class Styles {
     fontWeight: FontWeightHelper.extraBold,
     color: AppColors.darkGrey,
   );
-
+  static TextStyle font14GreyExtraBold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.black,
+    color: Colors.grey.shade600,
+  );
   static TextStyle font16BlackBold = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeightHelper.bold,

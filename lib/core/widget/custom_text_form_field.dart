@@ -17,6 +17,7 @@ class CustomTextFormField extends StatefulWidget {
     this.readOnly,
     this.textAlign,
     this.controller,
+    this.maxLines,
   });
 
   final String? hintText;
@@ -30,6 +31,7 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputType? keyboardType;
   final TextAlign? textAlign;
   final TextEditingController? controller;
+  final int? maxLines;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -56,12 +58,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       onSaved: widget.onSaved,
       validator: (val) {
         if (val == null || val.isEmpty) {
-          return 'الحقل مطلوب';
+          return 'هذا الحقل مطلوب';
         } else {
           return null;
         }
       },
       controller: widget.controller,
+      maxLines: widget.maxLines,
       obscureText: widget.obscureText ?? false,
       style: Styles.font14DarkGreyExtraBold,
       readOnly: widget.readOnly ?? false,
@@ -75,7 +78,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               horizontal: 16.w,
             ),
         hintText: widget.hintText,
-        hintStyle: widget.inputTextStyle ?? Styles.font14DarkGreyExtraBold,
+        hintStyle: widget.inputTextStyle ?? Styles.font14GreyExtraBold,
         filled: true,
         fillColor: widget.fillColor ?? AppColors.grey,
         focusedBorder: OutlineInputBorder(
@@ -87,10 +90,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
-          borderSide: BorderSide(
-            color: AppColors.lightGrey,
-            width: 2.w,
-          ),
+          borderSide: BorderSide.none,
         ),
         suffixIcon: widget.suffixIcon,
       ),

@@ -42,8 +42,8 @@ class _OtpVerificationBlocListenerState
 
         if (state is AuthAuthenticated) {
           CustomFlushBar.showMessage(
-            context: context,
-            message: "تم التحقق بنجاح",
+            context,
+            "تم التحقق بنجاح",
           );
 
           if (state.user.firstName == null || state.user.firstName!.isEmpty) {
@@ -55,8 +55,8 @@ class _OtpVerificationBlocListenerState
           }
         } else if (state is AuthError) {
           CustomFlushBar.showMessage(
-            context: context,
-            message: state.message,
+            context,
+            state.message,
           );
         }
       },

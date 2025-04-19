@@ -16,17 +16,24 @@ class CustomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-      margin: EdgeInsets.only(left: 7.h, right: 7.h, bottom: 7.h),
+      margin: EdgeInsets.only(left: 7.h, right: 7.h, bottom: 10.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: AppColors.grey,
+        borderRadius: BorderRadius.circular(10.r),
+        color: AppColors.primaryColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
       child: GNav(
           onTabChange: onTabChange,
           haptic: true,
           curve: Curves.easeOutExpo,
           duration: Duration(milliseconds: 200),
-          color: AppColors.black,
+          color: AppColors.grey,
           activeColor: AppColors.primaryColor,
           tabBackgroundColor: AppColors.lightGrey,
           iconSize: 20.h,
