@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
+import 'package:travel_app/feature/add_travel/presentation/view/widget/add_travel_bloc_consumer.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/add_travel_form.dart';
 
 class AddTravelViewBody extends StatefulWidget {
@@ -23,7 +24,7 @@ class _AddTravelViewBodyState extends State<AddTravelViewBody> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           heightBox(20),
-          IconBack(),
+          const IconBack(),
           heightBox(20),
           Align(
             alignment: Alignment.centerRight,
@@ -38,7 +39,11 @@ class _AddTravelViewBodyState extends State<AddTravelViewBody> {
             style: Styles.font14GreyExtraBold,
           ),
           heightBox(20),
-          AddTravelForm(),
+          AddTravelBlocConsumer(
+            builder: (context, state) {
+              return AddTravelForm();
+            },
+          ),
         ],
       ),
     );

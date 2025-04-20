@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:travel_app/core/helper/app_router.dart';
-import 'package:travel_app/core/utils/app_flush_bar.dart';
+import 'package:travel_app/core/utils/top_snakbar_app.dart';
 import 'package:travel_app/feature/login/presentation/manager/cubit/auth_cubit.dart';
 import 'package:travel_app/feature/login/presentation/view/widget/login_form.dart';
 
@@ -42,8 +42,9 @@ class _LoginFormBlocListenerState extends State<LoginFormBlocListener> {
             context.go(AppRouter.mainView);
           }
         } else if (state is AuthError) {
-          CustomFlushBarWidget(
-            message: 'حدث خطأ أثناء التسجيل',
+          showCustomTopSnackBar(
+            context: context,
+            message: 'حدث خطاء في التسجيل',
           );
         }
       },

@@ -1,74 +1,149 @@
-import 'package:custom_calender_picker/custom_calender_picker.dart';
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/core/widget/custom_text_form_field.dart';
-import 'package:travel_app/core/helper/spacing.dart';
 
-class TripDateTimePicker extends StatefulWidget {
-  const TripDateTimePicker({super.key});
+class TripDateTimePicker extends StatelessWidget {
+  final DateTime? selectedDate;
+  final TimeOfDay? selectedTime;
+  final Function(DateTime) onDateChanged;
+  final Function(TimeOfDay) onTimeChanged;
+  final String? dateErrorText;
+  final String? timeErrorText;
 
-  @override
-  State<TripDateTimePicker> createState() => _TripDateTimePickerState();
-}
-
-class _TripDateTimePickerState extends State<TripDateTimePicker> {
-  List<DateTime> selectedDates = [];
-
-  String getFormattedDates() {
-    if (selectedDates.isEmpty) return 'اختر تاريخ يوم الرحله';
-    return selectedDates
-        .map((e) => "${e.day}/${e.month}/${e.year}")
-        .join(" , ");
-  }
+  const TripDateTimePicker({
+    super.key,
+    this.selectedDate,
+    this.selectedTime,
+    required this.onDateChanged,
+    required this.onTimeChanged,
+    this.dateErrorText,
+    this.timeErrorText,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         Expanded(
-          child: GestureDetector(
-            onTap: () async {
-              var result = await showDialog(
-                context: context,
-                builder: (context) => Dialog(
-                  insetPadding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: CustomCalenderPicker(
-                    initialDateList: selectedDates,
-                    calenderThema: CalenderThema.white,
-                    buttonText: "حفظ",
-                    buttonColor: AppColors.primaryColor,
-                    buttonTextColor: AppColors.white,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: () async {
+                  final DateTime? picked = await showDatePicker(
+                    context: context,
+                    initialDate: selectedDate ?? DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now().add(const Duration(days: 365)),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: ColorScheme.light(
+                            primary: AppColors.primaryColor,
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
+                  );
+                  if (picked != null) {
+                    onDateChanged(picked);
+                  }
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.r),
+                    border: Border.all(color: AppColors.grey),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        selectedDate != null
+                            ? DateFormat('yyyy-MM-dd').format(selectedDate!)
+                            : 'اختر التاريخ',
+                        style: selectedDate != null
+                            ? Styles.font14DarkGreyExtraBold
+                            : Styles.font14DarkGreyBold,
+                      ),
+                      Icon(Icons.calendar_today, color: AppColors.grey),
+                    ],
                   ),
                 ),
-              );
-              if (result != null && result is List<DateTime>) {
-                setState(() {
-                  selectedDates = result;
-                });
-              }
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(
-                vertical: 15.h,
-                horizontal: 16.w,
               ),
-              decoration: BoxDecoration(
-                color: AppColors.grey,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                getFormattedDates(),
-                style: Styles.font14GreyExtraBold,
-              ),
-            ),
+              if (dateErrorText != null)
+                Padding(
+                  padding: EdgeInsets.only(top: 5.h, right: 10.w),
+                  child: Text(
+                    dateErrorText!,
+                    style: TextStyle(color: Colors.red, fontSize: 12.sp),
+                  ),
+                ),
+            ],
           ),
         ),
         widthBox(10),
         Expanded(
-          child: CustomTextFormField(
-            hintText: 'الوقت',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: () async {
+                  final TimeOfDay? picked = await showTimePicker(
+                    context: context,
+                    initialTime: selectedTime ?? TimeOfDay.now(),
+                    builder: (context, child) {
+                      return Theme(
+                        data: Theme.of(context).copyWith(
+                          colorScheme: ColorScheme.light(
+                            primary: AppColors.primaryColor,
+                          ),
+                        ),
+                        child: child!,
+                      );
+                    },
+                  );
+                  if (picked != null) {
+                    onTimeChanged(picked);
+                  }
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.r),
+                    border: Border.all(color: AppColors.grey),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        selectedTime != null
+                            ? '${selectedTime!.hour}:${selectedTime!.minute.toString().padLeft(2, '0')}'
+                            : 'اختر الوقت',
+                        style: selectedTime != null
+                            ? Styles.font14DarkGreyExtraBold
+                            : Styles.font14GreyExtraBold,
+                      ),
+                      Icon(Icons.access_time, color: AppColors.grey),
+                    ],
+                  ),
+                ),
+              ),
+              if (timeErrorText != null)
+                Padding(
+                  padding: EdgeInsets.only(top: 5.h, right: 10.w),
+                  child: Text(
+                    timeErrorText!,
+                    style: TextStyle(color: Colors.red, fontSize: 12.sp),
+                  ),
+                ),
+            ],
           ),
         ),
       ],

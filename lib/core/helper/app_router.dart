@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/add_travel_view.dart';
+import 'package:travel_app/feature/home/presentation/view/details_trip_view.dart';
 import 'package:travel_app/feature/home/presentation/view/main_view.dart';
 import 'package:travel_app/feature/login/presentation/view/login_view.dart';
 import 'package:travel_app/feature/login/presentation/view/otp_verification_view.dart';
@@ -15,6 +16,7 @@ abstract class AppRouter {
   static const userProfile = '/userProfile';
   static const mapView = '/mapView';
   static const addTravel = '/addTravel';
+  static const detailsTrip = '/detailsTrip';
 
   static var router = GoRouter(
     initialLocation: '/',
@@ -29,8 +31,8 @@ abstract class AppRouter {
         return mainView;
       }
 
-      if (!isLoggedIn && !isAtLogin && !isAtOtp) {
-        return loginView;
+      if (!isLoggedIn && !isAtRoot && !isAtLogin && !isAtOtp) {
+        return '/';
       }
 
       return null;
@@ -71,6 +73,12 @@ abstract class AppRouter {
         path: addTravel,
         builder: (BuildContext context, GoRouterState state) {
           return const AddTravelView();
+        },
+      ),
+      GoRoute(
+        path: detailsTrip,
+        builder: (BuildContext context, GoRouterState state) {
+          return const DetailsTripView();
         },
       ),
     ],

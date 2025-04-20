@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:travel_app/core/helper/app_router.dart';
-import 'package:travel_app/core/utils/app_flush_bar.dart';
+import 'package:travel_app/core/utils/top_snakbar_app.dart';
 import 'package:travel_app/feature/login/presentation/manager/cubit/auth_cubit.dart';
 import 'package:travel_app/feature/user_profile/view/widget/user_profile_body.dart';
 
@@ -36,7 +36,8 @@ class _UserPofileBlocListenerState extends State<UserPofileBlocListener> {
         }
 
         if (state is AuthSaved) {
-          CustomFlushBarWidget(
+          showCustomTopSnackBar(
+            context: context,
             message: 'تم حفظ البيانات بنجاح',
           );
         } else if (state is AuthCodeSent) {
@@ -47,7 +48,8 @@ class _UserPofileBlocListenerState extends State<UserPofileBlocListener> {
             context.go(AppRouter.mainView);
           }
         } else if (state is AuthError) {
-          CustomFlushBarWidget(
+          showCustomTopSnackBar(
+            context: context,
             message: 'حدث خطاء في حفظ البيانات',
           );
         }

@@ -20,6 +20,8 @@ class CustomTextFormField extends StatefulWidget {
     this.textAlign,
     this.controller,
     this.maxLines,
+    this.onChanged,
+    this.errorText,
   });
 
   final String? hintText;
@@ -34,6 +36,8 @@ class CustomTextFormField extends StatefulWidget {
   final TextAlign? textAlign;
   final TextEditingController? controller;
   final int? maxLines;
+  final Function(String)? onChanged;
+  final String? errorText;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -56,64 +60,78 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 6,
-            spreadRadius: 0,
-            offset: Offset(0, -2),
-          ),
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 6,
-            spreadRadius: 0,
-            offset: Offset(0, 2),
-          ),
-        ],
-      ),
-      child: TextFormField(
-        onSaved: widget.onSaved,
-        validator: (val) {
-          if (val == null || val.isEmpty) {
-            return 'هذا الحقل مطلوب';
-          } else {
-            return null;
-          }
-        },
-        controller: widget.controller,
-        maxLines: widget.maxLines ?? 1,
-        obscureText: widget.obscureText ?? false,
-        style: Styles.font14DarkGreyExtraBold,
-        readOnly: widget.readOnly ?? false,
-        keyboardType: widget.keyboardType,
-        textAlign: widget.textAlign ?? TextAlign.start,
-        decoration: InputDecoration(
-          isDense: true,
-          contentPadding: widget.contentPadding ??
-              EdgeInsets.symmetric(
-                vertical: 15.h,
-                horizontal: 16.w,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 6,
+                spreadRadius: 0,
+                offset: Offset(0, -2),
               ),
-          hintText: widget.hintText,
-          hintStyle: widget.inputTextStyle ?? Styles.font14GreyExtraBold,
-          filled: true,
-          fillColor: widget.fillColor ?? AppColors.grey,
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
-            borderSide: BorderSide(
-              color: AppColors.primaryColor,
-              width: 2.w,
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 6,
+                spreadRadius: 0,
+                offset: Offset(0, 2),
+              ),
+            ],
+          ),
+          child: TextFormField(
+            onSaved: widget.onSaved,
+            validator: (val) {
+              if (val == null || val.isEmpty) {
+                return 'هذا الحقل مطلوب';
+              } else {
+                return null;
+              }
+            },
+            onChanged: widget.onChanged,
+            controller: widget.controller,
+            maxLines: widget.maxLines ?? 1,
+            obscureText: widget.obscureText ?? false,
+            style: Styles.font14DarkGreyExtraBold,
+            readOnly: widget.readOnly ?? false,
+            keyboardType: widget.keyboardType,
+            textAlign: widget.textAlign ?? TextAlign.start,
+            decoration: InputDecoration(
+              isDense: true,
+              contentPadding: widget.contentPadding ??
+                  EdgeInsets.symmetric(
+                    vertical: 15.h,
+                    horizontal: 16.w,
+                  ),
+              hintText: widget.hintText,
+              hintStyle: widget.inputTextStyle ?? Styles.font14GreyExtraBold,
+              filled: true,
+              fillColor: widget.fillColor ?? AppColors.grey,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: BorderSide(
+                  color: AppColors.primaryColor,
+                  width: 2.w,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: BorderSide.none,
+              ),
+              suffixIcon: widget.suffixIcon,
             ),
           ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
-            borderSide: BorderSide.none,
-          ),
-          suffixIcon: widget.suffixIcon,
         ),
-      ),
+        if (widget.errorText != null)
+          Padding(
+            padding: EdgeInsets.only(top: 5.h, right: 10.w),
+            child: Text(
+              widget.errorText!,
+              style: TextStyle(color: Colors.red, fontSize: 12.sp),
+            ),
+          ),
+      ],
     );
   }
 }

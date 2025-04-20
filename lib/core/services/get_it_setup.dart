@@ -3,6 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:travel_app/core/services/auth_service.dart';
+import 'package:travel_app/feature/add_travel/data/service/trip_service.dart';
+import 'package:travel_app/feature/add_travel/data/repos/trip_repo.dart';
+import 'package:travel_app/feature/add_travel/data/repos/trip_repo_impl.dart';
+import 'package:travel_app/feature/add_travel/presentation/manager/trip_form_cubit/trip_form_cubit.dart';
+import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -19,5 +24,23 @@ void setupServiceLocator() {
       firestore: getIt(),
       googleSignIn: getIt(),
     ),
+  );
+
+  // Trip Feature
+  // Service
+  getIt.registerLazySingleton(() => TripService(firestore: getIt()));
+  
+  // Repository
+  getIt.registerLazySingleton<TripRepository>(
+    () => TripRepositoryImpl(service: getIt()),
+  );
+  
+  // Cubits
+  getIt.registerFactory(
+    () => TripCubit(tripRepository: getIt()),
+  );
+  
+  getIt.registerFactory(
+    () => TripFormCubit(tripRepository: getIt()),
   );
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travel_app/core/helper/show_message.dart' as CustomFlushBar;
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
+import 'package:travel_app/core/utils/top_snakbar_app.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/core/widget/custom_text_form_field.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
@@ -74,17 +74,17 @@ class _UserProfileBodyState extends State<UserProfileBody> {
     if (_firstNameController.text.isEmpty ||
         _lastNameController.text.isEmpty ||
         selectedRole == null) {
-      CustomFlushBar.showMessage(
-        context,
-        'الرجاء إدخال جميع البيانات المطلوبة',
+      showCustomTopSnackBar(
+        context: context,
+        message: 'الرجاء إدخال جميع البيانات المطلوبة',
       );
       return;
     }
 
     if (!isPhoneLogin && (fullPhoneNumber.isEmpty || !isPhoneValid)) {
-      CustomFlushBar.showMessage(
-        context,
-        'الرجاء إدخال رقم هاتف صحيح',
+      showCustomTopSnackBar(
+        context: context,
+        message: 'الرجاء إدخال رقم هاتف صحيح',
       );
       return;
     }
