@@ -7,7 +7,10 @@ import 'package:travel_app/core/theme/styles.dart';
 class ShareLocationButton extends StatelessWidget {
   const ShareLocationButton({
     super.key,
+    required this.title,
   });
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class ShareLocationButton extends StatelessWidget {
             size: 18.sp,
           ),
           label: Text(
-            'شارك موقعك',
+            title,
             style: Styles.font16WhiteBold,
             overflow: TextOverflow.ellipsis,
           ),

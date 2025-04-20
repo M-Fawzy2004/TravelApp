@@ -177,7 +177,6 @@ class TripFormCubit extends Cubit<TripFormState> {
           error: failure.message,
         ));
       }, (_) {
-        // إعادة تعيين النموذج في حالة النجاح
         emit(const TripFormState());
       });
     } catch (e) {
@@ -188,12 +187,10 @@ class TripFormCubit extends Cubit<TripFormState> {
     }
   }
 
-  // مسح النموذج
   void resetForm() {
     emit(const TripFormState());
   }
 
-  // تحميل بيانات رحلة موجودة للتعديل
   void loadTripForEdit(TripModel trip) {
     emit(TripFormState(
       tripType: trip.tripType,
@@ -220,7 +217,6 @@ class TripFormCubit extends Cubit<TripFormState> {
     try {
       emit(state.copyWith(isSubmitting: true, error: null));
 
-      // إنشاء نموذج الرحلة مع الهوية المحددة
       final tripModel = state.toTripModel().copyWith(id: id);
 
       final result = await _tripRepository.updateTrip(tripModel);
@@ -231,7 +227,6 @@ class TripFormCubit extends Cubit<TripFormState> {
           error: failure.message,
         ));
       }, (_) {
-        // إعادة تعيين النموذج في حالة النجاح
         emit(const TripFormState());
       });
     } catch (e) {

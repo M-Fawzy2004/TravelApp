@@ -1,12 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/add_travel_view.dart';
 import 'package:travel_app/feature/home/presentation/view/details_trip_view.dart';
 import 'package:travel_app/feature/home/presentation/view/main_view.dart';
 import 'package:travel_app/feature/login/presentation/view/login_view.dart';
 import 'package:travel_app/feature/login/presentation/view/otp_verification_view.dart';
 import 'package:travel_app/feature/onboarding/onboarding_view.dart';
+import 'package:travel_app/feature/resent_add/presentation/view/resently_added_view.dart';
 import 'package:travel_app/feature/user_profile/view/user_profile.dart';
 
 abstract class AppRouter {
@@ -17,6 +19,7 @@ abstract class AppRouter {
   static const mapView = '/mapView';
   static const addTravel = '/addTravel';
   static const detailsTrip = '/detailsTrip';
+  static const resentlyAdded = '/resentlyAdded';
 
   static var router = GoRouter(
     initialLocation: '/',
@@ -78,7 +81,15 @@ abstract class AppRouter {
       GoRoute(
         path: detailsTrip,
         builder: (BuildContext context, GoRouterState state) {
-          return const DetailsTripView();
+          return DetailsTripView(
+            trip: state.extra as TripModel,
+          );
+        },
+      ),
+      GoRoute(
+        path: resentlyAdded,
+        builder: (BuildContext context, GoRouterState state) {
+          return ResentlyAddedView();
         },
       ),
     ],

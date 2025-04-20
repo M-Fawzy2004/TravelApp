@@ -17,8 +17,13 @@ class TripCubit extends Cubit<TripState> {
 
     final result = await _tripRepository.getAllTrips();
 
-    result.fold((failure) => _handleFailure(failure),
-        (trips) => emit(TripsLoadedSuccess(trips)));
+    result.fold(
+      (failure) => _handleFailure(failure),
+      (trips) {
+        trips.shuffle();
+        emit(TripsLoadedSuccess(trips));
+      },
+    );
   }
 
   Future<void> getTripById(String id) async {

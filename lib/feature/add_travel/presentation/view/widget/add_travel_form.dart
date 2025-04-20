@@ -92,8 +92,13 @@ class _AddTravelFormState extends State<AddTravelForm> {
               DetailsField(),
               heightBox(20),
               SubmitCustomButton(
+                onPressed: state.isSubmitting
+                    ? null
+                    : () {
+                        context.read<TripFormCubit>().submitForm();
+                      },
                 buttonText: state.isSubmitting
-                    ? 'جاري الحفظ...'
+                    ? 'جاري الإضافه...'
                     : 'إضافه $_selectedType',
                 textStyle: Styles.font16WhiteBold,
               ),

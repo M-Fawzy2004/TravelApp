@@ -30,7 +30,9 @@ class DetailsLocation extends StatelessWidget {
           fit: BoxFit.fill,
         ),
       ),
-      child: ShareLocationButton(),
+      child: ShareLocationButton(
+        title: 'شارك موقعك',
+      ),
     );
   }
 }

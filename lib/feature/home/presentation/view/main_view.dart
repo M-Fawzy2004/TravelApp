@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/home/presentation/view/home_view.dart';
+import 'package:travel_app/feature/resent_add/presentation/view/resently_added_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -18,9 +19,7 @@ class _MainViewState extends State<MainView> {
 
   final List<Widget> screens = [
     HomeView(),
-    Center(
-      child: Text("المضاف مؤخرا"),
-    ),
+    ResentlyAddedView(),
     Center(
       child: Text("الرسائل"),
     ),
@@ -32,7 +31,10 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[screenIndex],
+      body: IndexedStack(
+        index: screenIndex,
+        children: screens,
+      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: AppColors.grey,

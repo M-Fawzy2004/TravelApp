@@ -101,6 +101,7 @@ class TripFormState extends Equatable {
       duration: duration,
       price: price,
       additionalDetails: additionalDetails,
+      gradientIndex: gradientIndex,
     );
   }
 
