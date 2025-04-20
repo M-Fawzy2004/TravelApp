@@ -30,30 +30,42 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      style: ButtonStyle(
-        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 10.0),
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.grey,
+            blurRadius: 6,
+            spreadRadius: 0,
+            offset: Offset(0, 1),
           ),
-        ),
-        backgroundColor: WidgetStatePropertyAll(
-          backgroundColor ?? AppColors.black,
-        ),
-        padding: WidgetStateProperty.all<EdgeInsets>(
-          EdgeInsets.symmetric(
-            horizontal: horizontalPadding?.w ?? 12.w,
-            vertical: verticalPadding?.h ?? 14.h,
-          ),
-        ),
-        fixedSize: WidgetStateProperty.all(
-          Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 50.h),
-        ),
+        ],
       ),
-      onPressed: isEnabled ? onPressed : null,
-      child: Text(
-        buttonText,
-        style: textStyle,
+      child: TextButton(
+        style: ButtonStyle(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius ?? 10.0),
+            ),
+          ),
+          backgroundColor: WidgetStatePropertyAll(
+            backgroundColor ?? AppColors.black,
+          ),
+          padding: WidgetStateProperty.all<EdgeInsets>(
+            EdgeInsets.symmetric(
+              horizontal: horizontalPadding?.w ?? 12.w,
+              vertical: verticalPadding?.h ?? 14.h,
+            ),
+          ),
+          fixedSize: WidgetStateProperty.all(
+            Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 50.h),
+          ),
+        ),
+        onPressed: isEnabled ? onPressed : null,
+        child: Text(
+          buttonText,
+          style: textStyle,
+        ),
       ),
     );
   }

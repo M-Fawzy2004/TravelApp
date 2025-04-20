@@ -40,7 +40,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             physics: BouncingScrollPhysics(),
             slivers: [
               SliverToBoxAdapter(child: heightBox(15)),
-              SliverToBoxAdapter(child: SearchTextField()),
+              SliverToBoxAdapter(
+                child: SearchTextField(),
+              ),
               SliverToBoxAdapter(child: heightBox(10)),
               SliverToBoxAdapter(child: DetailsLocation()),
               SliverToBoxAdapter(child: heightBox(20)),

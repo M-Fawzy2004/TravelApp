@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/extension.dart';
@@ -14,6 +16,14 @@ class IconBack extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         color: AppColors.grey,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.black.withOpacity(.2),
+            blurRadius: 6,
+            spreadRadius: 0,
+            offset: Offset(0, 1),
+          ),
+        ],
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.w),

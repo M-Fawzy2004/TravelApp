@@ -22,9 +22,13 @@ class Assets {
   /// assets/images/loaction_map.png
   static const String imagesLoactionMap = "assets/images/loaction_map.png";
 
-  /// Assets for imagesMailLogo
-  /// assets/images/mail_logo.png
-  static const String imagesMailLogo = "assets/images/mail_logo.png";
+  /// Assets for imagesLogoLocation
+  /// assets/images/logo_location.jpg
+  static const String imagesLogoLocation = "assets/images/logo_location.jpg";
+
+  /// Assets for imagesLogoTravel
+  /// assets/images/logo_travel.png
+  static const String imagesLogoTravel = "assets/images/logo_travel.png";
 
   /// Assets for imagesOnboardingCarsOnRoad
   /// assets/images/onboarding_cars_on_road.jpg
@@ -34,12 +38,8 @@ class Assets {
   /// assets/images/onboarding_image.jpg
   static const String imagesOnboardingImage = "assets/images/onboarding_image.jpg";
 
-  /// Assets for imagesTravelLogo
-  /// assets/images/travel_logo.png
-  static const String imagesTravelLogo = "assets/images/travel_logo.png";
-
-  /// Assets for imagesTravelLogoSplashAndroid12
-  /// assets/images/travel_logo_splash_android12.png
-  static const String imagesTravelLogoSplashAndroid12 = "assets/images/travel_logo_splash_android12.png";
+  /// Assets for imagesTravelLogoAndroid12
+  /// assets/images/travel_logo_android_12.png
+  static const String imagesTravelLogoAndroid12 = "assets/images/travel_logo_android_12.png";
 }
 
