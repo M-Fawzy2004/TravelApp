@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/home/presentation/view/home_view.dart';
 
@@ -48,6 +49,8 @@ class _MainViewState extends State<MainView> {
           currentIndex: screenIndex,
           type: BottomNavigationBarType.fixed,
           elevation: 0,
+          iconSize: 17.sp,
+          selectedIconTheme: IconThemeData(size: 20.sp),
           selectedFontSize: 14.sp,
           unselectedFontSize: 12.sp,
           backgroundColor: Colors.transparent,
@@ -61,19 +64,19 @@ class _MainViewState extends State<MainView> {
           },
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(FontAwesomeIcons.home),
               label: 'الرئيسيه',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.directions_car),
+              icon: Icon(FontAwesomeIcons.car),
               label: 'المضاف مؤخرا',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.message),
+              icon: Icon(FontAwesomeIcons.facebookMessenger),
               label: 'الرسائل',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(FontAwesomeIcons.user),
               label: 'الملف الشخصي',
             ),
           ],

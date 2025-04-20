@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_app/core/helper/app_router.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
@@ -47,8 +50,10 @@ class OnBoardingBottomCard extends StatelessWidget {
                 OnboardingDescriptionSection(),
                 Spacer(),
                 CustomButton(
-                  onPressed: () {
-                    context.go(AppRouter.loginView);
+                  onPressed: () async {
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.setBool('isFirstTime', false);
+                    context.push(AppRouter.loginView);
                   },
                   buttonText: 'ابدء رحلتك الان',
                   textStyle: Styles.font16WhiteBold,

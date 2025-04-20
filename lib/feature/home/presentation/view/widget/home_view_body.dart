@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/widget/search_text_field.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_filter.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/category_travel_sliver_list.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/category_travel_sliver_grid.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
 
 class HomeViewBody extends StatefulWidget {
@@ -40,15 +40,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
             physics: BouncingScrollPhysics(),
             slivers: [
               SliverToBoxAdapter(child: heightBox(15)),
-              SliverToBoxAdapter(
-                child: SearchTextField(),
-              ),
+              SliverToBoxAdapter(child: SearchTextField()),
               SliverToBoxAdapter(child: heightBox(10)),
               SliverToBoxAdapter(child: DetailsLocation()),
               SliverToBoxAdapter(child: heightBox(20)),
               SliverToBoxAdapter(child: CategoryFilter()),
               SliverToBoxAdapter(child: heightBox(20)),
-              CategoryTravelListList(),
+              CategoryTravelListGrid(),
             ],
           ),
         ),

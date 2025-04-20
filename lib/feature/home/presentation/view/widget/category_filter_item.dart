@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/app_color.dart';
@@ -22,8 +24,15 @@ class CategoryFilterItem extends StatelessWidget {
         width: 80.w,
         height: 40.h,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.black.withOpacity(.2),
+              offset: Offset(0, 5),
+              blurRadius: 10,
+            ),
+          ],
           borderRadius: BorderRadius.circular(10),
-          color: isSelected ? AppColors.primaryColor : AppColors.grey,
+          color: isSelected ? AppColors.primaryColor : AppColors.white,
         ),
         child: Center(
           child: Text(

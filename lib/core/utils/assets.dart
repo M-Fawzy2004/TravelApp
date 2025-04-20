@@ -6,6 +6,10 @@ class Assets {
   /// assets/images/apple_logo.png
   static const String imagesAppleLogo = "assets/images/apple_logo.png";
 
+  /// Assets for imagesDeliveryCarImage
+  /// assets/images/delivery_car_image.jpg
+  static const String imagesDeliveryCarImage = "assets/images/delivery_car_image.jpg";
+
   /// Assets for imagesEgypt
   /// assets/images/egypt.png
   static const String imagesEgypt = "assets/images/egypt.png";
@@ -37,6 +41,14 @@ class Assets {
   /// Assets for imagesOnboardingImage
   /// assets/images/onboarding_image.jpg
   static const String imagesOnboardingImage = "assets/images/onboarding_image.jpg";
+
+  /// Assets for imagesTravelCarImage
+  /// assets/images/travel_car_image.jpg
+  static const String imagesTravelCarImage = "assets/images/travel_car_image.jpg";
+
+  /// Assets for imagesTravelLogo12
+  /// assets/images/travel_logo_12.png
+  static const String imagesTravelLogo12 = "assets/images/travel_logo_12.png";
 
   /// Assets for imagesTravelLogoAndroid12
   /// assets/images/travel_logo_android_12.png

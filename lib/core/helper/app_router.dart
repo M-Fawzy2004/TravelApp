@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/add_travel_view.dart';
 import 'package:travel_app/feature/home/presentation/view/main_view.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/map_view.dart';
 import 'package:travel_app/feature/login/presentation/view/login_view.dart';
 import 'package:travel_app/feature/login/presentation/view/otp_verification_view.dart';
 import 'package:travel_app/feature/onboarding/onboarding_view.dart';
@@ -66,12 +65,6 @@ abstract class AppRouter {
         path: userProfile,
         builder: (BuildContext context, GoRouterState state) {
           return const UserProfile();
-        },
-      ),
-      GoRoute(
-        path: mapView,
-        builder: (BuildContext context, GoRouterState state) {
-          return const MapView();
         },
       ),
       GoRoute(

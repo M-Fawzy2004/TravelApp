@@ -33,7 +33,7 @@ class SearchTextField extends StatelessWidget {
             vertical: 15.h,
             horizontal: 16.w,
           ),
-          fillColor: AppColors.grey,
+          fillColor: AppColors.white,
           filled: true,
           hintText: 'بحث عن رحلة معينه....',
           hintStyle: Styles.font14DarkGreyExtraBold.copyWith(
@@ -44,7 +44,7 @@ class SearchTextField extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
           suffixIcon: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(14.0),
             child: FaIcon(
               FontAwesomeIcons.search,
               size: 20.sp,

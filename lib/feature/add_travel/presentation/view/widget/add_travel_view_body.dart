@@ -18,6 +18,7 @@ class _AddTravelViewBodyState extends State<AddTravelViewBody> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,7 +37,7 @@ class _AddTravelViewBodyState extends State<AddTravelViewBody> {
             'ضيف تفاصيل رحلتك أو التوصيلة علشان توصل الناس بأمان وسهولة. \nمن فضلك إملأ البيانات بدقة عشان نساعدك توصل للي محتاجين يركبوا معاك.',
             style: Styles.font14GreyExtraBold,
           ),
-          heightBox(30),
+          heightBox(20),
           AddTravelForm(),
         ],
       ),
