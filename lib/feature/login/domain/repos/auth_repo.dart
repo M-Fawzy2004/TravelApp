@@ -17,9 +17,7 @@ abstract class AuthRepository {
 
   // signInWithApple
   Future<Either<Failure, UserEntity>> signInWithApple();
-  
-  // sendEmailVerification
-  Future<Either<Failure, void>> sendEmailVerification();
+
 
   // saveUserData
   Future<Either<Failure, void>> saveUserData(UserEntity user);

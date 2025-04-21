@@ -48,6 +48,11 @@ class DetailsCenterCard extends StatelessWidget {
               label: 'سعر الرحله',
               value: '${trip.price}جنيه',
             ),
+            InfoRow(
+              icon: Icons.merge_type,
+              label: 'نوع الرحله',
+              value: trip.getTripTypeArabicText(),
+            ),
           ],
         ),
       ),

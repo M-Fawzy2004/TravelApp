@@ -70,15 +70,23 @@ class CategoryTravel extends StatelessWidget {
                   ),
                 ),
                 heightBox(12),
-                InfoRow(
-                  icon: Icons.location_on,
-                  label: 'مكان التحرك',
-                  value: trip.departureLocation,
-                ),
-                InfoRow(
-                  icon: Icons.flag,
-                  label: 'مكان الوصول',
-                  value: trip.arrivalLocation,
+                Row(
+                  children: [
+                    Expanded(
+                      child: InfoRow(
+                        icon: Icons.location_on,
+                        label: 'مكان التحرك',
+                        value: trip.departureLocation,
+                      ),
+                    ),
+                    Expanded(
+                      child: InfoRow(
+                        icon: Icons.flag,
+                        label: 'مكان الوصول',
+                        value: trip.arrivalLocation,
+                      ),
+                    ),
+                  ],
                 ),
                 InfoRow(
                   icon: Icons.date_range,

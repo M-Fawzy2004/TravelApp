@@ -1,5 +1,6 @@
 // 1. ENTITY/MODEL
 import 'package:flutter/material.dart';
+import 'package:travel_app/core/utils/tripe_type.dart';
 
 class TripModel {
   final String id;
@@ -29,6 +30,10 @@ class TripModel {
     this.additionalDetails = '',
     this.gradientIndex = 0,
   });
+
+  String getTripTypeArabicText() {
+    return getTripTypeInArabic(tripType);
+  }
 
   // Convert to JSON
   Map<String, dynamic> toJson() {

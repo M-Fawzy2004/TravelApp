@@ -22,7 +22,7 @@ void main() async {
         getIt<AuthService>(),
       ),
       child: DevicePreview(
-        enabled: true,
+        enabled: false,
         builder: (context) => TravelApp(),
       ),
     ),

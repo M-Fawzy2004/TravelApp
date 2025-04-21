@@ -11,7 +11,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:travel_app/core/error/failure_class.dart';
 import 'package:travel_app/feature/login/data/model/user_model.dart';
-import 'package:travel_app/feature/login/data/repos/auth_repo.dart';
+import 'package:travel_app/feature/login/domain/repos/auth_repo.dart';
 import 'package:travel_app/feature/login/domain/entity/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -226,21 +226,6 @@ class AuthRepositoryImpl implements AuthRepository {
         }
       } else {
         return Left(AuthFailure(message: 'فشل تسجيل الدخول باستخدام Apple'));
-      }
-    } catch (e) {
-      return Left(AuthFailure(message: e.toString()));
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> sendEmailVerification() async {
-    try {
-      final user = _firebaseAuth.currentUser;
-      if (user != null) {
-        await user.sendEmailVerification();
-        return const Right(null);
-      } else {
-        return Left(AuthFailure(message: 'لم يتم تسجيل دخول أي مستخدم'));
       }
     } catch (e) {
       return Left(AuthFailure(message: e.toString()));

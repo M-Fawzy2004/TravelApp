@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:travel_app/core/error/failure_class.dart';
-import 'package:travel_app/feature/login/data/repos/auth_repo.dart';
+import 'package:travel_app/feature/login/domain/repos/auth_repo.dart';
 import 'package:travel_app/feature/login/domain/entity/user_entity.dart';
 
 abstract class UseCase<Type, Params> {

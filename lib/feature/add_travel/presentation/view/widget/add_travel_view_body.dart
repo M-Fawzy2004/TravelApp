@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
@@ -24,7 +25,10 @@ class _AddTravelViewBodyState extends State<AddTravelViewBody> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           heightBox(20),
-          const IconBack(),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w),
+            child: const IconBack(),
+          ),
           heightBox(20),
           Align(
             alignment: Alignment.centerRight,
