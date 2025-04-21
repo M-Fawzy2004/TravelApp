@@ -9,7 +9,9 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:travel_app/constant.dart';
 import 'package:travel_app/core/error/failure_class.dart';
+import 'package:travel_app/core/services/shared_preference_singleton.dart';
 import 'package:travel_app/feature/auth/data/model/user_model.dart';
 import 'package:travel_app/feature/auth/domain/repos/auth_repo.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
@@ -51,7 +53,7 @@ class AuthRepositoryImpl implements AuthRepository {
                 id: user.uid,
                 phoneNumber: phoneNumber,
               );
-              await _saveUserToFirestore(newUser);
+              await _saveUserToFirestore(user: newUser);
               completer.complete(Right(newUser));
             }
           } else {
@@ -122,7 +124,7 @@ class AuthRepositoryImpl implements AuthRepository {
             id: user.uid,
             phoneNumber: phoneNumber,
           );
-          await _saveUserToFirestore(newUser);
+          await _saveUserToFirestore(user: newUser);
           return Right(newUser);
         }
       } else {
@@ -168,7 +170,7 @@ class AuthRepositoryImpl implements AuthRepository {
             lastName: user.displayName?.split(' ').last,
             isEmailVerified: user.emailVerified,
           );
-          await _saveUserToFirestore(newUser);
+          await _saveUserToFirestore(user: newUser);
           return Right(newUser);
         }
       } else {
@@ -221,7 +223,7 @@ class AuthRepositoryImpl implements AuthRepository {
             lastName: lastName,
             isEmailVerified: user.emailVerified,
           );
-          await _saveUserToFirestore(newUser);
+          await _saveUserToFirestore(user: newUser);
           return Right(newUser);
         }
       } else {
@@ -233,14 +235,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> saveUserData(UserEntity user) async {
-    try {
-      final userModel = UserModel.fromEntity(user);
-      await _saveUserToFirestore(userModel);
-      return const Right(null);
-    } catch (e) {
-      return Left(ServerFailure(message: e.toString()));
-    }
+  Future<void> saveUserData({required UserEntity user}) async {
+    final userModel = jsonEncode(UserModel.fromEntity(user).toJson());
+    await Prefs.setString(kUserData, userModel);
   }
 
   @override
@@ -271,7 +268,7 @@ class AuthRepositoryImpl implements AuthRepository {
   // Helper methods
   Future<UserModel?> _getUserFromFirestore(String userId) async {
     try {
-      final doc = await _firestore.collection('users').doc(userId).get();
+      final doc = await _firestore.collection(kUsers).doc(userId).get();
       if (doc.exists && doc.data() != null) {
         final userData = doc.data()!;
         userData['id'] = userId;
@@ -283,8 +280,8 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-  Future<void> _saveUserToFirestore(UserModel user) async {
-    await _firestore.collection('users').doc(user.id).set(user.toJson());
+  Future<void> _saveUserToFirestore({required UserModel user}) async {
+    await _firestore.collection(kUsers).doc(user.id).set(user.toJson());
   }
 
   // Helper functions for Apple Sign In

@@ -9,10 +9,9 @@ class UserEntity {
   final String? city;
   final String phoneNumber;
   final String? email;
-  final UserRole? role; // captain, passenger
-  final VehicleType?
-      vehicleType; // privateCar, microbus, minibus, bus, motorcycle
-  final int? seatCount; // number of seats
+  final UserRole? role;
+  final VehicleType? vehicleType;
+  final int? seatCount;
   final bool isEmailVerified;
 
   UserEntity({

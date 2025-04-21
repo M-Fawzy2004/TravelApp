@@ -24,8 +24,8 @@ class UserModel extends UserEntity {
       city: entity.city,
       phoneNumber: entity.phoneNumber,
       email: entity.email,
-      role: entity.role,
-      vehicleType: entity.vehicleType,
+      role: entity.role ?? UserRole.passenger,
+      vehicleType: entity.vehicleType ?? VehicleType.privateCar,
       seatCount: entity.seatCount,
       isEmailVerified: entity.isEmailVerified,
     );

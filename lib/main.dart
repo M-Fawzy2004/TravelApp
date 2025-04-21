@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/core/helper/custom_bloc_observer.dart';
 import 'package:travel_app/core/services/auth_service.dart';
 import 'package:travel_app/core/services/get_it_setup.dart';
+import 'package:travel_app/core/services/shared_preference_singleton.dart';
 import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:travel_app/firebase_options.dart';
 import 'package:travel_app/travel_app.dart';
@@ -16,6 +17,7 @@ void main() async {
   );
   Bloc.observer = CustomBlocObserver();
   setupServiceLocator();
+  await Prefs.init();
   runApp(
     BlocProvider(
       create: (context) => AuthCubit(

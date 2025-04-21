@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/info_row.dart';
@@ -15,6 +16,8 @@ class DetailsCenterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final firstName = getUser()?.firstName;
+    final lastName = getUser()?.lastName;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.r),
@@ -33,6 +36,11 @@ class DetailsCenterCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            InfoRow(
+              icon: FontAwesomeIcons.mapMarkerAlt,
+              label: 'إسم صاحب الرحله',
+              value: '$firstName $lastName',
+            ),
             InfoRow(
               icon: FontAwesomeIcons.mapMarkerAlt,
               label: 'مدة الرحله المتوقعه',

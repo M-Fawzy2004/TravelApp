@@ -18,9 +18,8 @@ abstract class AuthRepository {
   // signInWithApple
   Future<Either<Failure, UserEntity>> signInWithApple();
 
-
   // saveUserData
-  Future<Either<Failure, void>> saveUserData(UserEntity user);
+  Future<void> saveUserData({required UserEntity user});
 
   // getCurrentUser
   Future<Either<Failure, UserEntity?>> getCurrentUser();

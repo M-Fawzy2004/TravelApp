@@ -7,6 +7,8 @@ import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:travel_app/constant.dart';
+import 'package:travel_app/core/services/shared_preference_singleton.dart';
 import 'package:travel_app/feature/auth/data/model/user_model.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
@@ -166,64 +168,16 @@ class AuthService {
     }
   }
 
-  // Sign in with email and password
-  Future<UserEntity> signInWithEmail(String email, String password) async {
-    try {
-      final userCredential = await _auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      final user = userCredential.user;
-
-      if (user != null) {
-        if (!user.emailVerified) {
-          throw Exception('لم يتم التحقق من البريد الإلكتروني');
-        }
-        return await _getOrCreateUser(user);
-      } else {
-        throw Exception('فشل تسجيل الدخول باستخدام البريد الإلكتروني');
-      }
-    } on FirebaseAuthException catch (e) {
-      throw Exception(e.message ?? 'فشل تسجيل الدخول بالبريد الإلكتروني');
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
-  // Send email verification
-  Future<void> sendEmailVerification() async {
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        await user.sendEmailVerification();
-      } else {
-        throw Exception('لم يتم تسجيل دخول أي مستخدم');
-      }
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
-  // Check if email is verified
-  Future<bool> isEmailVerified() async {
-    try {
-      final user = _auth.currentUser;
-      if (user != null) {
-        await user.reload();
-        return user.emailVerified;
-      } else {
-        throw Exception('لم يتم تسجيل دخول أي مستخدم');
-      }
-    } catch (e) {
-      throw Exception(e.toString());
-    }
-  }
-
   // Save user data
   Future<void> saveUserData(UserEntity user) async {
     try {
       final userModel = user is UserModel ? user : UserModel.fromEntity(user);
       await _firestore.collection('users').doc(user.id).set(userModel.toJson());
+
+      final userModelJson = jsonEncode(userModel.toJson());
+      await Prefs.setString(kUserData, userModelJson);
+      // ignore: avoid_print
+      print("تم حفظ البيانات في SharedPreferences: $userModelJson");
     } catch (e) {
       throw Exception(e.toString());
     }

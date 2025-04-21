@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:travel_app/core/services/auth_service.dart';
@@ -14,6 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authService.signInWithPhone(phone);
+      await authService.saveUserData(user);
       emit(AuthCodeSent(user));
     } catch (e) {
       emit(AuthError(e.toString()));
@@ -24,7 +27,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authService.verifyOTP(verificationId, code);
-
+      await authService.saveUserData(user);
       // Check if user profile is complete
       if (user.firstName == null || user.firstName!.isEmpty) {
         // User needs to complete profile

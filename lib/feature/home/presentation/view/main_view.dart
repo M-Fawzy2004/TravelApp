@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/theme/app_color.dart';
+import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/home/presentation/view/home_view.dart';
 import 'package:travel_app/feature/resent_add/presentation/view/resently_added_view.dart';
 
@@ -23,9 +25,7 @@ class _MainViewState extends State<MainView> {
     Center(
       child: Text("الرسائل"),
     ),
-    Center(
-      child: Text("الملف الشخصي"),
-    ),
+    NewWidget(),
   ];
 
   @override
@@ -83,6 +83,26 @@ class _MainViewState extends State<MainView> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class NewWidget extends StatelessWidget {
+  const NewWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final user = getUser()?.firstName;
+
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('مرحبا $user', style: Styles.font20ExtraBlackBold),
+        ],
       ),
     );
   }
