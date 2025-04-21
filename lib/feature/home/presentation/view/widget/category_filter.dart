@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_filter_item.dart';
 
 class CategoryFilter extends StatefulWidget {
@@ -23,20 +24,23 @@ class _CategorySelectorState extends State<CategoryFilter> {
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(filterText.length, (index) {
-          return GestureDetector(
-            onTap: () {
-              setState(() {
-                isSelected = index;
-              });
-            },
-            child: CategoryFilterItem(
-              text: filterText[index],
-              isSelected: isSelected == index,
-            ),
-          );
-        }),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
+        child: Row(
+          children: List.generate(filterText.length, (index) {
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  isSelected = index;
+                });
+              },
+              child: CategoryFilterItem(
+                text: filterText[index],
+                isSelected: isSelected == index,
+              ),
+            );
+          }),
+        ),
       ),
     );
   }

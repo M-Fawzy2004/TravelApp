@@ -21,9 +21,12 @@ class CustomLoadingGrid extends StatelessWidget {
           (context, index) {
             return Skeletonizer(
               enabled: true,
-              child: CategoryTravel(
-                trip: getCategorySkeletonizer(),
-                index: index,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 25.h),
+                child: CategoryTravel(
+                  trip: getCategorySkeletonizer(),
+                  index: index,
+                ),
               ),
             );
           },
@@ -31,9 +34,7 @@ class CustomLoadingGrid extends StatelessWidget {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          mainAxisSpacing: 10.h,
-          crossAxisSpacing: 10.w,
-          childAspectRatio: 1.45.h,
+          mainAxisExtent: 310.h,
         ),
       ),
     );

@@ -48,9 +48,12 @@ class CustomTripGrid extends StatelessWidget {
                   ),
                 );
               },
-              child: CategoryTravel(
-                trip: trip,
-                index: index,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: 25.h),
+                child: CategoryTravel(
+                  trip: trip,
+                  index: index,
+                ),
               ),
             );
           },
@@ -58,9 +61,7 @@ class CustomTripGrid extends StatelessWidget {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          mainAxisSpacing: 10.h,
-          crossAxisSpacing: 10.w,
-          childAspectRatio: 1.45.h,
+          mainAxisExtent: 310.h,
         ),
       ),
     );

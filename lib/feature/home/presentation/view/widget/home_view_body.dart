@@ -69,7 +69,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 SliverToBoxAdapter(child: DetailsLocation()),
                 SliverToBoxAdapter(child: heightBox(20)),
                 SliverToBoxAdapter(child: CategoryFilter()),
-                SliverToBoxAdapter(child: heightBox(20)),
+                SliverToBoxAdapter(child: heightBox(10)),
                 CategorySliverGridGridBlocBuilder(),
               ],
             ),

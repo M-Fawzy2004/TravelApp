@@ -21,7 +21,7 @@ class CategoryFilterItem extends StatelessWidget {
       padding: EdgeInsets.only(left: 10.w),
       child: AnimatedContainer(
         duration: Duration(milliseconds: 500),
-        width: 80.w,
+        width: 70.w,
         height: 40.h,
         decoration: BoxDecoration(
           boxShadow: [
