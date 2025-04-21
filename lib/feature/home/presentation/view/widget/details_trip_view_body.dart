@@ -14,9 +14,10 @@ import 'package:travel_app/feature/home/presentation/view/widget/share_location_
 class DetailsTripViewBody extends StatelessWidget {
   const DetailsTripViewBody({
     super.key,
-    required this.trip,
+    required this.trip, required this.index,
   });
   final TripModel trip;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,10 @@ class DetailsTripViewBody extends StatelessWidget {
             ),
           ),
           heightBox(20),
-          DetailsTopCard(trip: trip),
+          DetailsTopCard(
+            trip: trip,
+            index: index,
+          ),
           heightBox(20),
           DetailsCenterCard(trip: trip),
           heightBox(20),
