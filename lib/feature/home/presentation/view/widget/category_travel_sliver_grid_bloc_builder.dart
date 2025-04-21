@@ -16,7 +16,9 @@ class CategorySliverGridGridBlocBuilder extends StatelessWidget {
         if (state is TripLoading) {
           return CustomLoadingGrid();
         } else if (state is TripsLoadedSuccess) {
-          return CustomTripGrid(trips: state.trips);
+          return CustomTripGrid(
+            trips: state.trips,
+          );
         } else if (state is TripError) {
           return CustomErrorMessage(message: state.message);
         } else {
@@ -26,4 +28,3 @@ class CategorySliverGridGridBlocBuilder extends StatelessWidget {
     );
   }
 }
-

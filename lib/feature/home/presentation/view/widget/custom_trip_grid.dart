@@ -6,9 +6,11 @@ class CustomTripGrid extends StatelessWidget {
   const CustomTripGrid({
     super.key,
     required this.trips,
+    this.index,
   });
 
   final List trips;
+  final int? index;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,10 @@ class CustomTripGrid extends StatelessWidget {
                   ),
                 );
               },
-              child: CategoryTravel(trip: trip),
+              child: CategoryTravel(
+                trip: trip,
+                index: index,
+              ),
             );
           },
           childCount: trips.length,

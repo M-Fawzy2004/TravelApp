@@ -7,7 +7,10 @@ import 'package:travel_app/feature/home/presentation/view/widget/category_travel
 class CustomLoadingGrid extends StatelessWidget {
   const CustomLoadingGrid({
     super.key,
+    this.index,
   });
+
+  final int? index;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,7 @@ class CustomLoadingGrid extends StatelessWidget {
               enabled: true,
               child: CategoryTravel(
                 trip: getCategorySkeletonizer(),
+                index: index,
               ),
             );
           },

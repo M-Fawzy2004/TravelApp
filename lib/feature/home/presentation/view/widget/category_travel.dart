@@ -13,6 +13,7 @@ import 'package:travel_app/feature/home/presentation/view/widget/info_row.dart';
 
 class CategoryTravel extends StatelessWidget {
   final TripModel trip;
+  final int index;
   static const List<LinearGradient> _gradientsList = [
     LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]), // Blue
     LinearGradient(colors: [Color(0xFFFCE4EC), Color(0xFFF48FB1)]), // Pink
@@ -20,7 +21,11 @@ class CategoryTravel extends StatelessWidget {
     LinearGradient(colors: [Color(0xFFFFF3E0), Color(0xFFFFCC80)]), // Orange
   ];
 
-  const CategoryTravel({super.key, required this.trip});
+  const CategoryTravel({
+    super.key,
+    required this.trip,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +33,9 @@ class CategoryTravel extends StatelessWidget {
         trip.gradientIndex >= 0 && trip.gradientIndex < _gradientsList.length
             ? _gradientsList[trip.gradientIndex]
             : _gradientsList[0];
-
+    final tag = '${trip.id}_$index';
     return Hero(
-      tag: trip.id,
+      tag: tag,
       flightShuttleBuilder: (flightContext, animation, flightDirection,
           fromHeroContext, toHeroContext) {
         return flightDirection == HeroFlightDirection.pop
@@ -92,7 +97,13 @@ class CategoryTravel extends StatelessWidget {
                   buttonText: 'تفاصيل الرحله',
                   textStyle: Styles.font16WhiteBold,
                   onPressed: () {
-                    context.push(AppRouter.detailsTrip, extra: trip);
+                    context.push(
+                      AppRouter.detailsTrip,
+                      extra: {
+                        'trip': trip,
+                        'index': index,
+                      },
+                    );
                   },
                 ),
               ],

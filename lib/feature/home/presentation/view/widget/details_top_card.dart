@@ -10,9 +10,11 @@ class DetailsTopCard extends StatelessWidget {
   const DetailsTopCard({
     super.key,
     required this.trip,
+    this.index,
   });
 
   final TripModel trip;
+  final int? index;
   static const List<LinearGradient> _gradientsList = [
     LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]), // Blue
     LinearGradient(colors: [Color(0xFFFCE4EC), Color(0xFFF48FB1)]), // Pink
@@ -26,8 +28,10 @@ class DetailsTopCard extends StatelessWidget {
         trip.gradientIndex >= 0 && trip.gradientIndex < _gradientsList.length
             ? _gradientsList[trip.gradientIndex]
             : _gradientsList[0];
+    final tag = '${trip.id}_$index';
+
     return Hero(
-      tag: trip.id,
+      tag: tag,
       child: Material(
         color: Colors.transparent,
         child: Container(
