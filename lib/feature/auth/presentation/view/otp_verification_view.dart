@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/feature/login/presentation/view/widget/otp_verification_bloc_listener.dart';
+import 'package:travel_app/feature/auth/presentation/view/widget/otp_verification_bloc_listener.dart';
 
 class OtpVerificationView extends StatelessWidget {
   const OtpVerificationView({super.key, required this.verificationId});

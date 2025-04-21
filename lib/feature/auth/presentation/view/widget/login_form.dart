@@ -6,9 +6,9 @@ import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/utils/assets.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
-import 'package:travel_app/feature/login/presentation/manager/cubit/auth_cubit.dart';
-import 'package:travel_app/feature/login/presentation/view/widget/phone_number_input_section.dart';
-import 'package:travel_app/feature/login/presentation/view/widget/social_login.dart';
+import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
+import 'package:travel_app/feature/auth/presentation/view/widget/phone_number_input_section.dart';
+import 'package:travel_app/feature/auth/presentation/view/widget/social_login.dart';
 
 class LoginForm extends StatefulWidget {
   final bool isLoading;

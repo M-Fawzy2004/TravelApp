@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/feature/login/presentation/view/widget/phone_number_field.dart';
+import 'package:travel_app/feature/auth/presentation/view/widget/phone_number_field.dart';
 
 class PhoneNumberInputSection extends StatefulWidget {
   final Function(String fullPhoneNumber) onPhoneChanged;

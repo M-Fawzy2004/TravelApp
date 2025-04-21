@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:travel_app/core/error/failure_class.dart';
-import 'package:travel_app/feature/login/domain/repos/auth_repo.dart';
-import 'package:travel_app/feature/login/domain/entity/user_entity.dart';
+import 'package:travel_app/feature/auth/domain/repos/auth_repo.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
 abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);

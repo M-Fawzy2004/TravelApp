@@ -6,9 +6,9 @@ import 'package:travel_app/core/utils/top_snakbar_app.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/core/widget/custom_text_form_field.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
-import 'package:travel_app/feature/login/domain/entity/user_entity.dart';
-import 'package:travel_app/feature/login/presentation/manager/cubit/auth_cubit.dart';
-import 'package:travel_app/feature/login/presentation/view/widget/phone_number_input_section.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
+import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
+import 'package:travel_app/feature/auth/presentation/view/widget/phone_number_input_section.dart';
 import 'package:travel_app/feature/user_profile/view/widget/role_dropdown_text_field.dart';
 
 class UserProfileBody extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:travel_app/core/error/failure_class.dart';
-import 'package:travel_app/feature/login/domain/entity/user_entity.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
 abstract class AuthRepository {
   // signInWithPhone

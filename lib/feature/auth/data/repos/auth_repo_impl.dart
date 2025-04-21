@@ -10,9 +10,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:travel_app/core/error/failure_class.dart';
-import 'package:travel_app/feature/login/data/model/user_model.dart';
-import 'package:travel_app/feature/login/domain/repos/auth_repo.dart';
-import 'package:travel_app/feature/login/domain/entity/user_entity.dart';
+import 'package:travel_app/feature/auth/data/model/user_model.dart';
+import 'package:travel_app/feature/auth/domain/repos/auth_repo.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth _firebaseAuth;

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:travel_app/core/services/auth_service.dart';
-import 'package:travel_app/feature/login/domain/entity/user_entity.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
 part 'auth_state.dart';
 

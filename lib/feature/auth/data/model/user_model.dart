@@ -1,6 +1,6 @@
 // lib/feature/auth/data/models/user_model.dart
 
-import 'package:travel_app/feature/login/domain/entity/user_entity.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
 class UserModel extends UserEntity {
   UserModel({

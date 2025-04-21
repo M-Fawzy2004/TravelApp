@@ -7,7 +7,7 @@ import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
-import 'package:travel_app/feature/login/presentation/manager/cubit/auth_cubit.dart';
+import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
 
 class OtpVerificationViewBody extends StatefulWidget {
   const OtpVerificationViewBody({

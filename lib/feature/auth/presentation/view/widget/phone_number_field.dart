@@ -3,7 +3,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/feature/login/presentation/view/widget/phone_text_field.dart';
+import 'package:travel_app/feature/auth/presentation/view/widget/phone_text_field.dart';
 
 class PhoneNumberField extends StatelessWidget {
   final Country selectedCountry;

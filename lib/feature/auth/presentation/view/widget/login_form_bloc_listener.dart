@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:travel_app/core/helper/app_router.dart';
 import 'package:travel_app/core/utils/top_snakbar_app.dart';
-import 'package:travel_app/feature/login/presentation/manager/cubit/auth_cubit.dart';
-import 'package:travel_app/feature/login/presentation/view/widget/login_form.dart';
+import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
+import 'package:travel_app/feature/auth/presentation/view/widget/login_form.dart';
 
 class LoginFormBlocListener extends StatefulWidget {
   const LoginFormBlocListener({super.key});
