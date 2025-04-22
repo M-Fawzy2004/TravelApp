@@ -28,12 +28,9 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       final user = await authService.verifyOTP(verificationId, code);
       await authService.saveUserData(user);
-      // Check if user profile is complete
       if (user.firstName == null || user.firstName!.isEmpty) {
-        // User needs to complete profile
         emit(AuthAuthenticated(user));
       } else {
-        // User profile is complete, authentication is successful
         emit(AuthAuthenticated(user));
       }
     } catch (e) {
@@ -45,22 +42,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       var user = await authService.signInWithGoogle();
-
-      // Check if user profile is incomplete
-      if (user.firstName == null || user.firstName!.isEmpty) {
-        final updatedUser = user.copyWith(
-          firstName: '',
-          lastName: '',
-          city: '',
-          role: null,
-          vehicleType: null,
-          seatCount: null,
-        );
-        await authService.saveUserData(updatedUser);
-        emit(AuthAuthenticated(updatedUser));
-      } else {
-        emit(AuthAuthenticated(user));
-      }
+      emit(AuthAuthenticated(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -70,21 +52,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       var user = await authService.signInWithApple();
-
-      if (user.firstName == null || user.firstName!.isEmpty) {
-        final updatedUser = user.copyWith(
-          firstName: '',
-          lastName: '',
-          city: '',
-          role: null,
-          vehicleType: null,
-          seatCount: null,
-        );
-        await authService.saveUserData(updatedUser);
-        emit(AuthAuthenticated(updatedUser));
-      } else {
-        emit(AuthAuthenticated(user));
-      }
+      emit(AuthAuthenticated(user));
     } catch (e) {
       emit(AuthError(e.toString()));
     }
@@ -121,6 +89,17 @@ class AuthCubit extends Cubit<AuthState> {
       } else {
         emit(AuthInitial());
       }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> linkPhoneToCurrentUser(String phoneNumber) async {
+    try {
+      emit(AuthLoading());
+      await authService.linkPhoneNumber(phoneNumber);
+      final user = await authService.getCurrentUser();
+      emit(AuthAuthenticated(user!));
     } catch (e) {
       emit(AuthError(e.toString()));
     }

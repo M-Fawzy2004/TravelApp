@@ -25,6 +25,29 @@ class AuthService {
         _firestore = firestore,
         _googleSignIn = googleSignIn;
 
+  Future<void> linkPhoneNumber(String phoneNumber) async {
+    final completer = Completer<void>();
+
+    await _auth.verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        try {
+          await _auth.currentUser?.linkWithCredential(credential);
+          completer.complete();
+        } catch (e) {
+          completer.completeError(e);
+        }
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        completer.completeError(e);
+      },
+      codeSent: (String verificationId, int? resendToken) async {},
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+
+    return completer.future;
+  }
+
   // Sign in with phone number
   Future<UserEntity> signInWithPhone(String phoneNumber) async {
     try {
@@ -47,16 +70,20 @@ class AuthService {
           completer.completeError(Exception(e.message ?? 'فشل التحقق'));
         },
         codeSent: (String verificationId, int? resendToken) {
-          // Return the verification ID as the user ID temporarily
-          completer.complete(UserEntity(
-            id: verificationId,
-            phoneNumber: phoneNumber,
-          ));
+          completer.complete(
+            UserEntity(
+              id: verificationId,
+              phoneNumber: phoneNumber,
+            ),
+          );
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           if (!completer.isCompleted) {
             completer.completeError(
-                Exception('انتهاء مهلة الاسترجاع التلقائي لـ OTP'));
+              Exception(
+                'انتهاء مهلة الاسترجاع التلقائي لـ OTP',
+              ),
+            );
           }
         },
         timeout: const Duration(seconds: 60),
@@ -95,7 +122,6 @@ class AuthService {
   Future<UserEntity> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-
       if (googleUser == null) {
         throw Exception('تم إلغاء تسجيل الدخول إلى Google');
       }
@@ -110,10 +136,23 @@ class AuthService {
       final userCredential = await _auth.signInWithCredential(credential);
       final user = userCredential.user;
 
-      if (user != null) {
-        return await _getOrCreateUser(user);
-      } else {
+      if (user == null) {
         throw Exception('فشل تسجيل الدخول باستخدام Google');
+      }
+
+      final existingUser = await _getUserFromFirestore(user.uid);
+
+      if (existingUser != null) {
+        return existingUser;
+      } else {
+        return UserModel(
+          id: user.uid,
+          phoneNumber: user.phoneNumber ?? '',
+          email: user.email ?? '',
+          firstName: '',
+          lastName: '',
+          isEmailVerified: user.emailVerified,
+        );
       }
     } catch (e) {
       throw Exception(e.toString());
@@ -176,8 +215,6 @@ class AuthService {
 
       final userModelJson = jsonEncode(userModel.toJson());
       await Prefs.setString(kUserData, userModelJson);
-      // ignore: avoid_print
-      print("تم حفظ البيانات في SharedPreferences: $userModelJson");
     } catch (e) {
       throw Exception(e.toString());
     }

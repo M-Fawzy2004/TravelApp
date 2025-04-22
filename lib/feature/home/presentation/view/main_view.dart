@@ -1,11 +1,14 @@
 // ignore_for_file: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
+import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/home_view.dart';
 import 'package:travel_app/feature/resent_add/presentation/view/resently_added_view.dart';
 
@@ -25,7 +28,7 @@ class _MainViewState extends State<MainView> {
     Center(
       child: Text("الرسائل"),
     ),
-    NewWidget(),
+    Custom(),
   ];
 
   @override
@@ -102,8 +105,31 @@ class NewWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('مرحبا $user', style: Styles.font20ExtraBlackBold),
+          Text('تسجيل الخروج ', style: Styles.font20ExtraBlackBold),
+          IconButton(
+            onPressed: () {
+              context.read<AuthCubit>().signOut();
+            },
+            icon: Icon(FontAwesomeIcons.rightFromBracket),
+          ),
         ],
       ),
+    );
+  }
+}
+
+class Custom extends StatelessWidget {
+  const Custom({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthInitial) {
+          context.pushReplacement('/');
+        }
+      },
+      child: NewWidget(),
     );
   }
 }

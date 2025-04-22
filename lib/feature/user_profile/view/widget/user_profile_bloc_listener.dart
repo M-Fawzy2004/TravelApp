@@ -24,15 +24,9 @@ class _UserPofileBlocListenerState extends State<UserPofileBlocListener> {
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthLoading) {
-          setState(() {
-            isLoading = true;
-          });
           context.loaderOverlay.show();
         } else {
           context.loaderOverlay.hide();
-          setState(() {
-            isLoading = false;
-          });
         }
 
         if (state is AuthSaved) {

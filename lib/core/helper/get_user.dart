@@ -7,7 +7,6 @@ import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
 UserEntity? getUser() {
   final jsonString = Prefs.getString(kUserData);
-  print("Retrieved from SharedPreferences: $jsonString"); // Debug print
   if (jsonString.isEmpty) return null;
   return UserModel.fromJson(jsonDecode(jsonString));
 }

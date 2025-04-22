@@ -116,7 +116,7 @@ class _UserProfileBodyState extends State<UserProfileBody> {
         // Save user data first
         context.read<AuthCubit>().saveUser(updatedUser);
         // Then initiate phone verification
-        context.read<AuthCubit>().signInWithPhone(fullPhoneNumber);
+        context.read<AuthCubit>().linkPhoneToCurrentUser(fullPhoneNumber);
       } else {
         // Just save the user data
         context.read<AuthCubit>().saveUser(updatedUser);
