@@ -53,7 +53,7 @@ class AuthRepositoryImpl implements AuthRepository {
                 id: user.uid,
                 phoneNumber: phoneNumber,
               );
-              await _saveUserToFirestore(user: newUser);
+              // await _saveUserToFirestore(user: newUser);
               completer.complete(Right(newUser));
             }
           } else {
@@ -124,7 +124,7 @@ class AuthRepositoryImpl implements AuthRepository {
             id: user.uid,
             phoneNumber: phoneNumber,
           );
-          await _saveUserToFirestore(user: newUser);
+          // await _saveUserToFirestore(user: newUser);
           return Right(newUser);
         }
       } else {

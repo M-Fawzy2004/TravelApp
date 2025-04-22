@@ -211,8 +211,7 @@ class AuthService {
   Future<void> saveUserData(UserEntity user) async {
     try {
       final userModel = user is UserModel ? user : UserModel.fromEntity(user);
-      await _firestore.collection('users').doc(user.id).set(userModel.toJson());
-
+      await _firestore.collection(kUsers).doc(user.id).set(userModel.toJson());
       final userModelJson = jsonEncode(userModel.toJson());
       await Prefs.setString(kUserData, userModelJson);
     } catch (e) {
@@ -246,7 +245,7 @@ class AuthService {
   // Helper methods
   Future<UserModel?> _getUserFromFirestore(String userId) async {
     try {
-      final doc = await _firestore.collection('users').doc(userId).get();
+      final doc = await _firestore.collection(kUsers).doc(userId).get();
       if (doc.exists && doc.data() != null) {
         final userData = doc.data()!;
         userData['id'] = userId;
@@ -272,7 +271,6 @@ class AuthService {
           lastName: '',
           isEmailVerified: user.emailVerified,
         );
-        await saveUserData(newUser);
         return newUser;
       }
     } catch (e) {

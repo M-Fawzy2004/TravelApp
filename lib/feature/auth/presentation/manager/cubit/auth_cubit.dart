@@ -16,7 +16,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authService.signInWithPhone(phone);
-      await authService.saveUserData(user);
       emit(AuthCodeSent(user));
     } catch (e) {
       emit(AuthError(e.toString()));
@@ -27,7 +26,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     try {
       final user = await authService.verifyOTP(verificationId, code);
-      await authService.saveUserData(user);
       if (user.firstName == null || user.firstName!.isEmpty) {
         emit(AuthAuthenticated(user));
       } else {
