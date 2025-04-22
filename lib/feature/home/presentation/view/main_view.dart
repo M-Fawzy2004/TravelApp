@@ -8,8 +8,10 @@ import 'package:go_router/go_router.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
-import 'package:travel_app/feature/home/presentation/view/home_view.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_home_view.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_home_view.dart';
 import 'package:travel_app/feature/resent_add/presentation/view/resently_added_view.dart';
 
 class MainView extends StatefulWidget {
@@ -22,17 +24,19 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   int screenIndex = 0;
 
-  final List<Widget> screens = [
-    HomeView(),
-    ResentlyAddedView(),
-    Center(
-      child: Text("الرسائل"),
-    ),
-    Custom(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final role = getUser()?.role;
+
+    final List<Widget> screens = [
+      role == UserRole.passenger
+          ? const PassengerHomeView()
+          : const CaptainHomeView(),
+      const ResentlyAddedView(),
+      const Center(child: Text("الرسائل")),
+      const Custom(),
+    ];
+
     return Scaffold(
       body: IndexedStack(
         index: screenIndex,
@@ -46,7 +50,7 @@ class _MainViewState extends State<MainView> {
               color: Colors.black.withOpacity(0.2),
               blurRadius: 6,
               spreadRadius: 0,
-              offset: Offset(0, -2),
+              offset: const Offset(0, -2),
             ),
           ],
         ),

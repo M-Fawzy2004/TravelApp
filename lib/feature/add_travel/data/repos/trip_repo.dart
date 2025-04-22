@@ -3,6 +3,10 @@ import 'package:travel_app/core/error/failure_class.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 
 abstract class TripRepository {
+  // get trips by captain id
+  Future<Either<Failure, List<TripModel>>> getTripsByCaptainId(
+    String captainId,
+  );
   // get all trips
   Future<Either<Failure, List<TripModel>>> getAllTrips();
   // get trip by id

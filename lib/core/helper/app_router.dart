@@ -20,7 +20,8 @@ abstract class AppRouter {
   static const addTravel = '/addTravel';
   static const detailsTrip = '/detailsTrip';
   static const resentlyAdded = '/resentlyAdded';
-
+  static const passengerHomeView = '/passengerHomeView';
+  
   static var router = GoRouter(
     initialLocation: '/',
     redirect: (context, state) {

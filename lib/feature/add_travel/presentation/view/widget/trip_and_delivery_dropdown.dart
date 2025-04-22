@@ -13,7 +13,7 @@ class TripAndDeliveryDropdown extends StatefulWidget {
 }
 
 class _TripAndDeliveryDropdownState extends State<TripAndDeliveryDropdown> {
-  String _selectedOption = 'رحلة'; // القيمة الافتراضية
+  String _selectedOption = 'رحلة';
 
   @override
   Widget build(BuildContext context) {

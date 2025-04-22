@@ -8,6 +8,25 @@ class TripService {
   TripService({FirebaseFirestore? firestore})
       : _firestore = firestore ?? FirebaseFirestore.instance;
 
+  Future<List<TripModel>> getTripsByCaptainId(String captainId) async {
+    try {
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection(tripCollection)
+          .where('creatorId', isEqualTo: captainId)
+          .get();
+
+      final trips = querySnapshot.docs.map((doc) {
+        final data = doc.data();
+        data['id'] = doc.id;
+        return TripModel.fromJson(data);
+      }).toList();
+
+      return trips;
+    } catch (e) {
+      throw Exception('حدث خطأ أثناء تحميل الرحلات');
+    }
+  }
+
   Future<List<TripModel>> getAllTrips() async {
     try {
       final querySnapshot = await _firestore.collection(tripCollection).get();

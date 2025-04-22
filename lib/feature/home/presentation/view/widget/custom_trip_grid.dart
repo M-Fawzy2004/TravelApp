@@ -20,7 +20,7 @@ class CustomTripGrid extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(top: 200.h),
             child: Text(
-              'لا توجد رحلات متاحة حاليًا',
+              'لم تضيف رحلات بعد',
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,

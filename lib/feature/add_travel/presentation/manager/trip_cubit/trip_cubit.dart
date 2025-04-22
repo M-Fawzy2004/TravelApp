@@ -12,11 +12,20 @@ class TripCubit extends Cubit<TripState> {
       : _tripRepository = tripRepository,
         super(TripInitial());
 
+  Future<void> getTripsByCaptainId(String captainId) async {
+    emit(TripLoading());
+    final result = await _tripRepository.getTripsByCaptainId(captainId);
+    result.fold(
+      (failure) => _handleFailure(failure),
+      (trips) => emit(
+        TripsLoadedSuccess(trips),
+      ),
+    );
+  }
+
   Future<void> getAllTrips() async {
     emit(TripLoading());
-
     final result = await _tripRepository.getAllTrips();
-
     result.fold(
       (failure) => _handleFailure(failure),
       (trips) {

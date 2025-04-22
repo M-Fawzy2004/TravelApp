@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/helper/spacing.dart';
-import 'package:travel_app/core/widget/search_text_field.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/category_filter.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/captain_home_header.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_travel_sliver_grid_bloc_builder.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
 
-class HomeViewBody extends StatefulWidget {
-  const HomeViewBody({super.key});
+class CaptainHomeViewBody extends StatefulWidget {
+  const CaptainHomeViewBody({super.key});
 
   @override
-  State<HomeViewBody> createState() => _HomeViewBodyState();
+  State<CaptainHomeViewBody> createState() => _CaptainHomeViewBodyState();
 }
 
-class _HomeViewBodyState extends State<HomeViewBody> {
+class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
   final ScrollController _scrollController = ScrollController();
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
@@ -28,8 +28,15 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     super.dispose();
   }
 
+  Future<void> _loadCaptainTrips() async {
+    final userId = getUser()?.id;
+    if (userId != null) {
+      await context.read<TripCubit>().getTripsByCaptainId(userId.toString());
+    }
+  }
+
   Future<void> _onRefresh() async {
-    context.read<TripCubit>().getAllTrips();
+    await _loadCaptainTrips();
     _refreshController.refreshCompleted();
   }
 
@@ -64,11 +71,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               physics: BouncingScrollPhysics(),
               slivers: [
                 SliverToBoxAdapter(child: heightBox(15)),
-                SliverToBoxAdapter(child: SearchTextField()),
-                SliverToBoxAdapter(child: heightBox(10)),
-                SliverToBoxAdapter(child: DetailsLocation()),
+                SliverToBoxAdapter(child: CaptainHomeHeader()),
                 SliverToBoxAdapter(child: heightBox(20)),
-                SliverToBoxAdapter(child: CategoryFilter()),
+                SliverToBoxAdapter(child: DetailsLocation()),
                 SliverToBoxAdapter(child: heightBox(10)),
                 CategorySliverGridGridBlocBuilder(),
               ],
