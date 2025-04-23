@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
-import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 
 class BookingAndFavoriteButtons extends StatelessWidget {
@@ -19,7 +18,6 @@ class BookingAndFavoriteButtons extends StatelessWidget {
           flex: 3,
           child: CustomButton(
             buttonText: 'احجز',
-            textStyle: Styles.font16WhiteBold,
             onPressed: () {},
           ),
         ),

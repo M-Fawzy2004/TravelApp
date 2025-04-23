@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/core/utils/form_controller.dart';
@@ -10,10 +12,12 @@ class SeatsField extends StatefulWidget {
     super.key,
     this.controller,
     this.errorText,
+    this.initialValue,
   });
 
   final TextEditingController? controller;
   final String? errorText;
+  final String? initialValue;
 
   @override
   State<SeatsField> createState() => _SeatsFieldState();
@@ -21,6 +25,21 @@ class SeatsField extends StatefulWidget {
 
 class _SeatsFieldState extends State<SeatsField> {
   final _formControllers = FormControllers();
+  @override
+  void initState() {
+    super.initState();
+    _formControllers.seatsController.text = widget.initialValue ?? '';
+
+    if (widget.initialValue != null && widget.initialValue!.isNotEmpty) {
+      Future.microtask(
+        () {
+          context.read<TripFormCubit>().setAvailableSeats(
+                int.tryParse(widget.initialValue!) ?? 0,
+              );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/core/helper/spacing.dart';
@@ -11,10 +13,14 @@ class CustomLoactionField extends StatefulWidget {
     super.key,
     this.errorTextStartLocation,
     this.errorTextEndLocation,
+    this.initialStartLocation,
+    this.initialEndLocation,
   });
 
   final String? errorTextStartLocation;
   final String? errorTextEndLocation;
+  final String? initialStartLocation;
+  final String? initialEndLocation;
 
   @override
   State<CustomLoactionField> createState() => _CustomLoactionFieldState();
@@ -22,6 +28,36 @@ class CustomLoactionField extends StatefulWidget {
 
 class _CustomLoactionFieldState extends State<CustomLoactionField> {
   final _formControllers = FormControllers();
+  @override
+  void initState() {
+    super.initState();
+    _formControllers.departureLocationController.text =
+        widget.initialStartLocation ?? '';
+    _formControllers.arrivalLocationController.text =
+        widget.initialEndLocation ?? '';
+
+    if (widget.initialStartLocation != null &&
+        widget.initialStartLocation!.isNotEmpty) {
+      Future.microtask(
+        () {
+          context
+              .read<TripFormCubit>()
+              .setDepartureLocation(widget.initialStartLocation!);
+        },
+      );
+    }
+
+    if (widget.initialEndLocation != null &&
+        widget.initialEndLocation!.isNotEmpty) {
+      Future.microtask(
+        () {
+          context
+              .read<TripFormCubit>()
+              .setArrivalLocation(widget.initialEndLocation!);
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -53,7 +53,6 @@ class _LoginFormState extends State<LoginForm> {
         heightBox(20),
         CustomButton(
           buttonText: widget.isLoading ? 'جاري التحميل' : 'التالي',
-          textStyle: Styles.font16WhiteBold,
           onPressed:
               widget.isLoading || !isPhoneValid ? null : _signInWithPhone,
         ),

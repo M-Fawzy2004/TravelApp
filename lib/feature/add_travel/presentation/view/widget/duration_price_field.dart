@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/core/helper/spacing.dart';
@@ -10,9 +12,13 @@ class DurationPriceField extends StatefulWidget {
   const DurationPriceField({
     super.key,
     this.errorTextPrice,
+    this.initialDuration,
+    this.initialPrice,
   });
 
   final String? errorTextPrice;
+  final String? initialDuration;
+  final String? initialPrice;
 
   @override
   State<DurationPriceField> createState() => _DurationPriceFieldState();
@@ -20,6 +26,30 @@ class DurationPriceField extends StatefulWidget {
 
 class _DurationPriceFieldState extends State<DurationPriceField> {
   final _formControllers = FormControllers();
+  @override
+  void initState() {
+    super.initState();
+    _formControllers.durationController.text = widget.initialDuration ?? '';
+    _formControllers.priceController.text = widget.initialPrice ?? '';
+
+    if (widget.initialDuration != null && widget.initialDuration!.isNotEmpty) {
+      Future.microtask(
+        () {
+          context.read<TripFormCubit>().setDuration(widget.initialDuration!);
+        },
+      );
+    }
+
+    if (widget.initialPrice != null && widget.initialPrice!.isNotEmpty) {
+      Future.microtask(
+        () {
+          context.read<TripFormCubit>().setPrice(
+                double.tryParse(widget.initialPrice!) ?? 0.0,
+              );
+        },
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

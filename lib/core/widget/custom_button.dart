@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/app_color.dart';
+import 'package:travel_app/core/theme/styles.dart';
 
 class CustomButton extends StatelessWidget {
   final double? borderRadius;
@@ -10,7 +11,6 @@ class CustomButton extends StatelessWidget {
   final double? buttonWidth;
   final double? buttonHeight;
   final String buttonText;
-  final TextStyle textStyle;
   final void Function()? onPressed;
   final bool isEnabled;
 
@@ -23,7 +23,6 @@ class CustomButton extends StatelessWidget {
     this.buttonHeight,
     this.buttonWidth,
     required this.buttonText,
-    required this.textStyle,
     required this.onPressed,
     this.isEnabled = true,
   });
@@ -45,9 +44,11 @@ class CustomButton extends StatelessWidget {
         style: ButtonStyle(
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius ?? 10.0),
+              borderRadius: BorderRadius.circular(borderRadius ?? 10.0.r),
             ),
           ),
+          overlayColor:
+              WidgetStateProperty.all(AppColors.darkGrey.withOpacity(.2)),
           backgroundColor: WidgetStatePropertyAll(
             backgroundColor ?? AppColors.black,
           ),
@@ -62,9 +63,13 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: isEnabled ? onPressed : null,
-        child: Text(
-          buttonText,
-          style: textStyle,
+        child: FittedBox(
+          child: Text(
+            buttonText,
+            style: Styles.font14DarkGreyBold.copyWith(
+              color: AppColors.white,
+            ),
+          ),
         ),
       ),
     );

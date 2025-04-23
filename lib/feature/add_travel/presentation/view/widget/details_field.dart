@@ -6,7 +6,8 @@ import 'package:travel_app/feature/add_travel/presentation/manager/trip_form_cub
 import 'package:travel_app/feature/add_travel/presentation/view/widget/row_with_label.dart';
 
 class DetailsField extends StatefulWidget {
-  const DetailsField({super.key});
+  const DetailsField({super.key, this.initialValue});
+  final String? initialValue;
 
   @override
   State<DetailsField> createState() => _DetailsFieldState();

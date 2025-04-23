@@ -34,7 +34,7 @@ class CustomLoadingGrid extends StatelessWidget {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          mainAxisExtent: 310.h,
+          childAspectRatio: 1.4,
         ),
       ),
     );

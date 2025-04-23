@@ -18,7 +18,6 @@ class SubmitCustomButton extends StatelessWidget {
     return CustomButton(
       onPressed:onPressed,
       buttonText: buttonText,
-      textStyle: textStyle,
     );
   }
 }

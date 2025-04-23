@@ -71,7 +71,6 @@ class _OtpVerificationViewBodyState extends State<OtpVerificationViewBody> {
               wrapAlignment: WrapAlignment.spaceAround,
               pinBoxDecoration:
                   ProvidedPinBoxDecoration.defaultPinBoxDecoration,
-              pinTextStyle: TextStyle(fontSize: 22.sp),
               pinTextAnimatedSwitcherTransition:
                   ProvidedPinBoxTextAnimation.scalingTransition,
               pinTextAnimatedSwitcherDuration: Duration(milliseconds: 300),
@@ -82,7 +81,6 @@ class _OtpVerificationViewBodyState extends State<OtpVerificationViewBody> {
             CustomButton(
               buttonText: widget.isLoading ? "جاري التحقق" : "تحقق",
               onPressed: widget.isLoading ? null : _verifyOTP,
-              textStyle: Styles.font16WhiteBold,
             ),
           ],
         ),

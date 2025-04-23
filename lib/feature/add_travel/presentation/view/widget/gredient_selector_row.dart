@@ -15,11 +15,11 @@ class GradientSelectorRow extends StatefulWidget {
 
 class _GradientSelectorRowState extends State<GradientSelectorRow> {
   late LinearGradient _selectedGradient = _gradientsList[0];
-  final List<LinearGradient> _gradientsList = [
-    const LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]),
-    const LinearGradient(colors: [Color(0xFFEDE7F6), Color(0xFFB39DDB)]),
-    const LinearGradient(colors: [Color(0xFFE0F2F1), Color(0xFF80CBC4)]),
-    const LinearGradient(colors: [Color(0xFFFFF3E0), Color(0xFFFFCC80)]),
+  static const List<LinearGradient> _gradientsList = [
+    LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]),
+    LinearGradient(colors: [Color(0xFFFCE4EC), Color(0xFFF48FB1)]),
+    LinearGradient(colors: [Color(0xFFE8F5E9), Color(0xFFA5D6A7)]),
+    LinearGradient(colors: [Color(0xFFFFF3E0), Color(0xFFFFCC80)]),
   ];
 
   @override

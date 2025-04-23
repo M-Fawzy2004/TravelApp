@@ -183,7 +183,6 @@ class _UserProfileBodyState extends State<UserProfileBody> {
           heightBox(20),
           CustomButton(
             buttonText: isLoading ? 'جاري التحميل' : 'استمرار',
-            textStyle: Styles.font16WhiteBold,
             onPressed: isLoading ? null : _saveProfile,
           ),
         ],

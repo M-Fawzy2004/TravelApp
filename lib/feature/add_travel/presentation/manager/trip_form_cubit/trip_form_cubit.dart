@@ -192,25 +192,29 @@ class TripFormCubit extends Cubit<TripFormState> {
   }
 
   void loadTripForEdit(TripModel trip) {
-    emit(TripFormState(
-      tripType: trip.tripType,
-      destinationName: trip.destinationName,
-      departureLocation: trip.departureLocation,
-      arrivalLocation: trip.arrivalLocation,
-      availableSeats: trip.availableSeats,
-      tripDate: trip.tripDate,
-      tripTime: trip.tripTime,
-      duration: trip.duration,
-      price: trip.price,
-      additionalDetails: trip.additionalDetails,
-    ));
+    emit(
+      TripFormState(
+        tripType: trip.tripType,
+        destinationName: trip.destinationName,
+        departureLocation: trip.departureLocation,
+        arrivalLocation: trip.arrivalLocation,
+        availableSeats: trip.availableSeats,
+        tripDate: trip.tripDate,
+        tripTime: trip.tripTime,
+        duration: trip.duration,
+        price: trip.price,
+        additionalDetails: trip.additionalDetails,
+      ),
+    );
   }
 
   Future<void> updateExistingTrip(String id) async {
     if (!validateForm()) {
-      emit(state.copyWith(
-        error: 'يرجى تصحيح الأخطاء قبل الإرسال',
-      ));
+      emit(
+        state.copyWith(
+          error: 'يرجى تصحيح الأخطاء قبل الإرسال',
+        ),
+      );
       return;
     }
 
@@ -221,19 +225,26 @@ class TripFormCubit extends Cubit<TripFormState> {
 
       final result = await _tripRepository.updateTrip(tripModel);
 
-      result.fold((failure) {
-        emit(state.copyWith(
-          isSubmitting: false,
-          error: failure.message,
-        ));
-      }, (_) {
-        emit(const TripFormState());
-      });
+      result.fold(
+        (failure) {
+          emit(
+            state.copyWith(
+              isSubmitting: false,
+              error: failure.message,
+            ),
+          );
+        },
+        (_) {
+          emit(const TripFormState());
+        },
+      );
     } catch (e) {
-      emit(state.copyWith(
-        isSubmitting: false,
-        error: 'حدث خطأ غير متوقع: ${e.toString()}',
-      ));
+      emit(
+        state.copyWith(
+          isSubmitting: false,
+          error: 'حدث خطأ غير متوقع: ${e.toString()}',
+        ),
+      );
     }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
@@ -7,13 +6,13 @@ import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
-import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/booking_and_favorite_buttons.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/custom_trip_loaction.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_center_card.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_header.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_top_card.dart';
+import 'package:travel_app/feature/trips_details/presentation/view/widget/edit_and_delete_trips.dart';
 
 class DetailsTripViewBody extends StatefulWidget {
   const DetailsTripViewBody({
@@ -72,33 +71,17 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
                 CustomButton(
                   backgroundColor: AppColors.primaryColor,
                   buttonText: 'تواصل مع صاحب الرحله',
-                  textStyle: Styles.font16WhiteBold,
                   onPressed: () {},
                 ),
               ],
             ),
           if (role == UserRole.captain)
-            Column(
-              children: [
-                CustomButton(
-                  backgroundColor: AppColors.primaryColor,
-                  buttonText: 'تعديل الرحله',
-                  textStyle: Styles.font16WhiteBold,
-                  onPressed: () {},
-                ),
-                heightBox(10),
-                CustomButton(
-                  backgroundColor: Colors.red,
-                  buttonText: 'حذف الرحله',
-                  textStyle: Styles.font16WhiteBold,
-                  onPressed: ()async {
-                    context.read<TripCubit>().deleteTrip(widget.trip.id);
-                  },
-                ),
-              ],
+            EditAndDeleteTrips(
+              trip: widget.trip,
             ),
         ],
       ),
     );
   }
 }
+

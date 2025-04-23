@@ -56,7 +56,6 @@ class OnBoardingBottomCard extends StatelessWidget {
                     context.push(AppRouter.loginView);
                   },
                   buttonText: 'ابدء رحلتك الان',
-                  textStyle: Styles.font16WhiteBold,
                 ),
                 heightBox(25),
               ],

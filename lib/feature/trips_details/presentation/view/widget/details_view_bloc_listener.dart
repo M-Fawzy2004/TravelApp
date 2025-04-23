@@ -24,7 +24,7 @@ class DetailsViewBlocListener extends StatelessWidget {
           Navigator.pop(context);
           showCustomTopSnackBar(
             context: context,
-            message: 'تم حذف الرحله',
+            message: 'تم حذف الرحله بنجاح',
           );
         } else if (state is TripError) {
           showCustomTopSnackBar(
