@@ -1,9 +1,11 @@
 // 1. ENTITY/MODEL
 import 'package:flutter/material.dart';
+import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/utils/tripe_type.dart';
 
 class TripModel {
   final String id;
+  final String creatorId;
   final TripType tripType;
   final String destinationName;
   final String departureLocation;
@@ -18,6 +20,7 @@ class TripModel {
 
   TripModel({
     required this.id,
+    required this.creatorId,
     required this.tripType,
     required this.destinationName,
     required this.departureLocation,
@@ -39,6 +42,7 @@ class TripModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
+      'creatorId': getUser()!.id,
       'tripType': tripType.toString().split('.').last,
       'destinationName': destinationName,
       'departureLocation': departureLocation,
@@ -57,6 +61,7 @@ class TripModel {
   factory TripModel.fromJson(Map<String, dynamic> json) {
     return TripModel(
       id: json['id'],
+      creatorId: json['creatorId'],
       tripType: TripType.values.firstWhere(
         (e) => e.toString().split('.').last == json['tripType'],
         orElse: () => TripType.cargoShipping,
@@ -79,6 +84,7 @@ class TripModel {
 
   TripModel copyWith({
     String? id,
+    String? creatorId,
     TripType? tripType,
     String? destinationName,
     String? departureLocation,
@@ -93,6 +99,7 @@ class TripModel {
   }) {
     return TripModel(
       id: id ?? this.id,
+      creatorId: creatorId ?? this.creatorId,
       tripType: tripType ?? this.tripType,
       destinationName: destinationName ?? this.destinationName,
       departureLocation: departureLocation ?? this.departureLocation,

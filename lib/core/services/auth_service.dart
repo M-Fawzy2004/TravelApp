@@ -56,15 +56,15 @@ class AuthService {
       await _auth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
-          final userCredential = await _auth.signInWithCredential(credential);
-          final user = userCredential.user;
+          // final userCredential = await _auth.signInWithCredential(credential);
+          // final user = userCredential.user;
 
-          if (user != null) {
-            final userModel = await _getOrCreateUser(user);
-            completer.complete(userModel);
-          } else {
-            throw Exception('فشل في تسجيل الدخول برقم الهاتف');
-          }
+          // if (user != null) {
+          //   final userModel = await _getOrCreateUser(user);
+          //   completer.complete(userModel);
+          // } else {
+          //   throw Exception('فشل في تسجيل الدخول برقم الهاتف');
+          // }
         },
         verificationFailed: (FirebaseAuthException e) {
           completer.completeError(Exception(e.message ?? 'فشل التحقق'));

@@ -4,6 +4,7 @@ import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 TripModel getCategorySkeletonizer() {
   return TripModel(
     id: '',
+    creatorId: '',
     tripType: TripType.specialTrip,
     destinationName: '',
     departureLocation: '',

@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/core/helper/get_user.dart';
+import 'package:travel_app/core/services/auth_service.dart';
+import 'package:travel_app/core/services/get_it_setup.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
@@ -34,7 +36,7 @@ class _MainViewState extends State<MainView> {
           : const CaptainHomeView(),
       const ResentlyAddedView(),
       const Center(child: Text("الرسائل")),
-      const Custom(),
+      const NewWidget(),
     ];
 
     return Scaffold(
@@ -102,38 +104,35 @@ class NewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = getUser()?.firstName;
-
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text('مرحبا $user', style: Styles.font20ExtraBlackBold),
-          Text('تسجيل الخروج ', style: Styles.font20ExtraBlackBold),
-          IconButton(
-            onPressed: () {
-              context.read<AuthCubit>().signOut();
-            },
-            icon: Icon(FontAwesomeIcons.rightFromBracket),
-          ),
-        ],
+    final user = getUser();
+    return BlocProvider(
+      create: (context) => AuthCubit(
+        getIt.get<AuthService>(),
       ),
-    );
-  }
-}
-
-class Custom extends StatelessWidget {
-  const Custom({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocListener<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is AuthInitial) {
-          context.pushReplacement('/');
-        }
-      },
-      child: NewWidget(),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('name: ${user?.firstName}',
+                style: Styles.font20ExtraBlackBold),
+            Text('data: ${user?.email}', style: Styles.font20ExtraBlackBold),
+            Text('role: ${user?.role}', style: Styles.font20ExtraBlackBold),
+            Text('data: ${user?.phoneNumber}',
+                style: Styles.font20ExtraBlackBold),
+            Text('تسجيل الخروج ', style: Styles.font20ExtraBlackBold),
+            IconButton(
+              onPressed: () async {
+                // Replace AuthService with your actual authentication service type
+                await context.read<AuthCubit>().signOut();
+                if (context.mounted) {
+                  context.pushReplacement('/');
+                }
+              },
+              icon: const Icon(FontAwesomeIcons.rightFromBracket),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

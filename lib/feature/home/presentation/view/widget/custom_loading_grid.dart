@@ -23,7 +23,7 @@ class CustomLoadingGrid extends StatelessWidget {
               enabled: true,
               child: Padding(
                 padding: EdgeInsets.only(bottom: 25.h),
-                child: CategoryTravel(
+                child: AddTravelCaptain(
                   trip: getCategorySkeletonizer(),
                   index: index,
                 ),

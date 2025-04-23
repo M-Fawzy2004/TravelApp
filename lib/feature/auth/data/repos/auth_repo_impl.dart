@@ -1,5 +1,3 @@
-// lib/feature/auth/data/repositories/auth_repository_impl.dart
-
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
@@ -35,6 +33,9 @@ class AuthRepositoryImpl implements AuthRepository {
     String phoneNumber,
   ) async {
     try {
+      // First ensure we're signed out to prevent using previous credentials
+      await _cleanupPreviousSession();
+
       final completer = Completer<Either<Failure, UserEntity>>();
 
       await _firebaseAuth.verifyPhoneNumber(
@@ -47,13 +48,15 @@ class AuthRepositoryImpl implements AuthRepository {
           if (user != null) {
             final existingUser = await _getUserFromFirestore(user.uid);
             if (existingUser != null) {
+              await _saveUserToLocalStorage(existingUser);
               completer.complete(Right(existingUser));
             } else {
               final newUser = UserModel(
                 id: user.uid,
                 phoneNumber: phoneNumber,
               );
-              // await _saveUserToFirestore(user: newUser);
+              await _saveUserToFirestore(user: newUser);
+              await _saveUserToLocalStorage(newUser);
               completer.complete(Right(newUser));
             }
           } else {
@@ -117,6 +120,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (user != null) {
         final existingUser = await _getUserFromFirestore(user.uid);
         if (existingUser != null) {
+          await _saveUserToLocalStorage(existingUser);
           return Right(existingUser);
         } else {
           final phoneNumber = user.phoneNumber ?? '';
@@ -124,7 +128,8 @@ class AuthRepositoryImpl implements AuthRepository {
             id: user.uid,
             phoneNumber: phoneNumber,
           );
-          // await _saveUserToFirestore(user: newUser);
+          await _saveUserToFirestore(user: newUser);
+          await _saveUserToLocalStorage(newUser);
           return Right(newUser);
         }
       } else {
@@ -140,6 +145,9 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
     try {
+      // First ensure we're signed out to prevent using previous credentials
+      await _cleanupPreviousSession();
+
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) {
@@ -160,6 +168,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (user != null) {
         final existingUser = await _getUserFromFirestore(user.uid);
         if (existingUser != null) {
+          await _saveUserToLocalStorage(existingUser);
           return Right(existingUser);
         } else {
           final newUser = UserModel(
@@ -171,6 +180,7 @@ class AuthRepositoryImpl implements AuthRepository {
             isEmailVerified: user.emailVerified,
           );
           await _saveUserToFirestore(user: newUser);
+          await _saveUserToLocalStorage(newUser);
           return Right(newUser);
         }
       } else {
@@ -184,6 +194,9 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, UserEntity>> signInWithApple() async {
     try {
+      // First ensure we're signed out to prevent using previous credentials
+      await _cleanupPreviousSession();
+
       final rawNonce = generateNonce();
       final nonce = sha256ofString(rawNonce);
 
@@ -208,6 +221,7 @@ class AuthRepositoryImpl implements AuthRepository {
         final existingUser = await _getUserFromFirestore(user.uid);
 
         if (existingUser != null) {
+          await _saveUserToLocalStorage(existingUser);
           return Right(existingUser);
         } else {
           String? firstName =
@@ -224,6 +238,7 @@ class AuthRepositoryImpl implements AuthRepository {
             isEmailVerified: user.emailVerified,
           );
           await _saveUserToFirestore(user: newUser);
+          await _saveUserToLocalStorage(newUser);
           return Right(newUser);
         }
       } else {
@@ -236,6 +251,10 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<void> saveUserData({required UserEntity user}) async {
+    await _saveUserToLocalStorage(user);
+  }
+
+  Future<void> _saveUserToLocalStorage(UserEntity user) async {
     final userModel = jsonEncode(UserModel.fromEntity(user).toJson());
     await Prefs.setString(kUserData, userModel);
   }
@@ -246,8 +265,12 @@ class AuthRepositoryImpl implements AuthRepository {
       final user = _firebaseAuth.currentUser;
       if (user != null) {
         final userData = await _getUserFromFirestore(user.uid);
-        return Right(userData);
+        if (userData != null) {
+          await _saveUserToLocalStorage(userData);
+          return Right(userData);
+        }
       }
+
       return const Right(null);
     } catch (e) {
       return Left(AuthFailure(message: e.toString()));
@@ -257,11 +280,27 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, void>> signOut() async {
     try {
-      await _firebaseAuth.signOut();
-      await _googleSignIn.signOut();
+      await _cleanupPreviousSession();
       return const Right(null);
     } catch (e) {
       return Left(AuthFailure(message: e.toString()));
+    }
+  }
+
+  // Helper method to clean up previous session completely
+  Future<void> _cleanupPreviousSession() async {
+    try {
+      // Then try to sign out from Google (ignore errors)
+      try {
+        await _googleSignIn.signOut();
+      } catch (_) {}
+
+      // Finally sign out from Firebase
+      await _firebaseAuth.signOut();
+    } catch (e) {
+      // Log error but don't throw to prevent app crashes
+      // ignore: avoid_print
+      print('Error during session cleanup: $e');
     }
   }
 

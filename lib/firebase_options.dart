@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -63,6 +57,30 @@ class DefaultFirebaseOptions {
     messagingSenderId: '87451670799',
     projectId: 'travelapp-c0f16',
     storageBucket: 'travelapp-c0f16.firebasestorage.app',
+    androidClientId: '87451670799-g4fhkq20e3vijhjljgmftheskmipdlmb.apps.googleusercontent.com',
+    iosClientId: '87451670799-iuvuam4fh29580dbs0s44rso94c0i9m9.apps.googleusercontent.com',
     iosBundleId: 'com.example.travelApp',
   );
+
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyD3jeEWnJ0g4XdeybyjmtPD6yC4UJTnFAA',
+    appId: '1:87451670799:web:28fc8b03e6524fd592467a',
+    messagingSenderId: '87451670799',
+    projectId: 'travelapp-c0f16',
+    authDomain: 'travelapp-c0f16.firebaseapp.com',
+    storageBucket: 'travelapp-c0f16.firebasestorage.app',
+    measurementId: 'G-WGYPW3P7F8',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAHakOkjkpazVQfgM9j24eU9pmbfkJeiYY',
+    appId: '1:87451670799:ios:7597c8f146493b6592467a',
+    messagingSenderId: '87451670799',
+    projectId: 'travelapp-c0f16',
+    storageBucket: 'travelapp-c0f16.firebasestorage.app',
+    androidClientId: '87451670799-g4fhkq20e3vijhjljgmftheskmipdlmb.apps.googleusercontent.com',
+    iosClientId: '87451670799-iuvuam4fh29580dbs0s44rso94c0i9m9.apps.googleusercontent.com',
+    iosBundleId: 'com.example.travelApp',
+  );
+
 }

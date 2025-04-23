@@ -50,7 +50,7 @@ class CustomTripGrid extends StatelessWidget {
               },
               child: Padding(
                 padding: EdgeInsets.only(bottom: 25.h),
-                child: CategoryTravel(
+                child: AddTravelCaptain(
                   trip: trip,
                   index: index,
                 ),

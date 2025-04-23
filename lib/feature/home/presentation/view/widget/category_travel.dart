@@ -11,17 +11,17 @@ import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/info_row.dart';
 
-class CategoryTravel extends StatelessWidget {
+class AddTravelCaptain extends StatelessWidget {
   final TripModel trip;
   final int index;
   static const List<LinearGradient> _gradientsList = [
-    LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]), // Blue
-    LinearGradient(colors: [Color(0xFFFCE4EC), Color(0xFFF48FB1)]), // Pink
-    LinearGradient(colors: [Color(0xFFE8F5E9), Color(0xFFA5D6A7)]), // Green
-    LinearGradient(colors: [Color(0xFFFFF3E0), Color(0xFFFFCC80)]), // Orange
+    LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]),
+    LinearGradient(colors: [Color(0xFFFCE4EC), Color(0xFFF48FB1)]),
+    LinearGradient(colors: [Color(0xFFE8F5E9), Color(0xFFA5D6A7)]),
+    LinearGradient(colors: [Color(0xFFFFF3E0), Color(0xFFFFCC80)]),
   ];
 
-  const CategoryTravel({
+  const AddTravelCaptain({
     super.key,
     required this.trip,
     required this.index,

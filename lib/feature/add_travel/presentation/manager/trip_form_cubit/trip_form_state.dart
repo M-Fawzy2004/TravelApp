@@ -91,6 +91,7 @@ class TripFormState extends Equatable {
   TripModel toTripModel() {
     return TripModel(
       id: '',
+      creatorId: '',
       tripType: tripType,
       destinationName: destinationName,
       departureLocation: departureLocation,
