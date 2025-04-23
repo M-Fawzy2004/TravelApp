@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travel_app/core/helper/get_user.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_travel.dart';
 
 class CustomTripGrid extends StatelessWidget {
@@ -14,13 +16,16 @@ class CustomTripGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final role = getUser()?.role;
     if (trips.isEmpty) {
       return SliverToBoxAdapter(
         child: Center(
           child: Padding(
             padding: EdgeInsets.only(top: 200.h),
             child: Text(
-              'لم تضيف رحلات بعد',
+              role == UserRole.passenger
+                  ? 'لم يتم اضافة رحلات بعد'
+                  : 'لم تضيف رحلات بعد',
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,

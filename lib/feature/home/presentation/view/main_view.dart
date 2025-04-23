@@ -11,11 +11,11 @@ import 'package:travel_app/core/services/auth_service.dart';
 import 'package:travel_app/core/services/get_it_setup.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
+import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/captain_home_view.dart';
 import 'package:travel_app/feature/home/presentation/view/passenger_home_view.dart';
-import 'package:travel_app/feature/resent_add/presentation/view/resently_added_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -35,63 +35,66 @@ class _MainViewState extends State<MainView> {
       role == UserRole.passenger
           ? const PassengerHomeView()
           : const CaptainHomeView(),
-      const ResentlyAddedView(),
+      const Center(child: Text("الرسائل")),
       const Center(child: Text("الرسائل")),
       const NewWidget(),
     ];
 
-    return Scaffold(
-      body: IndexedStack(
-        index: screenIndex,
-        children: screens,
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: AppColors.grey,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 6,
-              spreadRadius: 0,
-              offset: const Offset(0, -2),
-            ),
-          ],
+    return BlocProvider(
+      create: (_) => getIt<TripCubit>()..getAllTrips(),
+      child: Scaffold(
+        body: IndexedStack(
+          index: screenIndex,
+          children: screens,
         ),
-        child: BottomNavigationBar(
-          currentIndex: screenIndex,
-          type: BottomNavigationBarType.fixed,
-          elevation: 0,
-          iconSize: 17.sp,
-          selectedIconTheme: IconThemeData(size: 20.sp),
-          selectedFontSize: 14.sp,
-          unselectedFontSize: 12.sp,
-          backgroundColor: Colors.transparent,
-          selectedItemColor: AppColors.black,
-          unselectedItemColor: Colors.black45,
-          onTap: (index) {
-            HapticFeedback.lightImpact();
-            setState(() {
-              screenIndex = index;
-            });
-          },
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.home),
-              label: 'الرئيسيه',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.car),
-              label: 'المضاف مؤخرا',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.facebookMessenger),
-              label: 'الرسائل',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.user),
-              label: 'الملف الشخصي',
-            ),
-          ],
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            color: AppColors.grey,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 6,
+                spreadRadius: 0,
+                offset: const Offset(0, -2),
+              ),
+            ],
+          ),
+          child: BottomNavigationBar(
+            currentIndex: screenIndex,
+            type: BottomNavigationBarType.fixed,
+            elevation: 0,
+            iconSize: 17.sp,
+            selectedIconTheme: IconThemeData(size: 20.sp),
+            selectedFontSize: 14.sp,
+            unselectedFontSize: 12.sp,
+            backgroundColor: Colors.transparent,
+            selectedItemColor: AppColors.black,
+            unselectedItemColor: Colors.black45,
+            onTap: (index) {
+              HapticFeedback.lightImpact();
+              setState(() {
+                screenIndex = index;
+              });
+            },
+            items: [
+              const BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.home),
+                label: 'الرئيسيه',
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(FontAwesomeIcons.car),
+                label: role == UserRole.passenger ? 'الحجز' : 'المضاف مؤخرا',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.facebookMessenger),
+                label: 'الرسائل',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(FontAwesomeIcons.user),
+                label: 'الملف الشخصي',
+              ),
+            ],
+          ),
         ),
       ),
     );

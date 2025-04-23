@@ -12,6 +12,7 @@ import 'package:travel_app/feature/trips_details/presentation/view/widget/custom
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_center_card.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_header.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_top_card.dart';
+import 'package:travel_app/feature/trips_details/presentation/view/widget/details_trips_text.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/edit_and_delete_trips.dart';
 
 class DetailsTripViewBody extends StatefulWidget {
@@ -32,13 +33,20 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
   @override
   Widget build(BuildContext context) {
     final role = getUser()?.role;
-
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const IconBack(),
+          Row(
+            children: [
+              const IconBack(),
+              Spacer(),
+              Text('تفاصيل الرحلة', style: Styles.font20BlackBold),
+              Spacer(),
+              widthBox(55),
+            ],
+          ),
           if (role == UserRole.passenger) const DetailsHeader(),
           DetailsTopCard(
             trip: widget.trip,
@@ -49,20 +57,11 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
           heightBox(20),
           const CustomTripLocation(),
           heightBox(20),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('التفاصيل', style: Styles.font16BlackBold),
-              heightBox(10),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  widget.trip.additionalDetails,
-                  style: Styles.font14GreyExtraBold,
-                ),
-              ),
-            ],
-          ),
+          if (widget.trip.additionalDetails.isNotEmpty)
+            DetailsTripsText(
+              widget: widget,
+            ),
+          heightBox(10),
           if (role == UserRole.passenger)
             Column(
               children: [
@@ -84,4 +83,3 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
     );
   }
 }
-

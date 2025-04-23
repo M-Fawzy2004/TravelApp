@@ -8,7 +8,6 @@ import 'package:travel_app/feature/home/presentation/view/main_view.dart';
 import 'package:travel_app/feature/auth/presentation/view/login_view.dart';
 import 'package:travel_app/feature/auth/presentation/view/otp_verification_view.dart';
 import 'package:travel_app/feature/onboarding/onboarding_view.dart';
-import 'package:travel_app/feature/resent_add/presentation/view/resently_added_view.dart';
 import 'package:travel_app/feature/user_profile/view/user_profile.dart';
 
 abstract class AppRouter {
@@ -19,9 +18,8 @@ abstract class AppRouter {
   static const mapView = '/mapView';
   static const addTravel = '/addTravel';
   static const detailsTrip = '/detailsTrip';
-  static const resentlyAdded = '/resentlyAdded';
   static const passengerHomeView = '/passengerHomeView';
-  
+
   static var router = GoRouter(
     initialLocation: '/',
     redirect: (context, state) {
@@ -89,12 +87,6 @@ abstract class AppRouter {
             trip: trip,
             index: index,
           );
-        },
-      ),
-      GoRoute(
-        path: resentlyAdded,
-        builder: (BuildContext context, GoRouterState state) {
-          return ResentlyAddedView();
         },
       ),
     ],

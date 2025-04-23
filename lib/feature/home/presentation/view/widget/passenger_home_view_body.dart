@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,12 +22,27 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
   final ScrollController _scrollController = ScrollController();
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
+  bool _firstBuild = true;
 
   @override
   void dispose() {
     _scrollController.dispose();
     _refreshController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_firstBuild) {
+      _firstBuild = false;
+      Future.microtask(() async {
+        final result = ModalRoute.of(context)?.settings.arguments;
+        if (result == true) {
+          await _onRefresh();
+        }
+      });
+    }
   }
 
   Future<void> _onRefresh() async {
