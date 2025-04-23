@@ -102,7 +102,7 @@ class AddTravelCaptain extends StatelessWidget {
                 ),
                 heightBox(20),
                 CustomButton(
-                  buttonText: 'تفاصيل الرحله',
+                  buttonText: 'عرض التفاصيل',
                   textStyle: Styles.font16WhiteBold,
                   onPressed: () {
                     context.push(

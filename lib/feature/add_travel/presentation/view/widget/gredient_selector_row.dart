@@ -17,8 +17,8 @@ class _GradientSelectorRowState extends State<GradientSelectorRow> {
   late LinearGradient _selectedGradient = _gradientsList[0];
   final List<LinearGradient> _gradientsList = [
     const LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]),
-    const LinearGradient(colors: [Color(0xFFFCE4EC), Color(0xFFF48FB1)]),
-    const LinearGradient(colors: [Color(0xFFE8F5E9), Color(0xFFA5D6A7)]),
+    const LinearGradient(colors: [Color(0xFFEDE7F6), Color(0xFFB39DDB)]),
+    const LinearGradient(colors: [Color(0xFFE0F2F1), Color(0xFF80CBC4)]),
     const LinearGradient(colors: [Color(0xFFFFF3E0), Color(0xFFFFCC80)]),
   ];
 
@@ -31,9 +31,7 @@ class _GradientSelectorRowState extends State<GradientSelectorRow> {
         gradients: _gradientsList,
         onChanged: (gradient) {
           setState(() => _selectedGradient = gradient);
-
           final selectedIndex = _gradientsList.indexOf(gradient);
-
           context.read<TripFormCubit>().setGradientIndex(selectedIndex);
         },
       ),

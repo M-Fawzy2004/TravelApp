@@ -11,6 +11,7 @@ class IconBack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5.w, vertical: 10.h),
       height: 40.h,
       width: 40.w,
       decoration: BoxDecoration(

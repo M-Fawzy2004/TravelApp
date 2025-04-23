@@ -58,17 +58,26 @@ class TripCubit extends Cubit<TripState> {
 
     final result = await _tripRepository.updateTrip(trip);
 
-    result.fold((failure) => _handleFailure(failure),
-        (_) => emit(const TripOperationSuccess('تم تحديث الرحلة بنجاح')));
+    result.fold(
+      (failure) => _handleFailure(failure),
+      (_) => emit(
+        const TripOperationSuccess(
+          'تم تحديث الرحلة بنجاح',
+        ),
+      ),
+    );
   }
 
   Future<void> deleteTrip(String id) async {
     emit(TripLoading());
 
     final result = await _tripRepository.deleteTrip(id);
-
-    result.fold((failure) => _handleFailure(failure),
-        (_) => emit(const TripOperationSuccess('تم حذف الرحلة بنجاح')));
+    result.fold(
+      (failure) => _handleFailure(failure),
+      (_) => emit(
+        const TripOperationSuccess('تم حذف الرحلة بنجاح'),
+      ),
+    );
   }
 
   Future<void> searchTrips({

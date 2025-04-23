@@ -56,9 +56,11 @@ class _AddTravelFormState extends State<AddTravelForm> {
                 selectedType: _selectedType,
                 travelTypes: _travelTypes,
                 onChanged: (newType) {
-                  setState(() {
-                    _selectedType = newType;
-                  });
+                  setState(
+                    () {
+                      _selectedType = newType;
+                    },
+                  );
                   context.read<TripFormCubit>().setTripType(
                         mapStringToTripType(newType),
                       );

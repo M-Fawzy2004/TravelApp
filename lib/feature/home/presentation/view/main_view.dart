@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:travel_app/core/helper/app_router.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/services/auth_service.dart';
 import 'package:travel_app/core/services/get_it_setup.dart';
@@ -122,10 +123,9 @@ class NewWidget extends StatelessWidget {
             Text('تسجيل الخروج ', style: Styles.font20ExtraBlackBold),
             IconButton(
               onPressed: () async {
-                // Replace AuthService with your actual authentication service type
                 await context.read<AuthCubit>().signOut();
                 if (context.mounted) {
-                  context.pushReplacement('/');
+                  context.pushReplacement(AppRouter.loginView);
                 }
               },
               icon: const Icon(FontAwesomeIcons.rightFromBracket),

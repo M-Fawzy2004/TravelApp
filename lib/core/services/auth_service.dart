@@ -56,15 +56,17 @@ class AuthService {
       await _auth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
-          // final userCredential = await _auth.signInWithCredential(credential);
-          // final user = userCredential.user;
-
-          // if (user != null) {
-          //   final userModel = await _getOrCreateUser(user);
-          //   completer.complete(userModel);
-          // } else {
-          //   throw Exception('فشل في تسجيل الدخول برقم الهاتف');
-          // }
+          // لو الجهاز تحقق تلقائيًا
+          final userCredential = await _auth.signInWithCredential(credential);
+          final user = userCredential.user;
+          if (user != null) {
+            final userModel = await _getOrCreateUser(user);
+            await saveUserData(userModel); // ✅ حفظ البيانات
+            completer.complete(userModel);
+          } else {
+            completer
+                .completeError(Exception('فشل في تسجيل الدخول برقم الهاتف'));
+          }
         },
         verificationFailed: (FirebaseAuthException e) {
           completer.completeError(Exception(e.message ?? 'فشل التحقق'));
@@ -80,9 +82,7 @@ class AuthService {
         codeAutoRetrievalTimeout: (String verificationId) {
           if (!completer.isCompleted) {
             completer.completeError(
-              Exception(
-                'انتهاء مهلة الاسترجاع التلقائي لـ OTP',
-              ),
+              Exception('انتهاء مهلة الاسترجاع التلقائي لـ OTP'),
             );
           }
         },
@@ -107,7 +107,9 @@ class AuthService {
       final user = userCredential.user;
 
       if (user != null) {
-        return await _getOrCreateUser(user);
+        final userModel = await _getOrCreateUser(user);
+        await saveUserData(userModel);
+        return userModel;
       } else {
         throw Exception('المستخدم فارغ بعد التحقق');
       }
@@ -140,20 +142,9 @@ class AuthService {
         throw Exception('فشل تسجيل الدخول باستخدام Google');
       }
 
-      final existingUser = await _getUserFromFirestore(user.uid);
-
-      if (existingUser != null) {
-        return existingUser;
-      } else {
-        return UserModel(
-          id: user.uid,
-          phoneNumber: user.phoneNumber ?? '',
-          email: user.email ?? '',
-          firstName: '',
-          lastName: '',
-          isEmailVerified: user.emailVerified,
-        );
-      }
+      final userModel = await _getOrCreateUser(user);
+      await saveUserData(userModel);
+      return userModel;
     } catch (e) {
       throw Exception(e.toString());
     }
@@ -237,6 +228,7 @@ class AuthService {
     try {
       await _auth.signOut();
       await _googleSignIn.signOut();
+      await Prefs.remove(kUserData);
     } catch (e) {
       throw Exception(e.toString());
     }
