@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/helper/spacing.dart';
-import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
-import 'package:travel_app/feature/trips_details/presentation/view/widget/booking_and_favorite_buttons.dart';
+import 'package:travel_app/feature/trips_details/presentation/view/widget/booking_or_contact_buttons.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/custom_trip_loaction.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_center_card.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_header.dart';
@@ -33,53 +32,59 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
   @override
   Widget build(BuildContext context) {
     final role = getUser()?.role;
-    return SingleChildScrollView(
-      physics: const BouncingScrollPhysics(),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const IconBack(),
-              Spacer(),
-              Text('تفاصيل الرحلة', style: Styles.font20BlackBold),
-              Spacer(),
-              widthBox(55),
-            ],
-          ),
-          if (role == UserRole.passenger) const DetailsHeader(),
-          DetailsTopCard(
-            trip: widget.trip,
-            index: widget.index,
-          ),
-          heightBox(20),
-          DetailsCenterCard(trip: widget.trip),
-          heightBox(20),
-          const CustomTripLocation(),
-          heightBox(20),
-          if (widget.trip.additionalDetails.isNotEmpty)
-            DetailsTripsText(
-              widget: widget,
-            ),
-          heightBox(10),
-          if (role == UserRole.passenger)
-            Column(
+    return Stack(
+      children: [
+        SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: 80.h),
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const BookingAndFavoriteButtons(),
-                heightBox(10),
-                CustomButton(
-                  backgroundColor: AppColors.primaryColor,
-                  buttonText: 'تواصل مع صاحب الرحله',
-                  onPressed: () {},
+                Row(
+                  children: [
+                    const IconBack(),
+                    Spacer(),
+                    Text('تفاصيل الرحلة', style: Styles.font20BlackBold),
+                    Spacer(),
+                    widthBox(55),
+                  ],
                 ),
+                if (role == UserRole.passenger) const DetailsHeader(),
+                DetailsTopCard(
+                  trip: widget.trip,
+                  index: widget.index,
+                ),
+                heightBox(20),
+                DetailsCenterCard(trip: widget.trip),
+                heightBox(20),
+                const CustomTripLocation(),
+                heightBox(20),
+                if (widget.trip.additionalDetails.isNotEmpty)
+                  DetailsTripsText(widget: widget),
+                heightBox(20),
               ],
             ),
-          if (role == UserRole.captain)
-            EditAndDeleteTrips(
+          ),
+        ),
+        if (role == UserRole.passenger)
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: const BookingOrContactButtons(),
+          ),
+        if (role == UserRole.captain)
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: EditAndDeleteTrips(
               trip: widget.trip,
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 }

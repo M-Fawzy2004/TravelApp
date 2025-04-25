@@ -34,6 +34,12 @@ class LoginViewBody extends StatelessWidget {
               style: Styles.font20ExtraBlackBold,
             ),
             LoginFormBlocListener(),
+            heightBox(10),
+            Text(
+              textAlign: TextAlign.center,
+              'من خلال المتابعة، فإنك توافق على تلقي المكالمات أو رسائل WhatsApp أو الرسائل النصية القصيرة/RCS، بما في ذلك الوسائل الآلية، من Rihlaa والشركات التابعة لها إلى الرقم المقدم.',
+              style: Styles.font12GreyExtraBold,
+            )
           ],
         ),
       ),

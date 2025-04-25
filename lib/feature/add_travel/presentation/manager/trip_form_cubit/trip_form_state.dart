@@ -1,4 +1,3 @@
-// Form Cubit
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
@@ -85,24 +84,6 @@ class TripFormState extends Equatable {
       error: error,
       fieldErrors: fieldErrors ?? this.fieldErrors,
       gradientIndex: gradientIndex ?? this.gradientIndex,
-    );
-  }
-
-  TripModel toTripModel() {
-    return TripModel(
-      id: '',
-      creatorId: '',
-      tripType: tripType,
-      destinationName: destinationName,
-      departureLocation: departureLocation,
-      arrivalLocation: arrivalLocation,
-      availableSeats: availableSeats,
-      tripDate: tripDate ?? DateTime.now(),
-      tripTime: tripTime ?? const TimeOfDay(hour: 12, minute: 0),
-      duration: duration,
-      price: price,
-      additionalDetails: additionalDetails,
-      gradientIndex: gradientIndex,
     );
   }
 

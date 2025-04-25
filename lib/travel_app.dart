@@ -30,7 +30,7 @@ class TravelApp extends StatelessWidget {
           overlayWholeScreen: true,
           useDefaultLoading: false,
           overlayWidgetBuilder: (_) => const Center(
-            child: SpinKitDoubleBounce(
+            child: SpinKitCircle(
               color: AppColors.primaryColor,
               size: 50.0,
             ),

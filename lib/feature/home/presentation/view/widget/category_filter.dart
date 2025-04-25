@@ -12,9 +12,9 @@ class CategoryFilter extends StatefulWidget {
 class _CategorySelectorState extends State<CategoryFilter> {
   List<String> filterText = [
     'الكل',
-    'رحلات',
+    'رحلة خاصه',
     'توصيل',
-    'موقف',
+    'شحن أغراض',
   ];
 
   int isSelected = 0;

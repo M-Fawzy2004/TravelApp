@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
@@ -24,6 +26,19 @@ class AuthService {
   })  : _auth = auth,
         _firestore = firestore,
         _googleSignIn = googleSignIn;
+
+  Future<Map<String, dynamic>?> getUserData(String userId) async {
+    try {
+      final docSnapshot = await _firestore.collection(kUsers).doc(userId).get();
+      if (docSnapshot.exists) {
+        return docSnapshot.data();
+      }
+      return null;
+    } catch (e) {
+      print('Error getting user data: $e');
+      return null;
+    }
+  }
 
   Future<void> linkPhoneNumber(String phoneNumber) async {
     final completer = Completer<void>();

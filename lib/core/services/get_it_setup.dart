@@ -44,7 +44,11 @@ void setupServiceLocator() async {
     () => TripCubit(tripRepository: getIt()),
   );
 
+  // لاحظ التغيير هنا - الآن نحن نحتاج فقط إلى tripRepository و authService
   getIt.registerFactory(
-    () => TripFormCubit(tripRepository: getIt()),
+    () => TripFormCubit(
+      tripRepository: getIt(),
+      authService: getIt(),
+    ),
   );
 }

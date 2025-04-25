@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/category_travel.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/add_travel_captain.dart';
 
 class CustomTripGrid extends StatelessWidget {
   const CustomTripGrid({
@@ -66,7 +66,7 @@ class CustomTripGrid extends StatelessWidget {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          childAspectRatio: 1.4,
+          mainAxisExtent: 280.h,
         ),
       ),
     );

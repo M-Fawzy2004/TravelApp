@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:travel_app/core/utils/get_cagtegory_skeletonizer.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/category_travel.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/add_travel_captain.dart';
 
 class CustomLoadingGrid extends StatelessWidget {
   const CustomLoadingGrid({
@@ -34,7 +34,7 @@ class CustomLoadingGrid extends StatelessWidget {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          childAspectRatio: 1.4,
+          mainAxisExtent: 280.h,
         ),
       ),
     );

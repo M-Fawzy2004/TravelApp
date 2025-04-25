@@ -21,18 +21,11 @@ class CategoryFilterItem extends StatelessWidget {
       padding: EdgeInsets.only(left: 10.w),
       child: AnimatedContainer(
         duration: Duration(milliseconds: 500),
-        width: 70.w,
+        width: 110.w,
         height: 40.h,
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.black.withOpacity(.2),
-              offset: Offset(0, 5),
-              blurRadius: 10,
-            ),
-          ],
           borderRadius: BorderRadius.circular(10),
-          color: isSelected ? AppColors.primaryColor : AppColors.white,
+          color: isSelected ? AppColors.primaryColor : AppColors.grey,
         ),
         child: Center(
           child: Text(

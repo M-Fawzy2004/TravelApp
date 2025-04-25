@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
+import 'package:travel_app/core/widget/custom_text_form_field.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_form_cubit/trip_form_cubit.dart';
 
 class DestinationField extends StatefulWidget {
@@ -52,38 +54,22 @@ class _DestinationFieldState extends State<DestinationField> {
       children: [
         Text(
           'الوجهة',
-          style: Styles.font16BlackBold,
+          style: Styles.font14GreyExtraBold,
         ),
-        SizedBox(height: 8.h),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.r),
-            color: Colors.white,
-            border: Border.all(
-              color:
-                  widget.errorText != null ? Colors.red : Colors.grey.shade300,
-            ),
-          ),
-          child: TextFormField(
-            controller: _controller,
-            onChanged: (value) {
-              context.read<TripFormCubit>().setDestinationName(value);
-            },
-            decoration: InputDecoration(
-              hintText: 'المكان الذي تقصده (مثال: الرياض ، مكة)',
-              hintStyle: Styles.font14DarkGreyBold,
-              contentPadding:
-                  EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-              border: InputBorder.none,
-            ),
-          ),
+        heightBox(5),
+        CustomTextFormField(
+          controller: _controller,
+          onChanged: (value) {
+            context.read<TripFormCubit>().setDestinationName(value);
+          },
+          hintText: 'المكان الذي تقصده (مثال: القاهرة ، الاهرامات)',
         ),
         if (widget.errorText != null)
           Padding(
             padding: EdgeInsets.only(top: 8.h, right: 12.w),
             child: Text(
               widget.errorText!,
-              style: TextStyle(color: Colors.red, fontSize: 12.sp),
+              style: Styles.font12RedError,
             ),
           ),
       ],

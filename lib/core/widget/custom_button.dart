@@ -50,7 +50,7 @@ class CustomButton extends StatelessWidget {
           overlayColor:
               WidgetStateProperty.all(AppColors.darkGrey.withOpacity(.2)),
           backgroundColor: WidgetStatePropertyAll(
-            backgroundColor ?? AppColors.black,
+            backgroundColor ?? AppColors.primaryColor,
           ),
           padding: WidgetStateProperty.all<EdgeInsets>(
             EdgeInsets.symmetric(

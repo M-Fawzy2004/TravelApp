@@ -79,7 +79,7 @@ class _OtpVerificationViewBodyState extends State<OtpVerificationViewBody> {
             ),
             heightBox(30),
             CustomButton(
-              buttonText: widget.isLoading ? "جاري التحقق" : "تحقق",
+              buttonText: widget.isLoading ? "جاري التحقق" : "تحقق من الرمز",
               onPressed: widget.isLoading ? null : _verifyOTP,
             ),
           ],

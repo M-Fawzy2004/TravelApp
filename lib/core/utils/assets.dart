@@ -53,5 +53,9 @@ class Assets {
   /// Assets for imagesTravelLogoAndroid12
   /// assets/images/travel_logo_android_12.png
   static const String imagesTravelLogoAndroid12 = "assets/images/travel_logo_android_12.png";
+
+  /// Assets for imagesWhatsAppLogo
+  /// assets/images/whats_app_logo.png
+  static const String imagesWhatsAppLogo = "assets/images/whats_app_logo.png";
 }
 

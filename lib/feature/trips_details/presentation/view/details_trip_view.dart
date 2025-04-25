@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/services/get_it_setup.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
@@ -22,14 +21,9 @@ class DetailsTripView extends StatelessWidget {
       create: (_) => getIt<TripCubit>(),
       child: Scaffold(
         body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 10.w,
-            ),
-            child: DetailsViewBlocListener(
-              trip: trip,
-              index: index,
-            ),
+          child: DetailsViewBlocListener(
+            trip: trip,
+            index: index,
           ),
         ),
       ),

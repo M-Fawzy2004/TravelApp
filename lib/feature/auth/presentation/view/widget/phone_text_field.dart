@@ -95,7 +95,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         return null;
       },
       keyboardType: TextInputType.phone,
-      textAlign: TextAlign.right,
+      textAlign: TextAlign.left,
       style: Styles.font16BlackBold,
       decoration: InputDecoration(
         hintText: 'ادخل رقم الهاتف',

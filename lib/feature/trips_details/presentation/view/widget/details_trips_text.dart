@@ -37,7 +37,9 @@ class DetailsTripsText extends StatelessWidget {
           ),
           child: Text(
             widget.trip.additionalDetails,
-            style: Styles.font14GreyExtraBold,
+            style: Styles.font16BlackBold.copyWith(
+              color: Colors.grey.shade700,
+            ),
           ),
         ),
       ],

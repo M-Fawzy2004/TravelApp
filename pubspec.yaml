@@ -65,6 +65,8 @@ dependencies:
   sign_in_with_apple: ^7.0.1
   skeletonizer: ^1.4.3
   pull_to_refresh: ^2.0.0
+  animations: ^2.0.11
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_lints: ^5.0.0

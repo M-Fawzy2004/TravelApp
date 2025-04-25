@@ -22,7 +22,7 @@ class PhoneNumberField extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 5,
+          flex: 6,
           child: PhoneTextField(
             countryCode: selectedCountry.countryCode,
             onValidationChanged: onPhoneValidation,

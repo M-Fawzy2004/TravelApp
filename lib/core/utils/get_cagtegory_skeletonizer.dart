@@ -5,6 +5,9 @@ TripModel getCategorySkeletonizer() {
   return TripModel(
     id: '',
     creatorId: '',
+    creatorFirstName: 'مجهول',
+    creatorLastName: 'مجهول',
+    creatorPhone: 'غير معروف',
     tripType: TripType.specialTrip,
     destinationName: '',
     departureLocation: '',

@@ -1,11 +1,13 @@
 // 1. ENTITY/MODEL
 import 'package:flutter/material.dart';
-import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/utils/tripe_type.dart';
 
 class TripModel {
   final String id;
   final String creatorId;
+  final String creatorFirstName;
+  final String creatorLastName;
+  final String creatorPhone;
   final TripType tripType;
   final String destinationName;
   final String departureLocation;
@@ -21,6 +23,9 @@ class TripModel {
   TripModel({
     required this.id,
     required this.creatorId,
+    required this.creatorFirstName,
+    required this.creatorLastName,
+    required this.creatorPhone,
     required this.tripType,
     required this.destinationName,
     required this.departureLocation,
@@ -42,7 +47,10 @@ class TripModel {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'creatorId': getUser()!.id,
+      'creatorId': creatorId,
+      'creatorFirstName': creatorFirstName,
+      'creatorLastName': creatorLastName,
+      'creatorPhone': creatorPhone,
       'tripType': tripType.toString().split('.').last,
       'destinationName': destinationName,
       'departureLocation': departureLocation,
@@ -62,6 +70,9 @@ class TripModel {
     return TripModel(
       id: json['id'],
       creatorId: json['creatorId'],
+      creatorFirstName: json['creatorFirstName'],
+      creatorLastName: json['creatorLastName'],
+      creatorPhone: json['creatorPhone'],
       tripType: TripType.values.firstWhere(
         (e) => e.toString().split('.').last == json['tripType'],
         orElse: () => TripType.cargoShipping,
@@ -85,6 +96,9 @@ class TripModel {
   TripModel copyWith({
     String? id,
     String? creatorId,
+    String? creatorFirstName,
+    String? creatorLastName,
+    String? creatorPhone,
     TripType? tripType,
     String? destinationName,
     String? departureLocation,
@@ -100,6 +114,9 @@ class TripModel {
     return TripModel(
       id: id ?? this.id,
       creatorId: creatorId ?? this.creatorId,
+      creatorFirstName: creatorFirstName ?? this.creatorFirstName,
+      creatorLastName: creatorLastName ?? this.creatorLastName,
+      creatorPhone: creatorPhone ?? this.creatorPhone,
       tripType: tripType ?? this.tripType,
       destinationName: destinationName ?? this.destinationName,
       departureLocation: departureLocation ?? this.departureLocation,

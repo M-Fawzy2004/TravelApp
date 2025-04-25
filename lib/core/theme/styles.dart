@@ -24,6 +24,10 @@ class Styles {
     fontWeight: FontWeightHelper.semiBold,
     color: AppColors.darkGrey,
   );
+  static TextStyle font12RedError = TextStyle(
+    color: Colors.red,
+    fontSize: 12.sp,
+  );
   static TextStyle font14DarkGreyExtraBold = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.extraBold,
@@ -31,6 +35,11 @@ class Styles {
   );
   static TextStyle font14GreyExtraBold = TextStyle(
     fontSize: 14.sp,
+    fontWeight: FontWeightHelper.black,
+    color: Colors.grey.shade600,
+  );
+  static TextStyle font12GreyExtraBold = TextStyle(
+    fontSize: 12.sp,
     fontWeight: FontWeightHelper.black,
     color: Colors.grey.shade600,
   );

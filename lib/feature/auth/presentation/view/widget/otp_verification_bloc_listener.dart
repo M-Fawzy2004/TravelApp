@@ -41,10 +41,12 @@ class _OtpVerificationBlocListenerState
           } else {
             // User has a complete profile
 
-            showCustomTopSnackBar(
-              context: context,
-              message: 'تم التسجيل بنجاح',
-            );
+            if (state is AuthSaved) {
+              showCustomTopSnackBar(
+                context: context,
+                message: 'تم التحقق بنجاح برجاء اكمال البيانات الشخصية',
+              );
+            }
             context.go(AppRouter.mainView);
           }
         } else if (state is AuthError) {

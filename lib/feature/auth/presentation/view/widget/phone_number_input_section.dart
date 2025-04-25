@@ -14,7 +14,8 @@ class PhoneNumberInputSection extends StatefulWidget {
   });
 
   @override
-  State<PhoneNumberInputSection> createState() => _PhoneNumberInputSectionState();
+  State<PhoneNumberInputSection> createState() =>
+      _PhoneNumberInputSectionState();
 }
 
 class _PhoneNumberInputSectionState extends State<PhoneNumberInputSection> {
@@ -43,21 +44,24 @@ class _PhoneNumberInputSectionState extends State<PhoneNumberInputSection> {
   }
 
   void _selectCountry() {
-    Future.delayed(Duration.zero, () {
-      showCountryPicker(
-        context: context,
-        showPhoneCode: true,
-        countryListTheme: CountryListThemeData(
-          borderRadius: BorderRadius.circular(15),
-          bottomSheetHeight: 500.h,
-        ),
-        onSelect: (Country country) {
-          setState(() {
-            selectedCountry = country;
-          });
-        },
-      );
-    });
+    Future.delayed(
+      Duration.zero,
+      () {
+        showCountryPicker(
+          context: context,
+          showPhoneCode: true,
+          countryListTheme: CountryListThemeData(
+            borderRadius: BorderRadius.circular(15),
+            bottomSheetHeight: 500.h,
+          ),
+          onSelect: (Country country) {
+            setState(() {
+              selectedCountry = country;
+            });
+          },
+        );
+      },
+    );
   }
 
   @override

@@ -27,19 +27,28 @@ class AddTravelBlocConsumer extends StatelessWidget {
           );
         }
 
-        if (state.isSubmitting == false && state == const TripFormState()) {
-          // This means the form was successfully submitted and reset
+        if (state.isSubmitting) {
           showCustomTopSnackBar(
             context: context,
             message:
                 isEditMode ? 'تم تحديث الرحلة بنجاح' : 'تم إضافة الرحلة بنجاح',
           );
 
+          // Reset form after showing success message
+          Future.delayed(
+            const Duration(milliseconds: 500),
+            () {
+              context.read<TripFormCubit>().resetForm();
+            },
+          );
+
           if (isEditMode) {
-            // Navigate back after successful update
-            Future.delayed(const Duration(seconds: 1), () {
-              Navigator.pop(context);
-            });
+            Future.delayed(
+              const Duration(seconds: 1),
+              () {
+                Navigator.pop(context);
+              },
+            );
           }
         }
       },

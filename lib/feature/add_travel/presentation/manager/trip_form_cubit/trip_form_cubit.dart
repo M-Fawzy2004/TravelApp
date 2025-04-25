@@ -1,15 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/core/services/auth_service.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/data/repos/trip_repo.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_form_cubit/trip_form_state.dart';
 
 class TripFormCubit extends Cubit<TripFormState> {
   final TripRepository _tripRepository;
+  final AuthService _authService;
 
-  TripFormCubit({required TripRepository tripRepository})
-      : _tripRepository = tripRepository,
-        super(const TripFormState());
+  // بيانات المستخدم
+  String _userId = '';
+  String _userFirstName = '';
+  String _userLastName = '';
+  String _userPhone = '';
+  bool _isUserDataLoaded = false;
+
+  TripFormCubit({
+    required TripRepository tripRepository,
+    required AuthService authService,
+  })  : _tripRepository = tripRepository,
+        _authService = authService,
+        super(const TripFormState()) {
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    try {
+      final currentUser = await _authService.getCurrentUser();
+      if (currentUser != null) {
+        _userId = currentUser.id;
+
+        final userData = await _authService.getUserData(_userId);
+        if (userData != null) {
+          _userFirstName = userData['firstName'] ?? '';
+          _userLastName = userData['lastName'] ?? '';
+          _userPhone = userData['phone'] ?? '';
+        } else {
+          _userFirstName = currentUser.firstName ?? '';
+          _userLastName = currentUser.lastName ?? '';
+          _userPhone = currentUser.phoneNumber;
+        }
+        _isUserDataLoaded = true;
+      }
+    } catch (e) {
+      emit(state.copyWith(
+        error: 'حدث خطأ في تحميل بيانات المستخدم: ${e.toString()}',
+      ));
+    }
+  }
 
   void setTripType(TripType tripType) {
     emit(state.copyWith(tripType: tripType));
@@ -158,6 +197,20 @@ class TripFormCubit extends Cubit<TripFormState> {
     return fieldErrors.isEmpty;
   }
 
+  // انتظار تحميل بيانات المستخدم إذا لم تكن جاهزة
+  Future<void> _ensureUserDataLoaded() async {
+    if (!_isUserDataLoaded) {
+      // انتظار حتى يتم تحميل بيانات المستخدم
+      await _loadUserData();
+
+      // التحقق مرة أخرى بعد المحاولة
+      if (!_isUserDataLoaded) {
+        throw Exception('لم يتم تحميل بيانات المستخدم بنجاح');
+      }
+    }
+  }
+
+  // تعديل دالة تقديم النموذج لضمان تحميل بيانات المستخدم أولاً
   Future<void> submitForm() async {
     if (!validateForm()) {
       emit(state.copyWith(
@@ -169,7 +222,30 @@ class TripFormCubit extends Cubit<TripFormState> {
     try {
       emit(state.copyWith(isSubmitting: true, error: null));
 
-      final result = await _tripRepository.createTrip(state.toTripModel());
+      // التأكد من تحميل بيانات المستخدم قبل إنشاء الرحلة
+      await _ensureUserDataLoaded();
+
+      // إنشاء نموذج الرحلة مع بيانات المستخدم
+      final tripModel = TripModel(
+        id: '',
+        creatorId: _userId,
+        creatorFirstName: _userFirstName,
+        creatorLastName: _userLastName,
+        creatorPhone: _userPhone,
+        tripType: state.tripType,
+        destinationName: state.destinationName,
+        departureLocation: state.departureLocation,
+        arrivalLocation: state.arrivalLocation,
+        availableSeats: state.availableSeats,
+        tripDate: state.tripDate ?? DateTime.now(),
+        tripTime: state.tripTime ?? const TimeOfDay(hour: 12, minute: 0),
+        duration: state.duration,
+        price: state.price,
+        additionalDetails: state.additionalDetails,
+        gradientIndex: state.gradientIndex,
+      );
+
+      final result = await _tripRepository.createTrip(tripModel);
 
       result.fold((failure) {
         emit(state.copyWith(
@@ -187,27 +263,7 @@ class TripFormCubit extends Cubit<TripFormState> {
     }
   }
 
-  void resetForm() {
-    emit(const TripFormState());
-  }
-
-  void loadTripForEdit(TripModel trip) {
-    emit(
-      TripFormState(
-        tripType: trip.tripType,
-        destinationName: trip.destinationName,
-        departureLocation: trip.departureLocation,
-        arrivalLocation: trip.arrivalLocation,
-        availableSeats: trip.availableSeats,
-        tripDate: trip.tripDate,
-        tripTime: trip.tripTime,
-        duration: trip.duration,
-        price: trip.price,
-        additionalDetails: trip.additionalDetails,
-      ),
-    );
-  }
-
+  // تعديل دالة تحديث رحلة موجودة لضمان تحميل بيانات المستخدم أولاً
   Future<void> updateExistingTrip(String id) async {
     if (!validateForm()) {
       emit(
@@ -221,7 +277,28 @@ class TripFormCubit extends Cubit<TripFormState> {
     try {
       emit(state.copyWith(isSubmitting: true, error: null));
 
-      final tripModel = state.toTripModel().copyWith(id: id);
+      // التأكد من تحميل بيانات المستخدم قبل تحديث الرحلة
+      await _ensureUserDataLoaded();
+
+      // إنشاء نموذج الرحلة مع بيانات المستخدم
+      final tripModel = TripModel(
+        id: id,
+        creatorId: _userId,
+        creatorFirstName: _userFirstName,
+        creatorLastName: _userLastName,
+        creatorPhone: _userPhone,
+        tripType: state.tripType,
+        destinationName: state.destinationName,
+        departureLocation: state.departureLocation,
+        arrivalLocation: state.arrivalLocation,
+        availableSeats: state.availableSeats,
+        tripDate: state.tripDate ?? DateTime.now(),
+        tripTime: state.tripTime ?? const TimeOfDay(hour: 12, minute: 0),
+        duration: state.duration,
+        price: state.price,
+        additionalDetails: state.additionalDetails,
+        gradientIndex: state.gradientIndex,
+      );
 
       final result = await _tripRepository.updateTrip(tripModel);
 
@@ -246,5 +323,27 @@ class TripFormCubit extends Cubit<TripFormState> {
         ),
       );
     }
+  }
+
+  void resetForm() {
+    emit(const TripFormState());
+  }
+
+  void loadTripForEdit(TripModel trip) {
+    emit(
+      TripFormState(
+        tripType: trip.tripType,
+        destinationName: trip.destinationName,
+        departureLocation: trip.departureLocation,
+        arrivalLocation: trip.arrivalLocation,
+        availableSeats: trip.availableSeats,
+        tripDate: trip.tripDate,
+        tripTime: trip.tripTime,
+        duration: trip.duration,
+        price: trip.price,
+        additionalDetails: trip.additionalDetails,
+        gradientIndex: trip.gradientIndex,
+      ),
+    );
   }
 }
