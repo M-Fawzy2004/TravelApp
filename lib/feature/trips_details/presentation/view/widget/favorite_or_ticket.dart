@@ -5,8 +5,8 @@ import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/custom_fav_details.dart';
 
-class BookingOrContactButtons extends StatelessWidget {
-  const BookingOrContactButtons({
+class FavoriteOrTicketButton extends StatelessWidget {
+  const FavoriteOrTicketButton({
     super.key,
   });
 
@@ -38,7 +38,7 @@ class BookingOrContactButtons extends StatelessWidget {
                 flex: 6,
                 child: CustomButton(
                   onPressed: () {},
-                  buttonText: 'حجز الرحلة',
+                  buttonText: 'حجز تذكره',
                 ),
               ),
               widthBox(10),

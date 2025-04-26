@@ -57,9 +57,9 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
       child: Scrollbar(
         controller: _scrollController,
         thumbVisibility: false,
-        scrollbarOrientation: ScrollbarOrientation.right,
+        scrollbarOrientation: ScrollbarOrientation.left,
         interactive: true,
-        thickness: 6,
+        thickness: 4,
         radius: Radius.circular(8),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0.w),

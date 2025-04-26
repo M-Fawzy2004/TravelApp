@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
-import 'package:travel_app/feature/trips_details/presentation/view/widget/details_info_row.dart';
+import 'package:travel_app/core/widget/details_info_row.dart';
 
 class DetailsCenterCard extends StatelessWidget {
   const DetailsCenterCard({super.key, required this.trip});
@@ -37,12 +37,6 @@ class DetailsCenterCard extends StatelessWidget {
             icon: Icons.location_on,
             label: 'الاسم التانى',
             value: trip.creatorLastName,
-          ),
-          _divider(),
-          DetailsInfoRow(
-            icon: Icons.location_on,
-            label: 'رقم الهاتف',
-            value: trip.creatorPhone,
           ),
           _divider(),
           DetailsInfoRow(

@@ -9,6 +9,7 @@ import 'package:travel_app/feature/add_travel/data/repos/trip_repo.dart';
 import 'package:travel_app/feature/add_travel/data/repos/trip_repo_impl.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_form_cubit/trip_form_cubit.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
+import 'package:travel_app/feature/trips_details/presentation/manager/cubit/trip_booking_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -43,6 +44,9 @@ void setupServiceLocator() async {
   getIt.registerFactory(
     () => TripCubit(tripRepository: getIt()),
   );
+
+  // Trip Booking
+  getIt.registerFactory(() => TripBookingCubit());
 
   // لاحظ التغيير هنا - الآن نحن نحتاج فقط إلى tripRepository و authService
   getIt.registerFactory(

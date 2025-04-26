@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/helper/spacing.dart';
+import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/info_row.dart';
+import 'package:travel_app/core/widget/details_info_row.dart';
 
 class AddTravelCaptainSection extends StatelessWidget {
   const AddTravelCaptainSection({
@@ -19,11 +20,12 @@ class AddTravelCaptainSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          heightBox(5),
           Center(
             child: Text(
               trip.destinationName,
@@ -31,47 +33,58 @@ class AddTravelCaptainSection extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          heightBox(12),
-          Row(
-            children: [
-              Expanded(
-                child: InfoRow(
-                  icon: Icons.location_on,
-                  label: 'مكان التحرك',
-                  value: trip.departureLocation,
-                ),
-              ),
-              Expanded(
-                child: InfoRow(
-                  icon: Icons.flag,
-                  label: 'مكان الوصول',
-                  value: trip.arrivalLocation,
-                ),
-              ),
-            ],
+          heightBox(20),
+          DetailsInfoRow(
+            icon: FontAwesomeIcons.locationArrow,
+            label: 'مكان التحرك',
+            value: trip.departureLocation,
           ),
-          InfoRow(
-            icon: Icons.date_range,
-            label: 'تاريخ الرحله',
-            value:
-                '${trip.tripDate.day} / ${trip.tripDate.month} / ${trip.tripDate.year}',
+          _divider(),
+          DetailsInfoRow(
+            icon: FontAwesomeIcons.flag,
+            label: 'مكان الوصول',
+            value: trip.arrivalLocation,
           ),
-          InfoRow(
-            icon: Icons.access_time,
-            label: 'توقيت الرحله',
+          _divider(),
+          DetailsInfoRow(
+            icon: FontAwesomeIcons.timesRectangle,
+            label: 'تاريخ الرحلة',
+            value: trip.tripDate.toString().split(' ')[0],
+          ),
+          _divider(),
+          DetailsInfoRow(
+            icon: FontAwesomeIcons.flag,
+            label: 'توقيت الرحلة',
             value:
                 '${trip.tripTime.hour}:${trip.tripTime.minute.toString().padLeft(2, '0')} ${getPeriodOfDay(trip.tripTime)}',
           ),
-          heightBox(20),
-          CustomButton(
-            buttonText: 'عرض التفاصيل',
-            onPressed: onPressed,
+          _divider(),
+          DetailsInfoRow(
+            icon: FontAwesomeIcons.flag,
+            label: 'سعر الرحله',
+            value: '${trip.price} جنيه',
+          ),
+          heightBox(5),
+          Center(
+            child: Text(
+              'أنقر للتسجيل في الرحلة',
+              style: Styles.font14GreyExtraBold.copyWith(
+                color: AppColors.primaryColor,
+                decoration: TextDecoration.underline,
+                decorationColor: AppColors.black,
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 }
+
+Widget _divider() => Padding(
+      padding: EdgeInsets.symmetric(vertical: 1.h),
+      child: Divider(color: AppColors.grey, thickness: 2),
+    );
 
 String getPeriodOfDay(TimeOfDay time) {
   return time.hour < 12 ? 'صباحًا' : 'مساءً';

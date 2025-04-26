@@ -6,13 +6,13 @@ import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
-import 'package:travel_app/feature/trips_details/presentation/view/widget/booking_or_contact_buttons.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/custom_trip_loaction.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_center_card.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_header.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_top_card.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_trips_text.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/edit_and_delete_trips.dart';
+import 'package:travel_app/feature/trips_details/presentation/view/widget/favorite_or_ticket.dart';
 
 class DetailsTripViewBody extends StatefulWidget {
   const DetailsTripViewBody({
@@ -73,7 +73,7 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
             bottom: 0,
             left: 0,
             right: 0,
-            child: const BookingOrContactButtons(),
+            child: const FavoriteOrTicketButton(),
           ),
         if (role == UserRole.captain)
           Positioned(

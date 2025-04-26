@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/core/helper/app_router.dart';
@@ -15,6 +16,7 @@ import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.da
 import 'package:travel_app/feature/home/presentation/view/captain_home_view.dart';
 import 'package:travel_app/feature/home/presentation/view/passenger_home_view.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/custom_bottom_nav_bar.dart';
+import 'package:travel_app/feature/trip_booking/presentation/view/trip_booking_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -34,7 +36,7 @@ class _MainViewState extends State<MainView> {
       role == UserRole.passenger
           ? const PassengerHomeView()
           : const CaptainHomeView(),
-      const Center(child: Text("الرسائل")),
+      const TripBookingView(),
       const Center(child: Text("الرسائل")),
       const NewWidget(),
     ];
@@ -42,19 +44,31 @@ class _MainViewState extends State<MainView> {
     return BlocProvider(
       create: (_) => getIt<TripCubit>()..getAllTrips(),
       child: Scaffold(
-        body: IndexedStack(
-          index: screenIndex,
-          children: screens,
-        ),
-        bottomNavigationBar: CustomBottomNavBar(
-          currentIndex: screenIndex,
-          onTap: (index) {
-            HapticFeedback.lightImpact();
-            setState(() {
-              screenIndex = index;
-            });
-          },
-          role: role!,
+        extendBody: true,
+        body: Stack(
+          children: [
+            IndexedStack(
+              index: screenIndex,
+              children: screens,
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0.h,
+              child: Center(
+                child: CustomBottomNavBar(
+                  currentIndex: screenIndex,
+                  onTap: (index) {
+                    HapticFeedback.lightImpact();
+                    setState(() {
+                      screenIndex = index;
+                    });
+                  },
+                  role: role!,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

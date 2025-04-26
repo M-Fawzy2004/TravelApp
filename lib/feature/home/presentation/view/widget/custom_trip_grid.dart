@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/get_user.dart';
+import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/add_travel_captain.dart';
 
@@ -26,17 +27,14 @@ class CustomTripGrid extends StatelessWidget {
               role == UserRole.passenger
                   ? 'لم يتم اضافة رحلات بعد'
                   : 'لم تضيف رحلات بعد',
-              style: TextStyle(
-                fontSize: 18.sp,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Styles.font18BlackBold,
             ),
           ),
         ),
       );
     }
     return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
+      padding: EdgeInsets.only(bottom: 80.h),
       sliver: SliverGrid(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
@@ -54,7 +52,7 @@ class CustomTripGrid extends StatelessWidget {
                 );
               },
               child: Padding(
-                padding: EdgeInsets.only(bottom: 25.h),
+                padding: EdgeInsets.symmetric(vertical: 4.w),
                 child: AddTravelCaptain(
                   trip: trip,
                   index: index,
@@ -66,7 +64,7 @@ class CustomTripGrid extends StatelessWidget {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          mainAxisExtent: 280.h,
+          mainAxisExtent: 290.h,
         ),
       ),
     );

@@ -48,7 +48,7 @@ class CustomBottomNavBar extends StatelessWidget {
             ),
             _buildNavItem(
               FontAwesomeIcons.car,
-              role == UserRole.passenger ? 'الحجز' : 'المضاف',
+              'الحجز',
               1,
             ),
             _buildNavItem(

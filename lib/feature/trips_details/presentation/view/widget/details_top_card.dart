@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
-import 'package:travel_app/feature/trips_details/presentation/view/widget/details_info_row.dart';
+import 'package:travel_app/core/widget/details_info_row.dart';
 
 class DetailsTopCard extends StatelessWidget {
   const DetailsTopCard({

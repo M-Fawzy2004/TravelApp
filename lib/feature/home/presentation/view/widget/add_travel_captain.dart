@@ -49,7 +49,6 @@ class AddTravelCaptain extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             gradient: gradient,
-            borderRadius: BorderRadius.circular(15.r),
             boxShadow: [
               BoxShadow(
                 color: AppColors.black.withOpacity(.2),

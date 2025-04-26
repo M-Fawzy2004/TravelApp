@@ -15,14 +15,14 @@ class CustomLoadingGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
+      padding: EdgeInsets.only(bottom: 80),
       sliver: SliverGrid(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             return Skeletonizer(
               enabled: true,
               child: Padding(
-                padding: EdgeInsets.only(bottom: 25.h),
+                padding: EdgeInsets.symmetric(vertical: 4.w),
                 child: AddTravelCaptain(
                   trip: getCategorySkeletonizer(),
                   index: index,
@@ -30,11 +30,11 @@ class CustomLoadingGrid extends StatelessWidget {
               ),
             );
           },
-          childCount: 6,
+          childCount: 4,
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          mainAxisExtent: 280.h,
+          mainAxisExtent: 290.h,
         ),
       ),
     );
