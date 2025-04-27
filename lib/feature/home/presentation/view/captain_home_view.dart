@@ -14,9 +14,9 @@ class CaptainHomeView extends StatelessWidget {
     return BlocProvider(
       create: (_) =>
           getIt<TripCubit>()..getTripsByCaptainId(getUser()!.id.toString()),
-      child: Scaffold(
+      child: const Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
-        floatingActionButton: const CustomAddTravel(),
+        floatingActionButton: CustomAddTravel(),
         body: SafeArea(
           child: CaptainHomeViewBody(),
         ),

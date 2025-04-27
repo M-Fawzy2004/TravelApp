@@ -48,7 +48,7 @@ class _UserPofileBlocListenerState extends State<UserPofileBlocListener> {
           );
         }
       },
-      child: UserProfileBody(),
+      child: const UserProfileBody(),
     );
   }
 }

@@ -59,7 +59,7 @@ class SaveUserData implements UseCase<void, UserEntity> {
   @override
   Future<Either<Failure, void>> call(UserEntity user) async {
     await repository.saveUserData(user: user);
-    return Right(null);
+    return const Right(null);
   }
 }
 

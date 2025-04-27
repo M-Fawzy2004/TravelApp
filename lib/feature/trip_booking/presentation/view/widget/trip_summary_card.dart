@@ -21,12 +21,12 @@ class TripSummaryCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
             blurRadius: 5,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
             blurRadius: 5,
-            offset: Offset(0, -3),
+            offset: const Offset(0, -3),
           ),
         ],
       ),
@@ -47,7 +47,7 @@ class TripSummaryCard extends StatelessWidget {
                   size: 28.sp,
                 ),
               ),
-              SizedBox(width: 12.w),
+              widthBox(12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -21,16 +21,16 @@ class DetailsLocation extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: AppColors.black.withOpacity(.2),
-            offset: Offset(0, 0),
+            offset: const Offset(0, 0),
             blurRadius: 10,
           ),
         ],
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage(Assets.imagesLoactionMap),
           fit: BoxFit.fill,
         ),
       ),
-      child: ShareLocationButton(
+      child: const ShareLocationButton(
         title: 'شارك موقعك',
       ),
     );

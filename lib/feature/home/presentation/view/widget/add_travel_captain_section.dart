@@ -83,7 +83,7 @@ class AddTravelCaptainSection extends StatelessWidget {
 
 Widget _divider() => Padding(
       padding: EdgeInsets.symmetric(vertical: 1.h),
-      child: Divider(color: AppColors.grey, thickness: 2),
+      child: const Divider(color: AppColors.grey, thickness: 2),
     );
 
 String getPeriodOfDay(TimeOfDay time) {

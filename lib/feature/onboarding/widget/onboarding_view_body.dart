@@ -17,7 +17,7 @@ class OnboardingViewBody extends StatelessWidget {
             Assets.imagesOnboardingImage,
           ),
         ),
-        OnBoardingBottomCard(),
+        const OnBoardingBottomCard(),
       ],
     );
   }

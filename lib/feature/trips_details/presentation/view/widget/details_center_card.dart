@@ -20,7 +20,7 @@ class DetailsCenterCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
             blurRadius: 6,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -39,7 +39,7 @@ class DetailsCenterCard extends StatelessWidget {
             value: trip.creatorLastName,
           ),
           _divider(),
-          DetailsInfoRow(
+          const DetailsInfoRow(
             icon: Icons.star,
             label: 'تقييم السائق',
             value: '4.8',

@@ -24,7 +24,10 @@ class CounterButtonAndPrice extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.remove, color: AppColors.primaryColor),
+                icon: const Icon(
+                  Icons.remove,
+                  color: AppColors.primaryColor,
+                ),
               ),
               Text(
                 '$count',
@@ -36,7 +39,10 @@ class CounterButtonAndPrice extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: Icon(Icons.add, color: AppColors.primaryColor),
+                icon: const Icon(
+                  Icons.add,
+                  color: AppColors.primaryColor,
+                ),
               ),
             ],
           ),

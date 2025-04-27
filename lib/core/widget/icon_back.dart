@@ -22,7 +22,7 @@ class IconBack extends StatelessWidget {
             color: AppColors.black.withOpacity(.2),
             blurRadius: 6,
             spreadRadius: 0,
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
           ),
         ],
       ),
@@ -32,7 +32,7 @@ class IconBack extends StatelessWidget {
           onPressed: () {
             context.pop();
           },
-          icon: Icon(
+          icon: const Icon(
             size: 18,
             Icons.arrow_back_ios,
             color: AppColors.black,

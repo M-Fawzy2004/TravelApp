@@ -40,7 +40,7 @@ class DetailsTopCard extends StatelessWidget {
               color: AppColors.black.withOpacity(.2),
               blurRadius: 6,
               spreadRadius: 0,
-              offset: Offset(0, 1),
+              offset: const Offset(0, 1),
             ),
           ],
         ),
@@ -95,7 +95,7 @@ class DetailsTopCard extends StatelessWidget {
 
   Widget _divider() => Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
-        child: Divider(color: AppColors.grey, thickness: 1),
+        child: const Divider(color: AppColors.grey, thickness: 1),
       );
 }
 

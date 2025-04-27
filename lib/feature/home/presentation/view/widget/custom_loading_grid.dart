@@ -15,7 +15,7 @@ class CustomLoadingGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverPadding(
-      padding: EdgeInsets.only(bottom: 80),
+      padding: const EdgeInsets.only(bottom: 80),
       sliver: SliverGrid(
         delegate: SliverChildBuilderDelegate(
           (context, index) {

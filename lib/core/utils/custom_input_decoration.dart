@@ -9,7 +9,7 @@ InputDecoration customInputDecoration({String? labelText}) {
     labelStyle: Styles.font16BlackBold,
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10.r),
-      borderSide: BorderSide(
+      borderSide: const BorderSide(
         color: AppColors.grey,
       ),
     ),

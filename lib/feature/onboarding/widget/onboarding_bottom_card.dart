@@ -47,8 +47,8 @@ class OnBoardingBottomCard extends StatelessWidget {
                   style: Styles.font20ExtraBlackBold,
                 ),
                 heightBox(20),
-                OnboardingDescriptionSection(),
-                Spacer(),
+                const OnboardingDescriptionSection(),
+                const Spacer(),
                 CustomButton(
                   onPressed: () async {
                     final prefs = await SharedPreferences.getInstance();

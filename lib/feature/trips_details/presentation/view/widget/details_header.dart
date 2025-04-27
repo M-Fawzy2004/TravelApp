@@ -21,7 +21,7 @@ class DetailsHeader extends StatelessWidget {
             color: AppColors.black.withOpacity(.2),
             blurRadius: 6,
             spreadRadius: 0,
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
           ),
         ],
       ),

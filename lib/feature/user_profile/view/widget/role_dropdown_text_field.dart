@@ -42,7 +42,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
           value: selectedRole,
           dropdownColor: AppColors.white,
           style: Styles.font20ExtraBlackBold,
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           borderRadius: BorderRadius.circular(10.r),
           items: [
             DropdownMenuItem(
@@ -79,7 +79,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
           DropdownButtonFormField<String>(
             dropdownColor: AppColors.white,
             style: Styles.font20ExtraBlackBold,
-            padding: EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             borderRadius: BorderRadius.circular(10.r),
             value: selectedVehicleType,
             items: vehicleTypes.map((type) {

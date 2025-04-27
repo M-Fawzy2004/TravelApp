@@ -59,7 +59,7 @@ class _LoginFormState extends State<LoginForm> {
         heightBox(40),
         Row(
           children: [
-            Expanded(child: Divider(color: Colors.grey)),
+            const Expanded(child: Divider(color: Colors.grey)),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
@@ -67,7 +67,7 @@ class _LoginFormState extends State<LoginForm> {
                 style: Styles.font14DarkGreyExtraBold,
               ),
             ),
-            Expanded(child: Divider(color: Colors.grey)),
+            const Expanded(child: Divider(color: Colors.grey)),
           ],
         ),
         heightBox(20),

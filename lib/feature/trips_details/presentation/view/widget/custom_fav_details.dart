@@ -19,7 +19,7 @@ class CustomFavDetails extends StatelessWidget {
         cubit.toggleFavorite();
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         padding: EdgeInsets.symmetric(
           horizontal: 10.w,
           vertical: 12.h,

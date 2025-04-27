@@ -33,7 +33,7 @@ class _TripAndDeliveryDropdownState extends State<TripAndDeliveryDropdown> {
             'اختر',
             style: Styles.font14GreyExtraBold,
           ),
-          Spacer(),
+          const Spacer(),
           DropdownButton<String>(
             dropdownColor: AppColors.white,
             value: _selectedOption,
@@ -64,7 +64,7 @@ class _TripAndDeliveryDropdownState extends State<TripAndDeliveryDropdown> {
                 ),
               );
             }).toList(),
-            underline: SizedBox(),
+            underline: const SizedBox(),
           ),
         ],
       ),

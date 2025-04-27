@@ -43,7 +43,7 @@ class TripDateTimePicker extends StatelessWidget {
                     builder: (context, child) {
                       return Theme(
                         data: Theme.of(context).copyWith(
-                          colorScheme: ColorScheme.light(
+                          colorScheme: const ColorScheme.light(
                             primary: AppColors.primaryColor,
                           ),
                         ),
@@ -56,7 +56,8 @@ class TripDateTimePicker extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),
                     border: Border.all(color: AppColors.grey),
@@ -72,7 +73,7 @@ class TripDateTimePicker extends StatelessWidget {
                             ? Styles.font14DarkGreyExtraBold
                             : Styles.font14DarkGreyBold,
                       ),
-                      Icon(Icons.calendar_today, color: AppColors.grey),
+                      const Icon(Icons.calendar_today, color: AppColors.grey),
                     ],
                   ),
                 ),
@@ -101,7 +102,7 @@ class TripDateTimePicker extends StatelessWidget {
                     builder: (context, child) {
                       return Theme(
                         data: Theme.of(context).copyWith(
-                          colorScheme: ColorScheme.light(
+                          colorScheme: const ColorScheme.light(
                             primary: AppColors.primaryColor,
                           ),
                         ),
@@ -114,7 +115,8 @@ class TripDateTimePicker extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.r),
                     border: Border.all(color: AppColors.grey),
@@ -130,7 +132,7 @@ class TripDateTimePicker extends StatelessWidget {
                             ? Styles.font14DarkGreyExtraBold
                             : Styles.font14GreyExtraBold,
                       ),
-                      Icon(Icons.access_time, color: AppColors.grey),
+                      const Icon(Icons.access_time, color: AppColors.grey),
                     ],
                   ),
                 ),

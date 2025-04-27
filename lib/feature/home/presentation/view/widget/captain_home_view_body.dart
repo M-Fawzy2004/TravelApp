@@ -50,7 +50,7 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
         scrollbarOrientation: ScrollbarOrientation.left,
         interactive: true,
         thickness: 4,
-        radius: Radius.circular(8),
+        radius: const Radius.circular(8),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0.w),
           child: SmartRefresher(
@@ -68,14 +68,14 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
             ),
             child: CustomScrollView(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               slivers: [
                 SliverToBoxAdapter(child: heightBox(15)),
-                SliverToBoxAdapter(child: CaptainHomeHeader()),
+                const SliverToBoxAdapter(child: CaptainHomeHeader()),
                 SliverToBoxAdapter(child: heightBox(20)),
-                SliverToBoxAdapter(child: DetailsLocation()),
+                const SliverToBoxAdapter(child: DetailsLocation()),
                 SliverToBoxAdapter(child: heightBox(10)),
-                CategorySliverGridGridBlocBuilder(),
+                const CategorySliverGridGridBlocBuilder(),
               ],
             ),
           ),

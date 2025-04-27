@@ -49,7 +49,7 @@ class _OtpVerificationViewBodyState extends State<OtpVerificationViewBody> {
         child: Column(
           children: [
             heightBox(40),
-            Align(
+            const Align(
               alignment: Alignment.topRight,
               child: IconBack(),
             ),
@@ -73,7 +73,8 @@ class _OtpVerificationViewBodyState extends State<OtpVerificationViewBody> {
                   ProvidedPinBoxDecoration.defaultPinBoxDecoration,
               pinTextAnimatedSwitcherTransition:
                   ProvidedPinBoxTextAnimation.scalingTransition,
-              pinTextAnimatedSwitcherDuration: Duration(milliseconds: 300),
+              pinTextAnimatedSwitcherDuration:
+                  const Duration(milliseconds: 300),
               highlightAnimationBeginColor: Colors.black,
               keyboardType: TextInputType.number,
             ),

@@ -35,7 +35,7 @@ class AddTravelCaptain extends StatelessWidget {
       openColor: AppColors.primaryColor,
       openElevation: 10,
       transitionType: ContainerTransitionType.fadeThrough,
-      transitionDuration: Duration(milliseconds: 400),
+      transitionDuration: const Duration(milliseconds: 400),
       openBuilder: (context, _) => DetailsTripView(
         trip: trip,
         index: index,
@@ -54,7 +54,7 @@ class AddTravelCaptain extends StatelessWidget {
                 color: AppColors.black.withOpacity(.2),
                 blurRadius: 6,
                 spreadRadius: 0,
-                offset: Offset(0, 1),
+                offset: const Offset(0, 1),
               ),
             ],
           ),

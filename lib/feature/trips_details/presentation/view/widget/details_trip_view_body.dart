@@ -45,9 +45,9 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
                 Row(
                   children: [
                     const IconBack(),
-                    Spacer(),
+                    const Spacer(),
                     Text('تفاصيل الرحلة', style: Styles.font20BlackBold),
-                    Spacer(),
+                    const Spacer(),
                     widthBox(55),
                   ],
                 ),
@@ -69,11 +69,11 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
           ),
         ),
         if (role == UserRole.passenger)
-          Positioned(
+          const Positioned(
             bottom: 0,
             left: 0,
             right: 0,
-            child: const FavoriteOrTicketButton(),
+            child: FavoriteOrTicketButton(),
           ),
         if (role == UserRole.captain)
           Positioned(

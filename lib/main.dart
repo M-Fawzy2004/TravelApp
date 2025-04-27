@@ -25,7 +25,7 @@ void main() async {
       ),
       child: DevicePreview(
         enabled: false,
-        builder: (context) => TravelApp(),
+        builder: (context) => const TravelApp(),
       ),
     ),
   );

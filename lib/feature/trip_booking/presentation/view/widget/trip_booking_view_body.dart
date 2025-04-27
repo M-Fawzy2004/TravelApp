@@ -23,11 +23,11 @@ class TripBookingViewBody extends StatelessWidget {
               children: [
                 heightBox(10),
                 if (role == UserRole.passenger)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: TripBookingHeader(),
                   ),
-                Expanded(
+                const Expanded(
                   child: TripSummaryListView(),
                 ),
               ],
@@ -38,7 +38,7 @@ class TripBookingViewBody extends StatelessWidget {
               right: 0,
               left: 0,
               bottom: 90.h,
-              child: ActionSliderButton(),
+              child: const ActionSliderButton(),
             ),
         ],
       ),

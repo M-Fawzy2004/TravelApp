@@ -22,7 +22,7 @@ class _CategorySelectorState extends State<CategoryFilter> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.horizontal,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),

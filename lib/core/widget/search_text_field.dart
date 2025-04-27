@@ -9,12 +9,15 @@ import 'package:travel_app/core/theme/styles.dart';
 class SearchTextField extends StatelessWidget {
   const SearchTextField({
     super.key,
+    this.hintText,
   });
+
+  final String? hintText;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.r),
         boxShadow: [
@@ -22,7 +25,7 @@ class SearchTextField extends StatelessWidget {
             color: AppColors.black.withOpacity(.2),
             blurRadius: 5,
             spreadRadius: 2,
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
           ),
         ],
       ),
@@ -35,7 +38,7 @@ class SearchTextField extends StatelessWidget {
           ),
           fillColor: AppColors.white,
           filled: true,
-          hintText: 'بحث عن رحلة معينه....',
+          hintText: hintText,
           hintStyle: Styles.font14DarkGreyExtraBold.copyWith(
             fontWeight: FontWeight.w900,
           ),

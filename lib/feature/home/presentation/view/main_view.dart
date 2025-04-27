@@ -16,6 +16,7 @@ import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.da
 import 'package:travel_app/feature/home/presentation/view/captain_home_view.dart';
 import 'package:travel_app/feature/home/presentation/view/passenger_home_view.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/custom_bottom_nav_bar.dart';
+import 'package:travel_app/feature/message/presentation/view/message_view.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/trip_booking_view.dart';
 
 class MainView extends StatefulWidget {
@@ -37,7 +38,7 @@ class _MainViewState extends State<MainView> {
           ? const PassengerHomeView()
           : const CaptainHomeView(),
       const TripBookingView(),
-      const Center(child: Text("الرسائل")),
+      const MessageView(),
       const NewWidget(),
     ];
 

@@ -45,7 +45,7 @@ class _AddTravelViewBodyState extends State<AddTravelViewBody> {
           heightBox(20),
           AddTravelBlocConsumer(
             builder: (context, state) {
-              return AddTravelForm();
+              return const AddTravelForm();
             },
           ),
         ],

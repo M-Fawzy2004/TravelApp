@@ -81,7 +81,7 @@ class _EditTravelFormState extends State<EditTravelForm> {
           padding: EdgeInsets.symmetric(horizontal: 5.w),
           child: Column(
             children: [
-              GradientSelectorRow(),
+              const GradientSelectorRow(),
               heightBox(10),
               TravelTypeSelector(
                 selectedType: _selectedType,

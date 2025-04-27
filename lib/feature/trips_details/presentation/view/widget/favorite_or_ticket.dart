@@ -25,7 +25,7 @@ class FavoriteOrTicketButton extends StatelessWidget {
             color: AppColors.black.withOpacity(.3),
             blurRadius: 6,
             spreadRadius: 0,
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
           ),
         ],
       ),
@@ -42,7 +42,7 @@ class FavoriteOrTicketButton extends StatelessWidget {
                 ),
               ),
               widthBox(10),
-              Expanded(
+              const Expanded(
                 flex: 1,
                 child: CustomFavDetails(),
               ),

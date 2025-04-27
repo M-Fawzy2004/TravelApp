@@ -6,8 +6,8 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const OnboardingViewBody(),
+    return const Scaffold(
+      body: OnboardingViewBody(),
     );
   }
 }

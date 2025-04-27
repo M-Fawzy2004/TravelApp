@@ -50,7 +50,7 @@ class _AddTravelFormState extends State<AddTravelForm> {
           padding: EdgeInsets.symmetric(horizontal: 5.w),
           child: Column(
             children: [
-              GradientSelectorRow(),
+              const GradientSelectorRow(),
               heightBox(10),
               TravelTypeSelector(
                 selectedType: _selectedType,
@@ -91,7 +91,7 @@ class _AddTravelFormState extends State<AddTravelForm> {
                 errorTextPrice: state.fieldErrors['price'],
               ),
               heightBox(10),
-              DetailsField(),
+              const DetailsField(),
               heightBox(20),
               SubmitCustomButton(
                 onPressed: state.isSubmitting

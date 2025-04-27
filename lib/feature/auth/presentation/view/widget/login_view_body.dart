@@ -33,7 +33,7 @@ class LoginViewBody extends StatelessWidget {
               'من فضلك ادخل رقم هاتفك',
               style: Styles.font20ExtraBlackBold,
             ),
-            LoginFormBlocListener(),
+            const LoginFormBlocListener(),
             heightBox(10),
             Text(
               textAlign: TextAlign.center,

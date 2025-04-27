@@ -15,14 +15,14 @@ class TripSummaryListView extends StatelessWidget {
 
     return ListView.builder(
       padding: role == UserRole.passenger
-          ? EdgeInsets.only(bottom: 150.h)
+          ? EdgeInsets.only(bottom: 170.h)
           : EdgeInsets.only(bottom: 80.h),
       dragStartBehavior: DragStartBehavior.down,
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return role == UserRole.passenger
-            ? TripSummaryCard()
-            : TripSummaryCaptain();
+            ? const TripSummaryCard()
+            : const TripSummaryCaptain();
       },
       itemCount: 7,
     );

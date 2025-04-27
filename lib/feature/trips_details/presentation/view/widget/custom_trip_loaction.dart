@@ -23,15 +23,15 @@ class CustomTripLocation extends StatelessWidget {
             color: AppColors.black.withOpacity(.2),
             blurRadius: 6,
             spreadRadius: 0,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
-        image: DecorationImage(
+        image: const DecorationImage(
           image: AssetImage(Assets.imagesLoactionMap),
           fit: BoxFit.fill,
         ),
       ),
-      child: ShareLocationButton(
+      child: const ShareLocationButton(
         title: 'معرفه موقع تحرك الرحله',
       ),
     );

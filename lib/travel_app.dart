@@ -46,7 +46,7 @@ class TravelApp extends StatelessWidget {
             routerConfig: AppRouter.router,
             theme: ThemeData(
               fontFamily: 'font',
-              appBarTheme: AppBarTheme(
+              appBarTheme: const AppBarTheme(
                 color: AppColors.grey,
               ),
               primaryColor: AppColors.primaryColor,

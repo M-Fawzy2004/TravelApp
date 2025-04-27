@@ -61,7 +61,7 @@ class AuthRepositoryImpl implements AuthRepository {
             }
           } else {
             completer.complete(
-              Left(
+              const Left(
                 AuthFailure(message: 'فشل في تسجيل الدخول برقم الهاتف'),
               ),
             );
@@ -87,7 +87,7 @@ class AuthRepositoryImpl implements AuthRepository {
         codeAutoRetrievalTimeout: (String verificationId) {
           if (!completer.isCompleted) {
             completer.complete(
-              Left(
+              const Left(
                 AuthFailure(message: 'انتهاء مهلة الاسترجاع التلقائي لـ OTP'),
               ),
             );
@@ -133,7 +133,7 @@ class AuthRepositoryImpl implements AuthRepository {
           return Right(newUser);
         }
       } else {
-        return Left(AuthFailure(message: 'المستخدم فارغ بعد التحقق'));
+        return const Left(AuthFailure(message: 'المستخدم فارغ بعد التحقق'));
       }
     } on FirebaseAuthException catch (e) {
       return Left(AuthFailure(message: e.message ?? 'فشل التحقق من OTP'));
@@ -151,7 +151,8 @@ class AuthRepositoryImpl implements AuthRepository {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
       if (googleUser == null) {
-        return Left(AuthFailure(message: 'تم إلغاء تسجيل الدخول إلى Google'));
+        return const Left(
+            AuthFailure(message: 'تم إلغاء تسجيل الدخول إلى Google'));
       }
 
       final GoogleSignInAuthentication googleAuth =
@@ -184,7 +185,8 @@ class AuthRepositoryImpl implements AuthRepository {
           return Right(newUser);
         }
       } else {
-        return Left(AuthFailure(message: 'فشل تسجيل الدخول باستخدام Google'));
+        return const Left(
+            AuthFailure(message: 'فشل تسجيل الدخول باستخدام Google'));
       }
     } catch (e) {
       return Left(AuthFailure(message: e.toString()));
@@ -242,7 +244,8 @@ class AuthRepositoryImpl implements AuthRepository {
           return Right(newUser);
         }
       } else {
-        return Left(AuthFailure(message: 'فشل تسجيل الدخول باستخدام Apple'));
+        return const Left(
+            AuthFailure(message: 'فشل تسجيل الدخول باستخدام Apple'));
       }
     } catch (e) {
       return Left(AuthFailure(message: e.toString()));

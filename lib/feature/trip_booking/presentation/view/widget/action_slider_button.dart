@@ -1,6 +1,7 @@
-import 'package:action_slider/action_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:slide_to_act/slide_to_act.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 
@@ -11,20 +12,24 @@ class ActionSliderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ActionSlider.standard(
-      backgroundColor: AppColors.primaryColor,
-      backgroundBorderRadius: BorderRadius.circular(20.r),
-      height: 55.h,
-      toggleColor: AppColors.grey,
-      child: Text(
-        'تاكيد الحجز',
-        style: Styles.font16BlackBold,
+    return SlideAction(
+      sliderButtonIcon: const Icon(
+        FontAwesomeIcons.arrowRight,
+        color: AppColors.darkGrey,
       ),
-      // action: (controller) async {
-      //   controller.loading();
-      //   await Future.delayed(const Duration(seconds: 2));
-      //   controller.success();
-      // },
+      animationDuration: const Duration(seconds: 1),
+      borderRadius: 20.r,
+      outerColor: AppColors.primaryColor,
+      innerColor: AppColors.grey,
+      sliderRotate: false,
+      elevation: 6,
+      onSubmit: () {
+        return null;
+      },
+      child: Text(
+        'تأكيد الحجز  ',
+        style: Styles.font16WhiteBold,
+      ),
     );
   }
 }

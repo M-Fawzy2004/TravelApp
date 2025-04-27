@@ -14,7 +14,7 @@ class CategorySliverGridGridBlocBuilder extends StatelessWidget {
     return BlocBuilder<TripCubit, TripState>(
       builder: (context, state) {
         if (state is TripLoading) {
-          return CustomLoadingGrid();
+          return const CustomLoadingGrid();
         } else if (state is TripsLoadedSuccess) {
           return CustomTripGrid(
             trips: state.trips,
