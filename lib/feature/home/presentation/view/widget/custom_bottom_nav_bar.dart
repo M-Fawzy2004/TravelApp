@@ -57,8 +57,8 @@ class CustomBottomNavBar extends StatelessWidget {
               2,
             ),
             _buildNavItem(
-              FontAwesomeIcons.user,
-              'الملف',
+              FontAwesomeIcons.solidUserCircle,
+              'الحساب',
               3,
             ),
           ],

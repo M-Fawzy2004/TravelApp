@@ -66,47 +66,47 @@ class _TripsFormState extends State<TripsForm> {
   }
 
   void _showDeleteConfirmationDialog(BuildContext context) {
-  // Store the context that has access to TripCubit
-  final tripCubit = context.read<TripCubit>();
-  
-  showCupertinoDialog(
-    context: context,
-    builder: (dialogContext) => CupertinoAlertDialog(
-      title: Center(
-        child: Text(
-          'تأكيد الحذف',
-          style: Styles.font20ExtraBlackBold,
-        ),
-      ),
-      content: Text(
-        'هل أنت متأكد من رغبتك في حذف هذه الرحلة؟',
-        style: Styles.font14DarkGreyBold,
-      ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(dialogContext).pop();
-          },
+    // Store the context that has access to TripCubit
+    final tripCubit = context.read<TripCubit>();
+
+    showCupertinoDialog(
+      context: context,
+      builder: (dialogContext) => CupertinoAlertDialog(
+        title: Center(
           child: Text(
-            'إلغاء',
-            style: Styles.font16BlackBold,
+            'تأكيد الحذف',
+            style: Styles.font20ExtraBlackBold,
           ),
         ),
-        TextButton(
-          onPressed: () {
-            Navigator.of(dialogContext).pop();
-            // Use the stored reference instead of context.watch
-            tripCubit.deleteTrip(widget.trip.id);
-          },
-          child: Text(
-            'حذف',
-            style: Styles.font16BlackBold.copyWith(
-              color: Colors.red,
+        content: Text(
+          'هل أنت متأكد من رغبتك في حذف هذه الرحلة؟',
+          style: Styles.font14DarkGreyBold,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(dialogContext).pop();
+            },
+            child: Text(
+              'إلغاء',
+              style: Styles.font16BlackBold,
             ),
           ),
-        ),
-      ],
-    ),
-  );
-}
+          TextButton(
+            onPressed: () {
+              Navigator.of(dialogContext).pop();
+              // Use the stored reference instead of context.watch
+              tripCubit.deleteTrip(widget.trip.id);
+            },
+            child: Text(
+              'حذف',
+              style: Styles.font16BlackBold.copyWith(
+                color: Colors.red,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }

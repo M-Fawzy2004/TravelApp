@@ -17,7 +17,7 @@ class ActionSliderButton extends StatelessWidget {
         FontAwesomeIcons.arrowRight,
         color: AppColors.darkGrey,
       ),
-      animationDuration: const Duration(seconds: 1),
+      animationDuration: const Duration(milliseconds: 500),
       borderRadius: 20.r,
       outerColor: AppColors.primaryColor,
       innerColor: AppColors.grey,

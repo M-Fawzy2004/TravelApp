@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/message/presentation/view/widget/user_avatar.dart';
@@ -23,9 +24,23 @@ class UserMessageCard extends StatelessWidget {
             style: Styles.font12GreyExtraBold,
           ),
           leading: const UserAvatar(),
-          trailing: Text(
-            '2:30 PM',
-            style: Styles.font14DarkGreyBold,
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                '2:30 PM',
+                style: Styles.font14DarkGreyBold,
+              ),
+              widthBox(10),
+              Container(
+                height: 15.h,
+                width: 15.w,
+                decoration: const BoxDecoration(
+                  color: AppColors.primaryColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ],
           ),
         ),
       ),

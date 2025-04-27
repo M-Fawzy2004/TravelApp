@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/services/get_it_setup.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
@@ -14,10 +15,13 @@ class CaptainHomeView extends StatelessWidget {
     return BlocProvider(
       create: (_) =>
           getIt<TripCubit>()..getTripsByCaptainId(getUser()!.id.toString()),
-      child: const Scaffold(
+      child: Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
-        floatingActionButton: CustomAddTravel(),
-        body: SafeArea(
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(bottom: 70.h),
+          child: const CustomAddTravel(),
+        ),
+        body: const SafeArea(
           child: CaptainHomeViewBody(),
         ),
       ),

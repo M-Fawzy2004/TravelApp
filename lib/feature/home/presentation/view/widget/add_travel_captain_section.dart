@@ -64,17 +64,6 @@ class AddTravelCaptainSection extends StatelessWidget {
             label: 'سعر الرحله',
             value: '${trip.price} جنيه',
           ),
-          heightBox(5),
-          Center(
-            child: Text(
-              'أنقر للتسجيل في الرحلة',
-              style: Styles.font14GreyExtraBold.copyWith(
-                color: AppColors.primaryColor,
-                decoration: TextDecoration.underline,
-                decorationColor: AppColors.black,
-              ),
-            ),
-          ),
         ],
       ),
     );

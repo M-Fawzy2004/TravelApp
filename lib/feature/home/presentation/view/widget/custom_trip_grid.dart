@@ -64,7 +64,7 @@ class CustomTripGrid extends StatelessWidget {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          mainAxisExtent: 0.33.sh,
+          mainAxisExtent: 0.29.sh,
         ),
       ),
     );

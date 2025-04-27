@@ -4,6 +4,11 @@ import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/font_weight_helper.dart';
 
 class Styles {
+  static TextStyle font30ExtraBlackBold = TextStyle(
+    fontSize: 30.sp,
+    fontWeight: FontWeightHelper.extraBold,
+    color: AppColors.black,
+  );
   static TextStyle font20ExtraBlackBold = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.extraBold,
