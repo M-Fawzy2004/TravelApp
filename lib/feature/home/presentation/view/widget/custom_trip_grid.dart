@@ -39,24 +39,11 @@ class CustomTripGrid extends StatelessWidget {
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             final trip = trips[index];
-            return TweenAnimationBuilder<double>(
-              tween: Tween<double>(begin: 0, end: 1),
-              duration: Duration(milliseconds: 300 + (index * 50)),
-              builder: (context, value, child) {
-                return Opacity(
-                  opacity: value,
-                  child: Transform.translate(
-                    offset: Offset(0, 20 * (1 - value)),
-                    child: child,
-                  ),
-                );
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 4.w),
-                child: AddTravelCaptain(
-                  trip: trip,
-                  index: index,
-                ),
+            return Padding(
+              padding: EdgeInsets.symmetric(vertical: 4.w),
+              child: AddTravelCaptain(
+                trip: trip,
+                index: index,
               ),
             );
           },
@@ -64,7 +51,7 @@ class CustomTripGrid extends StatelessWidget {
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          mainAxisExtent: 0.29.sh,
+          mainAxisExtent: 230.h,
         ),
       ),
     );

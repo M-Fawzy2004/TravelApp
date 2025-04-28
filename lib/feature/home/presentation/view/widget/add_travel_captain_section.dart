@@ -29,6 +29,8 @@ class AddTravelCaptainSection extends StatelessWidget {
           Center(
             child: Text(
               trip.destinationName,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: Styles.font20ExtraBlackBold,
               textAlign: TextAlign.center,
             ),
@@ -54,13 +56,6 @@ class AddTravelCaptainSection extends StatelessWidget {
           _divider(),
           DetailsInfoRow(
             icon: FontAwesomeIcons.flag,
-            label: 'توقيت الرحلة',
-            value:
-                '${trip.tripTime.hour}:${trip.tripTime.minute.toString().padLeft(2, '0')} ${getPeriodOfDay(trip.tripTime)}',
-          ),
-          _divider(),
-          DetailsInfoRow(
-            icon: FontAwesomeIcons.flag,
             label: 'سعر الرحله',
             value: '${trip.price} جنيه',
           ),
@@ -72,7 +67,7 @@ class AddTravelCaptainSection extends StatelessWidget {
 
 Widget _divider() => Padding(
       padding: EdgeInsets.symmetric(vertical: 1.h),
-      child: const Divider(color: AppColors.grey, thickness: 2),
+      child: const Divider(color: AppColors.lightGrey, thickness: 1),
     );
 
 String getPeriodOfDay(TimeOfDay time) {

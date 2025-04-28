@@ -12,7 +12,7 @@ import 'package:travel_app/feature/trips_details/presentation/view/widget/detail
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_top_card.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_trips_text.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/edit_and_delete_trips.dart';
-import 'package:travel_app/feature/trips_details/presentation/view/widget/favorite_or_ticket.dart';
+import 'package:travel_app/feature/trips_details/presentation/view/widget/ticket_button_bloc_listener.dart';
 
 class DetailsTripViewBody extends StatefulWidget {
   const DetailsTripViewBody({
@@ -69,11 +69,13 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
           ),
         ),
         if (role == UserRole.passenger)
-          const Positioned(
+          Positioned(
             bottom: 0,
             left: 0,
             right: 0,
-            child: FavoriteOrTicketButton(),
+            child: TicketButtonBlocListener(
+              tripModel: widget.trip,
+            ),
           ),
         if (role == UserRole.captain)
           Positioned(

@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/services/get_it_setup.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
@@ -28,44 +27,54 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     final role = getUser()?.role;
 
-    final List<Widget> screens = [
-      role == UserRole.passenger
-          ? const PassengerHomeView()
-          : const CaptainHomeView(),
-      const TripBookingView(),
-      const MessageView(),
-      const ProfileView(),
-    ];
-
-    return BlocProvider(
-      create: (_) => getIt<TripCubit>()..getAllTrips(),
-      child: Scaffold(
-        body: Stack(
-          children: [
-            IndexedStack(
-              index: screenIndex,
-              children: screens,
-            ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0.h,
-              child: Center(
-                child: CustomBottomNavBar(
-                  currentIndex: screenIndex,
-                  onTap: (index) {
-                    HapticFeedback.lightImpact();
-                    setState(() {
-                      screenIndex = index;
-                    });
-                  },
-                  role: role!,
-                ),
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        children: [
+          IndexedStack(
+            index: screenIndex,
+            children: [
+              _buildHomeScreen(role),
+              const TripBookingView(),
+              const MessageView(),
+              const ProfileView(),
+            ],
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: Center(
+              child: CustomBottomNavBar(
+                currentIndex: screenIndex,
+                onTap: (index) {
+                  HapticFeedback.lightImpact();
+                  setState(() {
+                    screenIndex = index;
+                  });
+                },
+                role: role!,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
+
+  Widget _buildHomeScreen(UserRole? role) {
+    if (role == UserRole.passenger) {
+      return BlocProvider(
+        create: (_) => getIt<TripCubit>()..getAllTrips(),
+        child: const PassengerHomeView(),
+      );
+    } else {
+      return BlocProvider(
+        create: (_) =>
+            getIt<TripCubit>()..getTripsByCaptainId(getUser()!.id.toString()),
+        child: const CaptainHomeView(),
+      );
+    }
+  }
+
 }

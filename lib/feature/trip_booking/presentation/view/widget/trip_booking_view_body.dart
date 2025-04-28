@@ -5,7 +5,7 @@ import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/widget/action_slider_button.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_booking_header.dart';
-import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_summary_list_view.dart';
+import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_summary_list_bloc_buider.dart';
 
 class TripBookingViewBody extends StatelessWidget {
   const TripBookingViewBody({super.key});
@@ -27,9 +27,7 @@ class TripBookingViewBody extends StatelessWidget {
                     padding: EdgeInsets.all(8.0),
                     child: TripBookingHeader(),
                   ),
-                const Expanded(
-                  child: TripSummaryListView(),
-                ),
+                const TripSummaryListBlocBuilder(),
               ],
             ),
           ),

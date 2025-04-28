@@ -32,17 +32,15 @@ class AddTravelCaptain extends StatelessWidget {
             : _gradientsList[0];
 
     return OpenContainer(
-      openColor: AppColors.primaryColor,
-      openElevation: 10,
       transitionType: ContainerTransitionType.fadeThrough,
-      transitionDuration: const Duration(milliseconds: 400),
+      transitionDuration: const Duration(milliseconds: 500),
       openBuilder: (context, _) => DetailsTripView(
         trip: trip,
         index: index,
       ),
       closedElevation: 0,
       closedShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.r),
+        borderRadius: BorderRadius.circular(10.r),
       ),
       closedColor: Colors.transparent,
       closedBuilder: (context, openContainer) {

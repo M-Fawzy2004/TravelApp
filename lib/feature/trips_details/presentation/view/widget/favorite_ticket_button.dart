@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
+import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
+import 'package:travel_app/feature/trips_details/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/custom_fav_details.dart';
 
-class FavoriteOrTicketButton extends StatelessWidget {
-  const FavoriteOrTicketButton({
+class FavoriteTicketButton extends StatelessWidget {
+  const FavoriteTicketButton({
     super.key,
+    required this.tripModel,
   });
+
+  final TripModel tripModel;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,9 @@ class FavoriteOrTicketButton extends StatelessWidget {
               Expanded(
                 flex: 6,
                 child: CustomButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<BookingCubit>().addBooking(tripModel);
+                  },
                   buttonText: 'حجز تذكره',
                 ),
               ),

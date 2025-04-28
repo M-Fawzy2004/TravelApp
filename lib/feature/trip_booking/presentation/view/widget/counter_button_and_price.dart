@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/app_color.dart';
+import 'package:travel_app/feature/trips_details/domain/entity/booking_item_entity.dart';
 
 class CounterButtonAndPrice extends StatelessWidget {
   const CounterButtonAndPrice({
     super.key,
     required this.count,
+    required this.bookingItemEntity,
   });
 
   final int count;
+  final BookingItemEntity bookingItemEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class CounterButtonAndPrice extends StatelessWidget {
           ),
         ),
         Text(
-          '${count * 150} ج.م',
+          '${bookingItemEntity.calulateTotalPrice()} ج.م',
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.bold,

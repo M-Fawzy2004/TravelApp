@@ -13,12 +13,14 @@ class ActionSliderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SlideAction(
+      height: 60.h,
+      sliderButtonIconPadding: 13.w,
       sliderButtonIcon: const Icon(
-        FontAwesomeIcons.arrowRight,
+        FontAwesomeIcons.dollar,
         color: AppColors.darkGrey,
       ),
       animationDuration: const Duration(milliseconds: 500),
-      borderRadius: 20.r,
+      borderRadius: 15.r,
       outerColor: AppColors.primaryColor,
       innerColor: AppColors.grey,
       sliderRotate: false,
