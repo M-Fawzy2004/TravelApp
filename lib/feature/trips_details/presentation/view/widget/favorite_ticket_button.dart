@@ -5,7 +5,7 @@ import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
-import 'package:travel_app/feature/trips_details/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/custom_fav_details.dart';
 
 class FavoriteTicketButton extends StatelessWidget {

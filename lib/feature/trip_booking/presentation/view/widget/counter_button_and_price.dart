@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/app_color.dart';
-import 'package:travel_app/feature/trips_details/domain/entity/booking_item_entity.dart';
+import 'package:travel_app/feature/trip_booking/domain/entity/booking_item_entity.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/booking_item/booking_item_cubit.dart';
 
 class CounterButtonAndPrice extends StatelessWidget {
   const CounterButtonAndPrice({
     super.key,
-    required this.count,
     required this.bookingItemEntity,
   });
 
-  final int count;
   final BookingItemEntity bookingItemEntity;
 
   @override
@@ -26,14 +26,21 @@ class CounterButtonAndPrice extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (bookingItemEntity.count >= 2) {
+                    bookingItemEntity.decreaseCount();
+                  }
+                  context
+                      .read<BookingItemCubit>()
+                      .updateItem(bookingItemEntity);
+                },
                 icon: const Icon(
                   Icons.remove,
                   color: AppColors.primaryColor,
                 ),
               ),
               Text(
-                '$count',
+                bookingItemEntity.count.toString(),
                 style: TextStyle(
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
@@ -41,7 +48,12 @@ class CounterButtonAndPrice extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  bookingItemEntity.increaseCount();
+                  context
+                      .read<BookingItemCubit>()
+                      .updateItem(bookingItemEntity);
+                },
                 icon: const Icon(
                   Icons.add,
                   color: AppColors.primaryColor,

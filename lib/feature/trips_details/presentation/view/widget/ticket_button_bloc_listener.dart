@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/core/utils/top_snakbar_app.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
-import 'package:travel_app/feature/trips_details/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_state.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/favorite_ticket_button.dart';
 
 class TicketButtonBlocListener extends StatelessWidget {
@@ -28,7 +29,6 @@ class TicketButtonBlocListener extends StatelessWidget {
             message: 'فشل في إضافة الحجز',
           );
         }
-
         if (state is BookingRemoved) {
           showCustomTopSnackBar(
             context: context,

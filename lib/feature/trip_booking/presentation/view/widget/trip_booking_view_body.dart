@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
-import 'package:travel_app/feature/trip_booking/presentation/view/widget/action_slider_button.dart';
+import 'package:travel_app/feature/trip_booking/presentation/view/widget/booking_action_button.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_booking_header.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_summary_list_bloc_buider.dart';
 
@@ -36,7 +36,7 @@ class TripBookingViewBody extends StatelessWidget {
               right: 0,
               left: 0,
               bottom: 90.h,
-              child: const ActionSliderButton(),
+              child: const BookingActionButton(),
             ),
         ],
       ),

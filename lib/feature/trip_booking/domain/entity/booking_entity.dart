@@ -1,5 +1,5 @@
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
-import 'package:travel_app/feature/trips_details/domain/entity/booking_item_entity.dart';
+import 'package:travel_app/feature/trip_booking/domain/entity/booking_item_entity.dart';
 
 class BookingEntity {
   final List<BookingItemEntity> bookingItems;

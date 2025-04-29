@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/feature/trip_booking/domain/entity/booking_item_entity.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:travel_app/feature/trip_booking/presentation/view/widget/counter_button_and_price.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
-import 'package:travel_app/feature/trip_booking/presentation/view/widget/counter_button_and_price.dart';
-import 'package:travel_app/feature/trips_details/domain/entity/booking_item_entity.dart';
-import 'package:travel_app/feature/trips_details/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_summary_card_header.dart';
 
 class TripSummaryCard extends StatelessWidget {
   const TripSummaryCard({
@@ -18,8 +19,6 @@ class TripSummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int count = 1;
-
     return Slidable(
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
@@ -27,9 +26,7 @@ class TripSummaryCard extends StatelessWidget {
         children: [
           SlidableAction(
             onPressed: (value) {
-              context
-                  .read<BookingCubit>()
-                  .removeBooking(bookingItemEntity.trip);
+              context.read<BookingCubit>().removeBooking(bookingItemEntity);
             },
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
@@ -73,49 +70,11 @@ class TripSummaryCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.all(10.w),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Icon(
-                    Icons.flight_takeoff,
-                    color: AppColors.primaryColor,
-                    size: 28.sp,
-                  ),
-                ),
-                widthBox(12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        bookingItemEntity.trip.destinationName,
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                      heightBox(4),
-                      Text(
-                        'مدة الرحلة: ${bookingItemEntity.trip.duration} ساعة',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            TripSummaryCardHeader(
+              bookingItemEntity: bookingItemEntity,
             ),
             heightBox(12),
             CounterButtonAndPrice(
-              count: count,
               bookingItemEntity: bookingItemEntity,
             ),
           ],

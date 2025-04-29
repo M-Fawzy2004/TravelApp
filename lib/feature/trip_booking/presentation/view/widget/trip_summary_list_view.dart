@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_summary_captain.dart';
-import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_summary_card.dart';
-import 'package:travel_app/feature/trips_details/domain/entity/booking_item_entity.dart';
+import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_summary_card_bloc_builder.dart';
+import 'package:travel_app/feature/trip_booking/domain/entity/booking_item_entity.dart';
 
 class TripSummaryListView extends StatelessWidget {
   const TripSummaryListView({
@@ -26,7 +26,7 @@ class TripSummaryListView extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {
         return role == UserRole.passenger
-            ? TripSummaryCard(
+            ? TripSummaryCardBlocBuilder(
                 bookingItemEntity: booking[index],
               )
             : const TripSummaryCaptain();

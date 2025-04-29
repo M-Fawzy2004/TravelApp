@@ -9,7 +9,7 @@ import 'package:travel_app/feature/add_travel/data/repos/trip_repo.dart';
 import 'package:travel_app/feature/add_travel/data/repos/trip_repo_impl.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_form_cubit/trip_form_cubit.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
-import 'package:travel_app/feature/trips_details/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_cubit.dart';
 
 final getIt = GetIt.instance;
 

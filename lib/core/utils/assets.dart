@@ -6,6 +6,10 @@ class Assets {
   /// assets/images/apple_logo.png
   static const String imagesAppleLogo = "assets/images/apple_logo.png";
 
+  /// Assets for imagesBookingLogo
+  /// assets/images/booking_logo.png
+  static const String imagesBookingLogo = "assets/images/booking_logo.png";
+
   /// Assets for imagesDeliveryCarImage
   /// assets/images/delivery_car_image.jpg
   static const String imagesDeliveryCarImage = "assets/images/delivery_car_image.jpg";

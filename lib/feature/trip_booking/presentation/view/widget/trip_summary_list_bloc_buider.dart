@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_state.dart';
+import 'package:travel_app/feature/trip_booking/presentation/view/widget/no_booking_text.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/widget/trip_summary_list_view.dart';
-import 'package:travel_app/feature/trips_details/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_cubit.dart';
 
 class TripSummaryListBlocBuilder extends StatefulWidget {
   const TripSummaryListBlocBuilder({
@@ -25,12 +27,11 @@ class _TripSummaryListBlocBuilderState
   Widget build(BuildContext context) {
     return BlocBuilder<BookingCubit, BookingState>(
       builder: (context, state) {
-        final bookings =
-            context.read<BookingCubit>().bookingEntity.bookingItems;
+        final bookings = state.bookings;
 
         return Expanded(
           child: bookings.isEmpty
-              ? const Center(child: Text("لا يوجد حجوزات بعد"))
+              ? const NoBookingText()
               : TripSummaryListView(
                   booking: bookings,
                 ),
