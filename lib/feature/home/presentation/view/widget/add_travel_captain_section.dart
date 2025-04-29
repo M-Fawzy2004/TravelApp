@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/helper/spacing.dart';
-import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
-import 'package:travel_app/core/widget/details_info_row.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/date_time_row.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/duration_row.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/location_row.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/price_container.dart';
 
 class AddTravelCaptainSection extends StatelessWidget {
   const AddTravelCaptainSection({
@@ -26,38 +27,40 @@ class AddTravelCaptainSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           heightBox(5),
-          Center(
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 5.h),
+            decoration: BoxDecoration(
+              color: _getTripTypeColor(trip.tripType),
+              borderRadius: BorderRadius.circular(10.r),
+            ),
+            width: double.infinity,
             child: Text(
-              trip.destinationName,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: Styles.font20ExtraBlackBold,
+              trip.getTripTypeArabicText(),
+              style: Styles.font14DarkGreyExtraBold,
               textAlign: TextAlign.center,
             ),
           ),
-          heightBox(20),
-          DetailsInfoRow(
-            icon: FontAwesomeIcons.locationArrow,
-            label: 'مكان التحرك',
-            value: trip.departureLocation,
-          ),
-          _divider(),
-          DetailsInfoRow(
-            icon: FontAwesomeIcons.flag,
-            label: 'مكان الوصول',
-            value: trip.arrivalLocation,
-          ),
-          _divider(),
-          DetailsInfoRow(
-            icon: FontAwesomeIcons.timesRectangle,
-            label: 'تاريخ الرحلة',
-            value: trip.tripDate.toString().split(' ')[0],
-          ),
-          _divider(),
-          DetailsInfoRow(
-            icon: FontAwesomeIcons.flag,
-            label: 'سعر الرحله',
-            value: '${trip.price} جنيه',
+          Padding(
+            padding: EdgeInsets.all(8.r),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  trip.destinationName,
+                  style: Styles.font16BlackBold,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                heightBox(4),
+                LocationRow(trip: trip),
+                heightBox(4),
+                DateTimeRow(trip: trip),
+                heightBox(4),
+                DurationRow(trip: trip),
+                heightBox(20),
+                PriceContainer(trip: trip),
+              ],
+            ),
           ),
         ],
       ),
@@ -65,11 +68,17 @@ class AddTravelCaptainSection extends StatelessWidget {
   }
 }
 
-Widget _divider() => Padding(
-      padding: EdgeInsets.symmetric(vertical: 1.h),
-      child: const Divider(color: AppColors.lightGrey, thickness: 1),
-    );
-
 String getPeriodOfDay(TimeOfDay time) {
   return time.hour < 12 ? 'صباحًا' : 'مساءً';
+}
+
+Color _getTripTypeColor(TripType type) {
+  switch (type) {
+    case TripType.specialTrip:
+      return Colors.blue;
+    case TripType.delivery:
+      return Colors.green;
+    case TripType.cargoShipping:
+      return Colors.orange;
+  }
 }
