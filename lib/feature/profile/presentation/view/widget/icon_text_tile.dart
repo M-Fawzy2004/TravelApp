@@ -25,7 +25,7 @@ class IconTextTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 45.h,
+        height: 60.h,
         padding: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
           color: backgroundColor?.withOpacity(0.2) ?? AppColors.grey,
@@ -37,10 +37,10 @@ class IconTextTile extends StatelessWidget {
             Icon(
               icon,
               color: color ?? AppColors.lightGrey,
-              size: 23.h,
+              size: 20.h,
             ),
             widthBox(15),
-            Text(title, style: Styles.font20BlackBold),
+            Text(title, style: Styles.font16BlackBold),
             const Spacer(),
           ],
         ),

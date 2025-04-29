@@ -28,6 +28,13 @@ class TicketButtonBlocListener extends StatelessWidget {
             message: 'فشل في إضافة الحجز',
           );
         }
+
+        if (state is BookingRemoved) {
+          showCustomTopSnackBar(
+            context: context,
+            message: 'تم حذف الحجز بنجاح',
+          );
+        }
       },
       child: FavoriteTicketButton(tripModel: tripModel),
     );

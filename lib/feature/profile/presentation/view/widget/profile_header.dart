@@ -16,7 +16,7 @@ class ProfileHeader extends StatelessWidget {
     final lastName = getUser()!.lastName ?? '';
     final role = getUser()!.role ?? '';
 
-    String userRoleText = (role == UserRole.passenger) ? 'راكب' : 'سافر';
+    String userRoleText = (role == UserRole.passenger) ? 'راكب' : 'سائق';
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),

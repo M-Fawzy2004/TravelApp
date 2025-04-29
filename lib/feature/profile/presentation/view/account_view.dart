@@ -14,10 +14,7 @@ class AccountView extends StatelessWidget {
       create: (context) => AuthCubit(
         getIt.get<AuthService>(),
       ),
-      child: const SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: AccountViewBody(),
-      ),
+      child: const AccountViewBody(),
     );
   }
 }

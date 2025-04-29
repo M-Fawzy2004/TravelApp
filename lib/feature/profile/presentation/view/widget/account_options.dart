@@ -28,19 +28,61 @@ class AccountOptions extends StatelessWidget {
         IconTextTile(
           onTap: () {},
           title: 'الوضع الداكن',
-          icon: FontAwesomeIcons.moon,
+          icon: FontAwesomeIcons.sun,
         ),
         heightBox(2),
         IconTextTile(
           onTap: () {},
-          title: 'الخصوصية',
+          title: 'القييمات والمراجعات',
+          icon: FontAwesomeIcons.star,
+        ),
+        heightBox(2),
+        IconTextTile(
+          onTap: () {},
+          title: 'الرحلات السابقه',
+          icon: FontAwesomeIcons.history,
+        ),
+        heightBox(2),
+        IconTextTile(
+          onTap: () {},
+          title: 'المستندات الشخصيه',
+          icon: FontAwesomeIcons.file,
+        ),
+        heightBox(2),
+        IconTextTile(
+          onTap: () {},
+          title: 'اللغه',
+          icon: FontAwesomeIcons.language,
+        ),
+        heightBox(2),
+        IconTextTile(
+          onTap: () {},
+          title: 'الأمان وتسجيل الدخول',
           icon: FontAwesomeIcons.lock,
+        ),
+        heightBox(2),
+        IconTextTile(
+          onTap: () {},
+          title: 'الدعم الفنى أو تواصل معنا',
+          icon: FontAwesomeIcons.headset,
         ),
         heightBox(2),
         IconTextTile(
           onTap: () {},
           title: 'من نحن',
           icon: FontAwesomeIcons.infoCircle,
+        ),
+        heightBox(2),
+        IconTextTile(
+          onTap: () {},
+          title: 'الخصوصية',
+          icon: FontAwesomeIcons.shield,
+        ),
+        heightBox(2),
+        IconTextTile(
+          onTap: () {},
+          title: 'مشاركه التطبيق',
+          icon: FontAwesomeIcons.share,
         ),
         heightBox(2),
         IconTextTile(
