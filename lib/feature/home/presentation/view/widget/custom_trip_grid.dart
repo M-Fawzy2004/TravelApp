@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/core/helper/get_user.dart';
-import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/add_travel_captain.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/no_trips.dart';
 
 class CustomTripGrid extends StatelessWidget {
   const CustomTripGrid({
@@ -17,21 +15,8 @@ class CustomTripGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final role = getUser()?.role;
     if (trips.isEmpty) {
-      return SliverToBoxAdapter(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.only(top: 200.h),
-            child: Text(
-              role == UserRole.passenger
-                  ? 'لم يتم اضافة رحلات بعد'
-                  : 'لم تضيف رحلات بعد',
-              style: Styles.font18BlackBold,
-            ),
-          ),
-        ),
-      );
+      return const NoTrips();
     }
     return SliverPadding(
       padding: EdgeInsets.only(bottom: 80.h),
@@ -50,8 +35,8 @@ class CustomTripGrid extends StatelessWidget {
           childCount: trips.length,
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10.w,
+          crossAxisCount: 1,
+          crossAxisSpacing: 5.w,
           mainAxisExtent: 220.h,
         ),
       ),

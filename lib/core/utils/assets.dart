@@ -42,6 +42,10 @@ class Assets {
   /// assets/images/logo_travel.png
   static const String imagesLogoTravel = "assets/images/logo_travel.png";
 
+  /// Assets for imagesNoTripsLogo
+  /// assets/images/no_trips_logo.png
+  static const String imagesNoTripsLogo = "assets/images/no_trips_logo.png";
+
   /// Assets for imagesOnboardingCarsOnRoad
   /// assets/images/onboarding_cars_on_road.jpg
   static const String imagesOnboardingCarsOnRoad = "assets/images/onboarding_cars_on_road.jpg";

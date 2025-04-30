@@ -82,9 +82,7 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
               slivers: [
                 SliverToBoxAdapter(child: heightBox(15)),
                 const SliverToBoxAdapter(
-                  child: SearchTextField(
-                    hintText: 'أبحث عن رحله معينه....',
-                  ),
+                  child: SearchTextField(hintText: 'أبحث عن رحله معينه....'),
                 ),
                 SliverToBoxAdapter(child: heightBox(10)),
                 const SliverToBoxAdapter(child: DetailsLocation()),

@@ -17,10 +17,11 @@ class PriceContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
       decoration: BoxDecoration(
-        color: AppColors.primaryColor,
+        color: AppColors.grey.withOpacity(0.5),
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Icon(Icons.attach_money, size: 16),
           SizedBox(width: 4.w),
