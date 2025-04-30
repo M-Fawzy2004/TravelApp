@@ -3,7 +3,6 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/add_travel_captain_section.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/details_trip_view.dart';
@@ -47,14 +46,6 @@ class AddTravelCaptain extends StatelessWidget {
         return Container(
           decoration: BoxDecoration(
             gradient: gradient,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.black.withOpacity(.2),
-                blurRadius: 6,
-                spreadRadius: 0,
-                offset: const Offset(0, 1),
-              ),
-            ],
           ),
           child: AddTravelCaptainSection(
             trip: trip,

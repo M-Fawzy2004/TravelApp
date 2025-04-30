@@ -69,6 +69,7 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
             enablePullDown: true,
             header: ClassicHeader(
               height: 65.h,
+              refreshStyle: RefreshStyle.Follow,
               refreshingText: "جارِ التحديث...",
               releaseText: "إفلت للتحديث",
               completeText: "تم التحديث!",

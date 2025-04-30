@@ -10,10 +10,12 @@ class CategoryFilterItem extends StatelessWidget {
     super.key,
     required this.text,
     required this.isSelected,
+    required this.color,
   });
 
   final String text;
   final bool isSelected;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class CategoryFilterItem extends StatelessWidget {
         height: 40.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: isSelected ? AppColors.primaryColor : AppColors.grey,
+          color: isSelected ? color : AppColors.grey,
         ),
         child: Center(
           child: Text(

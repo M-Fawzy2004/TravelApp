@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
-import 'package:travel_app/core/widget/search_text_field.dart';
 import 'package:travel_app/feature/message/presentation/view/widget/message_title_delegate.dart';
 import 'package:travel_app/feature/message/presentation/view/widget/user_message_card_sliver_list.dart';
 
@@ -39,9 +38,6 @@ class _MessageViewBodyState extends State<MessageViewBody> {
             SliverPersistentHeader(
               pinned: true,
               delegate: MessagesTitleDelegate(),
-            ),
-            const SliverToBoxAdapter(
-              child: SearchTextField(hintText: 'بحث في المحادثات'),
             ),
             SliverToBoxAdapter(child: heightBox(10)),
             const UserMessageCardSliverList(),

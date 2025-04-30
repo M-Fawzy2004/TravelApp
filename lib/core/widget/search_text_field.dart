@@ -84,7 +84,6 @@ class _SearchTextFieldState extends State<SearchTextField> {
             ),
           ),
           // Add clear button when text is entered
-          suffixIconConstraints: const BoxConstraints(minWidth: 60),
           prefixIcon: _searchController.text.isNotEmpty
               ? IconButton(
                   icon: const Icon(Icons.clear),

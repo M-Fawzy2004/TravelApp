@@ -28,15 +28,15 @@ class AddTravelCaptainSection extends StatelessWidget {
         children: [
           heightBox(5),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 5.h),
+            padding: EdgeInsets.symmetric(vertical: 8.h),
             decoration: BoxDecoration(
               color: _getTripTypeColor(trip.tripType),
               borderRadius: BorderRadius.circular(10.r),
             ),
             width: double.infinity,
             child: Text(
-              trip.getTripTypeArabicText(),
-              style: Styles.font14DarkGreyExtraBold,
+              trip.destinationName,
+              style: Styles.font16WhiteBold,
               textAlign: TextAlign.center,
             ),
           ),
@@ -45,12 +45,6 @@ class AddTravelCaptainSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  trip.destinationName,
-                  style: Styles.font16BlackBold,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
                 heightBox(4),
                 LocationRow(trip: trip),
                 heightBox(4),

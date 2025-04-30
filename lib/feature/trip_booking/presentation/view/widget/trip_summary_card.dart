@@ -20,12 +20,17 @@ class TripSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Slidable(
+      key: ValueKey(bookingItemEntity.trip.id),
       startActionPane: ActionPane(
         motion: const ScrollMotion(),
-        dismissible: DismissiblePane(onDismissed: () {}),
+        dismissible: DismissiblePane(
+          onDismissed: () {
+            context.read<BookingCubit>().removeBooking(bookingItemEntity);
+          },
+        ),
         children: [
           SlidableAction(
-            onPressed: (value) {
+            onPressed: (_) {
               context.read<BookingCubit>().removeBooking(bookingItemEntity);
             },
             backgroundColor: const Color(0xFFFE4A49),
@@ -38,7 +43,9 @@ class TripSummaryCard extends StatelessWidget {
             label: 'حذف',
           ),
           SlidableAction(
-            onPressed: (value) {},
+            onPressed: (_) {
+              // أي منطق لمشاركة الرحلة
+            },
             backgroundColor: AppColors.primaryColor,
             foregroundColor: Colors.white,
             icon: Icons.share,

@@ -13,7 +13,7 @@ import 'package:travel_app/feature/trip_booking/domain/entity/booking_item_entit
 import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_state.dart';
 
 class BookingCubit extends Cubit<BookingState> {
-  BookingCubit() : super(BookingInitial());
+  BookingCubit() : super(const BookingInitial());
 
   BookingEntity bookingEntity = BookingEntity([]);
 

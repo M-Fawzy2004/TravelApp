@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_filter_item.dart';
@@ -41,6 +42,7 @@ class _CategorySelectorState extends State<CategoryFilter> {
               child: CategoryFilterItem(
                 text: filterText[index],
                 isSelected: isSelected == index,
+                color: filterColors[index],
               ),
             );
           }),
@@ -68,3 +70,10 @@ void _filterTrips(int index, BuildContext context) {
       break;
   }
 }
+
+List<Color> filterColors = [
+  AppColors.primaryColor,
+  Colors.blue, // رحلة خاصه
+  Colors.green, // توصيل
+  Colors.orange, // شحن أغراض
+];
