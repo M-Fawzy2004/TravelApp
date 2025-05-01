@@ -9,7 +9,6 @@ class TripFormCubit extends Cubit<TripFormState> {
   final TripRepository _tripRepository;
   final AuthService _authService;
 
-  // بيانات المستخدم
   String _userId = '';
   String _userFirstName = '';
   String _userLastName = '';
@@ -197,20 +196,16 @@ class TripFormCubit extends Cubit<TripFormState> {
     return fieldErrors.isEmpty;
   }
 
-  // انتظار تحميل بيانات المستخدم إذا لم تكن جاهزة
   Future<void> _ensureUserDataLoaded() async {
     if (!_isUserDataLoaded) {
-      // انتظار حتى يتم تحميل بيانات المستخدم
       await _loadUserData();
 
-      // التحقق مرة أخرى بعد المحاولة
       if (!_isUserDataLoaded) {
         throw Exception('لم يتم تحميل بيانات المستخدم بنجاح');
       }
     }
   }
 
-  // تعديل دالة تقديم النموذج لضمان تحميل بيانات المستخدم أولاً
   Future<void> submitForm() async {
     if (!validateForm()) {
       emit(state.copyWith(
@@ -222,10 +217,8 @@ class TripFormCubit extends Cubit<TripFormState> {
     try {
       emit(state.copyWith(isSubmitting: true, error: null));
 
-      // التأكد من تحميل بيانات المستخدم قبل إنشاء الرحلة
       await _ensureUserDataLoaded();
 
-      // إنشاء نموذج الرحلة مع بيانات المستخدم
       final tripModel = TripModel(
         id: '',
         creatorId: _userId,
@@ -263,7 +256,6 @@ class TripFormCubit extends Cubit<TripFormState> {
     }
   }
 
-  // تعديل دالة تحديث رحلة موجودة لضمان تحميل بيانات المستخدم أولاً
   Future<void> updateExistingTrip(String id) async {
     if (!validateForm()) {
       emit(
@@ -277,10 +269,8 @@ class TripFormCubit extends Cubit<TripFormState> {
     try {
       emit(state.copyWith(isSubmitting: true, error: null));
 
-      // التأكد من تحميل بيانات المستخدم قبل تحديث الرحلة
       await _ensureUserDataLoaded();
 
-      // إنشاء نموذج الرحلة مع بيانات المستخدم
       final tripModel = TripModel(
         id: id,
         creatorId: _userId,

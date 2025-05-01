@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/core/widget/search_text_field.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/search_text_field.dart';
 
 class SearchBarDelegate extends SliverPersistentHeaderDelegate {
   @override

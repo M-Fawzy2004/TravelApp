@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/feature/message/presentation/view/widget/message_title_delegate.dart';
+import 'package:travel_app/feature/message/presentation/view/widget/search_chat_text_field.dart';
 import 'package:travel_app/feature/message/presentation/view/widget/user_message_card_sliver_list.dart';
 
 class MessageViewBody extends StatefulWidget {
@@ -39,6 +40,8 @@ class _MessageViewBodyState extends State<MessageViewBody> {
               pinned: true,
               delegate: MessagesTitleDelegate(),
             ),
+            SliverToBoxAdapter(child: heightBox(10)),
+            const SliverToBoxAdapter(child: SearchChatTextField()),
             SliverToBoxAdapter(child: heightBox(10)),
             const UserMessageCardSliverList(),
           ],

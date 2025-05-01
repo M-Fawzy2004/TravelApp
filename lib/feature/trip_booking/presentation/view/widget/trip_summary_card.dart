@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/feature/trip_booking/domain/entity/booking_item_entity.dart';
 import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_cubit.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/widget/counter_button_and_price.dart';
@@ -35,7 +36,7 @@ class TripSummaryCard extends StatelessWidget {
             },
             backgroundColor: const Color(0xFFFE4A49),
             foregroundColor: Colors.white,
-            icon: Icons.delete,
+            icon: FontAwesomeIcons.trashAlt,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(20.r),
               bottomRight: Radius.circular(20.r),
@@ -43,12 +44,10 @@ class TripSummaryCard extends StatelessWidget {
             label: 'حذف',
           ),
           SlidableAction(
-            onPressed: (_) {
-              // أي منطق لمشاركة الرحلة
-            },
+            onPressed: (_) {},
             backgroundColor: AppColors.primaryColor,
             foregroundColor: Colors.white,
-            icon: Icons.share,
+            icon: FontAwesomeIcons.share,
             label: 'شارك',
           ),
         ],
@@ -56,19 +55,19 @@ class TripSummaryCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.white,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.r),
             bottomLeft: Radius.circular(20.r),
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: AppColors.black.withOpacity(0.05),
               blurRadius: 5,
               offset: const Offset(0, 3),
             ),
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: AppColors.lightGrey.withOpacity(0.05),
               blurRadius: 5,
               offset: const Offset(0, -3),
             ),
