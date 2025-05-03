@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/helper/extension.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 
@@ -34,7 +35,7 @@ class IconBack extends StatelessWidget {
           },
           icon: const Icon(
             size: 18,
-            Icons.arrow_back_ios,
+            FontAwesomeIcons.arrowRight,
             color: AppColors.black,
           ),
         ),

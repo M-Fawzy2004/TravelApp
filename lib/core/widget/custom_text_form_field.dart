@@ -22,11 +22,13 @@ class CustomTextFormField extends StatefulWidget {
     this.maxLines,
     this.onChanged,
     this.errorText,
+    this.prefixIcon,
   });
 
   final String? hintText;
   final EdgeInsetsGeometry? contentPadding;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final bool? obscureText;
   final bool? readOnly;
   final TextStyle? inputTextStyle;
@@ -115,6 +117,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   width: 2.w,
                 ),
               ),
+              prefixIcon: widget.prefixIcon,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
                 borderSide: BorderSide.none,

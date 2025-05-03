@@ -14,7 +14,7 @@ class UserMessageCardSliverList extends StatelessWidget {
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
           (context, index) => const UserMessageCard(),
-          childCount: 10,
+          childCount: 3,
         ),
       ),
     );

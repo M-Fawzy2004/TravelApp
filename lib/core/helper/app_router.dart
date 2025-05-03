@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/add_travel_view.dart';
+import 'package:travel_app/feature/message/presentation/view/chat_view.dart';
 import 'package:travel_app/feature/message/presentation/view/message_view.dart';
 import 'package:travel_app/feature/profile/presentation/view/profile_view.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/trip_booking_view.dart';
@@ -24,6 +25,7 @@ abstract class AppRouter {
   static const passengerHomeView = '/passengerHomeView';
   static const tripBooking = '/tripBooking';
   static const messageView = '/messageView';
+  static const chatView = '/chatView';
   static const profileView = '/profileView';
 
   static var router = GoRouter(
@@ -111,6 +113,12 @@ abstract class AppRouter {
         path: profileView,
         builder: (BuildContext context, GoRouterState state) {
           return const ProfileView();
+        },
+      ),
+      GoRoute(
+        path: chatView,
+        builder: (BuildContext context, GoRouterState state) {
+          return const ChatView();
         },
       ),
     ],
