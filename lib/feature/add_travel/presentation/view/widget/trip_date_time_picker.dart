@@ -56,11 +56,13 @@ class TripDateTimePicker extends StatelessWidget {
                   }
                 },
                 child: Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 12.w,
+                    vertical: 15.h,
+                  ),
                   decoration: BoxDecoration(
+                    color: AppColors.white,
                     borderRadius: BorderRadius.circular(8.r),
-                    border: Border.all(color: AppColors.grey),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -73,7 +75,10 @@ class TripDateTimePicker extends StatelessWidget {
                             ? Styles.font14DarkGreyExtraBold
                             : Styles.font14DarkGreyBold,
                       ),
-                      const Icon(Icons.calendar_today, color: AppColors.grey),
+                      const Icon(
+                        Icons.calendar_today,
+                        color: AppColors.primaryColor,
+                      ),
                     ],
                   ),
                 ),
@@ -118,8 +123,8 @@ class TripDateTimePicker extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
                   decoration: BoxDecoration(
+                    color: AppColors.white,
                     borderRadius: BorderRadius.circular(8.r),
-                    border: Border.all(color: AppColors.grey),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -132,7 +137,10 @@ class TripDateTimePicker extends StatelessWidget {
                             ? Styles.font14DarkGreyExtraBold
                             : Styles.font14GreyExtraBold,
                       ),
-                      const Icon(Icons.access_time, color: AppColors.grey),
+                      const Icon(
+                        Icons.access_time,
+                        color: AppColors.primaryColor,
+                      ),
                     ],
                   ),
                 ),

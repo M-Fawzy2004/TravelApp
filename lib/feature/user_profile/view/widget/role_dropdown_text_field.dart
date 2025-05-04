@@ -72,6 +72,9 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
           },
           decoration: customInputDecoration(
             labelText: 'نوع المستخدم',
+          ).copyWith(
+            filled: true,
+            fillColor: AppColors.white,
           ),
         ),
         if (selectedRole == 'كابتن') ...[
@@ -97,7 +100,12 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
                 widget.onVehicleTypeSelected?.call(value);
               });
             },
-            decoration: customInputDecoration(labelText: 'نوع المركبة'),
+            decoration: customInputDecoration(
+              labelText: 'نوع المركبة',
+            ).copyWith(
+              filled: true,
+              fillColor: AppColors.white,
+            ),
           ),
           heightBox(20),
           CustomTextFormField(

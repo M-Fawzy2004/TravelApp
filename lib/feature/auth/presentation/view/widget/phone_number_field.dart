@@ -36,7 +36,7 @@ class PhoneNumberField extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                color: AppColors.grey,
+                color: AppColors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(

@@ -6,7 +6,6 @@ import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
-import 'package:travel_app/feature/trips_details/presentation/view/widget/custom_trip_loaction.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_center_card.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_header.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_top_card.dart';
@@ -58,8 +57,6 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
                 ),
                 heightBox(20),
                 DetailsCenterCard(trip: widget.trip),
-                heightBox(20),
-                const CustomTripLocation(),
                 heightBox(20),
                 if (widget.trip.additionalDetails.isNotEmpty)
                   DetailsTripsText(widget: widget),

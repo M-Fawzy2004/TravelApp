@@ -1,5 +1,3 @@
-// lib/feature/auth/data/models/user_model.dart
-
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
 class UserModel extends UserEntity {
@@ -14,6 +12,9 @@ class UserModel extends UserEntity {
     super.vehicleType,
     super.seatCount,
     super.isEmailVerified,
+    super.latitude,
+    super.longitude,
+    super.locationName,
   });
 
   factory UserModel.fromEntity(UserEntity entity) {
@@ -28,6 +29,9 @@ class UserModel extends UserEntity {
       vehicleType: entity.vehicleType ?? VehicleType.privateCar,
       seatCount: entity.seatCount,
       isEmailVerified: entity.isEmailVerified,
+      latitude: entity.latitude,
+      longitude: entity.longitude,
+      locationName: entity.locationName,
     );
   }
 
@@ -53,6 +57,9 @@ class UserModel extends UserEntity {
           : null,
       seatCount: json['seatCount'],
       isEmailVerified: json['isEmailVerified'] ?? false,
+      latitude: json['latitude']?.toDouble(),
+      longitude: json['longitude']?.toDouble(),
+      locationName: json['locationName'],
     );
   }
 
@@ -68,6 +75,32 @@ class UserModel extends UserEntity {
       'vehicleType': vehicleType?.toString().split('.').last,
       'seatCount': seatCount,
       'isEmailVerified': isEmailVerified,
+      'latitude': latitude,
+      'longitude': longitude,
+      'locationName': locationName,
     };
+  }
+
+  // Helper method to create a new model with updated location
+  UserModel copyWithLocation({
+    required double latitude,
+    required double longitude,
+    required String locationName,
+  }) {
+    return UserModel(
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      city: city,
+      phoneNumber: phoneNumber,
+      email: email,
+      role: role,
+      vehicleType: vehicleType,
+      seatCount: seatCount,
+      isEmailVerified: isEmailVerified,
+      latitude: latitude,
+      longitude: longitude,
+      locationName: locationName,
+    );
   }
 }

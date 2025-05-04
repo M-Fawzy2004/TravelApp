@@ -13,6 +13,9 @@ class UserEntity {
   final VehicleType? vehicleType;
   final int? seatCount;
   final bool isEmailVerified;
+  final double? latitude;
+  final double? longitude;
+  final String? locationName;
 
   UserEntity({
     required this.id,
@@ -25,6 +28,9 @@ class UserEntity {
     this.vehicleType,
     this.seatCount,
     this.isEmailVerified = false,
+    this.latitude,
+    this.longitude,
+    this.locationName,
   });
 
   UserEntity copyWith({
@@ -38,6 +44,9 @@ class UserEntity {
     VehicleType? vehicleType,
     int? seatCount,
     bool? isEmailVerified,
+    double? latitude,
+    double? longitude,
+    String? locationName,
   }) {
     return UserEntity(
       id: id ?? this.id,
@@ -50,6 +59,9 @@ class UserEntity {
       vehicleType: vehicleType ?? this.vehicleType,
       seatCount: seatCount ?? this.seatCount,
       isEmailVerified: isEmailVerified ?? this.isEmailVerified,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      locationName: locationName ?? this.locationName,
     );
   }
 }

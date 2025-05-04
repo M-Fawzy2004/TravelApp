@@ -103,11 +103,11 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         errorText: _errorText,
         isDense: true,
         contentPadding: EdgeInsets.symmetric(
-          vertical: 12.h,
+          vertical: 14.h,
           horizontal: 16.w,
         ),
         filled: true,
-        fillColor: AppColors.grey,
+        fillColor: AppColors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide.none,

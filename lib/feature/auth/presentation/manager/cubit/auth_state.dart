@@ -11,19 +11,19 @@ class AuthInitial extends AuthState {}
 
 class AuthLoading extends AuthState {}
 
-class AuthCodeSent extends AuthState {
+class AuthAuthenticated extends AuthState {
   final UserEntity user;
 
-  const AuthCodeSent(this.user);
+  const AuthAuthenticated(this.user);
 
   @override
   List<Object?> get props => [user];
 }
 
-class AuthAuthenticated extends AuthState {
+class AuthCodeSent extends AuthState {
   final UserEntity user;
 
-  const AuthAuthenticated(this.user);
+  const AuthCodeSent(this.user);
 
   @override
   List<Object?> get props => [user];
@@ -44,5 +44,23 @@ class AuthError extends AuthState {
   const AuthError(this.message);
 
   @override
-  List<Object?> get props => [message];
+  List<Object> get props => [message];
+}
+
+class LocationSaved extends AuthState {
+  final UserEntity user;
+
+  const LocationSaved(this.user);
+
+  @override
+  List<Object?> get props => [user];
+}
+
+class LocationError extends AuthState {
+  final String message;
+
+  const LocationError(this.message);
+
+  @override
+  List<Object> get props => [message];
 }

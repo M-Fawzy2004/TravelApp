@@ -65,65 +65,47 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 6,
-                spreadRadius: 0,
-                offset: const Offset(0, -2),
-              ),
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 6,
-                spreadRadius: 0,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: TextFormField(
-            onSaved: widget.onSaved,
-            validator: (val) {
-              if (val == null || val.isEmpty) {
-                return 'هذا الحقل مطلوب';
-              } else {
-                return null;
-              }
-            },
-            onChanged: widget.onChanged,
-            controller: widget.controller,
-            maxLines: widget.maxLines ?? 1,
-            obscureText: widget.obscureText ?? false,
-            style: Styles.font14DarkGreyExtraBold,
-            readOnly: widget.readOnly ?? false,
-            keyboardType: widget.keyboardType,
-            textAlign: widget.textAlign ?? TextAlign.start,
-            decoration: InputDecoration(
-              isDense: true,
-              contentPadding: widget.contentPadding ??
-                  EdgeInsets.symmetric(
-                    vertical: 15.h,
-                    horizontal: 16.w,
-                  ),
-              hintText: widget.hintText,
-              hintStyle: widget.inputTextStyle ?? Styles.font14GreyExtraBold,
-              filled: true,
-              fillColor: widget.fillColor ?? AppColors.grey,
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide(
-                  color: AppColors.primaryColor,
-                  width: 2.w,
+        TextFormField(
+          onSaved: widget.onSaved,
+          validator: (val) {
+            if (val == null || val.isEmpty) {
+              return 'هذا الحقل مطلوب';
+            } else {
+              return null;
+            }
+          },
+          onChanged: widget.onChanged,
+          controller: widget.controller,
+          maxLines: widget.maxLines ?? 1,
+          obscureText: widget.obscureText ?? false,
+          style: Styles.font14DarkGreyExtraBold,
+          readOnly: widget.readOnly ?? false,
+          keyboardType: widget.keyboardType,
+          textAlign: widget.textAlign ?? TextAlign.start,
+          decoration: InputDecoration(
+            isDense: true,
+            contentPadding: widget.contentPadding ??
+                EdgeInsets.symmetric(
+                  vertical: 15.h,
+                  horizontal: 16.w,
                 ),
+            hintText: widget.hintText,
+            hintStyle: widget.inputTextStyle ?? Styles.font14GreyExtraBold,
+            filled: true,
+            fillColor: widget.fillColor ?? AppColors.white,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.r),
+              borderSide: BorderSide(
+                color: AppColors.primaryColor,
+                width: 2.w,
               ),
-              prefixIcon: widget.prefixIcon,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.r),
-                borderSide: BorderSide.none,
-              ),
-              suffixIcon: widget.suffixIcon,
             ),
+            prefixIcon: widget.prefixIcon,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.r),
+              borderSide: BorderSide.none,
+            ),
+            suffixIcon: widget.suffixIcon,
           ),
         ),
         if (widget.errorText != null)

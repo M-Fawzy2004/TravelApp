@@ -1,5 +1,7 @@
+// Enhanced version of ShareLocationView to fix crashes
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -28,6 +30,10 @@ class _ShareLocationViewState extends State<ShareLocationView> {
   final MapController mapController = MapController();
   final Location location = Location();
   final TextEditingController locationController = TextEditingController();
+  
+  // Stream subscription for proper cleanup
+  StreamSubscription<LocationData>? _locationSubscription;
+  
   bool isLocationLoading = true;
   LatLng? currentLocation;
   LatLng? destinationLocation;
@@ -35,18 +41,40 @@ class _ShareLocationViewState extends State<ShareLocationView> {
 
   List<LatLng> route = [];
   bool isRouteVisible = false;
+  
+  // Flag to track if the widget is mounted
+  bool _isMounted = false;
 
   @override
   void initState() {
     super.initState();
-    initializeLocation();
+    _isMounted = true;
+    // Use a future delayed to allow the widget to fully build before accessing location
+    Future.delayed(Duration.zero, () {
+      if (_isMounted) {
+        initializeLocation();
+      }
+    });
   }
 
   @override
   void dispose() {
     locationController.dispose();
-    location.onLocationChanged.listen(null).cancel();
+    
+    // Cancel the subscription properly
+    _locationSubscription?.cancel();
+    
+    // Mark widget as unmounted
+    _isMounted = false;
+    
     super.dispose();
+  }
+
+  // Safe setState that checks if the widget is still mounted
+  void setStateIfMounted(VoidCallback fn) {
+    if (_isMounted && mounted) {
+      setState(fn);
+    }
   }
 
   @override
@@ -71,7 +99,7 @@ class _ShareLocationViewState extends State<ShareLocationView> {
           if (isRouteVisible)
             IconButton(
               onPressed: () {
-                setState(() {
+                setStateIfMounted(() {
                   route.clear();
                   isRouteVisible = false;
                   destinationLocation = null;
@@ -106,8 +134,12 @@ class _ShareLocationViewState extends State<ShareLocationView> {
               FloatingActionButton(
                 heroTag: 'zoomOut',
                 onPressed: () {
-                  final currentZoom = mapController.camera.zoom;
-                  mapController.move(mapController.camera.center, currentZoom - 1);
+                  try {
+                    final currentZoom = mapController.camera.zoom;
+                    mapController.move(mapController.camera.center, currentZoom - 1);
+                  } catch (e) {
+                    // Ignore map controller errors
+                  }
                 },
                 backgroundColor: AppColors.primaryColor,
                 mini: true,
@@ -121,8 +153,12 @@ class _ShareLocationViewState extends State<ShareLocationView> {
               FloatingActionButton(
                 heroTag: 'zoomIn',
                 onPressed: () {
-                  final currentZoom = mapController.camera.zoom;
-                  mapController.move(mapController.camera.center, currentZoom + 1);
+                  try {
+                    final currentZoom = mapController.camera.zoom;
+                    mapController.move(mapController.camera.center, currentZoom + 1);
+                  } catch (e) {
+                    // Ignore map controller errors
+                  }
                 },
                 backgroundColor: AppColors.primaryColor,
                 mini: true,
@@ -151,7 +187,7 @@ class _ShareLocationViewState extends State<ShareLocationView> {
                 fetchCoordinatesPoints(query);
               },
               onMapTap: (point) {
-                setState(() {
+                setStateIfMounted(() {
                   selectedLocation = point;
                 });
                 showLocationBottomSheet(point);
@@ -172,8 +208,11 @@ class _ShareLocationViewState extends State<ShareLocationView> {
   }
 
   void showLocationBottomSheet(LatLng point) {
+    if (!mounted) return;
+    
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true, // Allow the sheet to expand properly
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
@@ -181,10 +220,12 @@ class _ShareLocationViewState extends State<ShareLocationView> {
         point: point,
         onNavigatePressed: () {
           Navigator.pop(context);
-          setState(() {
-            destinationLocation = point;
-          });
-          fetchRoute();
+          if (mounted) {
+            setStateIfMounted(() {
+              destinationLocation = point;
+            });
+            fetchRoute();
+          }
         },
       ),
     );
@@ -192,76 +233,158 @@ class _ShareLocationViewState extends State<ShareLocationView> {
 
   Future<void> userCurrentLocation() async {
     if (currentLocation != null) {
-      mapController.move(currentLocation!, 15);
+      try {
+        mapController.move(currentLocation!, 15);
+      } catch (e) {
+        // Handle map controller errors
+        debugPrint('Error moving map controller: $e');
+      }
     } else {
-      showCustomTopSnackBar(
-        context: context,
-        message: 'هذا الموقع غير متوفر',
-      );
+      if (mounted) {
+        showCustomTopSnackBar(
+          context: context,
+          message: 'هذا الموقع غير متوفر',
+        );
+      }
     }
   }
 
   Future<void> initializeLocation() async {
-    if (!await checkRequestPermission()) return;
-
-    final locationData = await location.getLocation();
-    if (locationData.latitude != null && locationData.longitude != null) {
-      setState(() {
-        currentLocation = LatLng(locationData.latitude!, locationData.longitude!);
-        isLocationLoading = false;
+    try {
+      if (!await checkRequestPermission()) return;
+      
+      setStateIfMounted(() {
+        isLocationLoading = true;
       });
-      mapController.move(currentLocation!, 15);
-    }
 
-    location.onLocationChanged.listen((LocationData locationData) {
+      final locationData = await location.getLocation().timeout(
+        const Duration(seconds: 10),
+        onTimeout: () {
+          if (mounted) {
+            showCustomTopSnackBar(
+              context: context,
+              message: 'استغرق الحصول على الموقع وقتًا طويلاً، يرجى المحاولة مرة أخرى',
+            );
+          }
+          return LocationData.fromMap({});
+        },
+      );
+      
+      if (!_isMounted) return;
+
       if (locationData.latitude != null && locationData.longitude != null) {
-        setState(() {
+        setStateIfMounted(() {
           currentLocation = LatLng(locationData.latitude!, locationData.longitude!);
           isLocationLoading = false;
         });
+        
+        try {
+          mapController.move(currentLocation!, 15);
+        } catch (e) {
+          debugPrint('Error moving map: $e');
+        }
+      } else {
+        setStateIfMounted(() {
+          isLocationLoading = false;
+        });
       }
-    });
+
+      // Subscribe to location changes with proper error handling
+      _locationSubscription = location.onLocationChanged.listen(
+        (LocationData locationData) {
+          if (!_isMounted) return;
+          
+          if (locationData.latitude != null && locationData.longitude != null) {
+            setStateIfMounted(() {
+              currentLocation = LatLng(locationData.latitude!, locationData.longitude!);
+            });
+          }
+        },
+        onError: (error) {
+          debugPrint('Location subscription error: $error');
+        },
+        cancelOnError: false,
+      );
+    } catch (e) {
+      debugPrint('Error initializing location: $e');
+      if (mounted) {
+        setStateIfMounted(() {
+          isLocationLoading = false;
+        });
+        showCustomTopSnackBar(
+          context: context,
+          message: 'حدث خطأ أثناء تحديد موقعك',
+        );
+      }
+    }
   }
 
   Future<bool> checkRequestPermission() async {
-    bool serviceEnabled = await location.serviceEnabled();
-    if (!serviceEnabled) {
-      serviceEnabled = await location.requestService();
+    try {
+      bool serviceEnabled = await location.serviceEnabled();
       if (!serviceEnabled) {
-        showCustomTopSnackBar(
-          context: context,
-          message: 'يرجى تفعيل خدمة الموقع',
-        );
-        return false;
+        serviceEnabled = await location.requestService();
+        if (!serviceEnabled) {
+          if (mounted) {
+            showCustomTopSnackBar(
+              context: context,
+              message: 'يرجى تفعيل خدمة الموقع',
+            );
+          }
+          setStateIfMounted(() {
+            isLocationLoading = false;
+          });
+          return false;
+        }
       }
-    }
 
-    PermissionStatus permissionGranted = await location.hasPermission();
-    if (permissionGranted == PermissionStatus.denied) {
-      permissionGranted = await location.requestPermission();
-      if (permissionGranted != PermissionStatus.granted) {
-        showCustomTopSnackBar(
-          context: context,
-          message: 'يرجى السماح بالوصول إلى الموقع',
-        );
-        return false;
+      PermissionStatus permissionGranted = await location.hasPermission();
+      if (permissionGranted == PermissionStatus.denied) {
+        permissionGranted = await location.requestPermission();
+        if (permissionGranted != PermissionStatus.granted) {
+          if (mounted) {
+            showCustomTopSnackBar(
+              context: context,
+              message: 'يرجى السماح بالوصول إلى الموقع',
+            );
+          }
+          setStateIfMounted(() {
+            isLocationLoading = false;
+          });
+          return false;
+        }
       }
-    }
 
-    return true;
+      return true;
+    } catch (e) {
+      debugPrint('Permission check error: $e');
+      setStateIfMounted(() {
+        isLocationLoading = false;
+      });
+      return false;
+    }
   }
 
   Future<void> fetchCoordinatesPoints(String locationQuery) async {
-    if (locationQuery.isEmpty) return;
+    if (locationQuery.isEmpty || !mounted) return;
 
-    setState(() {
+    setStateIfMounted(() {
       isLocationLoading = true;
     });
 
-    final url = Uri.parse(
-        "https://nominatim.openstreetmap.org/search?q=$locationQuery&format=json&limit=1");
     try {
-      final response = await http.get(url);
+      final url = Uri.parse(
+          "https://nominatim.openstreetmap.org/search?q=$locationQuery&format=json&limit=1");
+      
+      final response = await http.get(url).timeout(
+        const Duration(seconds: 10),
+        onTimeout: () {
+          throw TimeoutException('البحث استغرق وقتًا طويلًا');
+        },
+      );
+      
+      if (!_isMounted) return;
+      
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data.isNotEmpty) {
@@ -269,103 +392,156 @@ class _ShareLocationViewState extends State<ShareLocationView> {
           final lon = double.parse(data[0]['lon']);
           final newLocation = LatLng(lat, lon);
           
-          setState(() {
+          setStateIfMounted(() {
             selectedLocation = newLocation;
             isLocationLoading = false;
           });
           
-          mapController.move(newLocation, 15);
+          try {
+            mapController.move(newLocation, 15);
+          } catch (e) {
+            debugPrint('Error moving map: $e');
+          }
+          
           showLocationBottomSheet(newLocation);
         } else {
-          setState(() {
+          setStateIfMounted(() {
             isLocationLoading = false;
           });
-          showCustomTopSnackBar(
-            context: context,
-            message: 'هذا الموقع غير متوفر',
-          );
+          if (mounted) {
+            showCustomTopSnackBar(
+              context: context,
+              message: 'هذا الموقع غير متوفر',
+            );
+          }
         }
       } else {
-        setState(() {
+        setStateIfMounted(() {
           isLocationLoading = false;
         });
-        showCustomTopSnackBar(
-          context: context,
-          message: 'خطأ في البحث، يرجى المحاولة مرة أخرى',
-        );
+        if (mounted) {
+          showCustomTopSnackBar(
+            context: context,
+            message: 'خطأ في البحث، يرجى المحاولة مرة أخرى',
+          );
+        }
       }
     } catch (e) {
-      setState(() {
-        isLocationLoading = false;
-      });
-      showCustomTopSnackBar(
-        context: context,
-        message: 'حدث خطأ أثناء البحث، يرجى التحقق من اتصال الإنترنت',
-      );
+      debugPrint('Error fetching coordinates: $e');
+      if (_isMounted) {
+        setStateIfMounted(() {
+          isLocationLoading = false;
+        });
+        if (mounted) {
+          showCustomTopSnackBar(
+            context: context,
+            message: 'حدث خطأ أثناء البحث، يرجى التحقق من اتصال الإنترنت',
+          );
+        }
+      }
     }
   }
 
   Future<void> fetchRoute() async {
-    if (currentLocation != null && destinationLocation != null) {
-      setState(() {
-        isLocationLoading = true;
-      });
+    if (currentLocation == null || destinationLocation == null || !mounted) return;
 
-      try {
-        final url = Uri.parse(
-          'http://router.project-osrm.org/route/v1/driving/${currentLocation!.longitude},${currentLocation!.latitude};${destinationLocation!.longitude},${destinationLocation!.latitude}?overview=full&geometries=polyline',
-        );
-        final response = await http.get(url);
-        if (response.statusCode == 200) {
-          final data = json.decode(response.body);
+    setStateIfMounted(() {
+      isLocationLoading = true;
+    });
+
+    try {
+      final url = Uri.parse(
+        'http://router.project-osrm.org/route/v1/driving/${currentLocation!.longitude},${currentLocation!.latitude};${destinationLocation!.longitude},${destinationLocation!.latitude}?overview=full&geometries=polyline',
+      );
+      
+      final response = await http.get(url).timeout(
+        const Duration(seconds: 15),
+        onTimeout: () {
+          throw TimeoutException('جلب المسار استغرق وقتًا طويلًا');
+        },
+      );
+      
+      if (!_isMounted) return;
+      
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        if (data['routes'] != null && data['routes'].isNotEmpty) {
           final geometry = data['routes'][0]['geometry'];
           decodePolyline(geometry);
           
           // Set the map view to show the entire route
           if (route.isNotEmpty) {
-            final bounds = LatLngBounds.fromPoints(route);
-            mapController.fitCamera(
-              CameraFit.bounds(
-                bounds: bounds,
-                padding: const EdgeInsets.all(50.0),
-              ),
-            );
+            try {
+              final bounds = LatLngBounds.fromPoints(route);
+              mapController.fitCamera(
+                CameraFit.bounds(
+                  bounds: bounds,
+                  padding: const EdgeInsets.all(50.0),
+                ),
+              );
+            } catch (e) {
+              debugPrint('Error fitting camera to bounds: $e');
+            }
           }
           
-          setState(() {
+          setStateIfMounted(() {
             isRouteVisible = true;
             isLocationLoading = false;
           });
         } else {
-          setState(() {
+          setStateIfMounted(() {
             isLocationLoading = false;
           });
+          if (mounted) {
+            showCustomTopSnackBar(
+              context: context,
+              message: 'لا يمكن إيجاد مسار للوجهة المحددة',
+            );
+          }
+        }
+      } else {
+        setStateIfMounted(() {
+          isLocationLoading = false;
+        });
+        if (mounted) {
           showCustomTopSnackBar(
             context: context,
             message: 'خطأ في التحميل، يرجى المحاولة مرة أخرى',
           );
         }
-      } catch (e) {
-        setState(() {
+      }
+    } catch (e) {
+      debugPrint('Error fetching route: $e');
+      if (_isMounted) {
+        setStateIfMounted(() {
           isLocationLoading = false;
         });
-        showCustomTopSnackBar(
-          context: context,
-          message: 'حدث خطأ أثناء تحميل المسار، يرجى التحقق من اتصال الإنترنت',
-        );
+        if (mounted) {
+          showCustomTopSnackBar(
+            context: context,
+            message: 'حدث خطأ أثناء تحميل المسار، يرجى التحقق من اتصال الإنترنت',
+          );
+        }
       }
     }
   }
 
   void decodePolyline(String encodedPolyline) {
-    PolylinePoints polylinePoints = PolylinePoints();
-    List<PointLatLng> decodedPolyline =
-        polylinePoints.decodePolyline(encodedPolyline);
+    try {
+      PolylinePoints polylinePoints = PolylinePoints();
+      List<PointLatLng> decodedPolyline =
+          polylinePoints.decodePolyline(encodedPolyline);
 
-    setState(() {
-      route = decodedPolyline
-          .map((point) => LatLng(point.latitude, point.longitude))
-          .toList();
-    });
+      setStateIfMounted(() {
+        route = decodedPolyline
+            .map((point) => LatLng(point.latitude, point.longitude))
+            .toList();
+      });
+    } catch (e) {
+      debugPrint('Error decoding polyline: $e');
+      setStateIfMounted(() {
+        route = [];
+      });
+    }
   }
 }

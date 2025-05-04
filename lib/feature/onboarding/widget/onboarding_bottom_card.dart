@@ -26,7 +26,7 @@ class OnBoardingBottomCard extends StatelessWidget {
           height: 270.h,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppColors.grey,
+            color: AppColors.white,
             boxShadow: [
               BoxShadow(
                 // ignore: deprecated_member_use

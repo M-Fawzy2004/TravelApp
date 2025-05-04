@@ -78,6 +78,59 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> saveUserLocation(String userId, double latitude,
+      double longitude, String locationName) async {
+    emit(AuthLoading());
+    try {
+      // Get current user
+      final currentUser = await authService.getCurrentUser();
+      if (currentUser != null) {
+        // Update user with location data
+        final updatedUser = currentUser.copyWith(
+          latitude: latitude,
+          longitude: longitude,
+          locationName: locationName,
+        );
+
+        // Save updated user data
+        await authService.saveUserData(updatedUser);
+
+        emit(AuthSaved(updatedUser));
+        emit(AuthAuthenticated(updatedUser));
+      } else {
+        emit(const AuthError('لم يتم العثور على المستخدم'));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> clearUserLocation() async {
+    emit(AuthLoading());
+    try {
+      // Get current user
+      final currentUser = await authService.getCurrentUser();
+      if (currentUser != null) {
+        // Update user with null location data
+        final updatedUser = currentUser.copyWith(
+          latitude: null,
+          longitude: null,
+          locationName: null,
+        );
+
+        // Save updated user data
+        await authService.saveUserData(updatedUser);
+
+        emit(AuthSaved(updatedUser));
+        emit(AuthAuthenticated(updatedUser));
+      } else {
+        emit(const AuthError('لم يتم العثور على المستخدم'));
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
   Future<void> getCurrentUser() async {
     emit(AuthLoading());
     try {
