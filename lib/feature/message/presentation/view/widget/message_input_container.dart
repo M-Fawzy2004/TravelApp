@@ -26,7 +26,7 @@ class _MessageInputContainerState extends State<MessageInputContainer> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.grey,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Row(

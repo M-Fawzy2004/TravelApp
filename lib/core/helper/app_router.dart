@@ -6,6 +6,7 @@ import 'package:travel_app/feature/add_travel/presentation/view/add_travel_view.
 import 'package:travel_app/feature/message/presentation/view/chat_view.dart';
 import 'package:travel_app/feature/message/presentation/view/message_view.dart';
 import 'package:travel_app/feature/profile/presentation/view/profile_view.dart';
+import 'package:travel_app/feature/share_location/presentation/view/share_location_view.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/trip_booking_view.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/details_trip_view.dart';
 import 'package:travel_app/feature/home/presentation/view/main_view.dart';
@@ -19,7 +20,6 @@ abstract class AppRouter {
   static const otpVerf = '/otpVerf';
   static const mainView = '/mainView';
   static const userProfile = '/userProfile';
-  static const mapView = '/mapView';
   static const addTravel = '/addTravel';
   static const detailsTrip = '/detailsTrip';
   static const passengerHomeView = '/passengerHomeView';
@@ -27,6 +27,7 @@ abstract class AppRouter {
   static const messageView = '/messageView';
   static const chatView = '/chatView';
   static const profileView = '/profileView';
+  static const shareLocationView = '/shareLocationView';
 
   static var router = GoRouter(
     initialLocation: '/',
@@ -119,6 +120,12 @@ abstract class AppRouter {
         path: chatView,
         builder: (BuildContext context, GoRouterState state) {
           return const ChatView();
+        },
+      ),
+      GoRoute(
+        path: shareLocationView,
+        builder: (BuildContext context, GoRouterState state) {
+          return const ShareLocationView();
         },
       ),
     ],

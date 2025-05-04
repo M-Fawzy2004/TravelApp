@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travel_app/core/theme/app_color.dart';
 
 class SearchChatTextField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
@@ -27,7 +28,7 @@ class SearchChatTextField extends StatelessWidget {
             size: 20.h,
           ),
           filled: true,
-          fillColor: Colors.grey[200],
+          fillColor: AppColors.white,
           contentPadding: EdgeInsets.symmetric(
             horizontal: 16.w,
             vertical: 12.h,

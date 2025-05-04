@@ -27,7 +27,7 @@ class CategoryFilterItem extends StatelessWidget {
         height: 40.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: isSelected ? color : AppColors.grey,
+          color: isSelected ? color : AppColors.white,
         ),
         child: Center(
           child: Text(

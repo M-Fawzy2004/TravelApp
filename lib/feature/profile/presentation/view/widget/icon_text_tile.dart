@@ -26,9 +26,10 @@ class IconTextTile extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 60.h,
+        margin: EdgeInsets.only(bottom: 10.h),
         padding: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
-          color: backgroundColor?.withOpacity(0.2) ?? AppColors.grey,
+          color: backgroundColor?.withOpacity(0.2) ?? AppColors.white,
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Row(

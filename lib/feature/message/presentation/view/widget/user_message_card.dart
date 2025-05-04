@@ -19,7 +19,8 @@ class UserMessageCard extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Card(
-          color: AppColors.grey,
+          elevation: 0,
+          color: AppColors.white,
           child: ListTile(
             title: Text(
               'Mohamed Fawzy',

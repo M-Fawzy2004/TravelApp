@@ -50,7 +50,7 @@ class TravelApp extends StatelessWidget {
                 color: AppColors.grey,
               ),
               primaryColor: AppColors.primaryColor,
-              scaffoldBackgroundColor: AppColors.white,
+              scaffoldBackgroundColor: AppColors.whitewithOpacity,
             ),
             darkTheme: ThemeData.dark(),
           ),

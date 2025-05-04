@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_filter_item.dart';
@@ -71,9 +70,26 @@ void _filterTrips(int index, BuildContext context) {
   }
 }
 
+Color mixColors(List<Color> colors) {
+  int r = 0, g = 0, b = 0;
+
+  for (var color in colors) {
+    r += color.red;
+    g += color.green;
+    b += color.blue;
+  }
+
+  int count = colors.length;
+  return Color.fromARGB(255, r ~/ count, g ~/ count, b ~/ count);
+}
+
 List<Color> filterColors = [
-  AppColors.primaryColor,
-  Colors.blue, // رحلة خاصه
-  Colors.green, // توصيل
-  Colors.orange, // شحن أغراض
+  mixColors([
+    Colors.blue,
+    Colors.green,
+    Colors.orange,
+  ]),
+  Colors.blue,
+  Colors.green,
+  Colors.orange,
 ];

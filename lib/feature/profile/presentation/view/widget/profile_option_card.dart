@@ -25,7 +25,7 @@ class ProfileOptionCard extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         height: 90.h,
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primaryColor : AppColors.grey,
+          color: isSelected ? AppColors.primaryColor : AppColors.white,
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Center(

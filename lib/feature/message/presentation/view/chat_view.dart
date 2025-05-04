@@ -14,6 +14,7 @@ class ChatView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
+        elevation: 2,
         scrolledUnderElevation: 0,
         title: Text(
           'Mohamed Fawzy',
