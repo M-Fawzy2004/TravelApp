@@ -10,9 +10,11 @@ class ShareLocationButton extends StatelessWidget {
   const ShareLocationButton({
     super.key,
     required this.title,
+    this.onLocationUpdated,
   });
 
   final String title;
+  final VoidCallback? onLocationUpdated;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,9 @@ class ShareLocationButton extends StatelessWidget {
         child: ElevatedButton.icon(
           onPressed: () {
             context.navigateWithSlideTransition(const ShareLocationView());
+            if (onLocationUpdated != null) {
+              onLocationUpdated!();
+            }
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primaryColor,
