@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travel_app/core/helper/app_router.dart';
+import 'package:travel_app/core/helper/extension.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
+import 'package:travel_app/feature/auth/presentation/view/login_view.dart';
 import 'package:travel_app/feature/onboarding/widget/onboarding_description_section.dart';
 
 class OnBoardingBottomCard extends StatelessWidget {
@@ -53,7 +53,7 @@ class OnBoardingBottomCard extends StatelessWidget {
                   onPressed: () async {
                     final prefs = await SharedPreferences.getInstance();
                     await prefs.setBool('isFirstTime', false);
-                    context.push(AppRouter.loginView);
+                    context.navigateWithSlideTransition(const LoginView());
                   },
                   buttonText: 'ابدء رحلتك الان',
                 ),

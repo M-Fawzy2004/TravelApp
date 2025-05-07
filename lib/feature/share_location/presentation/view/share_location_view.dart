@@ -8,11 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 import 'package:location/location.dart';
 import 'package:travel_app/core/helper/extension.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/utils/top_snakbar_app.dart';
@@ -30,10 +32,10 @@ class _ShareLocationViewState extends State<ShareLocationView> {
   final MapController mapController = MapController();
   final Location location = Location();
   final TextEditingController locationController = TextEditingController();
-  
+
   // Stream subscription for proper cleanup
   StreamSubscription<LocationData>? _locationSubscription;
-  
+
   bool isLocationLoading = true;
   LatLng? currentLocation;
   LatLng? destinationLocation;
@@ -41,7 +43,7 @@ class _ShareLocationViewState extends State<ShareLocationView> {
 
   List<LatLng> route = [];
   bool isRouteVisible = false;
-  
+
   // Flag to track if the widget is mounted
   bool _isMounted = false;
 
@@ -60,13 +62,13 @@ class _ShareLocationViewState extends State<ShareLocationView> {
   @override
   void dispose() {
     locationController.dispose();
-    
+
     // Cancel the subscription properly
     _locationSubscription?.cancel();
-    
+
     // Mark widget as unmounted
     _isMounted = false;
-    
+
     super.dispose();
   }
 
@@ -84,7 +86,7 @@ class _ShareLocationViewState extends State<ShareLocationView> {
         elevation: 2,
         scrolledUnderElevation: 0,
         title: Text(
-          'مشاركة الموقع',
+          'مشاركة موقعك',
           style: Styles.font20ExtraBlackBold,
         ),
         centerTitle: true,
@@ -126,7 +128,7 @@ class _ShareLocationViewState extends State<ShareLocationView> {
               color: AppColors.white,
             ),
           ),
-          SizedBox(height: 16.h),
+          heightBox(16),
           // Show buttons in a row to save space
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -136,7 +138,10 @@ class _ShareLocationViewState extends State<ShareLocationView> {
                 onPressed: () {
                   try {
                     final currentZoom = mapController.camera.zoom;
-                    mapController.move(mapController.camera.center, currentZoom - 1);
+                    mapController.move(
+                      mapController.camera.center,
+                      currentZoom - 1,
+                    );
                   } catch (e) {
                     // Ignore map controller errors
                   }
@@ -155,7 +160,10 @@ class _ShareLocationViewState extends State<ShareLocationView> {
                 onPressed: () {
                   try {
                     final currentZoom = mapController.camera.zoom;
-                    mapController.move(mapController.camera.center, currentZoom + 1);
+                    mapController.move(
+                      mapController.camera.center,
+                      currentZoom + 1,
+                    );
                   } catch (e) {
                     // Ignore map controller errors
                   }
@@ -198,8 +206,11 @@ class _ShareLocationViewState extends State<ShareLocationView> {
           if (isLocationLoading)
             Container(
               color: Colors.black.withOpacity(0.3),
-              child: const Center(
-                child: CircularProgressIndicator(),
+              child: Center(
+                child: SpinKitCircle(
+                  color: AppColors.primaryColor,
+                  size: 50.h,
+                ),
               ),
             ),
         ],
@@ -209,10 +220,10 @@ class _ShareLocationViewState extends State<ShareLocationView> {
 
   void showLocationBottomSheet(LatLng point) {
     if (!mounted) return;
-    
+
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true, // Allow the sheet to expand properly
+      isScrollControlled: true,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
@@ -252,7 +263,7 @@ class _ShareLocationViewState extends State<ShareLocationView> {
   Future<void> initializeLocation() async {
     try {
       if (!await checkRequestPermission()) return;
-      
+
       setStateIfMounted(() {
         isLocationLoading = true;
       });
@@ -263,21 +274,23 @@ class _ShareLocationViewState extends State<ShareLocationView> {
           if (mounted) {
             showCustomTopSnackBar(
               context: context,
-              message: 'استغرق الحصول على الموقع وقتًا طويلاً، يرجى المحاولة مرة أخرى',
+              message:
+                  'استغرق الحصول على الموقع وقتًا طويلاً، يرجى المحاولة مرة أخرى',
             );
           }
           return LocationData.fromMap({});
         },
       );
-      
+
       if (!_isMounted) return;
 
       if (locationData.latitude != null && locationData.longitude != null) {
         setStateIfMounted(() {
-          currentLocation = LatLng(locationData.latitude!, locationData.longitude!);
+          currentLocation =
+              LatLng(locationData.latitude!, locationData.longitude!);
           isLocationLoading = false;
         });
-        
+
         try {
           mapController.move(currentLocation!, 15);
         } catch (e) {
@@ -293,10 +306,11 @@ class _ShareLocationViewState extends State<ShareLocationView> {
       _locationSubscription = location.onLocationChanged.listen(
         (LocationData locationData) {
           if (!_isMounted) return;
-          
+
           if (locationData.latitude != null && locationData.longitude != null) {
             setStateIfMounted(() {
-              currentLocation = LatLng(locationData.latitude!, locationData.longitude!);
+              currentLocation =
+                  LatLng(locationData.latitude!, locationData.longitude!);
             });
           }
         },
@@ -375,34 +389,34 @@ class _ShareLocationViewState extends State<ShareLocationView> {
     try {
       final url = Uri.parse(
           "https://nominatim.openstreetmap.org/search?q=$locationQuery&format=json&limit=1");
-      
+
       final response = await http.get(url).timeout(
         const Duration(seconds: 10),
         onTimeout: () {
           throw TimeoutException('البحث استغرق وقتًا طويلًا');
         },
       );
-      
+
       if (!_isMounted) return;
-      
+
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data.isNotEmpty) {
           final lat = double.parse(data[0]['lat']);
           final lon = double.parse(data[0]['lon']);
           final newLocation = LatLng(lat, lon);
-          
+
           setStateIfMounted(() {
             selectedLocation = newLocation;
             isLocationLoading = false;
           });
-          
+
           try {
             mapController.move(newLocation, 15);
           } catch (e) {
             debugPrint('Error moving map: $e');
           }
-          
+
           showLocationBottomSheet(newLocation);
         } else {
           setStateIfMounted(() {
@@ -443,7 +457,8 @@ class _ShareLocationViewState extends State<ShareLocationView> {
   }
 
   Future<void> fetchRoute() async {
-    if (currentLocation == null || destinationLocation == null || !mounted) return;
+    if (currentLocation == null || destinationLocation == null || !mounted)
+      return;
 
     setStateIfMounted(() {
       isLocationLoading = true;
@@ -453,22 +468,22 @@ class _ShareLocationViewState extends State<ShareLocationView> {
       final url = Uri.parse(
         'http://router.project-osrm.org/route/v1/driving/${currentLocation!.longitude},${currentLocation!.latitude};${destinationLocation!.longitude},${destinationLocation!.latitude}?overview=full&geometries=polyline',
       );
-      
+
       final response = await http.get(url).timeout(
         const Duration(seconds: 15),
         onTimeout: () {
           throw TimeoutException('جلب المسار استغرق وقتًا طويلًا');
         },
       );
-      
+
       if (!_isMounted) return;
-      
+
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         if (data['routes'] != null && data['routes'].isNotEmpty) {
           final geometry = data['routes'][0]['geometry'];
           decodePolyline(geometry);
-          
+
           // Set the map view to show the entire route
           if (route.isNotEmpty) {
             try {
@@ -483,7 +498,7 @@ class _ShareLocationViewState extends State<ShareLocationView> {
               debugPrint('Error fitting camera to bounds: $e');
             }
           }
-          
+
           setStateIfMounted(() {
             isRouteVisible = true;
             isLocationLoading = false;
@@ -519,7 +534,8 @@ class _ShareLocationViewState extends State<ShareLocationView> {
         if (mounted) {
           showCustomTopSnackBar(
             context: context,
-            message: 'حدث خطأ أثناء تحميل المسار، يرجى التحقق من اتصال الإنترنت',
+            message:
+                'حدث خطأ أثناء تحميل المسار، يرجى التحقق من اتصال الإنترنت',
           );
         }
       }

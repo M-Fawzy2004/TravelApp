@@ -8,20 +8,22 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/utils/top_snakbar_app.dart';
 import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
+import 'package:travel_app/feature/share_location/presentation/view/widget/action_button.dart';
 
 class LocationBottomSheet extends StatefulWidget {
   final LatLng point;
   final VoidCallback? onNavigatePressed;
 
   const LocationBottomSheet({
-    Key? key,
+    super.key,
     required this.point,
     this.onNavigatePressed,
-  }) : super(key: key);
+  });
 
   @override
   State<LocationBottomSheet> createState() => _LocationBottomSheetState();
@@ -55,11 +57,13 @@ class _LocationBottomSheetState extends State<LocationBottomSheet> {
   Future<void> _getAddressFromCoordinates() async {
     try {
       // First try with Nominatim API
-      final response = await http.get(
-        Uri.parse(
-          'https://nominatim.openstreetmap.org/reverse?lat=${widget.point.latitude}&lon=${widget.point.longitude}&format=json',
-        ),
-      ).timeout(const Duration(seconds: 5));
+      final response = await http
+          .get(
+            Uri.parse(
+              'https://nominatim.openstreetmap.org/reverse?lat=${widget.point.latitude}&lon=${widget.point.longitude}&format=json',
+            ),
+          )
+          .timeout(const Duration(seconds: 5));
 
       if (!_isMounted) return;
 
@@ -211,15 +215,14 @@ class LocationInfoSection extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 8.h),
-
+            heightBox(8),
             // Coordinates
             Text(
               'الإحداثيات: ${widget.point.latitude.toStringAsFixed(6)}, ${widget.point.longitude.toStringAsFixed(6)}',
               style:
                   Styles.font14GreyExtraBold.copyWith(color: Colors.grey[600]),
             ),
-            SizedBox(height: 24.h),
+            heightBox(24),
 
             // Location image placeholder
             Container(
@@ -241,25 +244,24 @@ class LocationInfoSection extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 24.h),
-
+            heightBox(24),
             // Action buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 // Save location button
                 Expanded(
-                  child: _ActionButton(
+                  child: ActionButton(
                     icon: FontAwesomeIcons.floppyDisk,
                     label: 'حفظ الموقع',
                     onPressed: () => _saveLocationToUserProfile(context),
                   ),
                 ),
-                SizedBox(width: 16.w),
+                widthBox(16),
 
                 // Navigate button
                 Expanded(
-                  child: _ActionButton(
+                  child: ActionButton(
                     icon: FontAwesomeIcons.route,
                     label: 'التنقل إلى هنا',
                     onPressed: widget.onNavigatePressed,
@@ -268,10 +270,10 @@ class LocationInfoSection extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16.h),
+            heightBox(16),
 
             // Use current location button
-            _ActionButton(
+            ActionButton(
               icon: FontAwesomeIcons.locationCrosshairs,
               label: 'استخدام موقعي الحالي',
               onPressed: () {
@@ -306,7 +308,7 @@ class LocationInfoSection extends StatelessWidget {
         // Show processing message
         showCustomTopSnackBar(
           context: context,
-          message: 'جاري حفظ الموقع...',
+          message: 'تم حفظ الموقع بنجاح',
         );
 
         // Close the bottom sheet
@@ -325,52 +327,5 @@ class LocationInfoSection extends StatelessWidget {
         message: 'يجب تسجيل الدخول أولاً لحفظ الموقع',
       );
     }
-  }
-}
-
-class _ActionButton extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final VoidCallback? onPressed;
-  final bool isPrimary;
-  final bool isFullWidth;
-
-  const _ActionButton({
-    required this.icon,
-    required this.label,
-    this.onPressed,
-    this.isPrimary = false,
-    this.isFullWidth = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: isPrimary ? AppColors.primaryColor : Colors.white,
-        foregroundColor: isPrimary ? Colors.white : AppColors.primaryColor,
-        side: isPrimary
-            ? null
-            : const BorderSide(color: AppColors.primaryColor, width: 1),
-        padding: EdgeInsets.symmetric(vertical: 12.h),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.r),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 16.sp),
-          SizedBox(width: 8.w),
-          Text(
-            label,
-            style: Styles.font14GreyExtraBold.copyWith(
-              color: isPrimary ? Colors.white : AppColors.primaryColor,
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

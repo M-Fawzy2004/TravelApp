@@ -29,10 +29,10 @@ class TravelApp extends StatelessWidget {
           overlayColor: Colors.black.withOpacity(0.5),
           overlayWholeScreen: true,
           useDefaultLoading: false,
-          overlayWidgetBuilder: (_) => const Center(
+          overlayWidgetBuilder: (_) => Center(
             child: SpinKitCircle(
               color: AppColors.primaryColor,
-              size: 50.0,
+              size: 50.h,
             ),
           ),
           child: MaterialApp.router(
