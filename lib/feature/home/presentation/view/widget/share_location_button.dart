@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/helper/extension.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/feature/share_location/presentation/view/share_location_view.dart';
+import 'package:travel_app/feature/share_location/presentation/view/share_location_view_multi_provider.dart';
 
 class ShareLocationButton extends StatelessWidget {
   const ShareLocationButton({
@@ -24,7 +24,9 @@ class ShareLocationButton extends StatelessWidget {
         alignment: Alignment.bottomRight,
         child: ElevatedButton.icon(
           onPressed: () {
-            context.navigateWithSlideTransition(const ShareLocationView());
+            context.navigateWithSlideTransition(
+              const ShareLocationViewMultiProvider(),
+            );
             if (onLocationUpdated != null) {
               onLocationUpdated!();
             }

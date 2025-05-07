@@ -32,8 +32,11 @@ class _TripSummaryListBlocBuilderState
         return Expanded(
           child: bookings.isEmpty
               ? const NoBookingText()
-              : TripSummaryListView(
-                  booking: bookings,
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TripSummaryListView(
+                    booking: bookings,
+                  ),
                 ),
         );
       },

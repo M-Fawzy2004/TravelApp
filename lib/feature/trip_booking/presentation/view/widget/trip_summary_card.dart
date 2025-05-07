@@ -35,7 +35,6 @@ class TripSummaryCard extends StatelessWidget {
               context.read<BookingCubit>().removeBooking(bookingItemEntity);
             },
             backgroundColor: const Color(0xFFFE4A49),
-            foregroundColor: Colors.white,
             icon: FontAwesomeIcons.trashAlt,
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(20.r),
@@ -46,7 +45,6 @@ class TripSummaryCard extends StatelessWidget {
           SlidableAction(
             onPressed: (_) {},
             backgroundColor: AppColors.primaryColor,
-            foregroundColor: Colors.white,
             icon: FontAwesomeIcons.share,
             label: 'شارك',
           ),
