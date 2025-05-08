@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:travel_app/core/helper/spacing.dart';
@@ -64,7 +65,7 @@ class LocationBottomSheet extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 16.h),
+            heightBox(16),
 
             // Location information section
             _buildLocationInfoSection(context),
@@ -112,7 +113,7 @@ class LocationBottomSheet extends StatelessWidget {
                   color: AppColors.primaryColor,
                   size: 24.sp,
                 ),
-                SizedBox(width: 10.w),
+                widthBox(10),
                 Expanded(
                   child: isLoading
                       ? Row(
@@ -121,13 +122,11 @@ class LocationBottomSheet extends StatelessWidget {
                               'جاري تحميل العنوان...',
                               style: Styles.font16BlackBold,
                             ),
-                            SizedBox(width: 10.w),
-                            SizedBox(
-                              width: 15.w,
-                              height: 15.h,
-                              child: const CircularProgressIndicator(
-                                strokeWidth: 2,
+                            widthBox(10),
+                            Center(
+                              child: SpinKitCircle(
                                 color: AppColors.primaryColor,
+                                size: 50.h,
                               ),
                             ),
                           ],

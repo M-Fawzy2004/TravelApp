@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/theme/app_color.dart';
-import 'package:travel_app/feature/share_location/presentation/manager/address/address_cubit.dart';
 import 'package:travel_app/feature/share_location/presentation/manager/location/location_cubit.dart';
 
 class SearchLocation extends StatefulWidget {
@@ -32,28 +31,18 @@ class _SearchLocationState extends State<SearchLocation> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocListener(
-      listeners: [
-        BlocListener<LocationCubit, LocationState>(
-          listener: (context, state) {
-            setState(() {
-              _isLoading = state is LocationLoading;
-            });
+    return BlocListener<LocationCubit, LocationState>(
+      listener: (context, state) {
+        // Update loading state based on LocationCubit state
+        setState(() {
+          _isLoading = state is LocationLoading;
+        });
 
-            if (state is LocationLoaded && state.selectedLocation != null) {
-              _focusNode.unfocus();
-            }
-          },
-        ),
-        BlocListener<AddressCubit, AddressState>(
-          listener: (context, state) {
-            // لا تغير حالة التحميل هنا، فقط استمع للأخطاء أو النجاح
-            if (state is AddressError) {
-              // يمكن عرض رسالة خطأ هنا
-            }
-          },
-        ),
-      ],
+        // If location is loaded, unfocus the text field
+        if (state is LocationLoaded && state.selectedLocation != null) {
+          _focusNode.unfocus();
+        }
+      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30.r),

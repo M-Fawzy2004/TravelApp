@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
@@ -20,6 +21,7 @@ class _DetailsLocationState extends State<DetailsLocation> {
   @override
   void initState() {
     super.initState();
+    context.read<AuthCubit>().getCurrentUser();
   }
 
   @override
@@ -32,7 +34,7 @@ class _DetailsLocationState extends State<DetailsLocation> {
       },
       builder: (context, state) {
         if (state is AuthLoading) {
-          return _buildDefaultLocationMap();
+          return _loadingLocationMap();
         }
 
         final locationName =
@@ -44,6 +46,23 @@ class _DetailsLocationState extends State<DetailsLocation> {
           return _buildSavedLocation(locationName);
         }
       },
+    );
+  }
+
+  Widget _loadingLocationMap() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      margin: EdgeInsets.symmetric(horizontal: 10.w),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.r),
+        color: AppColors.white,
+      ),
+      child: Center(
+        child: SpinKitCircle(
+          color: AppColors.primaryColor,
+          size: 50.h,
+        ),
+      ),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:travel_app/core/theme/app_color.dart';
@@ -131,8 +132,11 @@ class ShareLocationViewBody extends StatelessWidget {
         ),
         // Loading indicator
         if (currentLocation == null)
-          const Center(
-            child: CircularProgressIndicator(),
+          Center(
+            child: SpinKitCircle(
+              color: AppColors.primaryColor,
+              size: 50.h,
+            ),
           ),
       ],
     );

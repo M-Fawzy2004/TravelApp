@@ -11,7 +11,10 @@ class LocationDataSource {
     );
 
     // response time out
-    final response = await http.get(url).timeout(
+    final response = await http.get(
+      url,
+      headers: {'User-Agent': 'TravelApp/1.0 (dev@travelapp.com)'},
+    ).timeout(
       const Duration(seconds: 10),
       onTimeout: () {
         throw Exception('البحث استغرق وقتًا طويلًا');
@@ -22,7 +25,7 @@ class LocationDataSource {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception('خطأ في البحث: ${response.statusCode}');
+      throw Exception('خطأ في البحث');
     }
   }
 
@@ -39,7 +42,10 @@ class LocationDataSource {
     );
 
     // response time out
-    final response = await http.get(url).timeout(
+    final response = await http.get(
+      url,
+      headers: {'User-Agent': 'TravelApp/1.0 (dev@travelapp.com)'},
+    ).timeout(
       const Duration(seconds: 15),
       onTimeout: () {
         throw Exception('جلب المسار استغرق وقتًا طويلًا');

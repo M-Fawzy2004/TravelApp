@@ -4,7 +4,7 @@ abstract class LocationState extends Equatable {
   const LocationState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class LocationInitial extends LocationState {}
@@ -26,6 +26,15 @@ class LocationLoaded extends LocationState {
     required this.isRouteVisible,
   });
 
+  @override
+  List<Object?> get props => [
+        currentLocation,
+        selectedLocation,
+        destinationLocation,
+        route,
+        isRouteVisible,
+      ];
+
   LocationLoaded copyWith({
     LatLng? currentLocation,
     LatLng? selectedLocation,
@@ -41,15 +50,6 @@ class LocationLoaded extends LocationState {
       isRouteVisible: isRouteVisible ?? this.isRouteVisible,
     );
   }
-
-  @override
-  List<Object> get props => [
-        currentLocation ?? const LatLng(0, 0),
-        selectedLocation ?? const LatLng(0, 0),
-        destinationLocation ?? const LatLng(0, 0),
-        route,
-        isRouteVisible,
-      ];
 }
 
 class LocationError extends LocationState {

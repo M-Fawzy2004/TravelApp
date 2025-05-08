@@ -12,14 +12,14 @@ import 'package:travel_app/feature/share_location/presentation/view/widget/share
 class ShareLocationBodyBlocListener extends StatefulWidget {
   final MapController mapController;
   final TextEditingController locationController;
-  final void Function(LatLng point) _showLocationBottomSheet;
+  final void Function(LatLng point) showLocationBottomSheet;
 
   const ShareLocationBodyBlocListener({
     super.key,
     required this.mapController,
     required this.locationController,
-    required void Function(LatLng point) showLocationBottomSheet,
-  }) : _showLocationBottomSheet = showLocationBottomSheet;
+    required this.showLocationBottomSheet,
+  });
 
   @override
   State<ShareLocationBodyBlocListener> createState() =>
@@ -37,6 +37,13 @@ class _ShareLocationBodyBlocListenerState
             context: context,
             message: state.message,
           );
+        } else if (state is LocationLoaded && state.selectedLocation != null) {
+          // When a location is loaded with a selected location, center map on it
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (mounted) {
+              widget.mapController.move(state.selectedLocation!, 15);
+            }
+          });
         }
       },
       builder: (context, state) {
@@ -55,11 +62,13 @@ class _ShareLocationBodyBlocListenerState
                   state is LocationLoaded ? state.isRouteVisible : false,
               controller: widget.locationController,
               onSearchSubmitted: (query) {
-                context.read<LocationCubit>().searchLocation(query);
+                if (query.isNotEmpty) {
+                  context.read<LocationCubit>().searchLocation(query);
+                }
               },
               onMapTap: (point) {
                 context.read<LocationCubit>().selectLocation(point);
-                widget._showLocationBottomSheet(point);
+                widget.showLocationBottomSheet(point);
               },
             ),
             if (state is LocationLoading)

@@ -46,7 +46,7 @@ class LocationCubit extends Cubit<LocationState> {
         emit(const LocationError('فشل في الحصول على الموقع الحالي'));
       }
     } catch (e) {
-      emit(LocationError('حدث خطأ أثناء تحديد موقعك: $e'));
+      emit(const LocationError('حدث خطأ أثناء تحديد موقعك'));
     }
   }
 
@@ -95,14 +95,18 @@ class LocationCubit extends Cubit<LocationState> {
 
   Future<void> searchLocation(String query) async {
     if (query.isEmpty) return;
+
+    // Get current state before starting the loading process
+    final LocationLoaded? previousState = _getPreviousLoadedState();
+
     emit(LocationLoading());
 
     try {
       final result = await locationRepository.searchLocation(query);
       if (result != null) {
-        if (state is LocationLoaded) {
-          final currentState = state as LocationLoaded;
-          emit(currentState.copyWith(selectedLocation: result));
+        if (previousState != null) {
+          // Preserve the current location when updating state
+          emit(previousState.copyWith(selectedLocation: result));
         } else {
           emit(LocationLoaded(
             currentLocation: null,
@@ -115,15 +119,15 @@ class LocationCubit extends Cubit<LocationState> {
       } else {
         emit(const LocationError('هذا الموقع غير متوفر'));
         // Restore previous state if available
-        if (state is LocationError && _getPreviousLoadedState() != null) {
-          emit(_getPreviousLoadedState()!);
+        if (previousState != null) {
+          emit(previousState);
         }
       }
     } catch (e) {
+      print('🔴 Error in searchLocation: $e');
       emit(const LocationError('حدث خطأ أثناء البحث'));
-      // Restore previous state if available
-      if (state is LocationError && _getPreviousLoadedState() != null) {
-        emit(_getPreviousLoadedState()!);
+      if (previousState != null) {
+        emit(previousState);
       }
     }
   }
