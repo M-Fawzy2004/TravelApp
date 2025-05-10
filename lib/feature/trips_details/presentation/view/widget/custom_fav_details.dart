@@ -14,7 +14,7 @@ class CustomFavDetails extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         padding: EdgeInsets.symmetric(
           horizontal: 10.w,
-          vertical: 12.h,
+          vertical: 10.h,
         ),
         decoration: BoxDecoration(
           color: AppColors.grey,

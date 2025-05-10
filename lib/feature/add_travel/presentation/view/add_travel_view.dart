@@ -15,7 +15,7 @@ class AddTravelView extends StatelessWidget {
       child: Scaffold(
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 5.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
             child: const AddTravelViewBody(),
           ),
         ),

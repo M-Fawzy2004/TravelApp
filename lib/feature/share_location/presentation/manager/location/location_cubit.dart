@@ -46,7 +46,7 @@ class LocationCubit extends Cubit<LocationState> {
         emit(const LocationError('فشل في الحصول على الموقع الحالي'));
       }
     } catch (e) {
-      emit(const LocationError('حدث خطأ أثناء تحديد موقعك'));
+      emit(const LocationError('فشل في الحصول على الموقع الحالي'));
     }
   }
 

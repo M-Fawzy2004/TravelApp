@@ -6,7 +6,9 @@ import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/captain_home_header.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/captain_trip_type_selector.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_travel_sliver_grid_bloc_builder.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/custom_trip_form_captain.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
 
 class CaptainHomeViewBody extends StatefulWidget {
@@ -20,6 +22,16 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
   final ScrollController _scrollController = ScrollController();
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
+  String selectedTripType = 'توصيل مباشر';
+
+  @override
+  void initState() {
+    super.initState();
+    // Load trips after widget is built
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadCaptainTrips();
+    });
+  }
 
   @override
   void dispose() {
@@ -36,8 +48,16 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
   }
 
   Future<void> _onRefresh() async {
-    await _loadCaptainTrips();
-    _refreshController.refreshCompleted();
+    try {
+      await _loadCaptainTrips();
+      if (mounted) {
+        _refreshController.refreshCompleted();
+      }
+    } catch (e) {
+      if (mounted) {
+        _refreshController.refreshFailed();
+      }
+    }
   }
 
   @override
@@ -74,13 +94,37 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
                 const SliverToBoxAdapter(child: CaptainHomeHeader()),
                 SliverToBoxAdapter(child: heightBox(20)),
                 const SliverToBoxAdapter(child: DetailsLocation()),
+                SliverToBoxAdapter(child: heightBox(20)),
+                SliverToBoxAdapter(
+                  child: CaptainTripTypeSelector(
+                    selectedTripType: selectedTripType,
+                    onTripTypeChanged: (value) {
+                      setState(() {
+                        selectedTripType = value;
+                      });
+                    },
+                  ),
+                ),
                 SliverToBoxAdapter(child: heightBox(10)),
-                const CategorySliverGridGridBlocBuilder(),
+                _buildTripContent(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildTripContent() {
+    if (selectedTripType == 'رحلاتي') {
+      return const CategorySliverGridGridBlocBuilder();
+    } else {
+      return SliverToBoxAdapter(
+        child: SizedBox(
+          height: 500.h, // Define a fixed height
+          child: const CustomTripFormCaptain(),
+        ),
+      );
+    }
   }
 }

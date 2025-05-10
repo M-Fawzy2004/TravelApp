@@ -56,13 +56,13 @@ class _DestinationFieldState extends State<DestinationField> {
           'الوجهة',
           style: Styles.font14GreyExtraBold,
         ),
-        heightBox(5),
+        heightBox(7),
         CustomTextFormField(
           controller: _controller,
           onChanged: (value) {
             context.read<TripFormCubit>().setDestinationName(value);
           },
-          hintText: 'المكان الذي تقصده (مثال: القاهرة ، الاهرامات)',
+          hintText: 'الوجهة : مثال (المحله الى الاهرامات) ',
         ),
         if (widget.errorText != null)
           Padding(

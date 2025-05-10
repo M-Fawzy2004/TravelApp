@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:travel_app/feature/trip_booking/domain/entity/booking_item_entity.dart';
 import 'package:travel_app/feature/trip_booking/presentation/manager/booking_item/booking_item_cubit.dart';
@@ -25,8 +26,11 @@ class TripSummaryCardBlocBuilder extends StatelessWidget {
         return false;
       },
       builder: (context, state) {
-        return TripSummaryCard(
-          bookingItemEntity: bookingItemEntity,
+        return Padding(
+          padding: EdgeInsets.only(bottom: 5.h),
+          child: TripSummaryCard(
+            bookingItemEntity: bookingItemEntity,
+          ),
         );
       },
     );

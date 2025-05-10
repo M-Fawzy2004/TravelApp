@@ -1,12 +1,10 @@
 // ignore_for_file: avoid_print
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/utils/form_controller.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/utils/tripe_type.dart';
-import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_form_cubit/trip_form_cubit.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/add_travel_bloc_consumer.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/custom_loaction_field.dart';
@@ -51,7 +49,7 @@ class _AddTravelFormState extends State<AddTravelForm> {
           child: Column(
             children: [
               const GradientSelectorRow(),
-              heightBox(10),
+              heightBox(15),
               TravelTypeSelector(
                 selectedType: _selectedType,
                 travelTypes: _travelTypes,
@@ -66,43 +64,45 @@ class _AddTravelFormState extends State<AddTravelForm> {
                       );
                 },
               ),
-              heightBox(10),
+              heightBox(15),
               DestinationField(
                 errorText: state.fieldErrors['destinationName'],
               ),
-              heightBox(10),
+              heightBox(15),
               CustomLoactionField(
                 errorTextStartLocation: state.fieldErrors['departureLocation'],
                 errorTextEndLocation: state.fieldErrors['arrivalLocation'],
               ),
-              heightBox(10),
-              SeatsField(
-                errorText: state.fieldErrors['availableSeats'],
-              ),
-              heightBox(10),
+              heightBox(15),
               DateTimePicker(
                 selectedDate: state.tripDate,
                 selectedTime: state.tripTime,
                 dateErrorText: state.fieldErrors['tripDate'],
                 timeErrorText: state.fieldErrors['tripTime'],
               ),
-              heightBox(10),
+              heightBox(15),
               DurationPriceField(
                 errorTextPrice: state.fieldErrors['price'],
               ),
-              heightBox(10),
+              heightBox(15),
+              SeatsField(
+                errorText: state.fieldErrors['availableSeats'],
+              ),
+              heightBox(15),
               const DetailsField(),
               heightBox(20),
-              SubmitCustomButton(
-                onPressed: state.isSubmitting
-                    ? null
-                    : () {
-                        context.read<TripFormCubit>().submitForm();
-                      },
-                buttonText: state.isSubmitting
-                    ? 'جاري الإضافه...'
-                    : 'إضافه $_selectedType',
-                textStyle: Styles.font16WhiteBold,
+              Padding(
+                padding: EdgeInsets.only(bottom: 10.h),
+                child: SubmitCustomButton(
+                  onPressed: state.isSubmitting
+                      ? null
+                      : () {
+                          context.read<TripFormCubit>().submitForm();
+                        },
+                  buttonText: state.isSubmitting
+                      ? 'جاري الإضافه...'
+                      : 'إضافه $_selectedType',
+                ),
               ),
             ],
           ),

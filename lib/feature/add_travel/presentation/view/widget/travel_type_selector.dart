@@ -20,33 +20,34 @@ class TravelTypeSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return RowWithLabel(
       label: 'نوع الرحلة',
-      widget:  Align(
-          alignment: Alignment.centerRight,
-          child: Padding(
-            padding: EdgeInsets.only(bottom: 10.h),
-            child: Wrap(
-              spacing: 10,
-              children: travelTypes.map((type) {
-                return ChoiceChip(
-                  label: Text(type, style: Styles.font14DarkGreyBold),
-                  selected: selectedType == type,
-                  onSelected: (selected) {
-                    if (selected) {
-                      onChanged(type);
-                    }
-                  },
-                  selectedColor: Colors.blue.shade100,
-                  backgroundColor: Colors.grey.shade200,
-                  labelStyle: TextStyle(
-                    color: selectedType == type
-                        ? AppColors.primaryColor
-                        : Colors.black,
-                  ),
-                );
-              }).toList(),
-            ),
+      widget: Align(
+        alignment: Alignment.centerRight,
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 5.h),
+          child: Wrap(
+            spacing: 10,
+            children: travelTypes.map((type) {
+              return ChoiceChip(
+                label: Text(
+                  type,
+                  style: selectedType == type
+                      ? Styles.font14GreyExtraBold.copyWith(
+                          color: AppColors.white,
+                        )
+                      : Styles.font14BlackExtraBold,
+                ),
+                selected: selectedType == type,
+                onSelected: (selected) {
+                  if (selected) {
+                    onChanged(type);
+                  }
+                },
+                selectedColor: AppColors.primaryColor,
+                backgroundColor: AppColors.white,
+              );
+            }).toList(),
           ),
-        
+        ),
       ),
     );
   }

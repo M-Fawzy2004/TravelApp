@@ -25,7 +25,7 @@ class _GradientSelectorRowState extends State<GradientSelectorRow> {
   @override
   Widget build(BuildContext context) {
     return RowWithLabel(
-      label: 'اختر خلفية',
+      label: 'اختر خلفيه الرحلة',
       widget: GradientSelector(
         selectedGradient: _selectedGradient,
         gradients: _gradientsList,

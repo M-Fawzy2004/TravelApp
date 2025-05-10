@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/utils/form_controller.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/utils/tripe_type.dart';
-import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_form_cubit/trip_form_cubit.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/add_travel_bloc_consumer.dart';
@@ -143,7 +142,6 @@ class _EditTravelFormState extends State<EditTravelForm> {
                 buttonText: state.isSubmitting
                     ? 'جاري التحديث...'
                     : 'تحديث $_selectedType',
-                textStyle: Styles.font16WhiteBold,
               ),
             ],
           ),

@@ -43,6 +43,11 @@ class Styles {
     fontWeight: FontWeightHelper.black,
     color: Colors.grey.shade600,
   );
+  static TextStyle font14BlackExtraBold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.black,
+    color: AppColors.black,
+  );
   static TextStyle font12GreyExtraBold = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.black,

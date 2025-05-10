@@ -24,21 +24,26 @@ class _AddTravelViewBodyState extends State<AddTravelViewBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          heightBox(20),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5.w),
-            child: const IconBack(),
-          ),
-          heightBox(20),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              'أهلاً بيك! 👋',
-              style: Styles.font18BlackBold,
-            ),
+          heightBox(10),
+          Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                child: const IconBack(),
+              ),
+              const Spacer(),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'أهلاً بيك! 👋',
+                  style: Styles.font18BlackBold,
+                ),
+              ),
+            ],
           ),
           heightBox(10),
           Text(
+            textAlign: TextAlign.center,
             'ضيف تفاصيل رحلتك أو التوصيلة علشان توصل الناس بأمان وسهولة. \nمن فضلك إملأ البيانات بدقة عشان نساعدك توصل للي محتاجين يركبوا معاك.',
             style: Styles.font14GreyExtraBold,
           ),

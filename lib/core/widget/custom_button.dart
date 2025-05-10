@@ -31,15 +31,15 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.grey,
-            blurRadius: 6,
-            spreadRadius: 0,
-            offset: Offset(0, 1),
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: AppColors.grey,
+          //     blurRadius: 6,
+          //     spreadRadius: 0,
+          //     offset: Offset(0, 1),
+          //   ),
+          // ],
           ),
-        ],
-      ),
       child: TextButton(
         style: ButtonStyle(
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(

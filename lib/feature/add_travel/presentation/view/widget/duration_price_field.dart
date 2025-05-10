@@ -58,6 +58,7 @@ class _DurationPriceFieldState extends State<DurationPriceField> {
       widget: Row(
         children: [
           Expanded(
+            flex: 2,
             child: CustomTextFormField(
               hintText: 'المدة المتوقعة',
               controller: _formControllers.durationController,

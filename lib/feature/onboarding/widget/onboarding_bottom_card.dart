@@ -43,7 +43,7 @@ class OnBoardingBottomCard extends StatelessWidget {
               children: [
                 heightBox(20),
                 Text(
-                  'أهلا بك فى تطبيق رحلة',
+                  'أهلا بك فى تطبيق Rihla',
                   style: Styles.font20ExtraBlackBold,
                 ),
                 heightBox(20),

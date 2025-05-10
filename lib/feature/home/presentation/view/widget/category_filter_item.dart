@@ -32,7 +32,11 @@ class CategoryFilterItem extends StatelessWidget {
         child: Center(
           child: Text(
             text,
-            style: isSelected ? Styles.font16WhiteBold : Styles.font16BlackBold,
+            style: isSelected
+                ? Styles.font14GreyExtraBold.copyWith(
+                    color: AppColors.white,
+                  )
+                : Styles.font14BlackExtraBold,
           ),
         ),
       ),

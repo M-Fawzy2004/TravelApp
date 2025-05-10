@@ -19,7 +19,7 @@ class LoginViewBody extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: Text(
-                'اهلا بك فى تطبيق رحلة ',
+                'اهلا بك فى تطبيق Rihla ',
                 style: Styles.font20ExtraBlackBold,
               ),
             ),
@@ -37,7 +37,7 @@ class LoginViewBody extends StatelessWidget {
             heightBox(10),
             Text(
               textAlign: TextAlign.center,
-              'من خلال المتابعة، فإنك توافق على تلقي المكالمات أو رسائل WhatsApp أو الرسائل النصية القصيرة/RCS، بما في ذلك الوسائل الآلية، من Rihlaa والشركات التابعة لها إلى الرقم المقدم.',
+              'من خلال المتابعة، فإنك توافق على تلقي المكالمات أو رسائل WhatsApp أو الرسائل النصية القصيرة/RCS، بما في ذلك الوسائل الآلية، من Rihla والشركات التابعة لها إلى الرقم المقدم.',
               style: Styles.font12GreyExtraBold,
             )
           ],
