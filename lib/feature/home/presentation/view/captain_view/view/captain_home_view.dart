@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/services/get_it_setup.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/captain_home_view_body.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/custom_add_travel.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/captain_home_view_body.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/custom_add_travel.dart';
 
 class CaptainHomeView extends StatelessWidget {
   const CaptainHomeView({super.key});

@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/text_field_row.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/text_field_row.dart';
 
 class TripForm extends StatelessWidget {
   const TripForm({

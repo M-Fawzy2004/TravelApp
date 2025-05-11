@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/add_travel_captain.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/add_travel_captain.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/no_trips.dart';
 
 class CustomTripGrid extends StatelessWidget {

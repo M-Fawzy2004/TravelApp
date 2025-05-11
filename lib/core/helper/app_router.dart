@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/add_travel_view.dart';
-import 'package:travel_app/feature/home/presentation/view/trip_tracking_view.dart';
+import 'package:travel_app/feature/home/presentation/view/trip_tracking_view/trip_tracking_view.dart';
 import 'package:travel_app/feature/message/presentation/view/chat_view.dart';
 import 'package:travel_app/feature/message/presentation/view/message_view.dart';
 import 'package:travel_app/feature/profile/presentation/view/profile_view.dart';

@@ -1,6 +1,6 @@
 // Corrección del SearchBarDelegate
 import 'package:flutter/material.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/search_text_field.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/search_text_field.dart';
 
 class SearchBarDelegate extends SliverPersistentHeaderDelegate {
   final String hintText;

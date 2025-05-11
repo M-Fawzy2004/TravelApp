@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 
-class CatpainTripStatusCard extends StatelessWidget {
-  const CatpainTripStatusCard({super.key});
+class TripStatusCard extends StatelessWidget {
+  const TripStatusCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class CatpainTripStatusCard extends StatelessWidget {
       ),
       color: AppColors.white,
       child: ListTile(
-        leading: Icon(statusIcon, color: statusColor, size: 28),
+        leading: Icon(statusIcon, color: statusColor, size: 28.sp),
         title: Text(
           'حالة الرحلة: $tripStatus',
           style: TextStyle(

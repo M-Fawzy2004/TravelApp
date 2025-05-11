@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/trip_form.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/trip_header.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/trip_form.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/trip_header.dart';
 
 class CustomTripFormPassenger extends StatelessWidget {
   final String type;

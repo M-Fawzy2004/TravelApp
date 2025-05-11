@@ -6,12 +6,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/widget/search_bar_delegate.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/custom_trip_form_passenger.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/custom_trip_form_passenger.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/passenger_trip_type_selector.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_filter.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_travel_sliver_grid_bloc_builder.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/passenger_trip_type_selector.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/details_location.dart';
 
 class PassengerHomeViewBody extends StatefulWidget {
   const PassengerHomeViewBody({super.key});

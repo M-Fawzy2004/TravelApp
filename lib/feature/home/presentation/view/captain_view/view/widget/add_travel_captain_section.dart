@@ -3,10 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/date_time_row.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/duration_row.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/location_row.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/price_container.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/date_time_row.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/duration_row.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/location_row.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/price_container.dart';
 
 class AddTravelCaptainSection extends StatelessWidget {
   const AddTravelCaptainSection({

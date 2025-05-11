@@ -10,21 +10,24 @@ class LocationCubit extends Cubit<LocationState> {
   final LocationRepository locationRepository;
   final Location location = Location();
   StreamSubscription<LocationData>? _locationSubscription;
+  bool _isClosed = false;
 
   LocationCubit({required this.locationRepository}) : super(LocationInitial());
 
   // Initialize location
   Future<void> initializeLocation() async {
-    // load current location
+    if (_isClosed) return;
     emit(LocationLoading());
-    // Check location permission
     try {
       if (!await _checkLocationPermission()) {
+        if (_isClosed) return;
         emit(const LocationError('يرجى السماح بالوصول إلى الموقع'));
         return;
       }
 
       final locationData = await locationRepository.getCurrentLocation();
+      if (_isClosed) return;
+
       if (locationData.latitude != null && locationData.longitude != null) {
         final currentLocation = LatLng(
           locationData.latitude!,
@@ -39,13 +42,12 @@ class LocationCubit extends Cubit<LocationState> {
             isRouteVisible: false,
           ),
         );
-
-        // Subscribe to location changes
         _subscribeToLocationChanges();
       } else {
         emit(const LocationError('فشل في الحصول على الموقع الحالي'));
       }
     } catch (e) {
+      if (_isClosed) return;
       emit(const LocationError('فشل في الحصول على الموقع الحالي'));
     }
   }
@@ -77,6 +79,8 @@ class LocationCubit extends Cubit<LocationState> {
     _locationSubscription?.cancel();
     _locationSubscription = location.onLocationChanged.listen(
       (LocationData locationData) {
+        if (_isClosed) return;
+
         if (locationData.latitude != null && locationData.longitude != null) {
           final currentLocation =
               LatLng(locationData.latitude!, locationData.longitude!);
@@ -86,26 +90,21 @@ class LocationCubit extends Cubit<LocationState> {
           }
         }
       },
-      onError: (error) {
-        // Just log the error but don't change state
-      },
+      onError: (error) {},
       cancelOnError: false,
     );
   }
 
   Future<void> searchLocation(String query) async {
-    if (query.isEmpty) return;
-
-    // Get current state before starting the loading process
+    if (query.isEmpty || _isClosed) return;
     final LocationLoaded? previousState = _getPreviousLoadedState();
-
+    if (_isClosed) return;
     emit(LocationLoading());
-
     try {
       final result = await locationRepository.searchLocation(query);
+      if (_isClosed) return;
       if (result != null) {
         if (previousState != null) {
-          // Preserve the current location when updating state
           emit(previousState.copyWith(selectedLocation: result));
         } else {
           emit(LocationLoaded(
@@ -118,21 +117,21 @@ class LocationCubit extends Cubit<LocationState> {
         }
       } else {
         emit(const LocationError('هذا الموقع غير متوفر'));
-        // Restore previous state if available
-        if (previousState != null) {
+        if (previousState != null && !_isClosed) {
           emit(previousState);
         }
       }
     } catch (e) {
-      print('🔴 Error in searchLocation: $e');
+      if (_isClosed) return;
       emit(const LocationError('حدث خطأ أثناء البحث'));
-      if (previousState != null) {
+      if (previousState != null && !_isClosed) {
         emit(previousState);
       }
     }
   }
 
   void selectLocation(LatLng point) {
+    if (_isClosed) return;
     if (state is LocationLoaded) {
       final currentState = state as LocationLoaded;
       emit(currentState.copyWith(selectedLocation: point));
@@ -148,23 +147,22 @@ class LocationCubit extends Cubit<LocationState> {
   }
 
   Future<void> getRoute(LatLng destination) async {
-    if (state is! LocationLoaded) return;
-
+    if (_isClosed || state is! LocationLoaded) return;
     final currentState = state as LocationLoaded;
     if (currentState.currentLocation == null) {
+      if (_isClosed) return;
       emit(const LocationError('يجب تحديد موقعك الحالي أولاً'));
-      emit(currentState);
+      if (!_isClosed) emit(currentState);
       return;
     }
-
+    if (_isClosed) return;
     emit(LocationLoading());
-
     try {
       final routePoints = await locationRepository.getRoute(
         currentState.currentLocation!,
         destination,
       );
-
+      if (_isClosed) return;
       if (routePoints.isNotEmpty) {
         emit(LocationLoaded(
           currentLocation: currentState.currentLocation,
@@ -175,15 +173,17 @@ class LocationCubit extends Cubit<LocationState> {
         ));
       } else {
         emit(const LocationError('لا يمكن إيجاد مسار للوجهة المحددة'));
-        emit(currentState);
+        if (!_isClosed) emit(currentState);
       }
     } catch (e) {
+      if (_isClosed) return;
       emit(LocationError('حدث خطأ أثناء تحميل المسار: $e'));
-      emit(currentState);
+      if (!_isClosed) emit(currentState);
     }
   }
 
   void clearRoute() {
+    if (_isClosed) return;
     if (state is LocationLoaded) {
       final currentState = state as LocationLoaded;
       emit(currentState.copyWith(
@@ -192,11 +192,6 @@ class LocationCubit extends Cubit<LocationState> {
         isRouteVisible: false,
       ));
     }
-  }
-
-  void moveToCurrentLocation() {
-    // This method doesn't change state, just signals UI to move map
-    // Implementation handled in the UI
   }
 
   LocationLoaded? _getPreviousLoadedState() {
@@ -208,6 +203,7 @@ class LocationCubit extends Cubit<LocationState> {
 
   @override
   Future<void> close() {
+    _isClosed = true;
     _locationSubscription?.cancel();
     return super.close();
   }
