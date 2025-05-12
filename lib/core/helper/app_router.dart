@@ -8,6 +8,7 @@ import 'package:travel_app/feature/message/presentation/view/chat_view.dart';
 import 'package:travel_app/feature/message/presentation/view/message_view.dart';
 import 'package:travel_app/feature/profile/presentation/view/profile_view.dart';
 import 'package:travel_app/feature/share_location/presentation/view/share_location_view.dart';
+import 'package:travel_app/feature/splash/view/splash_view.dart';
 import 'package:travel_app/feature/trip_booking/presentation/view/trip_booking_view.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/details_trip_view.dart';
 import 'package:travel_app/feature/home/presentation/view/main_view.dart';
@@ -17,6 +18,7 @@ import 'package:travel_app/feature/onboarding/onboarding_view.dart';
 import 'package:travel_app/feature/user_profile/view/user_profile.dart';
 
 abstract class AppRouter {
+  static const onboardingView = '/onboardingView';
   static const loginView = '/loginView';
   static const otpVerf = '/otpVerf';
   static const mainView = '/mainView';
@@ -36,7 +38,7 @@ abstract class AppRouter {
     redirect: (context, state) {
       final user = FirebaseAuth.instance.currentUser;
       final isLoggedIn = user != null;
-      final isAtRoot = state.matchedLocation == '/';
+      final isAtRoot = state.matchedLocation == onboardingView;
       final isAtLogin = state.matchedLocation == loginView;
       final isAtOtp = state.matchedLocation == otpVerf;
 
@@ -53,6 +55,12 @@ abstract class AppRouter {
     routes: [
       GoRoute(
         path: '/',
+        builder: (BuildContext context, GoRouterState state) {
+          return const SplashView();
+        },
+      ),
+      GoRoute(
+        path: onboardingView,
         builder: (BuildContext context, GoRouterState state) {
           return const OnboardingView();
         },
