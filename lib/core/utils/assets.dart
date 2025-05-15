@@ -10,6 +10,10 @@ class Assets {
   /// assets/images/booking_logo.png
   static const String imagesBookingLogo = "assets/images/booking_logo.png";
 
+  /// Assets for imagesFeatureTravel
+  /// assets/images/feature_travel.jpg
+  static const String imagesFeatureTravel = "assets/images/feature_travel.jpg";
+
   /// Assets for imagesGoogleLogo
   /// assets/images/google_logo.png
   static const String imagesGoogleLogo = "assets/images/google_logo.png";

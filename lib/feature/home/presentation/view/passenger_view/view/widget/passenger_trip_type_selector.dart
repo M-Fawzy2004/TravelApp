@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_filter_item.dart';
 
 class PassengerTripTypeSelector extends StatelessWidget {
@@ -28,7 +29,7 @@ class PassengerTripTypeSelector extends StatelessWidget {
             child: CategoryFilterItem(
               text: tripTypes[index],
               isSelected: selectedTripType == tripTypes[index],
-              color: index == 0 ? Colors.blue : Colors.green,
+              color: AppColors.primaryColor,
             ),
           ),
         ),

@@ -1,13 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/core/helper/app_router.dart';
-import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
-
-import 'add_trip_button.dart';
 
 class CustomAddTravel extends StatelessWidget {
   const CustomAddTravel({super.key});
@@ -19,42 +17,47 @@ class CustomAddTravel extends StatelessWidget {
       mini: true,
       backgroundColor: AppColors.primaryColor,
       onPressed: () {
-        showModalBottomSheet(
+        showCupertinoModalPopup(
           context: context,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(10.r),
+          builder: (context) => CupertinoActionSheet(
+            title: Text(
+              'إضافة رحلة',
+              style: Styles.font18BlackBold.copyWith(
+                fontFamily: 'font',
+              ),
             ),
-          ),
-          backgroundColor: AppColors.grey,
-          builder: (context) => Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SizedBox(
-              height: 120.h,
-              width: double.infinity,
-              child: Column(
-                children: [
-                  Container(
-                    height: 10.h,
-                    width: 70.w,
-                    decoration: BoxDecoration(
-                      color: AppColors.grey,
-                      borderRadius: BorderRadius.circular(20.r),
-                    ),
+            message: Text(
+              'هل تريد إضافة وجهتك القادمة أو عرض توصيلك؟',
+              style: Styles.font16BlackBold.copyWith(
+                color: AppColors.lightGrey,
+                fontFamily: 'font',
+              ),
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              CupertinoActionSheetAction(
+                onPressed: () {
+                  context.pop();
+                  context.push(AppRouter.addTravel);
+                },
+                child: Text(
+                  'أضف رحلتك الآن',
+                  style: Styles.font16BlackBold.copyWith(
+                    color: AppColors.primaryColor,
+                    fontFamily: 'font',
                   ),
-                  heightBox(10),
-                  Text(
-                    'أضف الوجهه القادمه',
-                    style: Styles.font20BlackBold,
-                  ),
-                  heightBox(10),
-                  AddTripButton(
-                    onTap: () {
-                      context.push(AppRouter.addTravel);
-                    },
-                    text: 'أضف رحلتك أو عرض توصيلك',
-                  ),
-                ],
+                ),
+              ),
+            ],
+            cancelButton: CupertinoActionSheetAction(
+              onPressed: () => Navigator.of(context).pop(),
+              isDefaultAction: true,
+              child: Text(
+                'إلغاء',
+                style: Styles.font16BlackBold.copyWith(
+                  color: Colors.red,
+                  fontFamily: 'font',
+                ),
               ),
             ),
           ),

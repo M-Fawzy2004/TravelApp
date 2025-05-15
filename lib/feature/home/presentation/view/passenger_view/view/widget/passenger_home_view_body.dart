@@ -1,17 +1,17 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/widget/search_bar_delegate.dart';
-import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/custom_trip_form_passenger.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/details_location.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/custom_trip_form_passenger.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/featured_travel_list_view.dart';
 import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/passenger_trip_type_selector.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_filter.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_travel_sliver_grid_bloc_builder.dart';
-import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/details_location.dart';
 
 class PassengerHomeViewBody extends StatefulWidget {
   const PassengerHomeViewBody({super.key});
@@ -103,6 +103,8 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
                 ),
                 SliverToBoxAdapter(child: heightBox(10)),
                 const SliverToBoxAdapter(child: DetailsLocation()),
+                SliverToBoxAdapter(child: heightBox(20)),
+                const SliverToBoxAdapter(child: FeaturedTravelListView()),
                 SliverToBoxAdapter(child: heightBox(20)),
                 SliverToBoxAdapter(
                   child: PassengerTripTypeSelector(
