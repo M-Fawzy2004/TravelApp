@@ -8,10 +8,8 @@ import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/captain_home_header.dart';
-import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/captain_trip_type_selector.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_travel_sliver_grid_bloc_builder.dart';
-import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/custom_trip_form_captain.dart';
-import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/details_location.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
 
 class CaptainHomeViewBody extends StatefulWidget {
   const CaptainHomeViewBody({super.key});
@@ -101,36 +99,13 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
                 SliverToBoxAdapter(child: heightBox(20)),
                 const SliverToBoxAdapter(child: DetailsLocation()),
                 SliverToBoxAdapter(child: heightBox(20)),
-                SliverToBoxAdapter(
-                  child: CaptainTripTypeSelector(
-                    selectedTripType: selectedTripType,
-                    onTripTypeChanged: (value) {
-                      setState(() {
-                        selectedTripType = value;
-                      });
-                    },
-                  ),
-                ),
                 SliverToBoxAdapter(child: heightBox(10)),
-                _buildTripContent(),
+                const CategorySliverGridGridBlocBuilder(),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  Widget _buildTripContent() {
-    if (selectedTripType == 'رحلاتي') {
-      return const CategorySliverGridGridBlocBuilder();
-    } else {
-      return SliverToBoxAdapter(
-        child: SizedBox(
-          height: 500.h, // Define a fixed height
-          child: const CustomTripFormCaptain(),
-        ),
-      );
-    }
   }
 }

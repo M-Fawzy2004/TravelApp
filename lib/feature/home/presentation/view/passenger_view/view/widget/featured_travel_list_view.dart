@@ -20,10 +20,10 @@ class FeaturedTravelListView extends StatelessWidget {
           child: ListView.separated(
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            itemCount: 7,
+            itemCount: 4,
             separatorBuilder: (_, __) => widthBox(10),
             itemBuilder: (_, index) {
-              if (index == 6) {
+              if (index == 3) {
                 return const ViewAllFeatured();
               } else {
                 return const FeaturedTravel();

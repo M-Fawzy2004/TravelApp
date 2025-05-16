@@ -10,12 +10,18 @@ class RoleDropdownTextField extends StatefulWidget {
   final Function(String?)? onRoleSelected;
   final Function(String?)? onVehicleTypeSelected;
   final TextEditingController? seatCountController;
+  final TextEditingController? brandController;
+  final TextEditingController? modelController;
+  final TextEditingController? licenseController;
 
   const RoleDropdownTextField({
     super.key,
     this.onRoleSelected,
     this.onVehicleTypeSelected,
     this.seatCountController,
+    this.brandController,
+    this.modelController,
+    this.licenseController,
   });
 
   @override
@@ -46,9 +52,18 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
           borderRadius: BorderRadius.circular(10.r),
           items: [
             DropdownMenuItem(
-              value: 'كابتن',
+              value: 'كابتن رحلات',
               child: Text(
-                'كابتن',
+                'كابتن رحلات',
+                style: Styles.font16BlackBold.copyWith(
+                  fontFamily: 'font',
+                ),
+              ),
+            ),
+            DropdownMenuItem(
+              value: 'كابتن توصيل مباشر',
+              child: Text(
+                'كابتن توصيل مباشر',
                 style: Styles.font16BlackBold.copyWith(
                   fontFamily: 'font',
                 ),
@@ -77,7 +92,8 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
             fillColor: AppColors.white,
           ),
         ),
-        if (selectedRole == 'كابتن') ...[
+        if (selectedRole == 'كابتن رحلات' ||
+            selectedRole == 'كابتن توصيل مباشر') ...[
           heightBox(20),
           DropdownButtonFormField<String>(
             dropdownColor: AppColors.white,
@@ -106,6 +122,21 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
               filled: true,
               fillColor: AppColors.white,
             ),
+          ),
+          heightBox(20),
+          CustomTextFormField(
+            hintText: 'ماركة السيارة',
+            controller: widget.brandController,
+          ),
+          heightBox(20),
+          CustomTextFormField(
+            hintText: 'موديل السيارة',
+            controller: widget.modelController,
+          ),
+          heightBox(20),
+          CustomTextFormField(
+            hintText: 'رقم رخصة السيارة',
+            controller: widget.licenseController,
           ),
           heightBox(20),
           CustomTextFormField(

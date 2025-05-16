@@ -30,7 +30,6 @@ class _AddTravelFormState extends State<AddTravelForm> {
 
   final List<String> _travelTypes = [
     'رحلة خاصة',
-    'توصيل',
     'شحن أغراض',
   ];
 

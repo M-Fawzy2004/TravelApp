@@ -1,7 +1,7 @@
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
 class UserModel extends UserEntity {
-  UserModel({
+  const UserModel({
     required super.id,
     super.firstName,
     super.lastName,
@@ -11,6 +11,9 @@ class UserModel extends UserEntity {
     super.role,
     super.vehicleType,
     super.seatCount,
+    super.vehicleBrand,
+    super.vehicleModel,
+    super.vehicleLicense,
     super.isEmailVerified,
     super.latitude,
     super.longitude,
@@ -28,6 +31,9 @@ class UserModel extends UserEntity {
       role: entity.role ?? UserRole.passenger,
       vehicleType: entity.vehicleType ?? VehicleType.privateCar,
       seatCount: entity.seatCount,
+      vehicleBrand: entity.vehicleBrand,
+      vehicleModel: entity.vehicleModel,
+      vehicleLicense: entity.vehicleLicense,
       isEmailVerified: entity.isEmailVerified,
       latitude: entity.latitude,
       longitude: entity.longitude,
@@ -56,6 +62,9 @@ class UserModel extends UserEntity {
             )
           : null,
       seatCount: json['seatCount'],
+      vehicleBrand: json['vehicleBrand'],
+      vehicleModel: json['vehicleModel'],
+      vehicleLicense: json['vehicleLicense'],
       isEmailVerified: json['isEmailVerified'] ?? false,
       latitude: json['latitude']?.toDouble(),
       longitude: json['longitude']?.toDouble(),
@@ -74,6 +83,9 @@ class UserModel extends UserEntity {
       'role': role?.toString().split('.').last,
       'vehicleType': vehicleType?.toString().split('.').last,
       'seatCount': seatCount,
+      'vehicleBrand': vehicleBrand,
+      'vehicleModel': vehicleModel,
+      'vehicleLicense': vehicleLicense,
       'isEmailVerified': isEmailVerified,
       'latitude': latitude,
       'longitude': longitude,
@@ -81,7 +93,6 @@ class UserModel extends UserEntity {
     };
   }
 
-  // Helper method to create a new model with updated location
   UserModel copyWithLocation({
     required double latitude,
     required double longitude,
@@ -97,6 +108,9 @@ class UserModel extends UserEntity {
       role: role,
       vehicleType: vehicleType,
       seatCount: seatCount,
+      vehicleBrand: vehicleBrand,
+      vehicleModel: vehicleModel,
+      vehicleLicense: vehicleLicense,
       isEmailVerified: isEmailVerified,
       latitude: latitude,
       longitude: longitude,

@@ -133,4 +133,4 @@ class TripModel {
 }
 
 // Trip Type Enum (based on the options in the form)
-enum TripType { specialTrip, delivery, cargoShipping }
+enum TripType { specialTrip, cargoShipping }

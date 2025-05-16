@@ -70,8 +70,6 @@ Color _getTripTypeColor(TripType type) {
   switch (type) {
     case TripType.specialTrip:
       return Colors.blue;
-    case TripType.delivery:
-      return Colors.green;
     case TripType.cargoShipping:
       return Colors.orange;
   }

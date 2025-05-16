@@ -18,6 +18,8 @@ class AuthService {
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
   final GoogleSignIn _googleSignIn;
+  
+  UserEntity? _temporaryUserData;
 
   AuthService({
     required FirebaseAuth auth,
@@ -26,6 +28,22 @@ class AuthService {
   })  : _auth = auth,
         _firestore = firestore,
         _googleSignIn = googleSignIn;
+
+  void storeTemporaryUserData(UserEntity user) {
+    _temporaryUserData = user;
+  }
+
+  Future<void> confirmUserData() async {
+    if (_temporaryUserData != null) {
+      await saveUserData(_temporaryUserData!);
+      _temporaryUserData = null;
+    }
+  }
+
+  // إلغاء البيانات المؤقتة
+  void cancelTemporaryUserData() {
+    _temporaryUserData = null;
+  }
 
   Future<Map<String, dynamic>?> getUserData(String userId) async {
     try {
@@ -71,12 +89,10 @@ class AuthService {
       await _auth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
-          // لو الجهاز تحقق تلقائيًا
           final userCredential = await _auth.signInWithCredential(credential);
           final user = userCredential.user;
           if (user != null) {
             final userModel = await _getOrCreateUser(user);
-            await saveUserData(userModel); // ✅ حفظ البيانات
             completer.complete(userModel);
           } else {
             completer
@@ -123,7 +139,6 @@ class AuthService {
 
       if (user != null) {
         final userModel = await _getOrCreateUser(user);
-        await saveUserData(userModel);
         return userModel;
       } else {
         throw Exception('المستخدم فارغ بعد التحقق');
@@ -158,7 +173,6 @@ class AuthService {
       }
 
       final userModel = await _getOrCreateUser(user);
-      await saveUserData(userModel);
       return userModel;
     } catch (e) {
       throw Exception(e.toString());
@@ -203,7 +217,6 @@ class AuthService {
               isEmailVerified: user.emailVerified,
             );
 
-        await saveUserData(userModel);
         return userModel;
       } else {
         throw Exception('فشل تسجيل الدخول باستخدام Apple');
@@ -244,6 +257,7 @@ class AuthService {
       await _auth.signOut();
       await _googleSignIn.signOut();
       await Prefs.remove(kUserData);
+      _temporaryUserData = null; 
     } catch (e) {
       throw Exception(e.toString());
     }

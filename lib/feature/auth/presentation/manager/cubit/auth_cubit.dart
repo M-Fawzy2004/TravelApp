@@ -66,12 +66,57 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  Future<void> storeUserTemporarily(UserEntity user) async {
+    emit(AuthLoading());
+    try {
+      authService.storeTemporaryUserData(user);
+      emit(AuthTemporarilySaved(user));
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  Future<void> confirmUserData() async {
+    emit(AuthLoading());
+    try {
+      await authService.confirmUserData();
+      final currentUser = await authService.getCurrentUser();
+      if (currentUser != null) {
+        emit(AuthAuthenticated(currentUser));
+      } else {
+        emit(AuthInitial());
+      }
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  void cancelTemporaryUserData() {
+    authService.cancelTemporaryUserData();
+  }
+
+  bool isValidEgyptianLicense(String? license) {
+    if (license == null || license.isEmpty) {
+      return false;
+    }
+
+    final cleanLicense = license.trim();
+
+    final hasArabicLetters = RegExp(r'[\u0600-\u06FF]').hasMatch(cleanLicense);
+
+    final hasNumbers = RegExp(r'[0-9]').hasMatch(cleanLicense);
+
+    return hasArabicLetters &&
+        hasNumbers &&
+        cleanLicense.length >= 3 &&
+        cleanLicense.length <= 10;
+  }
+
   Future<void> saveUser(UserEntity user) async {
     emit(AuthLoading());
     try {
       await authService.saveUserData(user);
       emit(AuthSaved(user));
-      // Update to authenticated state with updated user data
       emit(AuthAuthenticated(user));
     } catch (e) {
       emit(AuthError(e.toString()));
@@ -82,10 +127,8 @@ class AuthCubit extends Cubit<AuthState> {
       double longitude, String locationName) async {
     emit(AuthLoading());
     try {
-      // Get current user
       final currentUser = await authService.getCurrentUser();
       if (currentUser != null) {
-        // Update user with location data
         final updatedUser = currentUser.copyWith(
           latitude: latitude,
           longitude: longitude,

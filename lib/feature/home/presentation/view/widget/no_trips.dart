@@ -20,7 +20,11 @@ class NoTrips extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            heightBox(200),
+            if (role == UserRole.passenger) ...[
+              heightBox(50)
+            ] else ...[
+              heightBox(200)
+            ],
             Text(
               role == UserRole.passenger
                   ? "لا توجد رحلات متاحة حالياً"

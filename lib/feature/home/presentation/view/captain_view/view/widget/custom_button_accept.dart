@@ -7,8 +7,12 @@ class CustomButtonAccept extends StatelessWidget {
   const CustomButtonAccept({
     super.key,
     this.onAccept,
+    required this.title,
+    this.backgroundColor,
   });
   final VoidCallback? onAccept;
+  final String title;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,20 +25,17 @@ class CustomButtonAccept extends StatelessWidget {
         ),
         overlayColor:
             WidgetStateProperty.all(AppColors.darkGrey.withOpacity(.2)),
-        backgroundColor: const WidgetStatePropertyAll(
-          AppColors.primaryColor,
+        backgroundColor: WidgetStatePropertyAll(
+          backgroundColor ?? AppColors.primaryColor,
         ),
         padding: WidgetStateProperty.all<EdgeInsets>(
-          EdgeInsets.symmetric(
-            horizontal: 12.w,
-            vertical: 14.h,
-          ),
+          EdgeInsets.symmetric(vertical: 20.h),
         ),
       ),
       onPressed: onAccept,
       child: FittedBox(
         child: Text(
-          'قبول',
+          title,
           style: Styles.font14DarkGreyBold.copyWith(
             color: AppColors.white,
           ),

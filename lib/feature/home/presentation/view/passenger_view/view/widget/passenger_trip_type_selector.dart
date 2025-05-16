@@ -15,7 +15,7 @@ class PassengerTripTypeSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<String> tripTypes = ['توصيل مباشر', 'مجدولة'];
+    List<String> tripTypes = ['توصيل مباشر', 'رحلات'];
 
     return Row(
       children: List.generate(

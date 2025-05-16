@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/core/helper/spacing.dart';
-import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/trip_form.dart';
-import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/trip_header.dart';
+import 'package:travel_app/feature/home/presentation/view/passenger_directory/presentation/view/widget/ride_request_ui.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/ride_map_directory.dart';
 
 class CustomTripFormPassenger extends StatelessWidget {
   final String type;
@@ -11,14 +10,17 @@ class CustomTripFormPassenger extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 50.h, left: 10.w, right: 10.w),
-      child: Column(
+    return SizedBox(
+      height: 0.7.sh,
+      child: const Stack(
         children: [
-          TripHeader(type: type),
-          heightBox(10),
-          const TripForm(),
-          heightBox(50),
+          RideMapDirectory(),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: RideRequestUI(),
+          ),
         ],
       ),
     );

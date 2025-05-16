@@ -5,7 +5,6 @@ import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/utils/top_snakbar_app.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/core/widget/custom_text_form_field.dart';
-import 'package:travel_app/core/widget/icon_back.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:travel_app/feature/auth/presentation/view/widget/phone_number_input_section.dart';
@@ -23,7 +22,11 @@ class _UserProfileBodyState extends State<UserProfileBody> {
   final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _seatCountController = TextEditingController();
+  final TextEditingController _brandController = TextEditingController();
+  final TextEditingController _modelController = TextEditingController();
+  final TextEditingController _licenseController = TextEditingController();
 
+  String? selectedRoleText;
   UserRole? selectedRole;
   VehicleType? selectedVehicleType;
 
@@ -60,6 +63,14 @@ class _UserProfileBodyState extends State<UserProfileBody> {
       if (user.seatCount != null) {
         _seatCountController.text = user.seatCount.toString();
       }
+      // Set the appropriate role text based on the role enum
+      if (user.role == UserRole.captain) {
+        selectedRoleText = 'كابتن رحلات';
+      } else if (user.role == UserRole.directDelivery) {
+        selectedRoleText = 'كابتن توصيل مباشر';
+      } else if (user.role == UserRole.passenger) {
+        selectedRoleText = 'راكب';
+      }
     }
   }
 
@@ -89,6 +100,19 @@ class _UserProfileBodyState extends State<UserProfileBody> {
       return;
     }
 
+    if ((selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) &&
+        (selectedVehicleType == null || 
+         _brandController.text.isEmpty || 
+         _modelController.text.isEmpty || 
+         _licenseController.text.isEmpty || 
+         _seatCountController.text.isEmpty)) {
+      showCustomTopSnackBar(
+        context: context,
+        message: 'الرجاء إدخال جميع بيانات المركبة',
+      );
+      return;
+    }
+
     setState(() {
       isLoading = true;
     });
@@ -103,10 +127,20 @@ class _UserProfileBodyState extends State<UserProfileBody> {
         lastName: _lastNameController.text,
         city: _cityController.text,
         role: selectedRole,
-        vehicleType:
-            selectedRole == UserRole.captain ? selectedVehicleType : null,
-        seatCount: selectedRole == UserRole.captain
-            ? int.tryParse(_seatCountController.text)
+        vehicleType: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
+            ? selectedVehicleType 
+            : null,
+        seatCount: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
+            ? int.tryParse(_seatCountController.text) 
+            : null,
+        vehicleBrand: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
+            ? _brandController.text 
+            : null,
+        vehicleModel: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
+            ? _modelController.text 
+            : null,
+        vehicleLicense: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
+            ? _licenseController.text 
             : null,
         isEmailVerified: authState.user.isEmailVerified,
       );
@@ -130,10 +164,6 @@ class _UserProfileBodyState extends State<UserProfileBody> {
       physics: const BouncingScrollPhysics(),
       child: Column(
         children: [
-          const Align(
-            alignment: Alignment.topRight,
-            child: IconBack(),
-          ),
           heightBox(20),
           Row(
             children: [
@@ -170,6 +200,7 @@ class _UserProfileBodyState extends State<UserProfileBody> {
           RoleDropdownTextField(
             onRoleSelected: (role) {
               setState(() {
+                selectedRoleText = role;
                 selectedRole = _parseRole(role);
               });
             },
@@ -179,6 +210,9 @@ class _UserProfileBodyState extends State<UserProfileBody> {
               });
             },
             seatCountController: _seatCountController,
+            brandController: _brandController,
+            modelController: _modelController,
+            licenseController: _licenseController,
           ),
           heightBox(20),
           CustomButton(
@@ -192,7 +226,9 @@ class _UserProfileBodyState extends State<UserProfileBody> {
 
   UserRole? _parseRole(String? role) {
     if (role == null) return null;
-    return role == 'كابتن' ? UserRole.captain : UserRole.passenger;
+    if (role == 'كابتن رحلات') return UserRole.captain;
+    if (role == 'كابتن توصيل مباشر') return UserRole.directDelivery;
+    return UserRole.passenger;
   }
 
   VehicleType? _parseVehicleType(String? type) {

@@ -32,6 +32,8 @@ class TextFieldRow extends StatelessWidget {
             Expanded(
               flex: 5,
               child: CustomTextFormField(
+                onChanged: (value) {},
+                onSaved: (saved){},
                 hintText: hintText,
                 fillColor: AppColors.whitewithOpacity,
                 keyboardType: keyboardType,

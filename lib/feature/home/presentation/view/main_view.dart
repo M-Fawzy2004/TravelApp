@@ -6,6 +6,8 @@ import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/services/get_it_setup.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_delivery_directory/presentation/view/captain_delivery_directory_view.dart';
+import 'package:travel_app/feature/home/presentation/view/captain_delivery_directory/presentation/view/record_view.dart';
 import 'package:travel_app/feature/home/presentation/view/captain_view/view/captain_home_view.dart';
 import 'package:travel_app/feature/home/presentation/view/passenger_view/view/passenger_home_view.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/custom_bottom_nav_bar.dart';
@@ -35,7 +37,11 @@ class _MainViewState extends State<MainView> {
             index: screenIndex,
             children: [
               _buildHomeScreen(role),
-              const TripBookingView(),
+              if (role == UserRole.captain || role == UserRole.passenger) ...[
+                const TripBookingView(),
+              ] else ...[
+                const RecordView(),
+              ],
               const MessageView(),
               const ProfileView(),
             ],
@@ -53,7 +59,7 @@ class _MainViewState extends State<MainView> {
                     screenIndex = index;
                   });
                 },
-                role: role!,
+                role: role ?? UserRole.passenger,
               ),
             ),
           ),
@@ -68,13 +74,14 @@ class _MainViewState extends State<MainView> {
         create: (_) => getIt<TripCubit>()..getAllTrips(),
         child: const PassengerHomeView(),
       );
-    } else {
+    } else if (role == UserRole.captain) {
       return BlocProvider(
         create: (_) =>
             getIt<TripCubit>()..getTripsByCaptainId(getUser()!.id.toString()),
         child: const CaptainHomeView(),
       );
+    } else {
+      return const CaptainDeliveryDirectoryView();
     }
   }
-
 }

@@ -10,7 +10,6 @@ class PassengerHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
       body: SafeArea(
         child: PassengerHomeViewBody(),
       ),

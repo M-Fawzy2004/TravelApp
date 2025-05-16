@@ -35,7 +35,6 @@ class _EditTravelFormState extends State<EditTravelForm> {
 
   final List<String> _travelTypes = [
     'رحلة خاصة',
-    'توصيل',
     'شحن أغراض',
   ];
 
@@ -53,9 +52,6 @@ class _EditTravelFormState extends State<EditTravelForm> {
     switch (widget.trip.tripType) {
       case TripType.specialTrip:
         _selectedType = 'رحلة خاصة';
-        break;
-      case TripType.delivery:
-        _selectedType = 'توصيل';
         break;
       case TripType.cargoShipping:
         _selectedType = 'شحن أغراض';

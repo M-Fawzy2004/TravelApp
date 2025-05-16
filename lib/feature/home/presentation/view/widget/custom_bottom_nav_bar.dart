@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
@@ -18,6 +19,8 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final role = getUser()?.role;
+
     return Container(
       margin: EdgeInsets.only(bottom: 10.h, left: 10.w, right: 10.w),
       decoration: BoxDecoration(
@@ -46,11 +49,19 @@ class CustomBottomNavBar extends StatelessWidget {
               'الرئيسيه',
               0,
             ),
-            _buildNavItem(
-              FontAwesomeIcons.car,
-              'الحجز',
-              1,
-            ),
+            if (role == UserRole.captain || role == UserRole.passenger) ...[
+              _buildNavItem(
+                FontAwesomeIcons.car,
+                'الحجز',
+                1,
+              ),
+            ] else ...[
+              _buildNavItem(
+                FontAwesomeIcons.clipboardList,
+                'السجل',
+                1,
+              ),
+            ],
             _buildNavItem(
               FontAwesomeIcons.facebookMessenger,
               'الرسائل',

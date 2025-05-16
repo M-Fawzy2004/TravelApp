@@ -36,7 +36,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
             if (animationComplete)
               AnimatedOpacity(
                 opacity: 1.0,
-                duration: const Duration(seconds: 1),
+                duration: const Duration(milliseconds: 600),
                 child: Text(
                   'DEV. Mohamed Fawzy',
                   style: Styles.font14GreyExtraBold,
@@ -57,7 +57,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
         if (i == word.length - 1) {
           Future.delayed(
-            const Duration(seconds: 1),
+            const Duration(milliseconds: 600),
             () {
               setState(() {
                 animationComplete = true;

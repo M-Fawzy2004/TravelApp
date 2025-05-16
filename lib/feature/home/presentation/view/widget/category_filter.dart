@@ -16,7 +16,6 @@ class _CategorySelectorState extends State<CategoryFilter> {
   List<String> filterText = [
     'الكل',
     'رحلة خاصه',
-    'توصيل',
     'شحن أغراض',
   ];
 
@@ -61,10 +60,7 @@ void _filterTrips(int index, BuildContext context) {
     case 1: // Special Trip
       tripCubit.filterTripsByType(TripType.specialTrip);
       break;
-    case 2: // Delivery
-      tripCubit.filterTripsByType(TripType.delivery);
-      break;
-    case 3: // Cargo Shipping
+    case 2: // Cargo Shipping
       tripCubit.filterTripsByType(TripType.cargoShipping);
       break;
   }
