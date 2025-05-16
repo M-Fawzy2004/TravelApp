@@ -19,7 +19,6 @@ class _CaptainAvailabilityTileState extends State<CaptainAvailabilityTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.r),
         color: AppColors.white,

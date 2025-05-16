@@ -34,8 +34,8 @@ class _CaptainDeliveryDirectoryViewBodyState
           const RideMapDirectory(),
           Positioned(
             top: 60.h,
-            left: 130.w,
-            right: 130.w,
+            left: 100.w,
+            right: 100.w,
             child: const CaptainAvailabilityTile(),
           ),
           if (!_isOrderAccepted)

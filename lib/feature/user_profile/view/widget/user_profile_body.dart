@@ -100,12 +100,13 @@ class _UserProfileBodyState extends State<UserProfileBody> {
       return;
     }
 
-    if ((selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) &&
-        (selectedVehicleType == null || 
-         _brandController.text.isEmpty || 
-         _modelController.text.isEmpty || 
-         _licenseController.text.isEmpty || 
-         _seatCountController.text.isEmpty)) {
+    if ((selectedRole == UserRole.captain ||
+            selectedRole == UserRole.directDelivery) &&
+        (selectedVehicleType == null ||
+            _brandController.text.isEmpty ||
+            _modelController.text.isEmpty ||
+            _licenseController.text.isEmpty ||
+            _seatCountController.text.isEmpty)) {
       showCustomTopSnackBar(
         context: context,
         message: 'الرجاء إدخال جميع بيانات المركبة',
@@ -127,20 +128,25 @@ class _UserProfileBodyState extends State<UserProfileBody> {
         lastName: _lastNameController.text,
         city: _cityController.text,
         role: selectedRole,
-        vehicleType: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
-            ? selectedVehicleType 
+        vehicleType: (selectedRole == UserRole.captain ||
+                selectedRole == UserRole.directDelivery)
+            ? selectedVehicleType
             : null,
-        seatCount: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
-            ? int.tryParse(_seatCountController.text) 
+        seatCount: (selectedRole == UserRole.captain ||
+                selectedRole == UserRole.directDelivery)
+            ? int.tryParse(_seatCountController.text)
             : null,
-        vehicleBrand: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
-            ? _brandController.text 
+        vehicleBrand: (selectedRole == UserRole.captain ||
+                selectedRole == UserRole.directDelivery)
+            ? _brandController.text
             : null,
-        vehicleModel: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
-            ? _modelController.text 
+        vehicleModel: (selectedRole == UserRole.captain ||
+                selectedRole == UserRole.directDelivery)
+            ? _modelController.text
             : null,
-        vehicleLicense: (selectedRole == UserRole.captain || selectedRole == UserRole.directDelivery) 
-            ? _licenseController.text 
+        vehicleLicense: (selectedRole == UserRole.captain ||
+                selectedRole == UserRole.directDelivery)
+            ? _licenseController.text
             : null,
         isEmailVerified: authState.user.isEmailVerified,
       );

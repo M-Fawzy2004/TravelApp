@@ -18,7 +18,7 @@ class AuthService {
   final FirebaseAuth _auth;
   final FirebaseFirestore _firestore;
   final GoogleSignIn _googleSignIn;
-  
+
   UserEntity? _temporaryUserData;
 
   AuthService({
@@ -40,7 +40,6 @@ class AuthService {
     }
   }
 
-  // إلغاء البيانات المؤقتة
   void cancelTemporaryUserData() {
     _temporaryUserData = null;
   }
@@ -49,11 +48,13 @@ class AuthService {
     try {
       final docSnapshot = await _firestore.collection(kUsers).doc(userId).get();
       if (docSnapshot.exists) {
+        print("Firebase document exists for user $userId");
         return docSnapshot.data();
       }
+      print("No Firebase document found for user $userId");
       return null;
     } catch (e) {
-      print('Error getting user data: $e');
+      print('Error getting user data from Firestore: $e');
       return null;
     }
   }
@@ -233,7 +234,10 @@ class AuthService {
       await _firestore.collection(kUsers).doc(user.id).set(userModel.toJson());
       final userModelJson = jsonEncode(userModel.toJson());
       await Prefs.setString(kUserData, userModelJson);
+      print(
+          "AuthService: User data saved to SharedPreferences and Firestore, ID: ${user.id}, role: ${user.role}");
     } catch (e) {
+      print("AuthService: Error saving user data: $e");
       throw Exception(e.toString());
     }
   }
@@ -241,12 +245,42 @@ class AuthService {
   // Get current user
   Future<UserEntity?> getCurrentUser() async {
     try {
+      // Try to get from SharedPreferences first (faster)
+      final userData = Prefs.getString(kUserData);
+      if (userData.isNotEmpty) {
+        try {
+          final user = UserModel.fromJson(jsonDecode(userData));
+          if (user.id.isNotEmpty) {
+            print(
+                "AuthService: Retrieved user from SharedPreferences, ID: ${user.id}");
+            return user;
+          }
+        } catch (e) {
+          print("AuthService: Error parsing stored user data: $e");
+          // Continue to try from Firebase
+        }
+      }
+
+      // If SharedPreferences failed, try from Firebase Auth
       final user = _auth.currentUser;
       if (user != null) {
-        return await _getUserFromFirestore(user.uid);
+        print("AuthService: Current Firebase Auth user found: ${user.uid}");
+        final userData = await _getUserFromFirestore(user.uid);
+        if (userData != null) {
+          // Save to preferences for future fast access
+          final userModelJson = jsonEncode(userData.toJson());
+          await Prefs.setString(kUserData, userModelJson);
+          return userData;
+        } else {
+          print(
+              "AuthService: No user data found in Firestore for current user");
+        }
+      } else {
+        print("AuthService: No current Firebase Auth user found");
       }
       return null;
     } catch (e) {
+      print("AuthService: Error in getCurrentUser: $e");
       throw Exception(e.toString());
     }
   }
@@ -257,8 +291,10 @@ class AuthService {
       await _auth.signOut();
       await _googleSignIn.signOut();
       await Prefs.remove(kUserData);
-      _temporaryUserData = null; 
+      _temporaryUserData = null;
+      print("AuthService: User signed out successfully");
     } catch (e) {
+      print("AuthService: Error during sign out: $e");
       throw Exception(e.toString());
     }
   }
@@ -270,10 +306,13 @@ class AuthService {
       if (doc.exists && doc.data() != null) {
         final userData = doc.data()!;
         userData['id'] = userId;
+        print("AuthService: User data found in Firestore for ID: $userId");
         return UserModel.fromJson(userData);
       }
+      print("AuthService: No user document found in Firestore for ID: $userId");
       return null;
     } catch (e) {
+      print("AuthService: Error retrieving user from Firestore: $e");
       return null;
     }
   }
@@ -282,8 +321,12 @@ class AuthService {
     try {
       final existingUser = await _getUserFromFirestore(user.uid);
       if (existingUser != null) {
+        print("AuthService: Using existing user data for ID: ${user.uid}");
+        final userModelJson = jsonEncode(existingUser.toJson());
+        await Prefs.setString(kUserData, userModelJson);
         return existingUser;
       } else {
+        print("AuthService: Creating new user record for ID: ${user.uid}");
         final newUser = UserModel(
           id: user.uid,
           phoneNumber: user.phoneNumber ?? '',
@@ -292,9 +335,13 @@ class AuthService {
           lastName: '',
           isEmailVerified: user.emailVerified,
         );
+        await _firestore.collection(kUsers).doc(user.uid).set(newUser.toJson());
+        final userModelJson = jsonEncode(newUser.toJson());
+        await Prefs.setString(kUserData, userModelJson);
         return newUser;
       }
     } catch (e) {
+      print("AuthService: Error in _getOrCreateUser: $e");
       throw Exception(e.toString());
     }
   }
