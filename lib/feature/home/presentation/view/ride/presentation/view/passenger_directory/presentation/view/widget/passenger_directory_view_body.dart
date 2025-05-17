@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/feature/home/presentation/view/passenger_directory/presentation/view/widget/ride_request_ui.dart';
+import 'package:travel_app/feature/home/presentation/view/ride/presentation/view/passenger_directory/presentation/view/widget/ride_request_ui.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/ride_map_directory.dart';
 
 class PassengerDirectoryViewBody extends StatelessWidget {
