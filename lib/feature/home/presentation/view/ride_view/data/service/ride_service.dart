@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:travel_app/constant.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/data/model/ride_request_model.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/data/model/ride_status.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/data/model/ride_request_model.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/data/model/ride_status.dart';
 
 class RideService {
   final rideService = FirebaseFirestore.instance.collection(kRideRequests);

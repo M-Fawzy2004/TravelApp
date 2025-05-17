@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/data/model/ride_request_model.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/data/model/ride_request_model.dart';
 
 abstract class RideState extends Equatable {
   const RideState();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/presentation/view/captain_delivery_directory/presentation/view/widget/new_order_section.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/captain_delivery_directory/presentation/view/widget/new_order_section.dart';
 
 class NewOrderSectionListView extends StatelessWidget {
   const NewOrderSectionListView({super.key});

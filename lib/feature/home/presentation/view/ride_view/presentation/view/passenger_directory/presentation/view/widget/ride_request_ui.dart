@@ -5,7 +5,7 @@ import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/core/widget/custom_text_form_field.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/presentation/view/passenger_directory/presentation/view/widget/ride_option_tile.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/passenger_directory/presentation/view/widget/ride_option_tile.dart';
 
 class RideRequestUI extends StatefulWidget {
   const RideRequestUI({super.key});

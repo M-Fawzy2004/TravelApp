@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:travel_app/core/error/failure_class.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/data/model/ride_request_model.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/data/model/ride_status.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/data/repo/ride_repo.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/data/service/ride_service.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/data/model/ride_request_model.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/data/model/ride_status.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/data/repo/ride_repo.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/data/service/ride_service.dart';
 
 class RideRepoImpl implements RideRepo {
   final RideService rideService;

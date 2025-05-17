@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:travel_app/feature/home/presentation/view/ride/data/repo/ride_repo.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/data/repo/ride_repo.dart';
 import 'ride_state.dart';
 
 class RideCubit extends Cubit<RideState> {
