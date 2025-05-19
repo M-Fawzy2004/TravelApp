@@ -7,14 +7,16 @@ import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/custom_text_form_field.dart';
 
 class LocationInputCard extends StatelessWidget {
+  final String currentLocation;
+  final TextEditingController destinationController;
+  final Function(String) onSearchDestination;
+
   const LocationInputCard({
     super.key,
     required this.currentLocation,
     required this.destinationController,
+    required this.onSearchDestination,
   });
-
-  final String currentLocation;
-  final TextEditingController destinationController;
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +62,20 @@ class LocationInputCard extends StatelessWidget {
                     ),
                     heightBox(20),
                     CustomTextFormField(
+                      controller: destinationController,
                       hintText: 'أدخل وجهتك',
                       fillColor: AppColors.grey,
                       suffixIcon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          onSearchDestination(destinationController.text);
+                        },
                         icon: const Icon(
                           FontAwesomeIcons.search,
                         ),
                       ),
+                      onChanged: (value) {
+                        onSearchDestination(value);
+                      },
                     ),
                   ],
                 ),

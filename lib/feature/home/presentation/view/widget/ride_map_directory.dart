@@ -5,63 +5,107 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 
-class RideMapDirectory extends StatelessWidget {
+class RideMapDirectory extends StatefulWidget {
+  final LatLng currentLocation;
+  final LatLng? destinationLocation;
+
   const RideMapDirectory({
     super.key,
+    required this.currentLocation,
+    this.destinationLocation,
   });
+
+  @override
+  State<RideMapDirectory> createState() => _RideMapDirectoryState();
+}
+
+class _RideMapDirectoryState extends State<RideMapDirectory> {
+  final mapController = MapController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.destinationLocation != null) {
+        final bounds =
+            LatLngBounds(widget.currentLocation, widget.destinationLocation!);
+        bounds.extend(
+          LatLng(widget.currentLocation.latitude + 0.02,
+              widget.currentLocation.longitude + 0.02),
+        );
+        bounds.extend(
+          LatLng(widget.destinationLocation!.latitude - 0.02,
+              widget.destinationLocation!.longitude - 0.02),
+        );
+
+        mapController.fitCamera(
+          CameraFit.bounds(
+            bounds: bounds,
+            padding: const EdgeInsets.all(50),
+          ),
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
-      options: const MapOptions(
-        initialCenter: LatLng(30.0444, 31.2357),
-        initialZoom: 13.0,
+      mapController: mapController,
+      options: MapOptions(
+        initialCenter: widget.currentLocation,
+        initialZoom: 14.0,
       ),
       children: [
         TileLayer(
           urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
         ),
+        if (widget.destinationLocation != null)
+          PolylineLayer(
+            polylines: [
+              Polyline(
+                points: [widget.currentLocation, widget.destinationLocation!],
+                color: AppColors.primaryColor,
+                strokeWidth: 4.0,
+              ),
+            ],
+          ),
         MarkerLayer(
           markers: [
             Marker(
               width: 60.w,
               height: 60.h,
-              point: const LatLng(30.0500, 31.2300),
+              point: widget.currentLocation,
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    FontAwesomeIcons.user,
-                    color: Colors.red,
-                  ),
-                  Text(
-                    'الراكب',
-                    style: Styles.font16BlackBold,
-                  ),
-                ],
-              ),
-            ),
-            Marker(
-              width: 60.w,
-              height: 60.h,
-              point: const LatLng(30.0350, 31.2450),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
                 children: [
                   const Icon(
                     FontAwesomeIcons.car,
                     color: AppColors.primaryColor,
                   ),
-                  Text(
-                    'أنت',
-                    style: Styles.font16BlackBold,
-                  ),
+                  Text('أنت', style: Styles.font16BlackBold),
                 ],
               ),
             ),
+            if (widget.destinationLocation != null)
+              Marker(
+                width: 60.w,
+                height: 60.h,
+                point: widget.destinationLocation!,
+                child: Column(
+                  children: [
+                    const Icon(
+                      FontAwesomeIcons.locationDot,
+                      color: Colors.red,
+                    ),
+                    Text('الوجهة', style: Styles.font16BlackBold),
+                  ],
+                ),
+              ),
           ],
         ),
+        const CurrentLocationLayer(),
       ],
     );
   }

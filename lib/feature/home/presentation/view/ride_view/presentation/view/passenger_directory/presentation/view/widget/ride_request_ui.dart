@@ -8,7 +8,20 @@ import 'package:travel_app/feature/home/presentation/view/ride_view/presentation
 import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/passenger_directory/presentation/view/widget/ride_fee_row.dart';
 
 class RideRequestUI extends StatefulWidget {
-  const RideRequestUI({super.key});
+  final double? estimatedFare;
+  final double? distanceKm;
+  final int? durationMin;
+  final Function(int) onRequestRide;
+  final bool isDestinationSelected;
+
+  const RideRequestUI({
+    super.key,
+    this.estimatedFare,
+    this.distanceKm,
+    this.durationMin,
+    required this.onRequestRide,
+    required this.isDestinationSelected,
+  });
 
   @override
   State<RideRequestUI> createState() => _RideRequestUIState();
@@ -20,15 +33,24 @@ class _RideRequestUIState extends State<RideRequestUI> {
     {
       'type': 'سياره',
       'icon': FontAwesomeIcons.car,
+      'multiplier': 1.0,
     },
     {
       'type': 'موتسيكل',
       'icon': FontAwesomeIcons.motorcycle,
+      'multiplier': 0.7,
     },
   ];
 
   @override
   Widget build(BuildContext context) {
+    // Calculate the actual fare based on vehicle type
+    double? actualFare;
+    if (widget.estimatedFare != null) {
+      final multiplier = carOptions[selectedCarType]['multiplier'] as double;
+      actualFare = widget.estimatedFare! * multiplier;
+    }
+
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
@@ -66,11 +88,24 @@ class _RideRequestUIState extends State<RideRequestUI> {
             },
           ),
           heightBox(20),
-          const RideFeeRow(),
-          heightBox(20),
+          if (widget.isDestinationSelected && widget.distanceKm != null && widget.durationMin != null) 
+            Column(
+              children: [
+                RideFeeRow(
+                  fare: actualFare?.toStringAsFixed(2) ?? '-',
+                  distance: widget.distanceKm?.toStringAsFixed(1) ?? '-',
+                  duration: widget.durationMin?.toString() ?? '-',
+                ),
+                heightBox(10),
+              ],
+            ),
+          heightBox(10),
           CustomButton(
             buttonText: "طلب التوصيل",
-            onPressed: () {},
+            onPressed: widget.isDestinationSelected
+                ? () => widget.onRequestRide(selectedCarType)
+                : null,
+            isEnabled: widget.isDestinationSelected,
           ),
         ],
       ),

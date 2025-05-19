@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/captain_delivery_directory/presentation/view/widget/captain_availability_tile.dart';
 import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/captain_delivery_directory/presentation/view/widget/order_details_sheet.dart';
 import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/captain_delivery_directory/presentation/view/widget/ride_info_card.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/ride_map_directory.dart';
 
 class CaptainDeliveryDirectoryViewBody extends StatefulWidget {
   const CaptainDeliveryDirectoryViewBody({super.key});
@@ -31,7 +30,7 @@ class _CaptainDeliveryDirectoryViewBodyState
         fit: StackFit.expand,
         clipBehavior: Clip.none,
         children: [
-          const RideMapDirectory(),
+          // const RideMapDirectory(),
           Positioned(
             top: 60.h,
             left: 100.w,

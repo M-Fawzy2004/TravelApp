@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 
 class LocationItemTile extends StatelessWidget {
   final String address;
@@ -29,7 +30,7 @@ class LocationItemTile extends StatelessWidget {
             size: 20.w,
           ),
         ),
-        SizedBox(width: 12.w),
+        widthBox(12),
         Expanded(
           child: Text(
             address,
