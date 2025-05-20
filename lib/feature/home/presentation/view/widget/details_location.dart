@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/utils/assets.dart';
 import 'package:travel_app/core/utils/top_snakbar_app.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/share_location_button.dart';
 
@@ -18,6 +20,7 @@ class DetailsLocation extends StatefulWidget {
 }
 
 class _DetailsLocationState extends State<DetailsLocation> {
+  final role = getUser()?.role;
   @override
   void initState() {
     super.initState();
@@ -98,13 +101,14 @@ class _DetailsLocationState extends State<DetailsLocation> {
           ),
         ),
         heightBox(10),
-        Padding(
-          padding: EdgeInsets.only(right: 10.w),
-          child: Text(
-            'تفاصيل الموقع : الموقع الذى ستشاركه هنا هو الموقع الذى سيظهر للسائق لمعرفه مكانك للوصول إليك ',
-            style: Styles.font14GreyExtraBold,
+        if (role == UserRole.passenger)
+          Padding(
+            padding: EdgeInsets.only(right: 10.w),
+            child: Text(
+              'تفاصيل الموقع : الموقع الذى ستشاركه هنا هو الموقع الذى سيظهر للسائق لمعرفه مكانك للوصول إليك ',
+              style: Styles.font14GreyExtraBold,
+            ),
           ),
-        ),
       ],
     );
   }
@@ -136,13 +140,15 @@ class _DetailsLocationState extends State<DetailsLocation> {
           ),
         ),
         heightBox(10),
-        Padding(
-          padding: EdgeInsets.only(right: 10.w),
-          child: Text(
-            'تفاصيل الموقع : الموقع الذى ستشاركه هنا هو الموقع الذى سيظهر للسائق لمعرفه مكانك للوصول إليك ',
-            style: Styles.font14GreyExtraBold,
+        if (role == UserRole.passenger) ...[
+          Padding(
+            padding: EdgeInsets.only(right: 10.w),
+            child: Text(
+              'تفاصيل الموقع : الموقع الذى ستشاركه هنا هو الموقع الذى سيظهر للسائق لمعرفه مكانك للوصول إليك ',
+              style: Styles.font14GreyExtraBold,
+            ),
           ),
-        ),
+        ]
       ],
     );
   }

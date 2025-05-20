@@ -9,7 +9,6 @@ import 'package:travel_app/feature/trips_details/presentation/view/details_trip_
 
 class AddTravelCaptain extends StatelessWidget {
   final TripModel trip;
-  final int index;
   static const List<LinearGradient> _gradientsList = [
     LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]),
     LinearGradient(colors: [Color(0xFFFCE4EC), Color(0xFFF48FB1)]),
@@ -20,7 +19,6 @@ class AddTravelCaptain extends StatelessWidget {
   const AddTravelCaptain({
     super.key,
     required this.trip,
-    required this.index,
   });
 
   @override
@@ -30,81 +28,31 @@ class AddTravelCaptain extends StatelessWidget {
             ? _gradientsList[trip.gradientIndex]
             : _gradientsList[0];
 
-    // Instead of using OpenContainer for a side slide animation,
-    // we'll use a GestureDetector with Navigator.push
     return GestureDetector(
       onTap: () {
         context.navigateWithSlideTransition(
           DetailsTripView(
             trip: trip,
-            index: index,
           ),
         );
       },
       child: Container(
         decoration: BoxDecoration(
           gradient: gradient,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.4),
+              spreadRadius: 1,
+              blurRadius: 1,
+              offset: const Offset(0, 1),
+            ),
+          ],
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: AddTravelCaptainSection(
           trip: trip,
-          onPressed: () {},
         ),
       ),
     );
   }
 }
-
-// class AddTravelCaptainWithOpenContainer extends StatelessWidget {
-//   final TripModel trip;
-//   final int index;
-//   static const List<LinearGradient> _gradientsList = [
-//     LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]),
-//     LinearGradient(colors: [Color(0xFFFCE4EC), Color(0xFFF48FB1)]),
-//     LinearGradient(colors: [Color(0xFFE8F5E9), Color(0xFFA5D6A7)]),
-//     LinearGradient(colors: [Color(0xFFFFF3E0), Color(0xFFFFCC80)]),
-//   ];
-
-//   const AddTravelCaptainWithOpenContainer({
-//     super.key,
-//     required this.trip,
-//     required this.index,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final gradient =
-//         trip.gradientIndex >= 0 && trip.gradientIndex < _gradientsList.length
-//             ? _gradientsList[trip.gradientIndex]
-//             : _gradientsList[0];
-//     return OpenContainer(
-//       transitionType: ContainerTransitionType.fadeThrough,
-//       transitionDuration: const Duration(milliseconds: 500),
-//       openBuilder: (context, _) {
-//         context.navigateWithSlideTransition(
-//           DetailsTripView(
-//             trip: trip,
-//             index: index,
-//           ),
-//         );
-//         return Container(color: Colors.transparent);
-//       },
-//       closedElevation: 0,
-//       closedShape: RoundedRectangleBorder(
-//         borderRadius: BorderRadius.circular(10.r),
-//       ),
-//       closedColor: Colors.transparent,
-//       closedBuilder: (context, openContainer) {
-//         return Container(
-//           decoration: BoxDecoration(
-//             gradient: gradient,
-//           ),
-//           child: AddTravelCaptainSection(
-//             trip: trip,
-//             onPressed: openContainer,
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }

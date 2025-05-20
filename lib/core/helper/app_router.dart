@@ -107,10 +107,8 @@ abstract class AppRouter {
         builder: (BuildContext context, GoRouterState state) {
           final extra = GoRouterState.of(context).extra as Map<String, dynamic>;
           final trip = extra['trip'] as TripModel;
-          final index = extra['index'] as int;
           return DetailsTripView(
             trip: trip,
-            index: index,
           );
         },
       ),

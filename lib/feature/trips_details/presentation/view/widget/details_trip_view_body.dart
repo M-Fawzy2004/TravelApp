@@ -17,10 +17,8 @@ class DetailsTripViewBody extends StatefulWidget {
   const DetailsTripViewBody({
     super.key,
     required this.trip,
-    required this.index,
   });
   final TripModel trip;
-  final int index;
 
   @override
   State<DetailsTripViewBody> createState() => _DetailsTripViewBodyState();
@@ -53,7 +51,6 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
                 if (role == UserRole.passenger) const DetailsHeader(),
                 DetailsTopCard(
                   trip: widget.trip,
-                  index: widget.index,
                 ),
                 heightBox(20),
                 DetailsCenterCard(trip: widget.trip),

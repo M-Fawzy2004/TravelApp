@@ -28,15 +28,14 @@ class CustomTripGrid extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 4.w),
               child: AddTravelCaptain(
                 trip: trip,
-                index: index,
               ),
             );
           },
           childCount: trips.length,
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          crossAxisSpacing: 5.w,
+          crossAxisCount: 2,
+          crossAxisSpacing: 10.w,
           mainAxisExtent: 210.h,
         ),
       ),

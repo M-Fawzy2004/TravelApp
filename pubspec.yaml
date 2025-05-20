@@ -31,6 +31,7 @@ dependencies:
   animations: ^2.0.11
   chat_bubbles: ^1.6.0
   cloud_firestore: ^5.6.6
+  connectivity_plus: ^6.1.4
   country_picker: ^2.0.27
   crypto: ^3.0.6
   cupertino_icons: ^1.0.8
@@ -52,6 +53,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_slidable: ^4.0.0
   flutter_spinkit: ^5.2.1
+  flutter_styled_toast: ^2.2.1
   font_awesome_flutter: ^10.8.0
   geocoding: ^3.0.0
   geolocator: ^14.0.0

@@ -12,11 +12,9 @@ class AddTravelCaptainSection extends StatelessWidget {
   const AddTravelCaptainSection({
     super.key,
     required this.trip,
-    this.onPressed,
   });
 
   final TripModel trip;
-  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {

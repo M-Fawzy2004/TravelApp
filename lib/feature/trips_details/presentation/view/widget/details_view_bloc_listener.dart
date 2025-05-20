@@ -10,11 +10,9 @@ class DetailsViewBlocListener extends StatelessWidget {
   const DetailsViewBlocListener({
     super.key,
     required this.trip,
-    required this.index,
   });
 
   final TripModel trip;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +33,6 @@ class DetailsViewBlocListener extends StatelessWidget {
       },
       child: DetailsTripViewBody(
         trip: trip,
-        index: index,
       ),
     );
   }

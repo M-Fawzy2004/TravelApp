@@ -10,7 +10,7 @@ import 'package:travel_app/feature/home/presentation/view/passenger_view/view/wi
 import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
 import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/featured_travel_list_view.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_filter.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/category_travel_sliver_grid_bloc_builder.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/travel_sliver_grid_bloc_builder.dart';
 
 class PassengerHomeViewBody extends StatefulWidget {
   const PassengerHomeViewBody({super.key});
@@ -114,7 +114,7 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
                   child: CategoryFilter(),
                 ),
                 SliverToBoxAdapter(child: heightBox(10)),
-                const CategorySliverGridGridBlocBuilder(),
+                const TravelSliverGridBlocConsumer(),
               ],
             ),
           ),

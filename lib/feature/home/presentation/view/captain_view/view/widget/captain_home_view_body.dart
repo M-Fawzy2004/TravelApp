@@ -8,7 +8,7 @@ import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/captain_home_header.dart';
-import 'package:travel_app/feature/home/presentation/view/widget/category_travel_sliver_grid_bloc_builder.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/travel_sliver_grid_bloc_builder.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
 
 class CaptainHomeViewBody extends StatefulWidget {
@@ -98,9 +98,15 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
                 const SliverToBoxAdapter(child: CaptainHomeHeader()),
                 SliverToBoxAdapter(child: heightBox(20)),
                 const SliverToBoxAdapter(child: DetailsLocation()),
-                SliverToBoxAdapter(child: heightBox(20)),
                 SliverToBoxAdapter(child: heightBox(10)),
-                const CategorySliverGridGridBlocBuilder(),
+                SliverToBoxAdapter(
+                  child: Text(
+                    'رحلاتك المضافه مؤخرا',
+                    style: Styles.font18BlackBold,
+                  ),
+                ),
+                SliverToBoxAdapter(child: heightBox(20)),
+                const TravelSliverGridBlocConsumer(),
               ],
             ),
           ),

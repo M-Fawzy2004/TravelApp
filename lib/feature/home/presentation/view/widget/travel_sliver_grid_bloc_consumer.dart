@@ -6,21 +6,21 @@ import 'package:travel_app/feature/home/presentation/view/widget/custom_error_me
 import 'package:travel_app/feature/home/presentation/view/widget/custom_loading_grid.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/custom_trip_grid.dart';
 
-class CategorySliverGridGridBlocBuilder extends StatelessWidget {
-  const CategorySliverGridGridBlocBuilder({super.key});
+class TravelSliverGridBlocBuilder extends StatelessWidget {
+  const TravelSliverGridBlocBuilder({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TripCubit, TripState>(
-      builder: (context, state) {
-        if (state is TripLoading) {
+      builder: (context, tripState) {
+        if (tripState is TripLoading) {
           return const CustomLoadingGrid();
-        } else if (state is TripsLoadedSuccess) {
-          return CustomTripGrid(
-            trips: state.trips,
-          );
-        } else if (state is TripError) {
-          return CustomErrorMessage(message: state.message);
+        } else if (tripState is TripsLoadedSuccess) {
+          return CustomTripGrid(trips: tripState.trips);
+        } else if (tripState is TripError) {
+          return CustomErrorMessage(message: tripState.message);
         } else {
           return const SliverToBoxAdapter(child: SizedBox.shrink());
         }

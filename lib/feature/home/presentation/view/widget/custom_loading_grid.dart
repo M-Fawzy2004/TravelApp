@@ -25,7 +25,6 @@ class CustomLoadingGrid extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 4.w),
                 child: AddTravelCaptain(
                   trip: getCategorySkeletonizer(),
-                  index: index,
                 ),
               ),
             );
@@ -33,7 +32,7 @@ class CustomLoadingGrid extends StatelessWidget {
           childCount: 4,
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
+          crossAxisCount: 2,
           crossAxisSpacing: 5.w,
           mainAxisExtent: 210.h,
         ),

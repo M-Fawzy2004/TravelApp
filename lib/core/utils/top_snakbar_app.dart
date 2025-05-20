@@ -1,30 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:travel_app/core/theme/app_color.dart';
+import 'package:travel_app/core/theme/styles.dart';
 
-enum SnackBarType { success, error, info }
-
-void showCustomTopSnackBar({
-  required BuildContext context,
-  required String message,
-  SnackBarType type = SnackBarType.info,
-}) {
-  final overlay = Overlay.of(context);
-
-  showTopSnackBar(
-    overlay,
-    _getSnackBarByType(message, type),
-    displayDuration: const Duration(seconds: 2),
+void showCustomTopSnackBar(
+    {required BuildContext context, required String message}) {
+  showToast(
+    message,
+    context: context,
+    fullWidth: true,
+    animation: StyledToastAnimation.fadeScale,
+    reverseAnimation: StyledToastAnimation.size,
+    position: StyledToastPosition.top,
+    duration: const Duration(seconds: 3),
+    backgroundColor: AppColors.primaryColor,
+    borderRadius: BorderRadius.circular(10.r),
+    textStyle: Styles.font16WhiteBold,
+    textPadding: EdgeInsets.symmetric(vertical: 15.h),
   );
-}
-
-Widget _getSnackBarByType(String message, SnackBarType type) {
-  switch (type) {
-    case SnackBarType.success:
-      return CustomSnackBar.success(message: message);
-    case SnackBarType.error:
-      return CustomSnackBar.error(message: message);
-    case SnackBarType.info:
-      return CustomSnackBar.info(message: message);
-  }
 }

@@ -20,16 +20,11 @@ class PriceContainer extends StatelessWidget {
         color: AppColors.grey.withOpacity(0.5),
         borderRadius: BorderRadius.circular(10.r),
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.attach_money, size: 16),
-          SizedBox(width: 4.w),
-          Text(
-            '${trip.price.toString()} ج.م',
-            style: Styles.font16BlackBold,
-          ),
-        ],
+      child: Center(
+        child: Text(
+          '${trip.price.toString()} ج.م',
+          style: Styles.font16BlackBold,
+        ),
       ),
     );
   }
