@@ -13,13 +13,17 @@ class DateTimeRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        const Icon(Icons.calendar_today_outlined, size: 16),
-        widthBox(4),
-        Text(
-          '${_formatDate(trip.tripDate)} ${_formatTime(trip.tripTime)}',
-          style: Styles.font14GreyExtraBold,
+        Row(
+          children: [
+            const Icon(Icons.calendar_today_outlined, size: 16),
+            widthBox(4),
+            Text(
+              _formatDate(trip.tripDate),
+              style: Styles.font14GreyExtraBold,
+            ),
+          ],
         ),
       ],
     );
@@ -28,8 +32,4 @@ class DateTimeRow extends StatelessWidget {
 
 String _formatDate(DateTime date) {
   return '${date.day}/${date.month}/${date.year}';
-}
-
-String _formatTime(TimeOfDay time) {
-  return '${time.hour}:${time.minute.toString().padLeft(2, '0')}';
 }

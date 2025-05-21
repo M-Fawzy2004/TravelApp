@@ -36,15 +36,10 @@ class _SearchTextFieldState extends State<SearchTextField> {
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.r),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.black.withOpacity(.2),
-            blurRadius: 5,
-            spreadRadius: 2,
-            offset: const Offset(0, 1),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(10.r),
+        border: Border.all(
+          color: AppColors.lightGrey.withOpacity(0.2),
+        ),
       ),
       child: TextField(
         controller: _searchController,
@@ -65,7 +60,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
             fontWeight: FontWeight.w900,
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30.r),
+            borderRadius: BorderRadius.circular(10.r),
             borderSide: BorderSide.none,
           ),
           suffixIcon: GestureDetector(

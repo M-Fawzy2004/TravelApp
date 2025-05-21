@@ -44,11 +44,14 @@ class _RideRequestUIState extends State<RideRequestUI> {
 
   @override
   Widget build(BuildContext context) {
-    // Calculate the actual fare based on vehicle type
     double? actualFare;
-    if (widget.estimatedFare != null) {
+    if (widget.estimatedFare != null && widget.isDestinationSelected) {
       final multiplier = carOptions[selectedCarType]['multiplier'] as double;
       actualFare = widget.estimatedFare! * multiplier;
+    }
+
+    if (!widget.isDestinationSelected) {
+      return const SizedBox.shrink();
     }
 
     return Container(
@@ -76,6 +79,7 @@ class _RideRequestUIState extends State<RideRequestUI> {
             child: Text(
               'اختر نوع التوصيل',
               style: Styles.font16BlackBold,
+              textAlign: TextAlign.right,
             ),
           ),
           CarTypeSelector(
@@ -88,13 +92,15 @@ class _RideRequestUIState extends State<RideRequestUI> {
             },
           ),
           heightBox(20),
-          if (widget.isDestinationSelected && widget.distanceKm != null && widget.durationMin != null) 
+          if (widget.distanceKm != null &&
+              widget.durationMin != null &&
+              actualFare != null)
             Column(
               children: [
                 RideFeeRow(
-                  fare: actualFare?.toStringAsFixed(2) ?? '-',
-                  distance: widget.distanceKm?.toStringAsFixed(1) ?? '-',
-                  duration: widget.durationMin?.toString() ?? '-',
+                  fare: actualFare.toStringAsFixed(2),
+                  distance: widget.distanceKm!.toStringAsFixed(1),
+                  duration: widget.durationMin!.toString(),
                 ),
                 heightBox(10),
               ],
@@ -102,10 +108,8 @@ class _RideRequestUIState extends State<RideRequestUI> {
           heightBox(10),
           CustomButton(
             buttonText: "طلب التوصيل",
-            onPressed: widget.isDestinationSelected
-                ? () => widget.onRequestRide(selectedCarType)
-                : null,
-            isEnabled: widget.isDestinationSelected,
+            onPressed: () => widget.onRequestRide(selectedCarType),
+            isEnabled: true,
           ),
         ],
       ),

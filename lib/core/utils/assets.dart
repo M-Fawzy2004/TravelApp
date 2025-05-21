@@ -18,6 +18,18 @@ class Assets {
   /// assets/images/google_logo.png
   static const String imagesGoogleLogo = "assets/images/google_logo.png";
 
+  /// Assets for imagesHotel
+  /// assets/images/hotel.jpg
+  static const String imagesHotel = "assets/images/hotel.jpg";
+
+  /// Assets for imagesHotel2
+  /// assets/images/hotel2.jpg
+  static const String imagesHotel2 = "assets/images/hotel2.jpg";
+
+  /// Assets for imagesHotel3
+  /// assets/images/hotel3.jpg
+  static const String imagesHotel3 = "assets/images/hotel3.jpg";
+
   /// Assets for imagesImageUser
   /// assets/images/image_user.png
   static const String imagesImageUser = "assets/images/image_user.png";

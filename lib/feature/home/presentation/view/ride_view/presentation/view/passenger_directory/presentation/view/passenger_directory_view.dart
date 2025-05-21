@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/feature/home/presentation/view/ride_view/data/repo/ride_repo_impl.dart';
 import 'package:travel_app/feature/home/presentation/view/ride_view/data/service/ride_service.dart';
 import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/manager/ride_cubit/ride_cubit.dart';
+import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/passenger_directory/presentation/manager/cubit/passenger_directory_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/passenger_directory/presentation/view/widget/passenger_directory_view_body.dart';
 
 class PassengerDirectoryView extends StatelessWidget {
@@ -10,12 +11,17 @@ class PassengerDirectoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => RideCubit(
-        RideRepoImpl(
-          RideService(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => RideCubit(
+            RideRepoImpl(RideService()),
+          ),
         ),
-      ),
+        BlocProvider<PassengerDirectoryCubit>(
+          create: (context) => PassengerDirectoryCubit(),
+        ),
+      ],
       child: const Scaffold(
         body: SafeArea(child: PassengerDirectoryViewBody()),
       ),

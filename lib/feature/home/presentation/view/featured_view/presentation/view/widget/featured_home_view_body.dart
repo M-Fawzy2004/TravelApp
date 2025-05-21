@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/widget/icon_back.dart';
+import 'package:travel_app/feature/home/presentation/view/featured_view/presentation/view/widget/custom_search_hotel.dart';
 import 'package:travel_app/feature/home/presentation/view/featured_view/presentation/view/widget/featured_travel_card_list_view.dart';
 
 class FeaturedHomeViewBody extends StatelessWidget {
@@ -15,11 +17,14 @@ class FeaturedHomeViewBody extends StatelessWidget {
             const IconBack(),
             const Spacer(),
             Text(
-              'الرحلات المميزة',
+              'حجز الفنادق',
               style: Styles.font20BlackBold,
             ),
           ],
         ),
+        heightBox(20),
+        const CustomSearchHotel(),
+        heightBox(20),
         const FeaturedTravelCardListView(),
       ],
     );

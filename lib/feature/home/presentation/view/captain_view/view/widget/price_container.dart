@@ -17,14 +17,17 @@ class PriceContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
       decoration: BoxDecoration(
-        color: AppColors.grey.withOpacity(0.5),
+        color: AppColors.grey,
         borderRadius: BorderRadius.circular(10.r),
       ),
-      child: Center(
-        child: Text(
-          '${trip.price.toString()} ج.م',
-          style: Styles.font16BlackBold,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '${trip.price.toString()} ج.م',
+            style: Styles.font16BlackBold,
+          ),
+        ],
       ),
     );
   }

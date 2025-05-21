@@ -8,9 +8,9 @@ class SearchBarDelegate extends SliverPersistentHeaderDelegate {
   SearchBarDelegate({required this.hintText});
 
   @override
-  double get minExtent => 65.0;
+  double get minExtent => 70.0;
   @override
-  double get maxExtent => 65.0;
+  double get maxExtent => 70.0;
 
   @override
   Widget build(
