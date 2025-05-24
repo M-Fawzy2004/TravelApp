@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/app_color.dart';
-import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/core/widget/details_info_row.dart';
 
@@ -14,26 +13,14 @@ class DetailsTopCard extends StatelessWidget {
 
   final TripModel trip;
   final int? index;
-  static const List<LinearGradient> _gradientsList = [
-    LinearGradient(colors: [Color(0xFFE3F2FD), Color(0xFF90CAF9)]), // Blue
-    LinearGradient(colors: [Color(0xFFFCE4EC), Color(0xFFF48FB1)]), // Pink
-    LinearGradient(colors: [Color(0xFFE8F5E9), Color(0xFFA5D6A7)]), // Green
-    LinearGradient(colors: [Color(0xFFFFF3E0), Color(0xFFFFCC80)]), // Orange
-  ];
 
   @override
   Widget build(BuildContext context) {
-    final gradient =
-        trip.gradientIndex >= 0 && trip.gradientIndex < _gradientsList.length
-            ? _gradientsList[trip.gradientIndex]
-            : _gradientsList[0];
-    // final tag = '${trip.id}_$index';
-
     return Material(
       color: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
-          gradient: gradient,
+          color: AppColors.grey,
           borderRadius: BorderRadius.circular(15.r),
           boxShadow: [
             BoxShadow(
@@ -50,17 +37,6 @@ class DetailsTopCard extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(
-                  trip.destinationName,
-                  style: Styles.font18BlackBold.copyWith(
-                    fontSize: 20.sp,
-                    color: AppColors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              _divider(),
               DetailsInfoRow(
                 icon: Icons.location_on,
                 label: 'مكان التحرك',
@@ -95,7 +71,7 @@ class DetailsTopCard extends StatelessWidget {
 
   Widget _divider() => Padding(
         padding: EdgeInsets.symmetric(vertical: 10.h),
-        child: const Divider(color: AppColors.grey, thickness: 1),
+        child: Divider(color: Colors.grey.shade300, thickness: 1),
       );
 }
 

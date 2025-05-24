@@ -12,7 +12,7 @@ import 'package:travel_app/feature/add_travel/presentation/view/widget/date_time
 import 'package:travel_app/feature/add_travel/presentation/view/widget/destination_field.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/details_field.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/duration_price_field.dart';
-import 'package:travel_app/feature/add_travel/presentation/view/widget/gredient_selector_row.dart';
+import 'package:travel_app/feature/add_travel/presentation/view/widget/image_preview_widget.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/seats_field.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/submit_custom_button.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/travel_type_selector.dart';
@@ -47,7 +47,14 @@ class _AddTravelFormState extends State<AddTravelForm> {
           padding: EdgeInsets.symmetric(horizontal: 5.w),
           child: Column(
             children: [
-              const GradientSelectorRow(),
+              ImagePreviewWidget(
+                imageUrl: state.imageUrl,
+                destinationName: state.destinationName,
+                showSearchButton: true,
+                onImageSelected: (selectedImageUrl) {
+                  context.read<TripFormCubit>().setImageUrl(selectedImageUrl);
+                },
+              ),
               heightBox(15),
               TravelTypeSelector(
                 selectedType: _selectedType,

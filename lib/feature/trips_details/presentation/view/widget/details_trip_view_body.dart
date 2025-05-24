@@ -7,11 +7,11 @@ import 'package:travel_app/core/widget/icon_back.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_center_card.dart';
-import 'package:travel_app/feature/trips_details/presentation/view/widget/details_header.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_top_card.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/details_trips_text.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/edit_and_delete_trips.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/ticket_button_bloc_listener.dart';
+import 'package:travel_app/feature/trips_details/presentation/view/widget/trip_image_card.dart';
 
 class DetailsTripViewBody extends StatefulWidget {
   const DetailsTripViewBody({
@@ -48,7 +48,8 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
                     widthBox(55),
                   ],
                 ),
-                if (role == UserRole.passenger) const DetailsHeader(),
+                TripImageCard(trip: widget.trip),
+                heightBox(20),
                 DetailsTopCard(
                   trip: widget.trip,
                 ),

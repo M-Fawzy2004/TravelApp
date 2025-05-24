@@ -16,7 +16,7 @@ class TripFormState extends Equatable {
   final bool isSubmitting;
   final String? error;
   final Map<String, String> fieldErrors;
-  final int gradientIndex;
+  final String imageUrl; // تم استبدال gradientIndex بـ imageUrl
 
   const TripFormState({
     this.tripType = TripType.cargoShipping,
@@ -32,7 +32,7 @@ class TripFormState extends Equatable {
     this.isSubmitting = false,
     this.error,
     this.fieldErrors = const {},
-    this.gradientIndex = 0,
+    this.imageUrl = '', // قيمة افتراضية فارغة
   });
 
   @override
@@ -50,7 +50,7 @@ class TripFormState extends Equatable {
         isSubmitting,
         error,
         fieldErrors,
-        gradientIndex,
+        imageUrl,
       ];
 
   TripFormState copyWith({
@@ -67,7 +67,7 @@ class TripFormState extends Equatable {
     bool? isSubmitting,
     String? error,
     Map<String, String>? fieldErrors,
-    int? gradientIndex,
+    String? imageUrl,
   }) {
     return TripFormState(
       tripType: tripType ?? this.tripType,
@@ -83,7 +83,7 @@ class TripFormState extends Equatable {
       isSubmitting: isSubmitting ?? this.isSubmitting,
       error: error,
       fieldErrors: fieldErrors ?? this.fieldErrors,
-      gradientIndex: gradientIndex ?? this.gradientIndex,
+      imageUrl: imageUrl ?? this.imageUrl,
     );
   }
 

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/core/services/auth_service.dart';
@@ -14,6 +16,7 @@ class TripFormCubit extends Cubit<TripFormState> {
   String _userLastName = '';
   String _userPhone = '';
   bool _isUserDataLoaded = false;
+  bool _isDisposed = false;
 
   TripFormCubit({
     required TripRepository tripRepository,
@@ -24,10 +27,18 @@ class TripFormCubit extends Cubit<TripFormState> {
     _loadUserData();
   }
 
+  @override
+  Future<void> close() {
+    _isDisposed = true;
+    return super.close();
+  }
+
   Future<void> _loadUserData() async {
+    if (_isDisposed) return;
+
     try {
       final currentUser = await _authService.getCurrentUser();
-      if (currentUser != null) {
+      if (currentUser != null && !_isDisposed) {
         _userId = currentUser.id;
 
         final userData = await _authService.getUserData(_userId);
@@ -43,17 +54,22 @@ class TripFormCubit extends Cubit<TripFormState> {
         _isUserDataLoaded = true;
       }
     } catch (e) {
-      emit(state.copyWith(
-        error: 'حدث خطأ في تحميل بيانات المستخدم: ${e.toString()}',
-      ));
+      if (!_isDisposed) {
+        emit(state.copyWith(
+          error: 'حدث خطأ في تحميل بيانات المستخدم: ${e.toString()}',
+        ));
+      }
     }
   }
 
   void setTripType(TripType tripType) {
+    if (_isDisposed) return;
     emit(state.copyWith(tripType: tripType));
   }
 
   void setDestinationName(String destinationName) {
+    if (_isDisposed) return;
+
     final fieldErrors = Map<String, String>.from(state.fieldErrors);
 
     if (destinationName.isEmpty) {
@@ -68,7 +84,48 @@ class TripFormCubit extends Cubit<TripFormState> {
     ));
   }
 
+  void setImageUrl(String imageUrl) {
+    if (_isDisposed) return;
+
+    if (imageUrl.isNotEmpty) {
+      if (!_isValidImageUrl(imageUrl)) {
+        print('رابط الصورة غير صحيح: $imageUrl');
+        emit(state.copyWith(
+          error: 'رابط الصورة غير صحيح',
+        ));
+        return;
+      }
+    }
+
+    emit(state.copyWith(
+      imageUrl: imageUrl,
+      error: null,
+    ));
+    print('تم تحديد صورة جديدة: $imageUrl');
+  }
+
+  bool _isValidImageUrl(String url) {
+    if (url.isEmpty) return false;
+
+    try {
+      final uri = Uri.parse(url);
+      return uri.hasScheme &&
+          (uri.scheme == 'http' || uri.scheme == 'https') &&
+          uri.hasAuthority;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  void removeImage() {
+    if (_isDisposed) return;
+    emit(state.copyWith(imageUrl: ''));
+    print('تم إزالة الصورة');
+  }
+
   void setDepartureLocation(String departureLocation) {
+    if (_isDisposed) return;
+
     final fieldErrors = Map<String, String>.from(state.fieldErrors);
 
     if (departureLocation.isEmpty) {
@@ -84,6 +141,8 @@ class TripFormCubit extends Cubit<TripFormState> {
   }
 
   void setArrivalLocation(String arrivalLocation) {
+    if (_isDisposed) return;
+
     final fieldErrors = Map<String, String>.from(state.fieldErrors);
 
     if (arrivalLocation.isEmpty) {
@@ -99,6 +158,8 @@ class TripFormCubit extends Cubit<TripFormState> {
   }
 
   void setAvailableSeats(int availableSeats) {
+    if (_isDisposed) return;
+
     final fieldErrors = Map<String, String>.from(state.fieldErrors);
 
     if (availableSeats < 0) {
@@ -114,6 +175,8 @@ class TripFormCubit extends Cubit<TripFormState> {
   }
 
   void setTripDate(DateTime tripDate) {
+    if (_isDisposed) return;
+
     final fieldErrors = Map<String, String>.from(state.fieldErrors);
     fieldErrors.remove('tripDate');
 
@@ -124,6 +187,8 @@ class TripFormCubit extends Cubit<TripFormState> {
   }
 
   void setTripTime(TimeOfDay tripTime) {
+    if (_isDisposed) return;
+
     final fieldErrors = Map<String, String>.from(state.fieldErrors);
     fieldErrors.remove('tripTime');
 
@@ -134,10 +199,13 @@ class TripFormCubit extends Cubit<TripFormState> {
   }
 
   void setDuration(String duration) {
+    if (_isDisposed) return;
     emit(state.copyWith(duration: duration));
   }
 
   void setPrice(double price) {
+    if (_isDisposed) return;
+
     final fieldErrors = Map<String, String>.from(state.fieldErrors);
 
     if (price < 0) {
@@ -153,14 +221,13 @@ class TripFormCubit extends Cubit<TripFormState> {
   }
 
   void setAdditionalDetails(String additionalDetails) {
+    if (_isDisposed) return;
     emit(state.copyWith(additionalDetails: additionalDetails));
   }
 
-  void setGradientIndex(int index) {
-    emit(state.copyWith(gradientIndex: index));
-  }
-
   bool validateForm() {
+    if (_isDisposed) return false;
+
     final fieldErrors = <String, String>{};
 
     if (state.destinationName.isEmpty) {
@@ -191,6 +258,10 @@ class TripFormCubit extends Cubit<TripFormState> {
       fieldErrors['price'] = 'السعر لا يمكن أن يكون سالباً';
     }
 
+    if (state.imageUrl.isNotEmpty && !_isValidImageUrl(state.imageUrl)) {
+      fieldErrors['imageUrl'] = 'رابط الصورة غير صحيح';
+    }
+
     emit(state.copyWith(fieldErrors: fieldErrors));
 
     return fieldErrors.isEmpty;
@@ -206,7 +277,22 @@ class TripFormCubit extends Cubit<TripFormState> {
     }
   }
 
+  String _getReliableDefaultImage() {
+    const reliableImageUrls = [
+      'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=400&fit=crop',
+    ];
+
+    final randomIndex =
+        DateTime.now().millisecondsSinceEpoch % reliableImageUrls.length;
+    return reliableImageUrls[randomIndex];
+  }
+
   Future<void> submitForm() async {
+    if (_isDisposed) return;
+
     if (!validateForm()) {
       emit(state.copyWith(
         error: 'يرجى تصحيح الأخطاء قبل الإرسال',
@@ -218,6 +304,18 @@ class TripFormCubit extends Cubit<TripFormState> {
       emit(state.copyWith(isSubmitting: true, error: null));
 
       await _ensureUserDataLoaded();
+
+      String finalImageUrl = state.imageUrl;
+
+      if (finalImageUrl.isEmpty) {
+        print('لا توجد صورة محددة، استخدام صورة احتياطية موثوقة');
+        finalImageUrl = _getReliableDefaultImage();
+      } else if (!_isValidImageUrl(finalImageUrl)) {
+        print('رابط الصورة غير صحيح، استخدام صورة احتياطية');
+        finalImageUrl = _getReliableDefaultImage();
+      }
+
+      if (_isDisposed) return;
 
       final tripModel = TripModel(
         id: '',
@@ -235,10 +333,14 @@ class TripFormCubit extends Cubit<TripFormState> {
         duration: state.duration,
         price: state.price,
         additionalDetails: state.additionalDetails,
-        gradientIndex: state.gradientIndex,
+        imageUrl: finalImageUrl,
       );
 
+      print('إرسال الرحلة مع الصورة: $finalImageUrl');
+
       final result = await _tripRepository.createTrip(tripModel);
+
+      if (_isDisposed) return;
 
       result.fold((failure) {
         emit(state.copyWith(
@@ -247,22 +349,25 @@ class TripFormCubit extends Cubit<TripFormState> {
         ));
       }, (_) {
         emit(const TripFormState());
+        print('تم إنشاء الرحلة بنجاح');
       });
     } catch (e) {
-      emit(state.copyWith(
-        isSubmitting: false,
-        error: 'حدث خطأ غير متوقع: ${e.toString()}',
-      ));
+      if (!_isDisposed) {
+        emit(state.copyWith(
+          isSubmitting: false,
+          error: 'حدث خطأ غير متوقع: ${e.toString()}',
+        ));
+      }
     }
   }
 
   Future<void> updateExistingTrip(String id) async {
+    if (_isDisposed) return;
+
     if (!validateForm()) {
-      emit(
-        state.copyWith(
-          error: 'يرجى تصحيح الأخطاء قبل الإرسال',
-        ),
-      );
+      emit(state.copyWith(
+        error: 'يرجى تصحيح الأخطاء قبل الإرسال',
+      ));
       return;
     }
 
@@ -270,6 +375,14 @@ class TripFormCubit extends Cubit<TripFormState> {
       emit(state.copyWith(isSubmitting: true, error: null));
 
       await _ensureUserDataLoaded();
+
+      String finalImageUrl = state.imageUrl;
+
+      if (finalImageUrl.isEmpty || !_isValidImageUrl(finalImageUrl)) {
+        finalImageUrl = _getReliableDefaultImage();
+      }
+
+      if (_isDisposed) return;
 
       final tripModel = TripModel(
         id: id,
@@ -287,39 +400,42 @@ class TripFormCubit extends Cubit<TripFormState> {
         duration: state.duration,
         price: state.price,
         additionalDetails: state.additionalDetails,
-        gradientIndex: state.gradientIndex,
+        imageUrl: finalImageUrl,
       );
 
       final result = await _tripRepository.updateTrip(tripModel);
 
+      if (_isDisposed) return;
+
       result.fold(
         (failure) {
-          emit(
-            state.copyWith(
-              isSubmitting: false,
-              error: failure.message,
-            ),
-          );
+          emit(state.copyWith(
+            isSubmitting: false,
+            error: failure.message,
+          ));
         },
         (_) {
           emit(const TripFormState());
         },
       );
     } catch (e) {
-      emit(
-        state.copyWith(
+      if (!_isDisposed) {
+        emit(state.copyWith(
           isSubmitting: false,
           error: 'حدث خطأ غير متوقع: ${e.toString()}',
-        ),
-      );
+        ));
+      }
     }
   }
 
   void resetForm() {
+    if (_isDisposed) return;
     emit(const TripFormState());
   }
 
   void loadTripForEdit(TripModel trip) {
+    if (_isDisposed) return;
+
     emit(
       TripFormState(
         tripType: trip.tripType,
@@ -332,8 +448,13 @@ class TripFormCubit extends Cubit<TripFormState> {
         duration: trip.duration,
         price: trip.price,
         additionalDetails: trip.additionalDetails,
-        gradientIndex: trip.gradientIndex,
+        imageUrl: trip.imageUrl,
       ),
     );
   }
+
+  bool get hasImage => state.imageUrl.isNotEmpty;
+  String get currentImageUrl => state.imageUrl;
+  bool get isImageValid =>
+      state.imageUrl.isEmpty || _isValidImageUrl(state.imageUrl);
 }

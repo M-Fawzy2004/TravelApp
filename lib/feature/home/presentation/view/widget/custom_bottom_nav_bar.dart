@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/helper/get_user.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 
@@ -20,12 +21,13 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final role = getUser()?.role;
-
     return Container(
-      margin: EdgeInsets.only(bottom: 10.h, left: 10.w, right: 10.w),
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.r),
+          topRight: Radius.circular(20.r),
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.15),
@@ -90,7 +92,7 @@ class CustomBottomNavBar extends StatelessWidget {
           color: isSelected
               ? AppColors.primaryColor.withOpacity(0.1)
               : Colors.transparent,
-          borderRadius: BorderRadius.circular(20.r),
+          borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -100,11 +102,11 @@ class CustomBottomNavBar extends StatelessWidget {
               size: isSelected ? 22.sp : 18.sp,
               color: isSelected ? AppColors.primaryColor : Colors.black45,
             ),
-            SizedBox(height: 4.h),
+            heightBox(5),
             Text(
               label,
               style: TextStyle(
-                fontSize: 11.sp,
+                fontSize: 12.sp,
                 color: isSelected ? AppColors.primaryColor : Colors.black45,
                 fontWeight: FontWeight.w600,
               ),

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:travel_app/core/helper/app_router.dart';
 import 'package:travel_app/core/theme/app_color.dart';
+import 'package:travel_app/core/widget/custom_loading_circle.dart';
 
 class TravelApp extends StatelessWidget {
   const TravelApp({super.key});
@@ -29,11 +29,8 @@ class TravelApp extends StatelessWidget {
           overlayColor: Colors.black.withOpacity(0.5),
           overlayWholeScreen: true,
           useDefaultLoading: false,
-          overlayWidgetBuilder: (_) => Center(
-            child: SpinKitCircle(
-              color: AppColors.primaryColor,
-              size: 50.h,
-            ),
+          overlayWidgetBuilder: (_) => const Center(
+            child: CustomLoadingCircle(),
           ),
           child: MaterialApp.router(
             localizationsDelegates: const [

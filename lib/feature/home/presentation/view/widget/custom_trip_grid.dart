@@ -21,22 +21,18 @@ class CustomTripGrid extends StatelessWidget {
     return SliverPadding(
       padding: EdgeInsets.only(bottom: 80.h),
       sliver: SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 1,
+          mainAxisExtent: 220.h,
+        ),
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             final trip = trips[index];
-            return Padding(
-              padding: EdgeInsets.symmetric(vertical: 4.w),
-              child: AddTravelCaptain(
-                trip: trip,
-              ),
+            return AddTravelCaptain(
+              trip: trip,
             );
           },
           childCount: trips.length,
-        ),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10.w,
-          mainAxisExtent: 210.h,
         ),
       ),
     );

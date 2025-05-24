@@ -12,7 +12,6 @@ import 'package:travel_app/feature/add_travel/presentation/view/widget/date_time
 import 'package:travel_app/feature/add_travel/presentation/view/widget/destination_field.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/details_field.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/duration_price_field.dart';
-import 'package:travel_app/feature/add_travel/presentation/view/widget/gredient_selector_row.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/seats_field.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/submit_custom_button.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/widget/travel_type_selector.dart';
@@ -57,9 +56,6 @@ class _EditTravelFormState extends State<EditTravelForm> {
         _selectedType = 'شحن أغراض';
         break;
     }
-
-    // Set gradient index
-    tripFormCubit.setGradientIndex(widget.trip.gradientIndex);
   }
 
   @override
@@ -76,7 +72,6 @@ class _EditTravelFormState extends State<EditTravelForm> {
           padding: EdgeInsets.symmetric(horizontal: 5.w),
           child: Column(
             children: [
-              const GradientSelectorRow(),
               heightBox(10),
               TravelTypeSelector(
                 selectedType: _selectedType,

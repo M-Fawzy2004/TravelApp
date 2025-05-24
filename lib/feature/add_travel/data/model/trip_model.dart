@@ -1,4 +1,4 @@
-// 1. ENTITY/MODEL
+// Updated TripModel with simplified image handling
 import 'package:flutter/material.dart';
 import 'package:travel_app/core/utils/tripe_type.dart';
 
@@ -18,7 +18,7 @@ class TripModel {
   final String duration;
   final double price;
   final String additionalDetails;
-  final int gradientIndex;
+  final String imageUrl;
 
   TripModel({
     required this.id,
@@ -36,14 +36,13 @@ class TripModel {
     required this.duration,
     required this.price,
     this.additionalDetails = '',
-    this.gradientIndex = 0,
+    this.imageUrl = '',
   });
 
   String getTripTypeArabicText() {
     return getTripTypeInArabic(tripType);
   }
 
-  // Convert to JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -61,11 +60,10 @@ class TripModel {
       'duration': duration,
       'price': price,
       'additionalDetails': additionalDetails,
-      'gradientIndex': gradientIndex,
+      'imageUrl': imageUrl, 
     };
   }
 
-  // Create from JSON
   factory TripModel.fromJson(Map<String, dynamic> json) {
     return TripModel(
       id: json['id'],
@@ -89,7 +87,7 @@ class TripModel {
       duration: json['duration'],
       price: json['price'].toDouble(),
       additionalDetails: json['additionalDetails'] ?? '',
-      gradientIndex: json['gradientIndex'] ?? 0,
+      imageUrl: json['imageUrl'] ?? '', 
     );
   }
 
@@ -109,7 +107,7 @@ class TripModel {
     String? duration,
     double? price,
     String? additionalDetails,
-    int? gradientIndex,
+    String? imageUrl,
   }) {
     return TripModel(
       id: id ?? this.id,
@@ -127,10 +125,25 @@ class TripModel {
       duration: duration ?? this.duration,
       price: price ?? this.price,
       additionalDetails: additionalDetails ?? this.additionalDetails,
-      gradientIndex: gradientIndex ?? this.gradientIndex,
+      imageUrl: imageUrl ?? this.imageUrl,
     );
+  }
+
+  static String getDefaultCityImage(String cityName) {
+    return 'https://source.unsplash.com/800x400/?$cityName,egypt,travel,city';
+  }
+
+  static String getDefaultTravelImage() {
+    return 'https://source.unsplash.com/800x400/?egypt,travel,road,journey';
+  }
+
+  bool hasImage() {
+    return imageUrl.isNotEmpty;
+  }
+
+  String getImageUrlOrDefault() {
+    return imageUrl.isNotEmpty ? imageUrl : getDefaultTravelImage();
   }
 }
 
-// Trip Type Enum (based on the options in the form)
 enum TripType { specialTrip, cargoShipping }
