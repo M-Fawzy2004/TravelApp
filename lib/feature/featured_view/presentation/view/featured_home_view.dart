@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:travel_app/feature/home/presentation/view/featured_view/presentation/view/widget/featured_home_view_body.dart';
+import 'package:travel_app/feature/featured_view/presentation/view/widget/featured_home_view_body.dart';
 
 class FeaturedHomeView extends StatelessWidget {
   const FeaturedHomeView({super.key});
