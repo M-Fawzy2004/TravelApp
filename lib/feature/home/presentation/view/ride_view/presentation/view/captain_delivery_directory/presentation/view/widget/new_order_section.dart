@@ -17,16 +17,16 @@ class NewOrderSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('محمد فوزى', style: Styles.font16BlackBold),
+        Text('محمد فوزى', style: Styles.font16BlackBold(context)),
         const Divider(),
         heightBox(10),
         Row(
           children: [
-            const Icon(Icons.location_on, color: AppColors.primaryColor),
+             Icon(Icons.location_on, color: AppColors.getPrimaryColor(context)),
             widthBox(10),
             Text(
               'كوبرى قصر النيل القاهره',
-              style: Styles.font16BlackBold.copyWith(
+              style: Styles.font16BlackBold(context).copyWith(
                 fontWeight: FontWeight.w900,
               ),
             ),
@@ -48,7 +48,7 @@ class NewOrderSection extends StatelessWidget {
               child: CustomButtonAccept(
                 onAccept: () {},
                 title: 'تخطي',
-                backgroundColor: AppColors.lightGrey,
+                backgroundColor: AppColors.getLightGreyColor(context),
               ),
             ),
           ],

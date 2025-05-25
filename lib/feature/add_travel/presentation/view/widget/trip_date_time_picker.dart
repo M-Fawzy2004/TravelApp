@@ -43,8 +43,8 @@ class TripDateTimePicker extends StatelessWidget {
                     builder: (context, child) {
                       return Theme(
                         data: Theme.of(context).copyWith(
-                          colorScheme: const ColorScheme.light(
-                            primary: AppColors.primaryColor,
+                          colorScheme: ColorScheme.light(
+                            primary: AppColors.getPrimaryColor(context),
                           ),
                         ),
                         child: child!,
@@ -61,7 +61,7 @@ class TripDateTimePicker extends StatelessWidget {
                     vertical: 15.h,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.white,
+                    color: AppColors.getSurfaceColor(context),
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                   child: Row(
@@ -72,12 +72,12 @@ class TripDateTimePicker extends StatelessWidget {
                             ? DateFormat('yyyy-MM-dd').format(selectedDate!)
                             : 'اختر التاريخ',
                         style: selectedDate != null
-                            ? Styles.font14DarkGreyExtraBold
-                            : Styles.font14DarkGreyBold,
+                            ? Styles.font14DarkGreyExtraBold(context)
+                            : Styles.font14DarkGreyBold(context),
                       ),
-                      const Icon(
+                      Icon(
                         Icons.calendar_today,
-                        color: AppColors.primaryColor,
+                        color: AppColors.getPrimaryColor(context),
                       ),
                     ],
                   ),
@@ -107,8 +107,8 @@ class TripDateTimePicker extends StatelessWidget {
                     builder: (context, child) {
                       return Theme(
                         data: Theme.of(context).copyWith(
-                          colorScheme: const ColorScheme.light(
-                            primary: AppColors.primaryColor,
+                          colorScheme: ColorScheme.light(
+                            primary: AppColors.getPrimaryColor(context),
                           ),
                         ),
                         child: child!,
@@ -123,7 +123,7 @@ class TripDateTimePicker extends StatelessWidget {
                   padding:
                       EdgeInsets.symmetric(horizontal: 12.w, vertical: 15.h),
                   decoration: BoxDecoration(
-                    color: AppColors.white,
+                    color: AppColors.getSurfaceColor(context),
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                   child: Row(
@@ -134,12 +134,12 @@ class TripDateTimePicker extends StatelessWidget {
                             ? '${selectedTime!.hour}:${selectedTime!.minute.toString().padLeft(2, '0')}'
                             : 'اختر الوقت',
                         style: selectedTime != null
-                            ? Styles.font14DarkGreyExtraBold
-                            : Styles.font14GreyExtraBold,
+                            ? Styles.font14DarkGreyExtraBold(context)
+                            : Styles.font14GreyExtraBold(context),
                       ),
-                      const Icon(
+                      Icon(
                         Icons.access_time,
-                        color: AppColors.primaryColor,
+                        color: AppColors.getPrimaryColor(context),
                       ),
                     ],
                   ),

@@ -14,7 +14,7 @@ class TripBookingHeader extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: AppColors.primaryColor.withOpacity(0.08),
+        color: AppColors.getPrimaryColor(context).withOpacity(0.08),
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
@@ -27,7 +27,7 @@ class TripBookingHeader extends StatelessWidget {
       child: Center(
         child: Text(
           'مرحبًا بك! استعرض تذاكرك واحجز رحلتك الآن ✈️',
-          style: Styles.font16BlackBold,
+          style: Styles.font16BlackBold(context),
         ),
       ),
     );

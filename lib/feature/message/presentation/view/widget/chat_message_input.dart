@@ -31,8 +31,8 @@ class _ChatMessageInputState extends State<ChatMessageInput> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Container(
-            decoration: const BoxDecoration(
-              color: AppColors.primaryColor,
+            decoration:   BoxDecoration(
+              color: AppColors.getPrimaryColor(context),
               shape: BoxShape.circle,
             ),
             child: IconButton(
@@ -62,7 +62,7 @@ class _ChatMessageInputState extends State<ChatMessageInput> {
             onPressed: () {},
             icon: Icon(
               FontAwesomeIcons.microphone,
-              color: AppColors.primaryColor,
+              color: AppColors.getPrimaryColor(context),
               size: 22.sp,
             ),
           ),

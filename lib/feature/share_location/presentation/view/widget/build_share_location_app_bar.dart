@@ -9,7 +9,7 @@ AppBar buildShareLocationAppBar(BuildContext context) {
     scrolledUnderElevation: 0,
     title: Text(
       'مشاركة موقعك',
-      style: Styles.font20ExtraBlackBold,
+      style: Styles.font20ExtraBlackBold(context),
     ),
     centerTitle: true,
     leading: IconButton(

@@ -56,12 +56,12 @@ class _OtpVerificationViewBodyState extends State<OtpVerificationViewBody> {
             heightBox(15),
             Text(
               "أدخل رمز التحقق الذي تم إرساله إليك ",
-              style: Styles.font14DarkGreyExtraBold,
+              style: Styles.font14DarkGreyExtraBold(context),
               textAlign: TextAlign.center,
             ),
             heightBox(30),
             PinCodeTextField(
-              defaultBorderColor: AppColors.grey,
+              defaultBorderColor: AppColors.getBackgroundColor(context),
               pinBoxRadius: 10.r,
               controller: _otpController,
               maxLength: 6,
@@ -77,6 +77,13 @@ class _OtpVerificationViewBodyState extends State<OtpVerificationViewBody> {
                   const Duration(milliseconds: 300),
               highlightAnimationBeginColor: Colors.black,
               keyboardType: TextInputType.number,
+              pinTextStyle: TextStyle(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
+                color: AppColors.getTextColor(context) == Colors.black
+                    ? Colors.black
+                    : AppColors.primaryColor,
+              ),
             ),
             heightBox(30),
             CustomButton(

@@ -17,20 +17,12 @@ class CustomFavDetails extends StatelessWidget {
           vertical: 10.h,
         ),
         decoration: BoxDecoration(
-          color: AppColors.grey,
+          color: AppColors.getBackgroundColor(context),
           borderRadius: BorderRadius.circular(10.r),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.black.withOpacity(.3),
-              blurRadius: 6,
-              spreadRadius: 0,
-              offset: const Offset(0, 1),
-            ),
-          ],
         ),
-        child: const Icon(
+        child: Icon(
           FontAwesomeIcons.heart,
-          color: AppColors.primaryColor,
+          color: AppColors.getPrimaryColor(context),
         ),
       ),
     );

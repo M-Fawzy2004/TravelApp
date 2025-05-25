@@ -12,14 +12,14 @@ class PassengersName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.person, color: AppColors.primaryColor, size: 24.sp),
+        Icon(Icons.person, color: AppColors.getPrimaryColor(context), size: 24.sp),
         widthBox(8),
         Text(
           'اسم الراكب: محمد أحمد',
           style: TextStyle(
             fontSize: 16.sp,
             fontWeight: FontWeight.bold,
-            color: AppColors.primaryColor,
+            color: AppColors.getPrimaryColor(context),
           ),
         ),
       ],

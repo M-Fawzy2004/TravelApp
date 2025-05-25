@@ -39,7 +39,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
                 duration: const Duration(milliseconds: 600),
                 child: Text(
                   'DEV. Mohamed Fawzy',
-                  style: Styles.font14GreyExtraBold,
+                  style: Styles.font14GreyExtraBold(context),
                 ),
               ),
           ],

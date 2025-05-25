@@ -27,7 +27,9 @@ class SearchImageItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
           border: Border.all(
-            color: isSelected ? AppColors.primaryColor : Colors.transparent,
+            color: isSelected
+                ? AppColors.getPrimaryColor(context)
+                : Colors.transparent,
             width: 3,
           ),
           boxShadow: [
@@ -68,8 +70,8 @@ class SearchImageItem extends StatelessWidget {
                   right: 8.w,
                   child: Container(
                     padding: EdgeInsets.all(4.w),
-                    decoration: const BoxDecoration(
-                      color: AppColors.primaryColor,
+                    decoration: BoxDecoration(
+                      color: AppColors.getPrimaryColor(context),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(

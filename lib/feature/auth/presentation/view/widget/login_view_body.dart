@@ -20,25 +20,25 @@ class LoginViewBody extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Text(
                 'اهلا بك فى تطبيق Rihla ',
-                style: Styles.font20ExtraBlackBold,
+                style: Styles.font20ExtraBlackBold(context),
               ),
             ),
             heightBox(28),
             Text(
               'انضم الان وابدأ مشاركتنا رحلاتك أو انطلق فى رحله جديده \nمع الاخرين فى مدينتك سجل دخولك الان لتجربه تنقل افضل',
-              style: Styles.font14DarkGreyExtraBold,
+              style: Styles.font14DarkGreyExtraBold(context),
             ),
             heightBox(60),
             Text(
               'من فضلك ادخل رقم هاتفك',
-              style: Styles.font20ExtraBlackBold,
+              style: Styles.font20ExtraBlackBold(context),
             ),
             const LoginFormBlocListener(),
             heightBox(10),
             Text(
               textAlign: TextAlign.center,
               'من خلال المتابعة، فإنك توافق على تلقي المكالمات أو رسائل WhatsApp أو الرسائل النصية القصيرة/RCS، بما في ذلك الوسائل الآلية، من Rihla والشركات التابعة لها إلى الرقم المقدم.',
-              style: Styles.font12GreyExtraBold,
+              style: Styles.font12GreyExtraBold(context),
             )
           ],
         ),

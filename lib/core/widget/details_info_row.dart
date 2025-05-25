@@ -19,17 +19,17 @@ class DetailsInfoRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(icon, color: AppColors.primaryColor, size: 20),
+        Icon(icon, color: AppColors.getPrimaryColor(context), size: 20.sp),
         SizedBox(width: 10.w),
         Expanded(
           child: Text(
             label,
-            style: Styles.font14DarkGreyBold,
+            style: Styles.font14DarkGreyBold(context),
           ),
         ),
         Text(
           value,
-          style: Styles.font14GreyExtraBold,
+          style: Styles.font14GreyExtraBold(context),
         ),
       ],
     );

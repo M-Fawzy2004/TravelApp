@@ -20,12 +20,12 @@ class TripSummaryCardHeader extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(10.w),
           decoration: BoxDecoration(
-            color: AppColors.primaryColor.withOpacity(0.1),
+            color: AppColors.getPrimaryColor(context).withOpacity(0.1),
             borderRadius: BorderRadius.circular(12.r),
           ),
           child: Icon(
             FontAwesomeIcons.car,
-            color: AppColors.primaryColor,
+            color: AppColors.getPrimaryColor(context),
             size: 28.sp,
           ),
         ),
@@ -39,7 +39,7 @@ class TripSummaryCardHeader extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
-                  color: AppColors.primaryColor,
+                  color: AppColors.getPrimaryColor(context),
                 ),
               ),
               heightBox(4),

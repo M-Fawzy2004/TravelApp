@@ -35,10 +35,10 @@ class RideInfoCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('محمد فوزى', style: Styles.font16BlackBold),
+                Text('محمد فوزى', style: Styles.font16BlackBold(context)),
                 Text(
                   'من 10,00 ج.م • 00:28',
-                  style: Styles.font14GreyExtraBold,
+                  style: Styles.font14GreyExtraBold(context),
                 ),
               ],
             ),
@@ -46,7 +46,7 @@ class RideInfoCard extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
               decoration: BoxDecoration(
-                color: AppColors.lightGrey,
+                color: AppColors.getLightGreyColor(context),
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Row(
@@ -58,7 +58,7 @@ class RideInfoCard extends StatelessWidget {
                   widthBox(5),
                   Text(
                     'كوبرى قصر النيل القاهره',
-                    style: Styles.font16WhiteBold.copyWith(),
+                    style: Styles.font16WhiteBold(context).copyWith(),
                   ),
                 ],
               ),
@@ -70,7 +70,7 @@ class RideInfoCard extends StatelessWidget {
                   child: Container(
                     height: 50.h,
                     decoration: BoxDecoration(
-                      color: AppColors.lightGrey,
+                      color: AppColors.getLightGreyColor(context),
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Column(
@@ -78,14 +78,14 @@ class RideInfoCard extends StatelessWidget {
                       children: [
                         Icon(
                           FontAwesomeIcons.solidMessage,
-                          color: AppColors.white,
+                          color: AppColors.getSurfaceColor(context),
                           size: 18.sp,
                         ),
                         heightBox(5),
                         Text(
                           'محادثة',
-                          style: Styles.font12GreyExtraBold.copyWith(
-                            color: AppColors.white,
+                          style: Styles.font12GreyExtraBold(context).copyWith(
+                            color: AppColors.getSurfaceColor(context),
                           ),
                         ),
                       ],
@@ -97,7 +97,7 @@ class RideInfoCard extends StatelessWidget {
                   child: Container(
                     height: 50.h,
                     decoration: BoxDecoration(
-                      color: AppColors.lightGrey,
+                      color: AppColors.getLightGreyColor(context),
                       borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Column(
@@ -105,14 +105,14 @@ class RideInfoCard extends StatelessWidget {
                       children: [
                         Icon(
                           FontAwesomeIcons.route,
-                          color: AppColors.white,
+                          color: AppColors.getSurfaceColor(context),
                           size: 18.sp,
                         ),
                         heightBox(5),
                         Text(
                           'التنقل',
-                          style: Styles.font12GreyExtraBold.copyWith(
-                            color: AppColors.white,
+                          style: Styles.font12GreyExtraBold(context).copyWith(
+                            color: AppColors.getSurfaceColor(context),
                           ),
                         ),
                       ],
@@ -131,8 +131,8 @@ class RideInfoCard extends StatelessWidget {
               ),
               animationDuration: const Duration(milliseconds: 500),
               borderRadius: 15.r,
-              outerColor: AppColors.primaryColor,
-              innerColor: AppColors.grey,
+              outerColor: AppColors.getPrimaryColor(context),
+              innerColor: AppColors.getBackgroundColor(context),
               sliderRotate: false,
               elevation: 6,
               onSubmit: () {
@@ -143,7 +143,7 @@ class RideInfoCard extends StatelessWidget {
               },
               child: Text(
                 'ابدأ الرحلة',
-                style: Styles.font16WhiteBold,
+                style: Styles.font16WhiteBold(context),
               ),
             ),
           ],

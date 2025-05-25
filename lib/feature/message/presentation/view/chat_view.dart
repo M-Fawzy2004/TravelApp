@@ -18,7 +18,7 @@ class ChatView extends StatelessWidget {
         scrolledUnderElevation: 0,
         title: Text(
           'Mohamed Fawzy',
-          style: Styles.font20ExtraBlackBold,
+          style: Styles.font20ExtraBlackBold(context),
         ),
         centerTitle: true,
         leading: IconButton(

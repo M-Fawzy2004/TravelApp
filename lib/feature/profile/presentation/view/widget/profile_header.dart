@@ -28,8 +28,9 @@ class ProfileHeader extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 35.r,
-            backgroundColor: AppColors.lightGrey,
-            child: Icon(Icons.person, color: AppColors.white, size: 35.h),
+            backgroundColor: AppColors.getLightGreyColor(context),
+            child: Icon(Icons.person,
+                color: AppColors.getSurfaceColor(context), size: 35.h),
           ),
           const Spacer(),
           Column(
@@ -37,11 +38,11 @@ class ProfileHeader extends StatelessWidget {
             children: [
               Text(
                 '$firstName $lastName',
-                style: Styles.font30ExtraBlackBold,
+                style: Styles.font30ExtraBlackBold(context),
               ),
               Text(
                 'نوع المستخدم: $userRoleText',
-                style: Styles.font14GreyExtraBold,
+                style: Styles.font14GreyExtraBold(context),
               ),
             ],
           ),

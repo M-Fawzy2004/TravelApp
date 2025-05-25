@@ -23,7 +23,7 @@ class CounterButtonAndPrice extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: AppColors.primaryColor.withOpacity(0.1),
+            color: AppColors.getPrimaryColor(context).withOpacity(0.1),
             borderRadius: BorderRadius.circular(10.r),
           ),
           child: Row(
@@ -43,13 +43,13 @@ class CounterButtonAndPrice extends StatelessWidget {
                 width: 70.w,
                 padding: EdgeInsets.symmetric(vertical: 5.h),
                 decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
+                  color: AppColors.getPrimaryColor(context),
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Center(
                   child: Text(
                     bookingItemEntity.count.toString(),
-                    style: Styles.font16WhiteBold,
+                    style: Styles.font16WhiteBold(context),
                   ),
                 ),
               ),
@@ -67,7 +67,7 @@ class CounterButtonAndPrice extends StatelessWidget {
         ),
         Text(
           '${bookingItemEntity.calulateTotalPrice()} ج.م',
-          style: Styles.font20BlackBold,
+          style: Styles.font20BlackBold(context),
         ),
       ],
     );

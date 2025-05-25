@@ -27,7 +27,7 @@ class CustomLoadingGrid extends StatelessWidget {
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             return Shimmer.fromColors(
-              baseColor: AppColors.primaryColor.withOpacity(0.1),
+              baseColor: AppColors.getPrimaryColor(context).withOpacity(0.1),
               highlightColor: Colors.grey[100]!,
               child: AddTravelCaptain(
                 trip: getCategorySkeletonizer(),

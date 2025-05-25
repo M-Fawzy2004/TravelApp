@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/theme/app_color.dart';
+import 'package:travel_app/core/widget/custom_loading_circle.dart';
 import 'package:travel_app/feature/share_location/presentation/manager/location/location_cubit.dart';
 
 class SearchLocation extends StatefulWidget {
@@ -73,19 +74,15 @@ class _SearchLocationState extends State<SearchLocation> {
                     height: 18.sp,
                     child: Center(
                       child: SizedBox(
-                        width: 18.sp,
-                        height: 18.sp,
-                        child: const CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
+                          width: 18.sp,
+                          height: 18.sp,
+                          child: const CustomLoadingCircle()),
                     ),
                   )
                 : Icon(
                     FontAwesomeIcons.magnifyingGlass,
                     size: 18.sp,
-                    color: AppColors.primaryColor,
+                    color: AppColors.getPrimaryColor(context),
                   ),
             suffixIcon:
                 widget.controller != null && widget.controller!.text.isNotEmpty
@@ -102,7 +99,7 @@ class _SearchLocationState extends State<SearchLocation> {
                       )
                     : null,
             filled: true,
-            fillColor: AppColors.white,
+            fillColor: AppColors.getSurfaceColor(context),
             contentPadding: EdgeInsets.symmetric(
               horizontal: 16.w,
               vertical: 12.h,
@@ -114,12 +111,14 @@ class _SearchLocationState extends State<SearchLocation> {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.r),
               borderSide: BorderSide(
-                  color: AppColors.primaryColor.withOpacity(0.3), width: 1),
+                color: AppColors.getPrimaryColor(context).withOpacity(0.3),
+                width: 1,
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.r),
-              borderSide: const BorderSide(
-                color: AppColors.primaryColor,
+              borderSide: BorderSide(
+                color: AppColors.getPrimaryColor(context),
                 width: 2,
               ),
             ),

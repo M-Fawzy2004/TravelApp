@@ -23,11 +23,12 @@ class FeaturedTravel extends StatelessWidget {
     return Container(
       width: 220.w,
       decoration: BoxDecoration(
-        border: Border.all(color: AppColors.white, width: 3.w),
+        border:
+            Border.all(color: AppColors.getSurfaceColor(context), width: 3.w),
         borderRadius: BorderRadius.circular(10.r),
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withOpacity(0.2),
+            color: AppColors.getTextColor(context).withOpacity(0.2),
             blurRadius: 4,
             spreadRadius: 1,
           ),
@@ -51,7 +52,7 @@ class FeaturedTravel extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 6.h),
               decoration: BoxDecoration(
-                color: Colors.white60,
+                color: AppColors.getBackgroundColor(context).withOpacity(0.5),
                 borderRadius: BorderRadius.circular(10.r),
               ),
               child: Column(
@@ -59,7 +60,7 @@ class FeaturedTravel extends StatelessWidget {
                 children: [
                   Text(
                     location,
-                    style: Styles.font16BlackBold.copyWith(
+                    style: Styles.font16BlackBold(context).copyWith(
                       fontWeight: FontWeight.w900,
                     ),
                   ),
@@ -73,8 +74,8 @@ class FeaturedTravel extends StatelessWidget {
                       widthBox(10),
                       Text(
                         country,
-                        style: Styles.font12GreyExtraBold.copyWith(
-                          color: AppColors.black,
+                        style: Styles.font12GreyExtraBold(context).copyWith(
+                          color: AppColors.getTextColor(context),
                         ),
                       ),
                       const Spacer(),
@@ -86,8 +87,8 @@ class FeaturedTravel extends StatelessWidget {
                       widthBox(5),
                       Text(
                         rating.toString(),
-                        style: Styles.font12GreyExtraBold.copyWith(
-                          color: AppColors.black,
+                        style: Styles.font12GreyExtraBold(context).copyWith(
+                          color: AppColors.getTextColor(context),
                         ),
                       ),
                     ],

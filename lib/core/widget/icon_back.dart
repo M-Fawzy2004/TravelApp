@@ -17,10 +17,10 @@ class IconBack extends StatelessWidget {
       width: 40.w,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
-        color: AppColors.grey,
+        color: AppColors.getBackgroundColor(context),
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withOpacity(.2),
+            color: AppColors.getTextColor(context).withOpacity(.2),
             blurRadius: 6,
             spreadRadius: 0,
             offset: const Offset(0, 1),
@@ -33,10 +33,10 @@ class IconBack extends StatelessWidget {
           onPressed: () {
             context.pop();
           },
-          icon: const Icon(
+          icon: Icon(
             size: 18,
             FontAwesomeIcons.arrowRight,
-            color: AppColors.black,
+            color: AppColors.getTextColor(context),
           ),
         ),
       ),

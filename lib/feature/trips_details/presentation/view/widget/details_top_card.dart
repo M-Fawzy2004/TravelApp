@@ -20,11 +20,11 @@ class DetailsTopCard extends StatelessWidget {
       color: Colors.transparent,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.grey,
+          color: AppColors.getBackgroundColor(context),
           borderRadius: BorderRadius.circular(15.r),
           boxShadow: [
             BoxShadow(
-              color: AppColors.black.withOpacity(.2),
+              color: AppColors.getTextColor(context).withOpacity(.2),
               blurRadius: 6,
               spreadRadius: 0,
               offset: const Offset(0, 1),

@@ -46,8 +46,8 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
       children: [
         DropdownButtonFormField<String>(
           value: selectedRole,
-          dropdownColor: AppColors.white,
-          style: Styles.font20ExtraBlackBold,
+          dropdownColor: AppColors.getSurfaceColor(context),
+          style: Styles.font20ExtraBlackBold(context),
           padding: const EdgeInsets.symmetric(horizontal: 10),
           borderRadius: BorderRadius.circular(10.r),
           items: [
@@ -55,7 +55,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
               value: 'كابتن رحلات',
               child: Text(
                 'كابتن رحلات',
-                style: Styles.font16BlackBold.copyWith(
+                style: Styles.font16BlackBold(context).copyWith(
                   fontFamily: 'font',
                 ),
               ),
@@ -64,7 +64,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
               value: 'كابتن توصيل مباشر',
               child: Text(
                 'كابتن توصيل مباشر',
-                style: Styles.font16BlackBold.copyWith(
+                style: Styles.font16BlackBold(context).copyWith(
                   fontFamily: 'font',
                 ),
               ),
@@ -73,7 +73,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
               value: 'راكب',
               child: Text(
                 'راكب',
-                style: Styles.font16BlackBold.copyWith(
+                style: Styles.font16BlackBold(context).copyWith(
                   fontFamily: 'font',
                 ),
               ),
@@ -86,18 +86,19 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
             });
           },
           decoration: customInputDecoration(
+            context: context,
             labelText: 'نوع المستخدم',
           ).copyWith(
             filled: true,
-            fillColor: AppColors.white,
+            fillColor: AppColors.getSurfaceColor(context),
           ),
         ),
         if (selectedRole == 'كابتن رحلات' ||
             selectedRole == 'كابتن توصيل مباشر') ...[
           heightBox(20),
           DropdownButtonFormField<String>(
-            dropdownColor: AppColors.white,
-            style: Styles.font20ExtraBlackBold,
+            dropdownColor: AppColors.getSurfaceColor(context),
+            style: Styles.font20ExtraBlackBold(context),
             padding: const EdgeInsets.symmetric(horizontal: 10),
             borderRadius: BorderRadius.circular(10.r),
             value: selectedVehicleType,
@@ -106,7 +107,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
                 value: type,
                 child: Text(
                   type,
-                  style: Styles.font16BlackBold,
+                  style: Styles.font16BlackBold(context),
                 ),
               );
             }).toList(),
@@ -117,10 +118,11 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
               });
             },
             decoration: customInputDecoration(
+              context: context,
               labelText: 'نوع المركبة',
             ).copyWith(
               filled: true,
-              fillColor: AppColors.white,
+              fillColor: AppColors.getSurfaceColor(context),
             ),
           ),
           heightBox(20),

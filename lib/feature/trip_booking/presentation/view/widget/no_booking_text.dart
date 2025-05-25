@@ -22,7 +22,7 @@ class NoBookingText extends StatelessWidget {
             role == UserRole.passenger
                 ? "قائمة الحجوزات فارغة... احجز رحلتك القادمة!"
                 : "لا توجد حجوزات حتى الآن... انتظر طلبات من الركّاب",
-            style: Styles.font16BlackBold,
+            style: Styles.font16BlackBold(context),
           ),
           heightBox(30),
           Image.asset(

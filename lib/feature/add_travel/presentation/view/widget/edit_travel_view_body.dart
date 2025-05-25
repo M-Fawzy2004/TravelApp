@@ -32,13 +32,13 @@ class EditTravelViewBody extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Text(
               'تعديل الرحلة',
-              style: Styles.font18BlackBold,
+              style: Styles.font18BlackBold(context),
             ),
           ),
           heightBox(10),
           Text(
             'يمكنك تعديل تفاصيل رحلتك هنا. يرجى التأكد من صحة البيانات المدخلة.',
-            style: Styles.font14GreyExtraBold,
+            style: Styles.font14GreyExtraBold(context),
           ),
           heightBox(20),
           AddTravelBlocConsumer(

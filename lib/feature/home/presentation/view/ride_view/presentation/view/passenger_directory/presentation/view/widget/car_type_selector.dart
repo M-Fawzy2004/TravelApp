@@ -34,8 +34,8 @@ class CarTypeSelector extends StatelessWidget {
                 duration: const Duration(milliseconds: 300),
                 decoration: BoxDecoration(
                   color: selectedCarType == index
-                      ? AppColors.primaryColor.withOpacity(0.5)
-                      : AppColors.grey,
+                      ? AppColors.getPrimaryColor(context).withOpacity(0.5)
+                      : AppColors.getBackgroundColor(context),
                   borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Column(
@@ -49,7 +49,7 @@ class CarTypeSelector extends StatelessWidget {
                     heightBox(10),
                     Text(
                       carOptions[index]['type'] as String,
-                      style: Styles.font16BlackBold,
+                      style: Styles.font16BlackBold(context),
                     ),
                   ],
                 ),

@@ -43,7 +43,7 @@ class AnimatedTextWord extends StatelessWidget {
                     child: Text(
                       word[index],
                       style: TextStyle(
-                        color: AppColors.primaryColor,
+                        color: AppColors.getPrimaryColor(context),
                         fontSize: 90.sp,
                         fontWeight: FontWeight.bold,
                       ),

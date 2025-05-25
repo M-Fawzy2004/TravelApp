@@ -25,7 +25,9 @@ class ProfileOptionCard extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         height: 90.h,
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primaryColor : AppColors.white,
+          color: isSelected
+              ? AppColors.getPrimaryColor(context)
+              : AppColors.getSurfaceColor(context),
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Center(
@@ -34,14 +36,16 @@ class ProfileOptionCard extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                color: isSelected ? AppColors.white : AppColors.lightGrey,
+                color: isSelected
+                    ? AppColors.getSurfaceColor(context)
+                    : AppColors.getLightGreyColor(context),
                 size: 30,
               ),
               Text(
                 title,
                 style: isSelected
-                    ? Styles.font16WhiteBold
-                    : Styles.font16BlackBold,
+                    ? Styles.font16WhiteBold(context)
+                    : Styles.font16BlackBold(context),
               ),
             ],
           ),

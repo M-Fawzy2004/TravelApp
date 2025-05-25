@@ -27,16 +27,16 @@ class CategoryFilterItem extends StatelessWidget {
         height: 40.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: isSelected ? color : AppColors.white,
+          color: isSelected ? color : AppColors.getSurfaceColor(context),
         ),
         child: Center(
           child: Text(
             text,
             style: isSelected
-                ? Styles.font14GreyExtraBold.copyWith(
-                    color: AppColors.white,
+                ? Styles.font14GreyExtraBold(context).copyWith(
+                    color: AppColors.getSurfaceColor(context),
                   )
-                : Styles.font14BlackExtraBold,
+                : Styles.font14BlackExtraBold(context),
           ),
         ),
       ),

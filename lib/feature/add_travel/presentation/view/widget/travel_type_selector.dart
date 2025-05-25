@@ -31,10 +31,10 @@ class TravelTypeSelector extends StatelessWidget {
                 label: Text(
                   type,
                   style: selectedType == type
-                      ? Styles.font14GreyExtraBold.copyWith(
-                          color: AppColors.white,
+                      ? Styles.font14GreyExtraBold(context).copyWith(
+                          color: AppColors.getSurfaceColor(context),
                         )
-                      : Styles.font14BlackExtraBold,
+                      : Styles.font14BlackExtraBold(context),
                 ),
                 selected: selectedType == type,
                 onSelected: (selected) {
@@ -42,8 +42,8 @@ class TravelTypeSelector extends StatelessWidget {
                     onChanged(type);
                   }
                 },
-                selectedColor: AppColors.primaryColor,
-                backgroundColor: AppColors.white,
+                selectedColor: AppColors.getPrimaryColor(context),
+                backgroundColor: AppColors.getSurfaceColor(context),
               );
             }).toList(),
           ),

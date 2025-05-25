@@ -43,7 +43,7 @@ class _DetailsTripViewBodyState extends State<DetailsTripViewBody> {
                   children: [
                     const IconBack(),
                     const Spacer(),
-                    Text('تفاصيل الرحلة', style: Styles.font20BlackBold),
+                    Text('تفاصيل الرحلة', style: Styles.font20BlackBold(context)),
                     const Spacer(),
                     widthBox(55),
                   ],

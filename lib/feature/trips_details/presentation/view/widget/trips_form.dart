@@ -28,7 +28,7 @@ class _TripsFormState extends State<TripsForm> {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: AppColors.grey,
+        color: AppColors.getBackgroundColor(context),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(25.r),
           topRight: Radius.circular(25.r),
@@ -38,7 +38,7 @@ class _TripsFormState extends State<TripsForm> {
         children: [
           Expanded(
             child: CustomButton(
-              backgroundColor: AppColors.primaryColor,
+              backgroundColor: AppColors.getPrimaryColor(context),
               buttonText: 'تعديل الرحله',
               onPressed: () {
                 Navigator.push(
@@ -75,12 +75,12 @@ class _TripsFormState extends State<TripsForm> {
         title: Center(
           child: Text(
             'تأكيد الحذف',
-            style: Styles.font20ExtraBlackBold,
+            style: Styles.font20ExtraBlackBold(context),
           ),
         ),
         content: Text(
           'هل أنت متأكد من رغبتك في حذف هذه الرحلة؟',
-          style: Styles.font14DarkGreyBold,
+          style: Styles.font14DarkGreyBold(context),
         ),
         actions: [
           TextButton(
@@ -89,18 +89,17 @@ class _TripsFormState extends State<TripsForm> {
             },
             child: Text(
               'إلغاء',
-              style: Styles.font16BlackBold,
+              style: Styles.font16BlackBold(context),
             ),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(dialogContext).pop();
-              // Use the stored reference instead of context.watch
               tripCubit.deleteTrip(widget.trip.id);
             },
             child: Text(
               'حذف',
-              style: Styles.font16BlackBold.copyWith(
+              style: Styles.font16BlackBold(context).copyWith(
                 color: Colors.red,
               ),
             ),

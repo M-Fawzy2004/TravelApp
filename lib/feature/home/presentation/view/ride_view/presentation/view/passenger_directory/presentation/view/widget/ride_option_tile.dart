@@ -32,7 +32,9 @@ class RideOptionTile extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(10.r),
             border: Border.all(
-              color: isSelected ? AppColors.primaryColor : AppColors.lightGrey,
+              color: isSelected
+                  ? AppColors.getPrimaryColor(context)
+                  : AppColors.getLightGreyColor(context),
               width: isSelected ? 2 : 1,
             ),
           ),
@@ -50,7 +52,7 @@ class RideOptionTile extends StatelessWidget {
                     ),
                     const Spacer(),
                     heightBox(8),
-                    Text(title, style: Styles.font12GreyExtraBold),
+                    Text(title, style: Styles.font12GreyExtraBold(context)),
                   ],
                 ),
               ),
@@ -60,11 +62,11 @@ class RideOptionTile extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.r),
                   color: isSelected
-                      ? AppColors.primaryColor.withOpacity(0.3)
-                      : AppColors.grey,
+                      ? AppColors.getPrimaryColor(context).withOpacity(0.3)
+                      : AppColors.getBackgroundColor(context),
                 ),
                 child: Center(
-                  child: Text(price, style: Styles.font14GreyExtraBold),
+                  child: Text(price, style: Styles.font14GreyExtraBold(context)),
                 ),
               ),
             ],

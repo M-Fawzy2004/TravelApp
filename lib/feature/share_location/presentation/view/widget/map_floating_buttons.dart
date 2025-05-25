@@ -21,11 +21,11 @@ class MapFloatingButtons extends StatelessWidget {
         FloatingActionButton(
           heroTag: 'currentLocation',
           onPressed: moveToCurrentLocation,
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: AppColors.getPrimaryColor(context),
           child: Icon(
             FontAwesomeIcons.locationCrosshairs,
             size: 24.sp,
-            color: AppColors.white,
+            color: AppColors.getSurfaceColor(context),
           ),
         ),
         SizedBox(height: 16.h),
@@ -35,24 +35,24 @@ class MapFloatingButtons extends StatelessWidget {
             FloatingActionButton(
               heroTag: 'zoomOut',
               onPressed: () => adjustZoom(-1),
-              backgroundColor: AppColors.primaryColor,
+              backgroundColor: AppColors.getPrimaryColor(context),
               mini: true,
               child: Icon(
                 FontAwesomeIcons.minus,
                 size: 18.sp,
-                color: AppColors.white,
+                color: AppColors.getSurfaceColor(context),
               ),
             ),
             SizedBox(width: 8.w),
             FloatingActionButton(
               heroTag: 'zoomIn',
               onPressed: () => adjustZoom(1),
-              backgroundColor: AppColors.primaryColor,
+              backgroundColor: AppColors.getPrimaryColor(context),
               mini: true,
               child: Icon(
                 FontAwesomeIcons.plus,
                 size: 18.sp,
-                color: AppColors.white,
+                color: AppColors.getSurfaceColor(context),
               ),
             ),
           ],

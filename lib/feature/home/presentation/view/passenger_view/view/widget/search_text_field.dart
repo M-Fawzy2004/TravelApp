@@ -38,13 +38,13 @@ class _SearchTextFieldState extends State<SearchTextField> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         border: Border.all(
-          color: AppColors.lightGrey.withOpacity(0.2),
+          color: AppColors.getLightGreyColor(context).withOpacity(0.2),
         ),
       ),
       child: TextField(
         controller: _searchController,
         focusNode: _focusNode,
-        style: Styles.font16BlackBold,
+        style: Styles.font16BlackBold(context),
         onChanged: (value) {
           _performSearch(value);
         },
@@ -53,10 +53,10 @@ class _SearchTextFieldState extends State<SearchTextField> {
             vertical: 15.h,
             horizontal: 16.w,
           ),
-          fillColor: AppColors.white,
+          fillColor: AppColors.getSurfaceColor(context),
           filled: true,
           hintText: widget.hintText,
-          hintStyle: Styles.font14DarkGreyExtraBold.copyWith(
+          hintStyle: Styles.font14DarkGreyExtraBold(context).copyWith(
             fontWeight: FontWeight.w900,
           ),
           border: OutlineInputBorder(

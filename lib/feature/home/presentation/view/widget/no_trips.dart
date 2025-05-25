@@ -29,7 +29,7 @@ class NoTrips extends StatelessWidget {
               role == UserRole.passenger
                   ? "لا توجد رحلات متاحة حالياً"
                   : "ابدأ بإضافة رحلتك الأولى الآن!",
-              style: Styles.font18BlackBold,
+              style: Styles.font18BlackBold(context),
             ),
             heightBox(30),
             Image.asset(Assets.imagesNoTripsLogo, height: 100.h),

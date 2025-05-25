@@ -47,7 +47,7 @@ class _ConversationListState extends State<ConversationList> {
       itemBuilder: (context, index) {
         if (index == 0) {
           return DateChip(
-            color: AppColors.grey,
+            color: AppColors.getBackgroundColor(context),
             date: DateTime.now().subtract(const Duration(days: 1)),
           );
         }
@@ -60,11 +60,11 @@ class _ConversationListState extends State<ConversationList> {
             isSender: message['isSender'],
             tail: true,
             color: message['isSender']
-                ? AppColors.primaryColor
-                : AppColors.lightGrey.withOpacity(0.3),
+                ? AppColors.getPrimaryColor(context)
+                : AppColors.getLightGreyColor(context).withOpacity(0.3),
             textStyle: message['isSender']
-                ? Styles.font16WhiteBold
-                : Styles.font16BlackBold,
+                ? Styles.font16WhiteBold(context)
+                : Styles.font16BlackBold(context),
           ),
         );
       },

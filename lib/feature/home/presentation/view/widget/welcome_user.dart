@@ -16,12 +16,12 @@ class WelcomeUser extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 7.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: AppColors.grey,
+            color: AppColors.getBackgroundColor(context),
           ),
           child: Center(
             child: Text(
               'اهلا بك Mohamed Fawzy',
-              style: Styles.font20ExtraBlackBold,
+              style: Styles.font20ExtraBlackBold(context),
             ),
           ),
         ),

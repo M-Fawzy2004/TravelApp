@@ -17,10 +17,10 @@ class CustomTripLocation extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
-        color: AppColors.primaryColor,
+        color: AppColors.getPrimaryColor(context),
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withOpacity(.2),
+            color: AppColors.getTextColor(context).withOpacity(.2),
             blurRadius: 6,
             spreadRadius: 0,
             offset: const Offset(0, 3),

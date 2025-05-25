@@ -44,9 +44,9 @@ class SearchTipsBox extends StatelessWidget {
             '• جرب إضافة كلمات مثل "pyramids" أو "Giza" مع اسم المدينة لتحسين النتائج.\n'
             '• اضغط "صور جديدة" للحصول على مجموعة مختلفة من الصور.\n'
             '• تأكد من اتصال الإنترنت لتحصل على نتائج أسرع وأحدث.',
-            style: Styles.font12GreyExtraBold.copyWith(
+            style: Styles.font12GreyExtraBold(context).copyWith(
               height: 1.5,
-              color: AppColors.lightGrey,
+              color: AppColors.getLightGreyColor(context),
             ),
           ),
         ],

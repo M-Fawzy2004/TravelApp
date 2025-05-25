@@ -15,7 +15,7 @@ class CustomTripIcon extends StatelessWidget {
       icon: Icon(
         size: 30.sp,
         icon,
-        color: AppColors.primaryColor,
+        color: AppColors.getPrimaryColor(context),
       ),
     );
   }

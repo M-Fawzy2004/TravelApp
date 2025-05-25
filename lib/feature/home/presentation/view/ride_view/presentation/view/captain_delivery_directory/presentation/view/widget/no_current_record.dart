@@ -15,7 +15,7 @@ class NoCurrentRecord extends StatelessWidget {
         children: [
           Text(
             'لا يوجد سجل رحلات لك في هذا الوقت الحالى',
-            style: Styles.font16BlackBold,
+            style: Styles.font16BlackBold(context),
           ),
           heightBox(30),
           Image.asset(

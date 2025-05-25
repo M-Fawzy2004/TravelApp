@@ -48,12 +48,12 @@ class _FeaturedTravelListViewState extends State<FeaturedTravelListView> {
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.r),
-            color: AppColors.white,
+            color: AppColors.getSurfaceColor(context),
           ),
           child: Center(
             child: Text(
               'الحجوزات والفنادق والأماكن السياحية',
-              style: Styles.font16BlackBold,
+              style: Styles.font16BlackBold(context),
             ),
           ),
         ),

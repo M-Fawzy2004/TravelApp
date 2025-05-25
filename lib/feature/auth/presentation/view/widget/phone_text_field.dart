@@ -96,10 +96,10 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
       },
       keyboardType: TextInputType.phone,
       textAlign: TextAlign.left,
-      style: Styles.font16BlackBold,
+      style: Styles.font16BlackBold(context),
       decoration: InputDecoration(
         hintText: 'ادخل رقم الهاتف',
-        hintStyle: Styles.font14DarkGreyExtraBold,
+        hintStyle: Styles.font14DarkGreyExtraBold(context),
         errorText: _errorText,
         isDense: true,
         contentPadding: EdgeInsets.symmetric(
@@ -107,7 +107,7 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
           horizontal: 16.w,
         ),
         filled: true,
-        fillColor: AppColors.white,
+        fillColor: AppColors.getSurfaceColor(context),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide.none,
@@ -115,14 +115,14 @@ class _PhoneTextFieldState extends State<PhoneTextField> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide(
-            color: AppColors.primaryColor,
+            color: AppColors.getPrimaryColor(context),
             width: 2.w,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide(
-            color: AppColors.grey,
+            color: AppColors.getBackgroundColor(context),
             width: 2.w,
           ),
         ),

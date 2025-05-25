@@ -36,7 +36,7 @@ class PhoneNumberField extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               decoration: BoxDecoration(
-                color: AppColors.white,
+                color: AppColors.getSurfaceColor(context),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
@@ -48,7 +48,7 @@ class PhoneNumberField extends StatelessWidget {
                   widthBox(6),
                   Text(
                     "+${selectedCountry.phoneCode}",
-                    style: Styles.font16BlackBold,
+                    style: Styles.font16BlackBold(context),
                   ),
                 ],
               ),

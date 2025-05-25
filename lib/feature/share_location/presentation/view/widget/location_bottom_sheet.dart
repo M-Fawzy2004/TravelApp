@@ -73,7 +73,7 @@ class LocationBottomSheet extends StatelessWidget {
             heightBox(24),
 
             // Location image placeholder
-            _buildLocationImagePlaceholder(),
+            _buildLocationImagePlaceholder(context),
 
             heightBox(24),
 
@@ -110,7 +110,7 @@ class LocationBottomSheet extends StatelessWidget {
               children: [
                 Icon(
                   FontAwesomeIcons.locationDot,
-                  color: AppColors.primaryColor,
+                  color: AppColors.getPrimaryColor(context),
                   size: 24.sp,
                 ),
                 widthBox(10),
@@ -120,12 +120,12 @@ class LocationBottomSheet extends StatelessWidget {
                           children: [
                             Text(
                               'جاري تحميل العنوان...',
-                              style: Styles.font16BlackBold,
+                              style: Styles.font16BlackBold(context),
                             ),
                             widthBox(10),
                             Center(
                               child: SpinKitCircle(
-                                color: AppColors.primaryColor,
+                                color: AppColors.getPrimaryColor(context),
                                 size: 50.h,
                               ),
                             ),
@@ -133,7 +133,7 @@ class LocationBottomSheet extends StatelessWidget {
                         )
                       : Text(
                           locationName ?? 'موقع غير معروف',
-                          style: Styles.font16BlackBold,
+                          style: Styles.font16BlackBold(context),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -145,7 +145,7 @@ class LocationBottomSheet extends StatelessWidget {
             Text(
               'الإحداثيات: ${point.latitude.toStringAsFixed(6)}, ${point.longitude.toStringAsFixed(6)}',
               style:
-                  Styles.font14GreyExtraBold.copyWith(color: Colors.grey[600]),
+                  Styles.font14GreyExtraBold(context).copyWith(color: Colors.grey[600]),
             ),
           ],
         );
@@ -153,7 +153,7 @@ class LocationBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget _buildLocationImagePlaceholder() {
+  Widget _buildLocationImagePlaceholder(BuildContext context) {
     return Container(
       height: 150.h,
       width: double.infinity,
@@ -169,7 +169,7 @@ class LocationBottomSheet extends StatelessWidget {
         child: Icon(
           FontAwesomeIcons.mapLocation,
           size: 40.sp,
-          color: AppColors.primaryColor.withOpacity(0.7),
+          color: AppColors.getPrimaryColor(context).withOpacity(0.7),
         ),
       ),
     );

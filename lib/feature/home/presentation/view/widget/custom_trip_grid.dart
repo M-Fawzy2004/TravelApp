@@ -4,14 +4,9 @@ import 'package:travel_app/feature/home/presentation/view/captain_view/view/widg
 import 'package:travel_app/feature/home/presentation/view/widget/no_trips.dart';
 
 class CustomTripGrid extends StatelessWidget {
-  const CustomTripGrid({
-    super.key,
-    required this.trips,
-    this.index,
-  });
+  const CustomTripGrid({super.key, required this.trips});
 
   final List trips;
-  final int? index;
 
   @override
   Widget build(BuildContext context) {

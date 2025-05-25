@@ -17,7 +17,7 @@ class PriceContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 5.h),
       decoration: BoxDecoration(
-        color: AppColors.grey,
+        color: AppColors.getBackgroundColor(context),
         borderRadius: BorderRadius.circular(10.r),
       ),
       child: Row(
@@ -25,7 +25,7 @@ class PriceContainer extends StatelessWidget {
         children: [
           Text(
             '${trip.price.toString()} ج.م',
-            style: Styles.font16BlackBold,
+            style: Styles.font16BlackBold(context),
           ),
         ],
       ),

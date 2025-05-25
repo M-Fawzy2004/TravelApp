@@ -21,7 +21,7 @@ class _CaptainAvailabilityTileState extends State<CaptainAvailabilityTile> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.r),
-        color: AppColors.white,
+        color: AppColors.getSurfaceColor(context),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -33,15 +33,15 @@ class _CaptainAvailabilityTileState extends State<CaptainAvailabilityTile> {
           ),
           Text(
             ' ${_isAvailable ? "متاح" : "غير متاح"}',
-            style: Styles.font16BlackBold,
+            style: Styles.font16BlackBold(context),
           ),
           widthBox(35),
           Switch(
             value: _isAvailable,
-            activeColor: AppColors.primaryColor,
-            activeTrackColor: AppColors.primaryColor.withOpacity(0.2),
-            inactiveTrackColor: AppColors.white,
-            inactiveThumbColor: AppColors.primaryColor,
+            activeColor: AppColors.getPrimaryColor(context),
+            activeTrackColor: AppColors.getPrimaryColor(context).withOpacity(0.2),
+            inactiveTrackColor: AppColors.getSurfaceColor(context),
+            inactiveThumbColor: AppColors.getPrimaryColor(context),
             onChanged: (val) {
               setState(() {
                 _isAvailable = val;

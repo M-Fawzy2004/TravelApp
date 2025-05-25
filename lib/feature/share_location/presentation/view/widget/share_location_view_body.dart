@@ -61,13 +61,13 @@ class ShareLocationViewBody extends StatelessWidget {
                     point: currentLocation!,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppColors.primaryColor.withOpacity(0.4),
+                        color: AppColors.getPrimaryColor(context).withOpacity(0.4),
                         shape: BoxShape.circle,
                       ),
                       child: Center(
                         child: Icon(
                           FontAwesomeIcons.locationDot,
-                          color: AppColors.primaryColor,
+                          color: AppColors.getPrimaryColor(context),
                           size: 24.sp,
                         ),
                       ),
@@ -114,7 +114,7 @@ class ShareLocationViewBody extends StatelessWidget {
                   Polyline(
                     points: route,
                     strokeWidth: 4.0,
-                    color: AppColors.primaryColor,
+                    color: AppColors.getPrimaryColor(context),
                   ),
                 ],
               ),
@@ -134,7 +134,7 @@ class ShareLocationViewBody extends StatelessWidget {
         if (currentLocation == null)
           Center(
             child: SpinKitCircle(
-              color: AppColors.primaryColor,
+              color: AppColors.getPrimaryColor(context),
               size: 50.h,
             ),
           ),

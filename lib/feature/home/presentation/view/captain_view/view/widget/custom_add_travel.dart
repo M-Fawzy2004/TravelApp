@@ -15,21 +15,21 @@ class CustomAddTravel extends StatelessWidget {
     return FloatingActionButton(
       shape: const CircleBorder(),
       mini: true,
-      backgroundColor: AppColors.primaryColor,
+      backgroundColor: AppColors.getPrimaryColor(context),
       onPressed: () {
         showCupertinoModalPopup(
           context: context,
           builder: (context) => CupertinoActionSheet(
             title: Text(
               'إضافة رحلة',
-              style: Styles.font18BlackBold.copyWith(
+              style: Styles.font18BlackBold(context).copyWith(
                 fontFamily: 'font',
               ),
             ),
             message: Text(
               'هل تريد إضافة وجهتك القادمة أو عرض توصيلك؟',
-              style: Styles.font16BlackBold.copyWith(
-                color: AppColors.lightGrey,
+              style: Styles.font16BlackBold(context).copyWith(
+                color: AppColors.getLightGreyColor(context),
                 fontFamily: 'font',
               ),
               textAlign: TextAlign.center,
@@ -42,8 +42,8 @@ class CustomAddTravel extends StatelessWidget {
                 },
                 child: Text(
                   'أضف رحلتك الآن',
-                  style: Styles.font16BlackBold.copyWith(
-                    color: AppColors.primaryColor,
+                  style: Styles.font16BlackBold(context).copyWith(
+                    color: AppColors.getPrimaryColor(context),
                     fontFamily: 'font',
                   ),
                 ),
@@ -54,7 +54,7 @@ class CustomAddTravel extends StatelessWidget {
               isDefaultAction: true,
               child: Text(
                 'إلغاء',
-                style: Styles.font16BlackBold.copyWith(
+                style: Styles.font16BlackBold(context).copyWith(
                   color: Colors.red,
                   fontFamily: 'font',
                 ),
@@ -66,7 +66,7 @@ class CustomAddTravel extends StatelessWidget {
       child: FaIcon(
         FontAwesomeIcons.plus,
         size: 15.sp,
-        color: AppColors.white,
+        color: AppColors.getSurfaceColor(context),
       ),
     );
   }

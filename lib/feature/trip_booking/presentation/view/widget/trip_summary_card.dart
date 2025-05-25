@@ -44,7 +44,7 @@ class TripSummaryCard extends StatelessWidget {
           ),
           SlidableAction(
             onPressed: (_) {},
-            backgroundColor: AppColors.primaryColor,
+            backgroundColor: AppColors.getPrimaryColor(context),
             icon: FontAwesomeIcons.share,
             label: 'شارك',
           ),
@@ -53,19 +53,19 @@ class TripSummaryCard extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
-          color: AppColors.white,
+          color: AppColors.getSurfaceColor(context),
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20.r),
             bottomLeft: Radius.circular(20.r),
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.black.withOpacity(0.05),
+              color: AppColors.getTextColor(context).withOpacity(0.05),
               blurRadius: 5,
               offset: const Offset(0, 3),
             ),
             BoxShadow(
-              color: AppColors.lightGrey.withOpacity(0.05),
+              color: AppColors.getLightGreyColor(context).withOpacity(0.05),
               blurRadius: 5,
               offset: const Offset(0, -3),
             ),

@@ -73,9 +73,9 @@ class RideMapDirectory extends StatelessWidget {
             headingSectorColor: Colors.blue,
           ),
         ),
-        if (routePoints.isNotEmpty) _buildRouteLayer(),
+        if (routePoints.isNotEmpty) _buildRouteLayer(context),
         MarkerLayer(
-          markers: _buildMarkers(),
+          markers: _buildMarkers(context),
         ),
       ],
     );
@@ -115,7 +115,7 @@ class RideMapDirectory extends StatelessWidget {
     return LatLngBounds.fromPoints(points);
   }
 
-  PolylineLayer _buildRouteLayer() {
+  PolylineLayer _buildRouteLayer(BuildContext context) {
     List<LatLng> displayPoints = routePoints;
     if (routePoints.length > 100) {
       displayPoints = [];
@@ -131,14 +131,14 @@ class RideMapDirectory extends StatelessWidget {
       polylines: [
         Polyline(
           points: displayPoints,
-          color: AppColors.primaryColor,
+          color: AppColors.getPrimaryColor(context),
           strokeWidth: 4.0,
         ),
       ],
     );
   }
 
-  List<Marker> _buildMarkers() {
+  List<Marker> _buildMarkers(BuildContext context) {
     List<Marker> markers = [];
 
     if (destinationLocation != null) {
@@ -147,7 +147,10 @@ class RideMapDirectory extends StatelessWidget {
           point: destinationLocation!,
           width: 40.w,
           height: 40.h,
-          child: _buildMarker(Icons.location_on, AppColors.primaryColor),
+          child: _buildMarker(
+            Icons.location_on,
+            AppColors.getPrimaryColor(context),
+          ),
         ),
       );
     }
@@ -162,7 +165,7 @@ class RideMapDirectory extends StatelessWidget {
                 height: 10.h,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.primaryColor.withOpacity(0.7),
+                    color: AppColors.getPrimaryColor(context).withOpacity(0.7),
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: Colors.white,

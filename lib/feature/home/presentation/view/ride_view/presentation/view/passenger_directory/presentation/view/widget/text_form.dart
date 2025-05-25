@@ -46,7 +46,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       decoration: InputDecoration(
         hintText: widget.hintText,
         hintTextDirection: TextDirection.rtl,
-        hintStyle: Styles.font14GreyExtraBold,
+        hintStyle: Styles.font14GreyExtraBold(context),
         filled: true,
         fillColor: widget.fillColor,
         contentPadding: EdgeInsets.symmetric(

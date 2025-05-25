@@ -14,11 +14,11 @@ class DetailsHeader extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
-        color: AppColors.primaryColor,
+        color: AppColors.getPrimaryColor(context),
         borderRadius: BorderRadius.circular(10.r),
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withOpacity(.2),
+            color: AppColors.getTextColor(context).withOpacity(.2),
             blurRadius: 6,
             spreadRadius: 0,
             offset: const Offset(0, 1),
@@ -28,7 +28,7 @@ class DetailsHeader extends StatelessWidget {
       child: Center(
         child: Text(
           'يسعدنا اهتمامك بالرحله',
-          style: Styles.font18BlackBold,
+          style: Styles.font18BlackBold(context),
         ),
       ),
     );

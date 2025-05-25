@@ -44,7 +44,7 @@ class _SearchImageButtonState extends State<SearchImageButton> {
           ),
         ),
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryColor,
+          backgroundColor: AppColors.getPrimaryColor(context),
           foregroundColor: Colors.white,
           padding: EdgeInsets.symmetric(vertical: 12.h),
           shape: RoundedRectangleBorder(

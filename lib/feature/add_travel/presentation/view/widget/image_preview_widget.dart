@@ -88,7 +88,7 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
             Container(
               width: double.infinity,
               height: double.infinity,
-              color: AppColors.white,
+              color: AppColors.getSurfaceColor(context),
             ),
             _buildImageWidget(),
             if (widget.showSearchButton) _buildSearchButton(),
@@ -103,7 +103,7 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
       width: double.infinity,
       height: 200.h,
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.getSurfaceColor(context),
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Column(
@@ -117,7 +117,7 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
           heightBox(12),
           Text(
             'اختر صورة للوجهة',
-            style: Styles.font16BlackBold,
+            style: Styles.font16BlackBold(context),
           ),
           heightBox(15),
           if (widget.showSearchButton)
@@ -126,12 +126,12 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
               icon: Icon(Icons.search, size: 20.sp),
               label: Text(
                 'البحث عن صور',
-                style: Styles.font14GreyExtraBold.copyWith(
+                style: Styles.font14GreyExtraBold(context).copyWith(
                   color: Colors.white,
                 ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primaryColor,
+                backgroundColor: AppColors.getPrimaryColor(context),
                 foregroundColor: Colors.white,
                 padding: EdgeInsets.symmetric(
                   horizontal: 20.w,
@@ -162,7 +162,7 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
           return child;
         }
         return Container(
-          color: AppColors.white,
+          color: AppColors.getSurfaceColor(context),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -171,7 +171,7 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
                 heightBox(10),
                 Text(
                   'جاري تحميل الصورة...',
-                  style: Styles.font14GreyExtraBold,
+                  style: Styles.font14GreyExtraBold(context),
                 ),
                 heightBox(8),
                 LinearProgressIndicator(
@@ -180,8 +180,8 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
                           loadingProgress.expectedTotalBytes!
                       : null,
                   backgroundColor: Colors.grey[300],
-                  valueColor: const AlwaysStoppedAnimation<Color>(
-                    AppColors.primaryColor,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    AppColors.getPrimaryColor(context),
                   ),
                 ),
               ],
@@ -217,7 +217,7 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
             heightBox(10),
             Text(
               message,
-              style: Styles.font14GreyExtraBold,
+              style: Styles.font14GreyExtraBold(context),
               textAlign: TextAlign.center,
             ),
             heightBox(8),
@@ -227,13 +227,13 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
                 icon: Icon(
                   Icons.search,
                   size: 16.sp,
-                  color: AppColors.primaryColor,
+                  color: AppColors.getPrimaryColor(context),
                 ),
                 label: Text(
                   'البحث عن صورة أخرى',
                   style: TextStyle(
                     fontSize: 12.sp,
-                    color: AppColors.primaryColor,
+                    color: AppColors.getPrimaryColor(context),
                   ),
                 ),
               ),
@@ -249,7 +249,7 @@ class _ImagePreviewWidgetState extends State<ImagePreviewWidget> {
       left: 12.w,
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.primaryColor,
+          color: AppColors.getPrimaryColor(context),
           borderRadius: BorderRadius.circular(10.r),
           boxShadow: [
             BoxShadow(

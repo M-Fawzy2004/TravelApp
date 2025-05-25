@@ -26,7 +26,7 @@ class CustomButtonAccept extends StatelessWidget {
         overlayColor:
             WidgetStateProperty.all(AppColors.darkGrey.withOpacity(.2)),
         backgroundColor: WidgetStatePropertyAll(
-          backgroundColor ?? AppColors.primaryColor,
+          backgroundColor ?? AppColors.getPrimaryColor(context),
         ),
         padding: WidgetStateProperty.all<EdgeInsets>(
           EdgeInsets.symmetric(vertical: 20.h),
@@ -36,8 +36,8 @@ class CustomButtonAccept extends StatelessWidget {
       child: FittedBox(
         child: Text(
           title,
-          style: Styles.font14DarkGreyBold.copyWith(
-            color: AppColors.white,
+          style: Styles.font14DarkGreyBold(context).copyWith(
+            color: AppColors.getSurfaceColor(context),
           ),
         ),
       ),

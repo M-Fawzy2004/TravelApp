@@ -14,13 +14,14 @@ class DetailsCenterCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.grey,
+        color: AppColors.getBackgroundColor(context),
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.2),
+            color: AppColors.getTextColor(context).withOpacity(.2),
             blurRadius: 6,
-            offset: const Offset(0, 3),
+            spreadRadius: 0,
+            offset: const Offset(0, 1),
           ),
         ],
       ),

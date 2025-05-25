@@ -29,46 +29,34 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: AppColors.grey,
-          //     blurRadius: 6,
-          //     spreadRadius: 0,
-          //     offset: Offset(0, 1),
-          //   ),
-          // ],
-          ),
-      child: TextButton(
-        style: ButtonStyle(
-          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius ?? 10.0.r),
-            ),
-          ),
-          overlayColor:
-              WidgetStateProperty.all(AppColors.darkGrey.withOpacity(.2)),
-          backgroundColor: WidgetStatePropertyAll(
-            backgroundColor ?? AppColors.primaryColor,
-          ),
-          padding: WidgetStateProperty.all<EdgeInsets>(
-            EdgeInsets.symmetric(
-              horizontal: horizontalPadding?.w ?? 12.w,
-              vertical: verticalPadding?.h ?? 14.h,
-            ),
-          ),
-          fixedSize: WidgetStateProperty.all(
-            Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 50.h),
+    return TextButton(
+      style: ButtonStyle(
+        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius ?? 10.0.r),
           ),
         ),
-        onPressed: isEnabled ? onPressed : null,
-        child: FittedBox(
-          child: Text(
-            buttonText,
-            style: Styles.font14DarkGreyBold.copyWith(
-              color: AppColors.white,
-            ),
+        overlayColor:
+            WidgetStateProperty.all(AppColors.darkGrey.withOpacity(.2)),
+        backgroundColor: WidgetStatePropertyAll(
+          backgroundColor ?? AppColors.getPrimaryColor(context),
+        ),
+        padding: WidgetStateProperty.all<EdgeInsets>(
+          EdgeInsets.symmetric(
+            horizontal: horizontalPadding?.w ?? 12.w,
+            vertical: verticalPadding?.h ?? 14.h,
+          ),
+        ),
+        fixedSize: WidgetStateProperty.all(
+          Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 50.h),
+        ),
+      ),
+      onPressed: isEnabled ? onPressed : null,
+      child: FittedBox(
+        child: Text(
+          buttonText,
+          style: Styles.font14DarkGreyBold(context).copyWith(
+            color: AppColors.getSurfaceColor(context),
           ),
         ),
       ),

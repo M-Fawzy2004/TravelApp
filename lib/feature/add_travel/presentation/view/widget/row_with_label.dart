@@ -19,7 +19,7 @@ class RowWithLabel extends StatelessWidget {
       children: [
         Text(
           label,
-          style: Styles.font14GreyExtraBold,
+          style: Styles.font14GreyExtraBold(context),
         ),
         heightBox(5),
         widget,

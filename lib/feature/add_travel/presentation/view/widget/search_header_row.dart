@@ -19,14 +19,14 @@ class SearchHeaderRow extends StatelessWidget {
       children: [
         Icon(
           Icons.image_search,
-          color: AppColors.primaryColor,
+          color: AppColors.getPrimaryColor(context),
           size: 24.sp,
         ),
         widthBox(8),
         Expanded(
           child: Text(
             'اختر صورة للوجهة',
-            style: Styles.font16BlackBold,
+            style: Styles.font16BlackBold(context),
           ),
         ),
         if (currentSearchCount > 0)

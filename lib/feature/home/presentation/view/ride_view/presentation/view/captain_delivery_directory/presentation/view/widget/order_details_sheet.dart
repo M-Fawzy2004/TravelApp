@@ -16,7 +16,7 @@ class OrderDetailsSheet extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 10.w),
       decoration: BoxDecoration(
-        color: AppColors.grey,
+        color: AppColors.getBackgroundColor(context),
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(

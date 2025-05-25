@@ -65,11 +65,11 @@ class _DetailsLocationState extends State<DetailsLocation> {
           margin: EdgeInsets.symmetric(horizontal: 10.w),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.r),
-            color: AppColors.white,
+            color: AppColors.getSurfaceColor(context),
           ),
           child: Center(
             child: SpinKitCircle(
-              color: AppColors.primaryColor,
+              color: AppColors.getPrimaryColor(context),
               size: 50.h,
             ),
           ),
@@ -87,7 +87,7 @@ class _DetailsLocationState extends State<DetailsLocation> {
           height: 130.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: AppColors.grey,
+            color: AppColors.getBackgroundColor(context),
             image: const DecorationImage(
               image: AssetImage(Assets.imagesLoactionMap),
               fit: BoxFit.fill,
@@ -106,7 +106,7 @@ class _DetailsLocationState extends State<DetailsLocation> {
             padding: EdgeInsets.only(right: 10.w),
             child: Text(
               'تفاصيل الموقع : الموقع الذى ستشاركه هنا هو الموقع الذى سيظهر للسائق لمعرفه مكانك للوصول إليك ',
-              style: Styles.font14GreyExtraBold,
+              style: Styles.font14GreyExtraBold(context),
             ),
           ),
       ],
@@ -121,14 +121,16 @@ class _DetailsLocationState extends State<DetailsLocation> {
           margin: EdgeInsets.symmetric(horizontal: 10.w),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.r),
-            color: AppColors.white,
+            color: AppColors.getSurfaceColor(context),
           ),
           child: Row(
             children: [
-              const Icon(Icons.location_on, color: AppColors.primaryColor),
+              Icon(Icons.location_on,
+                  color: AppColors.getPrimaryColor(context)),
               widthBox(10),
               Expanded(
-                child: Text(locationName, style: Styles.font16BlackBold),
+                child:
+                    Text(locationName, style: Styles.font16BlackBold(context)),
               ),
               ShareLocationButton(
                 title: 'تعديل',
@@ -145,7 +147,7 @@ class _DetailsLocationState extends State<DetailsLocation> {
             padding: EdgeInsets.only(right: 10.w),
             child: Text(
               'تفاصيل الموقع : الموقع الذى ستشاركه هنا هو الموقع الذى سيظهر للسائق لمعرفه مكانك للوصول إليك ',
-              style: Styles.font14GreyExtraBold,
+              style: Styles.font14GreyExtraBold(context),
             ),
           ),
         ]

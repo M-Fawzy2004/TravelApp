@@ -21,17 +21,17 @@ class NoInternetWidget extends StatelessWidget {
               Icon(
                 Icons.wifi_off,
                 size: 64.sp,
-                color: AppColors.primaryColor,
+                color: AppColors.getPrimaryColor(context),
               ),
               heightBox(15),
               Text(
                 'لا يوجد اتصال بالإنترنت',
-                style: Styles.font18BlackBold,
+                style: Styles.font18BlackBold(context),
               ),
               heightBox(10),
               Text(
                 'يرجى التحقق من اتصالك والمحاولة مرة أخرى',
-                style: Styles.font14GreyExtraBold,
+                style: Styles.font14GreyExtraBold(context),
               ),
             ],
           ),

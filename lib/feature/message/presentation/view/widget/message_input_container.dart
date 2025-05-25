@@ -26,7 +26,7 @@ class _MessageInputContainerState extends State<MessageInputContainer> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.getSurfaceColor(context),
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Row(
@@ -42,7 +42,7 @@ class _MessageInputContainerState extends State<MessageInputContainer> {
             onPressed: () {},
             icon: Icon(
               FontAwesomeIcons.smile,
-              color: AppColors.primaryColor,
+              color: AppColors.getPrimaryColor(context),
               size: 25.sp,
             ),
             padding: EdgeInsets.zero,

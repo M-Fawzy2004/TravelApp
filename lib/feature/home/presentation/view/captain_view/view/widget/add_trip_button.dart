@@ -26,12 +26,12 @@ class AddTripButton extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
-          color: AppColors.primaryColor,
+          color: AppColors.getPrimaryColor(context),
         ),
         child: Center(
           child: Text(
             text,
-            style: Styles.font16WhiteBold,
+            style: Styles.font16WhiteBold(context),
           ),
         ),
       ),

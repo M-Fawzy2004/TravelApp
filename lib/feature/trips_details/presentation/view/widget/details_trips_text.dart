@@ -18,17 +18,17 @@ class DetailsTripsText extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('التفاصيل', style: Styles.font16BlackBold),
+        Text('التفاصيل', style: Styles.font16BlackBold(context)),
         heightBox(10),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.r),
-            color: AppColors.grey,
+            color: AppColors.getBackgroundColor(context),
             boxShadow: [
               BoxShadow(
-                color: AppColors.black.withOpacity(.2),
+                color: AppColors.getTextColor(context).withOpacity(.2),
                 blurRadius: 6,
                 spreadRadius: 0,
                 offset: const Offset(0, 3),
@@ -37,7 +37,7 @@ class DetailsTripsText extends StatelessWidget {
           ),
           child: Text(
             widget.trip.additionalDetails,
-            style: Styles.font16BlackBold.copyWith(
+            style: Styles.font16BlackBold(context).copyWith(
               color: Colors.grey.shade700,
             ),
           ),

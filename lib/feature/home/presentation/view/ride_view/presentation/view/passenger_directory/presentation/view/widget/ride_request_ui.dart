@@ -78,7 +78,7 @@ class _RideRequestUIState extends State<RideRequestUI> {
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             child: Text(
               'اختر نوع التوصيل',
-              style: Styles.font16BlackBold,
+              style: Styles.font16BlackBold(context),
               textAlign: TextAlign.right,
             ),
           ),

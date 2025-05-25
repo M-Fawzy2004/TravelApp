@@ -24,18 +24,18 @@ class _TripAndDeliveryDropdownState extends State<TripAndDeliveryDropdown> {
         horizontal: 16.w,
       ),
       decoration: BoxDecoration(
-        color: AppColors.grey,
+        color: AppColors.getBackgroundColor(context),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
         children: [
           Text(
             'اختر',
-            style: Styles.font14GreyExtraBold,
+            style: Styles.font14GreyExtraBold(context),
           ),
           const Spacer(),
           DropdownButton<String>(
-            dropdownColor: AppColors.white,
+            dropdownColor: AppColors.getSurfaceColor(context),
             value: _selectedOption,
             onChanged: (String? newValue) {
               setState(() {
@@ -50,7 +50,7 @@ class _TripAndDeliveryDropdownState extends State<TripAndDeliveryDropdown> {
                   children: [
                     Text(
                       value,
-                      style: Styles.font14GreyExtraBold,
+                      style: Styles.font14GreyExtraBold(context),
                     ),
                     widthBox(10),
                     Icon(

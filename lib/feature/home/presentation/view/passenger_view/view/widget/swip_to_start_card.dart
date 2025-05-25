@@ -27,13 +27,15 @@ class SwipeToStartCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
           border: Border.all(
-            color: canComplete ? AppColors.primaryColor : AppColors.lightGrey,
+            color: canComplete
+                ? AppColors.getPrimaryColor(context)
+                : AppColors.getLightGreyColor(context),
             width: progress > 0.5 ? 2 : 1,
           ),
-          color: AppColors.white,
+          color: AppColors.getSurfaceColor(context),
           boxShadow: [
             BoxShadow(
-              color: AppColors.primaryColor.withOpacity(0.2),
+              color: AppColors.getPrimaryColor(context).withOpacity(0.2),
               blurRadius: 8 + (progress * 8),
               offset: const Offset(0, 4),
             ),
@@ -48,20 +50,21 @@ class SwipeToStartCard extends StatelessWidget {
               child: Icon(
                 canComplete ? Icons.rocket_launch : FontAwesomeIcons.arrowRight,
                 size: (24 + progress * 8).sp,
-                color:
-                    canComplete ? AppColors.primaryColor : AppColors.lightGrey,
+                color: canComplete
+                    ? AppColors.getPrimaryColor(context)
+                    : AppColors.getLightGreyColor(context),
               ),
             ),
             heightBox(10),
             Text(
               canComplete ? 'اترك للانطلاق!' : 'اسحب الى اليمين',
-              style: Styles.font14GreyExtraBold,
+              style: Styles.font14GreyExtraBold(context),
               textAlign: TextAlign.center,
             ),
             heightBox(10),
             Text(
               'وشاهد جميع الرحلات المميزة',
-              style: Styles.font12GreyExtraBold,
+              style: Styles.font12GreyExtraBold(context),
               textAlign: TextAlign.center,
             ),
             heightBox(10),
@@ -70,7 +73,7 @@ class SwipeToStartCard extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(2.r),
-                color: AppColors.grey.withOpacity(0.3),
+                color: AppColors.getBackgroundColor(context).withOpacity(0.3),
               ),
               child: FractionallySizedBox(
                 alignment: Alignment.centerLeft,
@@ -79,8 +82,8 @@ class SwipeToStartCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2.r),
                     color: canComplete
-                        ? AppColors.primaryColor
-                        : AppColors.lightGrey,
+                        ? AppColors.getPrimaryColor(context)
+                        : AppColors.getLightGreyColor(context),
                   ),
                 ),
               ),

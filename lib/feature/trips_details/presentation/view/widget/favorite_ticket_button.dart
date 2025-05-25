@@ -21,14 +21,14 @@ class FavoriteTicketButton extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.getSurfaceColor(context),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10.r),
           topRight: Radius.circular(10.r),
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.black.withOpacity(.3),
+            color: AppColors.getTextColor(context).withOpacity(.3),
             blurRadius: 6,
             spreadRadius: 0,
             offset: const Offset(0, 1),

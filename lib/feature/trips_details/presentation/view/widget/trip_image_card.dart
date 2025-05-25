@@ -59,7 +59,7 @@ class TripImageCard extends StatelessWidget {
             ),
             child: Text(
               trip.destinationName,
-              style: Styles.font20BlackBold.copyWith(
+              style: Styles.font20BlackBold(context).copyWith(
                 color: Colors.white,
               ),
             ),

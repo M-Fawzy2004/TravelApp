@@ -19,7 +19,7 @@ class PassengerDirectoryBlocBuilder extends StatelessWidget {
             state is PassengerDirectoryLoading) {
           return Center(
             child: SpinKitCircle(
-              color: AppColors.primaryColor,
+              color: AppColors.getPrimaryColor(context),
               size: 50.h,
             ),
           );

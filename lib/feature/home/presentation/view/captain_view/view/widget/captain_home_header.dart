@@ -15,12 +15,12 @@ class CaptainHomeHeader extends StatelessWidget {
       children: [
         Text(
           'مرحباً بك، $name 👋',
-          style: Styles.font20BlackBold,
+          style: Styles.font20BlackBold(context),
         ),
         const SizedBox(height: 10),
         Text(
           'نتمنى لك يوماً سعيداً ومليئاً بالرحلات! 🚗',
-          style: Styles.font14GreyExtraBold,
+          style: Styles.font14GreyExtraBold(context),
         ),
       ],
     );

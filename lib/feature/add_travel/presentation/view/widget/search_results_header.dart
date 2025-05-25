@@ -18,7 +18,7 @@ class SearchResultsHeader extends StatelessWidget {
       children: [
         Text(
           'النتايج ($resultsCount صورة)',
-          style: Styles.font14GreyExtraBold,
+          style: Styles.font14GreyExtraBold(context),
         ),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 5.h),
@@ -37,7 +37,7 @@ class SearchResultsHeader extends StatelessWidget {
               widthBox(4),
               Text(
                 'صور متنوعة',
-                style: Styles.font12GreyExtraBold.copyWith(
+                style: Styles.font12GreyExtraBold(context).copyWith(
                   color: Colors.green[700],
                 ),
               ),

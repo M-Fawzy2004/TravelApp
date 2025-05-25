@@ -18,7 +18,7 @@ class FeaturedHomeViewBody extends StatelessWidget {
             const Spacer(),
             Text(
               'حجز الفنادق',
-              style: Styles.font20BlackBold,
+              style: Styles.font20BlackBold(context),
             ),
           ],
         ),

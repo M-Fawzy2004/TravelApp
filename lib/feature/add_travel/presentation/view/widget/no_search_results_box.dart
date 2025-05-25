@@ -25,7 +25,7 @@ class NoSearchResultsBox extends StatelessWidget {
           heightBox(8),
           Text(
             'لم يتم العثور على نتائج',
-            style: Styles.font14GreyExtraBold,
+            style: Styles.font14GreyExtraBold(context),
           ),
           heightBox(4),
           Text(

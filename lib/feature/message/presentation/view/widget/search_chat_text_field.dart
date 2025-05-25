@@ -28,7 +28,7 @@ class SearchChatTextField extends StatelessWidget {
             size: 20.h,
           ),
           filled: true,
-          fillColor: AppColors.white,
+          fillColor: AppColors.getSurfaceColor(context),
           contentPadding: EdgeInsets.symmetric(
             horizontal: 16.w,
             vertical: 12.h,

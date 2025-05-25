@@ -54,7 +54,7 @@ class _DestinationFieldState extends State<DestinationField> {
       children: [
         Text(
           'الوجهة',
-          style: Styles.font14GreyExtraBold,
+          style: Styles.font14GreyExtraBold(context),
         ),
         heightBox(7),
         CustomTextFormField(

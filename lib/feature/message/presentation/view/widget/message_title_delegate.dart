@@ -23,11 +23,11 @@ class MessagesTitleDelegate extends SliverPersistentHeaderDelegate {
           bottomLeft: Radius.circular(20.r),
           bottomRight: Radius.circular(20.r),
         ),
-        color: AppColors.grey,
+        color: AppColors.getBackgroundColor(context),
       ),
       child: Text(
         'المحادثات',
-        style: Styles.font20ExtraBlackBold,
+        style: Styles.font20ExtraBlackBold(context),
       ),
     );
   }

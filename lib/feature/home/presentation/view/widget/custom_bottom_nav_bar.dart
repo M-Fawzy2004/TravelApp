@@ -23,23 +23,11 @@ class CustomBottomNavBar extends StatelessWidget {
     final role = getUser()?.role;
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.getBackgroundColor(context),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20.r),
           topRight: Radius.circular(20.r),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.15),
-            blurRadius: 1,
-            offset: const Offset(0, 4),
-          ),
-          BoxShadow(
-            color: Colors.black.withOpacity(0.15),
-            blurRadius: 5,
-            offset: const Offset(0, -4),
-          ),
-        ],
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
@@ -47,29 +35,34 @@ class CustomBottomNavBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             _buildNavItem(
+              context,
               FontAwesomeIcons.home,
               'الرئيسيه',
               0,
             ),
             if (role == UserRole.captain || role == UserRole.passenger) ...[
               _buildNavItem(
+                context,
                 FontAwesomeIcons.car,
                 'الحجز',
                 1,
               ),
             ] else ...[
               _buildNavItem(
+                context,
                 FontAwesomeIcons.clipboardList,
                 'السجل',
                 1,
               ),
             ],
             _buildNavItem(
+              context,
               FontAwesomeIcons.facebookMessenger,
               'الرسائل',
               2,
             ),
             _buildNavItem(
+              context,
               FontAwesomeIcons.solidUserCircle,
               'الحساب',
               3,
@@ -80,17 +73,18 @@ class CustomBottomNavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, int index) {
+  Widget _buildNavItem(
+      BuildContext context, IconData icon, String label, int index) {
     final isSelected = index == currentIndex;
     return GestureDetector(
       onTap: () => onTap(index),
       child: AnimatedContainer(
         width: isSelected ? 90.w : 80.w,
-        duration: const Duration(milliseconds: 400),
+        duration: const Duration(milliseconds: 250),
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
         decoration: BoxDecoration(
           color: isSelected
-              ? AppColors.primaryColor.withOpacity(0.1)
+              ? AppColors.getPrimaryColor(context).withOpacity(0.3)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(10.r),
         ),
@@ -100,14 +94,18 @@ class CustomBottomNavBar extends StatelessWidget {
             Icon(
               icon,
               size: isSelected ? 22.sp : 18.sp,
-              color: isSelected ? AppColors.primaryColor : Colors.black45,
+              color: isSelected
+                  ? AppColors.getPrimaryColor(context)
+                  : AppColors.darkLightGrey,
             ),
             heightBox(5),
             Text(
               label,
               style: TextStyle(
                 fontSize: 12.sp,
-                color: isSelected ? AppColors.primaryColor : Colors.black45,
+                color: isSelected
+                    ? AppColors.getPrimaryColor(context)
+                    : AppColors.darkLightGrey,
                 fontWeight: FontWeight.w600,
               ),
             ),

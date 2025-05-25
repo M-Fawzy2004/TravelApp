@@ -64,7 +64,7 @@ class _LoginFormState extends State<LoginForm> {
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'أو',
-                style: Styles.font14DarkGreyExtraBold,
+                style: Styles.font14DarkGreyExtraBold(context),
               ),
             ),
             const Expanded(child: Divider(color: Colors.grey)),

@@ -14,16 +14,16 @@ class MessageAndPrice extends StatelessWidget {
       children: [
         Text(
           'السعر الإجمالي: 300 ج.م',
-          style: Styles.font12GreyExtraBold.copyWith(
-            color: AppColors.primaryColor,
+          style: Styles.font12GreyExtraBold(context).copyWith(
+            color: AppColors.getPrimaryColor(context),
           ),
         ),
         const Spacer(),
         IconButton(
           onPressed: () {},
-          icon: const Icon(
+          icon: Icon(
             FontAwesomeIcons.message,
-            color: AppColors.primaryColor,
+            color: AppColors.getPrimaryColor(context),
           ),
         ),
       ],

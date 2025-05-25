@@ -24,7 +24,7 @@ class LocationRow extends StatelessWidget {
         Expanded(
           child: Text(
             '${trip.departureLocation} - ${trip.arrivalLocation}',
-            style: Styles.font14GreyExtraBold,
+            style: Styles.font14GreyExtraBold(context),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),

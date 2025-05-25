@@ -14,10 +14,10 @@ class UserAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: radius ?? 30.r,
-      backgroundColor: AppColors.lightGrey,
+      backgroundColor: AppColors.getLightGreyColor(context),
       child: Icon(
         Icons.person,
-        color: AppColors.white,
+        color: AppColors.getSurfaceColor(context),
         size: 35.sp,
       ),
     );

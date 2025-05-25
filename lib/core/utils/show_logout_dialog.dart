@@ -13,12 +13,12 @@ void showLogoutConfirmationDialog(BuildContext context) {
       title: Center(
         child: Text(
           'تأكيد الخروج',
-          style: Styles.font20ExtraBlackBold,
+          style: Styles.font20ExtraBlackBold(context),
         ),
       ),
       content: Text(
         'هل أنت متأكد أنك تريد تسجيل الخروج؟',
-        style: Styles.font14DarkGreyBold,
+        style: Styles.font14DarkGreyBold(context),
       ),
       actions: [
         TextButton(
@@ -27,7 +27,7 @@ void showLogoutConfirmationDialog(BuildContext context) {
           },
           child: Text(
             'إلغاء',
-            style: Styles.font16BlackBold,
+            style: Styles.font16BlackBold(context),
           ),
         ),
         TextButton(
@@ -40,7 +40,7 @@ void showLogoutConfirmationDialog(BuildContext context) {
           },
           child: Text(
             'تسجيل الخروج',
-            style: Styles.font16BlackBold.copyWith(
+            style: Styles.font16BlackBold(context).copyWith(
               color: Colors.red,
             ),
           ),

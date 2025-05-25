@@ -19,7 +19,7 @@ class DurationRow extends StatelessWidget {
         SizedBox(width: 4.w),
         Text(
           trip.duration,
-          style: Styles.font14GreyExtraBold,
+          style: Styles.font14GreyExtraBold(context),
         ),
       ],
     );

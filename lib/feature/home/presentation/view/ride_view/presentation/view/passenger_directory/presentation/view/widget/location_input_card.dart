@@ -97,7 +97,7 @@ class _LocationInputCardState extends State<LocationInputCard> {
       margin: EdgeInsets.all(10.w),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.getSurfaceColor(context),
         borderRadius: BorderRadius.circular(10.r),
         boxShadow: [
           BoxShadow(
@@ -113,14 +113,14 @@ class _LocationInputCardState extends State<LocationInputCard> {
             children: [
               Icon(
                 Icons.my_location,
-                color: AppColors.primaryColor,
+                color: AppColors.getPrimaryColor(context),
                 size: 24.sp,
               ),
               widthBox(10),
               Expanded(
                 child: Text(
                   widget.currentLocation,
-                  style: Styles.font14GreyExtraBold,
+                  style: Styles.font14GreyExtraBold(context),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   textDirection: TextDirection.rtl,
@@ -133,13 +133,13 @@ class _LocationInputCardState extends State<LocationInputCard> {
             children: [
               Icon(
                 Icons.location_on,
-                color: AppColors.primaryColor,
+                color: AppColors.getPrimaryColor(context),
                 size: 24.sp,
               ),
               widthBox(10),
               Expanded(
                 child: CustomTextField(
-                  fillColor: AppColors.grey,
+                  fillColor: AppColors.getBackgroundColor(context),
                   controller: widget.destinationController,
                   focusNode: focusNode,
                   hintText: 'ابحث عن وجهتك',

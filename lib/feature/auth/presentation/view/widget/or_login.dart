@@ -18,7 +18,7 @@ class OrLogin extends StatelessWidget {
         ),
         Text(
           'أو',
-          style: Styles.font16BlackBold,
+          style: Styles.font16BlackBold(context),
         ),
         Expanded(
           child: Divider(

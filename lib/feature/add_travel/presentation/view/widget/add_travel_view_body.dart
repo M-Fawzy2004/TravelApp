@@ -36,7 +36,7 @@ class _AddTravelViewBodyState extends State<AddTravelViewBody> {
                 alignment: Alignment.centerRight,
                 child: Text(
                   'أهلاً بيك! 👋',
-                  style: Styles.font18BlackBold,
+                  style: Styles.font18BlackBold(context),
                 ),
               ),
             ],
@@ -45,7 +45,7 @@ class _AddTravelViewBodyState extends State<AddTravelViewBody> {
           Text(
             textAlign: TextAlign.center,
             'ضيف تفاصيل رحلتك أو التوصيلة علشان توصل الناس بأمان وسهولة. \nمن فضلك إملأ البيانات بدقة عشان نساعدك توصل للي محتاجين يركبوا معاك.',
-            style: Styles.font14GreyExtraBold,
+            style: Styles.font14GreyExtraBold(context),
           ),
           heightBox(20),
           AddTravelBlocConsumer(

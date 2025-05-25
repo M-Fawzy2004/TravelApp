@@ -14,21 +14,21 @@ class CustomSearchHotel extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
         border: Border.all(
-          color: AppColors.lightGrey.withOpacity(0.2),
+          color: AppColors.getLightGreyColor(context).withOpacity(0.2),
         ),
       ),
       child: TextField(
-        style: Styles.font16BlackBold,
+        style: Styles.font16BlackBold(context),
         onChanged: (value) {},
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
             vertical: 15.h,
             horizontal: 16.w,
           ),
-          fillColor: AppColors.white,
+          fillColor: AppColors.getSurfaceColor(context),
           filled: true,
           hintText: 'ابحث عن الفنادق',
-          hintStyle: Styles.font14DarkGreyExtraBold.copyWith(
+          hintStyle: Styles.font14DarkGreyExtraBold(context).copyWith(
             fontWeight: FontWeight.w900,
           ),
           border: OutlineInputBorder(

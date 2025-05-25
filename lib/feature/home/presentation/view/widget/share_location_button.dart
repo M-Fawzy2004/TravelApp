@@ -32,7 +32,7 @@ class ShareLocationButton extends StatelessWidget {
             }
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primaryColor,
+            backgroundColor: AppColors.getPrimaryColor(context),
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             minimumSize: Size(10.w, 10.h),
             shape: RoundedRectangleBorder(
@@ -48,7 +48,7 @@ class ShareLocationButton extends StatelessWidget {
           ),
           label: Text(
             title,
-            style: Styles.font16WhiteBold,
+            style: Styles.font16WhiteBold(context),
             overflow: TextOverflow.ellipsis,
           ),
         ),

@@ -21,7 +21,7 @@ class DateTimeRow extends StatelessWidget {
             widthBox(4),
             Text(
               _formatDate(trip.tripDate),
-              style: Styles.font14GreyExtraBold,
+              style: Styles.font14GreyExtraBold(context),
             ),
           ],
         ),

@@ -26,11 +26,11 @@ class OnBoardingBottomCard extends StatelessWidget {
           height: 270.h,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: AppColors.white,
+            color: AppColors.getSurfaceColor(context),
             boxShadow: [
               BoxShadow(
                 // ignore: deprecated_member_use
-                color: AppColors.black.withOpacity(0.25),
+                color: AppColors.getTextColor(context).withOpacity(0.25),
                 blurRadius: 4,
                 offset: const Offset(0, 7),
               ),
@@ -44,7 +44,7 @@ class OnBoardingBottomCard extends StatelessWidget {
                 heightBox(20),
                 Text(
                   'أهلا بك فى تطبيق Rihla',
-                  style: Styles.font20ExtraBlackBold,
+                  style: Styles.font20ExtraBlackBold(context),
                 ),
                 heightBox(20),
                 const OnboardingDescriptionSection(),

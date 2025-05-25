@@ -22,11 +22,11 @@ class RideFeeRow extends StatelessWidget {
           children: [
             Text(
               '$fare جنيه',
-              style: Styles.font16BlackBold,
+              style: Styles.font16BlackBold(context),
             ),
             Text(
               'التكلفة',
-              style: Styles.font14GreyExtraBold,
+              style: Styles.font14GreyExtraBold(context),
             ),
           ],
         ),
@@ -34,11 +34,11 @@ class RideFeeRow extends StatelessWidget {
           children: [
             Text(
               '$distance كم',
-              style: Styles.font16BlackBold,
+              style: Styles.font16BlackBold(context),
             ),
             Text(
               'المسافة',
-              style: Styles.font14GreyExtraBold,
+              style: Styles.font14GreyExtraBold(context),
             ),
           ],
         ),
@@ -46,11 +46,11 @@ class RideFeeRow extends StatelessWidget {
           children: [
             Text(
               '$duration دقيقة',
-              style: Styles.font16BlackBold,
+              style: Styles.font16BlackBold(context),
             ),
             Text(
               'الوقت',
-              style: Styles.font14GreyExtraBold,
+              style: Styles.font14GreyExtraBold(context),
             ),
           ],
         ),

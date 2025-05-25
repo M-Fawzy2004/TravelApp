@@ -30,7 +30,7 @@ class ViewAllFeatured extends StatelessWidget {
                 height: 200.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.r),
-                  color: AppColors.grey.withOpacity(0.2),
+                  color: AppColors.getBackgroundColor(context).withOpacity(0.2),
                 ),
               ),
             ),

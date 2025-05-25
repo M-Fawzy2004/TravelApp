@@ -191,7 +191,7 @@ class _UserProfileBodyState extends State<UserProfileBody> {
           heightBox(20),
           Align(
             alignment: Alignment.centerRight,
-            child: Text('المدينة', style: Styles.font16BlackBold),
+            child: Text('المدينة', style: Styles.font16BlackBold(context)),
           ),
           heightBox(10),
           CustomTextFormField(

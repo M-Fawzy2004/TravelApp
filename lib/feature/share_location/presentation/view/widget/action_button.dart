@@ -24,11 +24,13 @@ class ActionButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: isPrimary ? AppColors.primaryColor : Colors.white,
-        foregroundColor: isPrimary ? Colors.white : AppColors.primaryColor,
+        backgroundColor:
+            isPrimary ? AppColors.getPrimaryColor(context) : Colors.white,
+        foregroundColor:
+            isPrimary ? Colors.white : AppColors.getPrimaryColor(context),
         side: isPrimary
             ? null
-            : const BorderSide(color: AppColors.primaryColor, width: 1),
+            : BorderSide(color: AppColors.getPrimaryColor(context), width: 1),
         padding: EdgeInsets.symmetric(vertical: 12.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.r),
@@ -41,8 +43,9 @@ class ActionButton extends StatelessWidget {
           SizedBox(width: 8.w),
           Text(
             label,
-            style: Styles.font14GreyExtraBold.copyWith(
-              color: isPrimary ? Colors.white : AppColors.primaryColor,
+            style: Styles.font14GreyExtraBold(context).copyWith(
+              color:
+                  isPrimary ? Colors.white : AppColors.getPrimaryColor(context),
             ),
           ),
         ],

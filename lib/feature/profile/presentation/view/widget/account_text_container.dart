@@ -18,12 +18,12 @@ class AccountTextContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 7.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
-        color: AppColors.primaryColor.withOpacity(0.1),
+        color: AppColors.getPrimaryColor(context).withOpacity(0.1),
       ),
       child: Center(
         child: Text(
           title,
-          style: Styles.font20ExtraBlackBold,
+          style: Styles.font20ExtraBlackBold(context),
         ),
       ),
     );

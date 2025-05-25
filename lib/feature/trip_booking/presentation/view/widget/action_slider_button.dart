@@ -23,15 +23,12 @@ class ActionSliderButton extends StatelessWidget {
       ),
       animationDuration: const Duration(milliseconds: 500),
       borderRadius: 15.r,
-      outerColor: AppColors.primaryColor,
-      innerColor: AppColors.grey,
+      outerColor: AppColors.getPrimaryColor(context),
+      innerColor: AppColors.getBackgroundColor(context),
       sliderRotate: false,
       elevation: 6,
       onSubmit: () {
-        // Show booking confirmation alert dialog
         _showBookingConfirmationDialog(context);
-
-        // Reset the slider after a short delay
         Future.delayed(const Duration(seconds: 2), () {
           return null;
         });
@@ -39,7 +36,7 @@ class ActionSliderButton extends StatelessWidget {
       },
       child: Text(
         'تأكيد الحجز  ',
-        style: Styles.font16WhiteBold,
+        style: Styles.font16WhiteBold(context),
       ),
     );
   }
@@ -52,7 +49,7 @@ class ActionSliderButton extends StatelessWidget {
           title: Center(
             child: Text(
               'تم قبول طلب الحجز',
-              style: Styles.font20BlackBold,
+              style: Styles.font20BlackBold(context),
               textAlign: TextAlign.center,
             ),
           ),
@@ -62,13 +59,13 @@ class ActionSliderButton extends StatelessWidget {
               heightBox(10),
               Icon(
                 FontAwesomeIcons.checkCircle,
-                color: AppColors.primaryColor,
+                color: AppColors.getPrimaryColor(context),
                 size: 50.h,
               ),
               SizedBox(height: 16.h),
               Text(
                 'سيتم التواصل معك عند قبول الكابتن للحجز',
-                style: Styles.font14GreyExtraBold,
+                style: Styles.font14GreyExtraBold(context),
                 textAlign: TextAlign.center,
               ),
             ],
@@ -78,10 +75,10 @@ class ActionSliderButton extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: const Text(
+              child: Text(
                 'حسناً',
                 style: TextStyle(
-                  color: AppColors.primaryColor,
+                  color: AppColors.getPrimaryColor(context),
                   fontWeight: FontWeight.bold,
                 ),
               ),

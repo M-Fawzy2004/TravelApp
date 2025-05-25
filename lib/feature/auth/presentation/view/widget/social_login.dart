@@ -23,7 +23,7 @@ class SocialLogin extends StatelessWidget {
         height: 50.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.r),
-          color: AppColors.white,
+          color: AppColors.getSurfaceColor(context),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +35,7 @@ class SocialLogin extends StatelessWidget {
             widthBox(10),
             Text(
               text,
-              style: Styles.font16BlackBold,
+              style: Styles.font16BlackBold(context),
             ),
           ],
         ),

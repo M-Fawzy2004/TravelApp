@@ -24,7 +24,7 @@ class CustomAppBar extends StatelessWidget {
       scrolledUnderElevation: 0,
       title: Text(
         title,
-        style: Styles.font20ExtraBlackBold,
+        style: Styles.font20ExtraBlackBold(context),
       ),
       centerTitle: true,
       leading: isLeading ? iconLeading : null,

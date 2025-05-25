@@ -29,7 +29,7 @@ class PassengerTripTypeSelector extends StatelessWidget {
             child: CategoryFilterItem(
               text: tripTypes[index],
               isSelected: selectedTripType == tripTypes[index],
-              color: AppColors.primaryColor,
+              color: AppColors.getPrimaryColor(context),
             ),
           ),
         ),

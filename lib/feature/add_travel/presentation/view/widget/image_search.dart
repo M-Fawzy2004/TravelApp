@@ -115,7 +115,7 @@ class _ImageSearchWidgetState extends State<ImageSearchWidget> {
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.getSurfaceColor(context),
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
@@ -133,16 +133,16 @@ class _ImageSearchWidgetState extends State<ImageSearchWidget> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.r),
-              color: AppColors.lightGrey.withOpacity(0.2),
+              color: AppColors.getLightGreyColor(context).withOpacity(0.2),
             ),
             child: TextField(
               controller: _searchController,
               decoration: InputDecoration(
                 hintText: 'ابحث عن صور للوجهة...',
-                hintStyle: Styles.font14GreyExtraBold,
+                hintStyle: Styles.font14GreyExtraBold(context),
                 prefixIcon: Icon(
                   Icons.search,
-                  color: AppColors.primaryColor,
+                  color: AppColors.getPrimaryColor(context),
                   size: 20.sp,
                 ),
                 suffixIcon: _searchController.text.isNotEmpty

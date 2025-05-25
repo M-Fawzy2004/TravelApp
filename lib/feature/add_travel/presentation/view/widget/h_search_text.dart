@@ -15,14 +15,14 @@ class HSearchText extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
       decoration: BoxDecoration(
-        color: AppColors.primaryColor.withOpacity(0.1),
+        color: AppColors.getPrimaryColor(context).withOpacity(0.1),
         borderRadius: BorderRadius.circular(12.r),
       ),
       child: Text(
         'البحث #$_currentSearchCount',
         style: TextStyle(
           fontSize: 10.sp,
-          color: AppColors.primaryColor,
+          color: AppColors.getPrimaryColor(context),
           fontWeight: FontWeight.w600,
         ),
       ),

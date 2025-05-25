@@ -14,13 +14,13 @@ class OnboardingDescriptionSection extends StatelessWidget {
         Text(
           textAlign: TextAlign.center,
           'تطبيق يساعدك علي مشاركه رحلاتك مع الاخرين فى منطقتك. سواء كنت سائقا او راكبا.',
-          style: Styles.font14GreyExtraBold,
+          style: Styles.font14GreyExtraBold(context),
         ),
         heightBox(10),
         Text(
           textAlign: TextAlign.center,
           'اكتشف الرحلات المتاحه وشارك فى التنقل بسهوله وفعاليه',
-          style: Styles.font14GreyExtraBold,
+          style: Styles.font14GreyExtraBold(context),
         ),
       ],
     );

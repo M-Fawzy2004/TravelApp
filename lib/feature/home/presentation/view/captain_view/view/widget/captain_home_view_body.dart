@@ -85,8 +85,8 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
               failedText: "فشل التحديث!",
               idleText: "اسحب للتحديث",
               iconPos: IconPosition.left,
-              textStyle: Styles.font16BlackBold.copyWith(
-                color: AppColors.primaryColor,
+              textStyle: Styles.font16BlackBold(context).copyWith(
+                color: AppColors.getPrimaryColor(context),
                 fontFamily: 'font',
               ),
             ),
@@ -102,7 +102,7 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
                 SliverToBoxAdapter(
                   child: Text(
                     'رحلاتك المضافه مؤخرا',
-                    style: Styles.font18BlackBold,
+                    style: Styles.font18BlackBold(context),
                   ),
                 ),
                 SliverToBoxAdapter(child: heightBox(20)),

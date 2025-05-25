@@ -38,7 +38,6 @@ class _ShareLocationBodyBlocListenerState
             message: state.message,
           );
         } else if (state is LocationLoaded && state.selectedLocation != null) {
-          // When a location is loaded with a selected location, center map on it
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (mounted) {
               widget.mapController.move(state.selectedLocation!, 15);
@@ -76,7 +75,7 @@ class _ShareLocationBodyBlocListenerState
                 color: Colors.black.withOpacity(0.3),
                 child: Center(
                   child: SpinKitCircle(
-                    color: AppColors.primaryColor,
+                    color: AppColors.getPrimaryColor(context),
                     size: 50.h,
                   ),
                 ),

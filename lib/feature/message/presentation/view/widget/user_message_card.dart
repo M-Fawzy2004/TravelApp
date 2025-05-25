@@ -20,15 +20,15 @@ class UserMessageCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Card(
           elevation: 0,
-          color: AppColors.white,
+          color: AppColors.getSurfaceColor(context),
           child: ListTile(
             title: Text(
               'Mohamed Fawzy',
-              style: Styles.font14DarkGreyBold,
+              style: Styles.font14DarkGreyBold(context),
             ),
             subtitle: Text(
               'اهلا بك في التطبيق',
-              style: Styles.font12GreyExtraBold,
+              style: Styles.font12GreyExtraBold(context),
             ),
             leading: const UserAvatar(),
             trailing: Row(
@@ -36,14 +36,14 @@ class UserMessageCard extends StatelessWidget {
               children: [
                 Text(
                   '2:30 PM',
-                  style: Styles.font14DarkGreyBold,
+                  style: Styles.font14DarkGreyBold(context),
                 ),
                 widthBox(10),
                 Container(
                   height: 15.h,
                   width: 15.w,
-                  decoration: const BoxDecoration(
-                    color: AppColors.primaryColor,
+                  decoration: BoxDecoration(
+                    color: AppColors.getPrimaryColor(context),
                     shape: BoxShape.circle,
                   ),
                 ),

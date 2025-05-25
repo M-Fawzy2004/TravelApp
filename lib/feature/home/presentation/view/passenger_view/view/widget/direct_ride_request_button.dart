@@ -22,7 +22,7 @@ class DirectRideRequestButton extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 14.h),
           decoration: BoxDecoration(
-            color: AppColors.primaryColor,
+            color: AppColors.getPrimaryColor(context),
             borderRadius: BorderRadius.circular(12.r),
           ),
           child: Row(

@@ -16,7 +16,7 @@ class TripSummaryCaptain extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8.h),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: AppColors.getSurfaceColor(context),
         borderRadius: BorderRadius.circular(20.r),
         boxShadow: [
           BoxShadow(
@@ -38,7 +38,7 @@ class TripSummaryCaptain extends StatelessWidget {
           heightBox(5),
           Text(
             'عدد التذاكر: 2',
-            style: Styles.font12GreyExtraBold,
+            style: Styles.font12GreyExtraBold(context),
           ),
           const MessageAndPrice(),
           const AcceptOrRejectButton(),
