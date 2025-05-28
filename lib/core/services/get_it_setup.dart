@@ -11,6 +11,7 @@ import 'package:travel_app/feature/add_travel/presentation/manager/trip_form_cub
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/home/presentation/manager/cubit/connectivity_cubit.dart';
 import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/favorite_cubit/favorite_cubit.dart';
 
 final getIt = GetIt.instance;
 
@@ -57,4 +58,6 @@ void setupServiceLocator() async {
   );
 
   getIt.registerFactory<ConnectivityCubit>(() => ConnectivityCubit());
+
+  getIt.registerLazySingleton<FavoriteCubit>(() => FavoriteCubit());
 }

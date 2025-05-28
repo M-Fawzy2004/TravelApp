@@ -15,11 +15,9 @@ class BookingActionButton extends StatelessWidget {
       builder: (context, state) {
         final bookings =
             context.read<BookingCubit>().bookingEntity.bookingItems;
-
         if (bookings.isEmpty) {
           return const SizedBox();
         }
-
         return const ActionSliderButton();
       },
     );

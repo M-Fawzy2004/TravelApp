@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
+import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/trip_booking/domain/entity/booking_item_entity.dart';
+import 'package:travel_app/feature/trip_booking/presentation/view/widget/image_favorite.dart';
+import 'package:intl/intl.dart';
 
 class TripSummaryCardHeader extends StatelessWidget {
   const TripSummaryCardHeader({
@@ -16,18 +18,12 @@ class TripSummaryCardHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: EdgeInsets.all(10.w),
-          decoration: BoxDecoration(
-            color: AppColors.getPrimaryColor(context).withOpacity(0.1),
-            borderRadius: BorderRadius.circular(12.r),
-          ),
-          child: Icon(
-            FontAwesomeIcons.car,
-            color: AppColors.getPrimaryColor(context),
-            size: 28.sp,
-          ),
+        ImageFavorite(
+          trip: bookingItemEntity.trip,
+          height: 80.h,
+          widget: 80.w,
         ),
         widthBox(12),
         Expanded(
@@ -41,6 +37,12 @@ class TripSummaryCardHeader extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: AppColors.getPrimaryColor(context),
                 ),
+              ),
+              heightBox(4),
+              Text(
+                DateFormat('yyyy-MM-dd')
+                    .format(bookingItemEntity.trip.tripDate),
+                style: Styles.font12GreyExtraBold(context),
               ),
               heightBox(4),
               Text(

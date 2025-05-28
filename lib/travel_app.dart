@@ -33,8 +33,6 @@ class TravelApp extends StatelessWidget {
             supportedLocales: const [Locale('ar')],
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouter.router,
-            
-            // Light Theme
             theme: ThemeData(
               fontFamily: 'font',
               brightness: Brightness.light,
@@ -66,7 +64,7 @@ class TravelApp extends StatelessWidget {
                 onBackground: AppColors.black,
               ),
             ),
-                        darkTheme: ThemeData(
+            darkTheme: ThemeData(
               fontFamily: 'font',
               brightness: Brightness.dark,
               primaryColor: AppColors.darkPrimaryColor,

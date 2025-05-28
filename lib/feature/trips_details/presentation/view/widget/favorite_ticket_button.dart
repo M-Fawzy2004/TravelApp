@@ -6,6 +6,7 @@ import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_cubit.dart';
+import 'package:travel_app/feature/trips_details/presentation/view/widget/contact_captain.dart';
 import 'package:travel_app/feature/trips_details/presentation/view/widget/custom_fav_details.dart';
 
 class FavoriteTicketButton extends StatelessWidget {
@@ -19,21 +20,13 @@ class FavoriteTicketButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 13.h),
       decoration: BoxDecoration(
         color: AppColors.getSurfaceColor(context),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10.r),
           topRight: Radius.circular(10.r),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.getTextColor(context).withOpacity(.3),
-            blurRadius: 6,
-            spreadRadius: 0,
-            offset: const Offset(0, 1),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -52,7 +45,14 @@ class FavoriteTicketButton extends StatelessWidget {
               widthBox(10),
               const Expanded(
                 flex: 1,
-                child: CustomFavDetails(),
+                child: ContactCaptian(),
+              ),
+              widthBox(10),
+              Expanded(
+                flex: 1,
+                child: CustomFavDetails(
+                  trip: tripModel,
+                ),
               ),
             ],
           ),

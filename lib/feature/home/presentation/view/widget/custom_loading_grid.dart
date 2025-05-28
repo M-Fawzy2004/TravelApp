@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/utils/get_cagtegory_skeletonizer.dart';
 import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/add_travel_captain.dart';

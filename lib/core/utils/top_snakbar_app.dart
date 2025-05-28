@@ -3,30 +3,44 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 
-void showCustomTopSnackBar(
-    {required BuildContext context, required String message}) {
+void showCustomTopSnackBar({
+  required BuildContext context,
+  String? label,
+  required String message,
+  VoidCallback? onPressed,
+  Color? backgroundColor,
+}) {
   final snackBar = SnackBar(
-    content: Text(
-      message,
-      style: Styles.font16WhiteBold(context),
+    content: Container(
+      height: 60.h,
+      alignment: Alignment.centerRight,
+      child: Text(
+        message,
+        style: Styles.font16WhiteBold(context),
+      ),
     ),
-    backgroundColor: AppColors.getPrimaryColor(context),
+    action: label != null && label.isNotEmpty
+        ? SnackBarAction(
+            label: label,
+            onPressed: onPressed ?? () {},
+          )
+        : null,
+    backgroundColor: backgroundColor ?? AppColors.getPrimaryColor(context),
     duration: const Duration(seconds: 3),
     behavior: SnackBarBehavior.floating,
     margin: EdgeInsets.only(
       left: 16.w,
       right: 16.w,
-      bottom: 80.h,
+      bottom: 80.0,
     ),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.r),
     ),
-    padding: EdgeInsets.symmetric(
-      vertical: 15.h,
-      horizontal: 16.w,
+    padding: const EdgeInsets.symmetric(
+      vertical: 0,
+      horizontal: 16.0,
     ),
     elevation: 8,
-    animation: const AlwaysStoppedAnimation(1.0),
   );
 
   ScaffoldMessenger.of(context).showSnackBar(snackBar);

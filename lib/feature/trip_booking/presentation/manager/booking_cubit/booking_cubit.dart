@@ -1,9 +1,7 @@
 // ignore: duplicate_ignore
 // ignore: depend_on_referenced_packages
 // ignore_for_file: depend_on_referenced_packages
-
 import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:travel_app/constant.dart';
 import 'package:travel_app/core/services/shared_preference_singleton.dart';
@@ -40,9 +38,38 @@ class BookingCubit extends Cubit<BookingState> {
     emit(BookingRemoved(bookings: List.from(bookingEntity.bookingItems)));
   }
 
+  // إضافة دالة لزيادة الكمية
+  void increaseBookingCount(String tripId) {
+    final bookingItem = bookingEntity.bookingItems.firstWhere(
+      (item) => item.trip.id == tripId,
+    );
+    
+    if (bookingItem.count < 20) {
+      bookingItem.increaseCount();
+      saveAllBookedTrips();
+      emit(BookingAdded(bookings: List.from(bookingEntity.bookingItems)));
+    }
+  }
+
+  // إضافة دالة لتقليل الكمية
+  void decreaseBookingCount(String tripId) {
+    final bookingItem = bookingEntity.bookingItems.firstWhere(
+      (item) => item.trip.id == tripId,
+    );
+    
+    if (bookingItem.count > 1) {
+      bookingItem.decreaseCount();
+      saveAllBookedTrips();
+      emit(BookingAdded(bookings: List.from(bookingEntity.bookingItems)));
+    }
+  }
+
   Future<void> saveAllBookedTrips() async {
     final tripsJsonList = bookingEntity.bookingItems
-        .map((bookingItem) => bookingItem.trip.toJson())
+        .map((bookingItem) => {
+              ...bookingItem.trip.toJson(),
+              'count': bookingItem.count, 
+            })
         .toList();
 
     await Prefs.setString(kBookedTripsKey, jsonEncode(tripsJsonList));
@@ -54,7 +81,10 @@ class BookingCubit extends Cubit<BookingState> {
 
     final List<dynamic> decodedList = jsonDecode(tripsString);
     final List<BookingItemEntity> loadedBookings = decodedList
-        .map((e) => BookingItemEntity(trip: TripModel.fromJson(e)))
+        .map((e) => BookingItemEntity(
+              trip: TripModel.fromJson(e),
+              count: e['count'] ?? 1,
+            ))
         .toList();
 
     bookingEntity = BookingEntity(loadedBookings);

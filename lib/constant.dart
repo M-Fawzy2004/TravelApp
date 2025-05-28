@@ -8,3 +8,5 @@ String kRideRequests = 'rideRequests';
 String kUserData = 'userData';
 // shared preferance storage booking trips
 String kBookedTripsKey = "bookedTrips";
+// shared preferance storage favorite trips
+const String kFavoriteTripsKey = 'favoriteTrips';

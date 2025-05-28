@@ -51,6 +51,13 @@
 			<string>ar</string>
 		</array>
 		<key>UIStatusBarHidden</key>
+		<key>LSApplicationQueriesSchemes</key>
+        <array>
+          <string>whatsapp</string>
+          <string>fb</string>
+          <string>instagram</string>
+          <string>twitter</string>
+        </array>
 		<false/>
 	</dict>
 </plist>

@@ -13,7 +13,7 @@ class CustomTripIcon extends StatelessWidget {
     return IconButton(
       onPressed: onPressed,
       icon: Icon(
-        size: 30.sp,
+        size: 25.sp,
         icon,
         color: AppColors.getPrimaryColor(context),
       ),

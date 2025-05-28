@@ -25,9 +25,14 @@ class DetailsTopCard extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: AppColors.getTextColor(context).withOpacity(.2),
-              blurRadius: 6,
+              blurRadius: 1,
               spreadRadius: 0,
               offset: const Offset(0, 1),
+            ),
+            BoxShadow(
+              color: AppColors.getTextColor(context).withOpacity(.2),
+              spreadRadius: 0,
+              offset: const Offset(0, -1),
             ),
           ],
         ),
