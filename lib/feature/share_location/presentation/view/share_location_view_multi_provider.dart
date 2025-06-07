@@ -14,12 +14,9 @@ class ShareLocationViewMultiProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get the existing AuthCubit from the parent context
     final authCubit = BlocProvider.of<AuthCubit>(context);
-
     return MultiBlocProvider(
       providers: [
-        // Re-provide the existing AuthCubit
         BlocProvider.value(
           value: authCubit,
         ),

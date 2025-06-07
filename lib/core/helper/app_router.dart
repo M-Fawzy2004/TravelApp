@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/add_travel_view.dart';
-import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/captain_delivery_directory/presentation/view/captain_delivery_directory_view.dart';
-import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/captain_delivery_directory/presentation/view/record_view.dart';
 import 'package:travel_app/feature/featured_view/presentation/view/featured_home_view.dart';
-import 'package:travel_app/feature/home/presentation/view/ride_view/presentation/view/passenger_directory/presentation/view/passenger_directory_view.dart';
 import 'package:travel_app/feature/message/presentation/view/chat_view.dart';
 import 'package:travel_app/feature/message/presentation/view/message_view.dart';
+import 'package:travel_app/feature/position_bus/presentation/view/poistion_bus_view.dart';
 import 'package:travel_app/feature/profile/presentation/view/profile_view.dart';
 import 'package:travel_app/feature/share_location/presentation/view/share_location_view.dart';
 import 'package:travel_app/feature/splash/view/splash_view.dart';
@@ -38,6 +36,7 @@ abstract class AppRouter {
   static const captainDeliveryDirectoryView = '/captainDeliveryDirectoryView';
   static const passengerDirectoryView = '/passengerDirectoryView';
   static const recordView = '/recordView';
+  static const poistionBusView = '/poistionBusView';
 
   static var router = GoRouter(
     initialLocation: '/',
@@ -149,21 +148,9 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path: captainDeliveryDirectoryView,
+        path: poistionBusView,
         builder: (BuildContext context, GoRouterState state) {
-          return const CaptainDeliveryDirectoryView();
-        },
-      ),
-      GoRoute(
-        path: recordView,
-        builder: (BuildContext context, GoRouterState state) {
-          return const RecordView();
-        },
-      ),
-      GoRoute(
-        path: passengerDirectoryView,
-        builder: (BuildContext context, GoRouterState state) {
-          return const PassengerDirectoryView();
+          return const PoistionBusView();
         },
       ),
     ],

@@ -6,6 +6,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:travel_app/core/widget/search_bar_delegate.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/passenger_main_content.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/app_header.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/travel_sliver_grid_bloc_builder.dart';
 
 class PassengerHomeViewBody extends StatefulWidget {
@@ -20,7 +21,6 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
   bool _firstBuild = true;
-  String selectedTripType = 'توصيل مباشر';
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
         thumbVisibility: false,
         scrollbarOrientation: ScrollbarOrientation.left,
         interactive: true,
-        thickness: 4,
+        thickness: 2.r,
         radius: const Radius.circular(8),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -53,6 +53,7 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
                 controller: _scrollController,
                 physics: const BouncingScrollPhysics(),
                 slivers: [
+                  const SliverToBoxAdapter(child: AppHeader()),
                   SliverPersistentHeader(
                     pinned: true,
                     delegate: SearchBarDelegate(

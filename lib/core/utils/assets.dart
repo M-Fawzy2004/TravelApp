@@ -54,12 +54,8 @@ class Assets {
   /// assets/images/onboarding_image.jpg
   static const String imagesOnboardingImage = "assets/images/onboarding_image.jpg";
 
-  /// Assets for imagesTravelLogo12
-  /// assets/images/travel_logo_12.png
-  static const String imagesTravelLogo12 = "assets/images/travel_logo_12.png";
-
-  /// Assets for imagesTravelLogoAndroid12
-  /// assets/images/travel_logo_android_12.png
-  static const String imagesTravelLogoAndroid12 = "assets/images/travel_logo_android_12.png";
+  /// Assets for imagesRihlaLogo
+  /// assets/images/Rihla_Logo.png
+  static const String imagesRihlaLogo = "assets/images/Rihla_Logo.png";
 }
 

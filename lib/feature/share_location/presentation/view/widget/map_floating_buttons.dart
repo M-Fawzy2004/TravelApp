@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 
 class MapFloatingButtons extends StatelessWidget {
@@ -28,7 +29,7 @@ class MapFloatingButtons extends StatelessWidget {
             color: AppColors.getSurfaceColor(context),
           ),
         ),
-        SizedBox(height: 16.h),
+        heightBox(15),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -43,7 +44,7 @@ class MapFloatingButtons extends StatelessWidget {
                 color: AppColors.getSurfaceColor(context),
               ),
             ),
-            SizedBox(width: 8.w),
+            widthBox(8),
             FloatingActionButton(
               heroTag: 'zoomIn',
               onPressed: () => adjustZoom(1),

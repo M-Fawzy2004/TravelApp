@@ -10,6 +10,7 @@ void showCustomTopSnackBar({
   VoidCallback? onPressed,
   Color? backgroundColor,
 }) {
+  ScaffoldMessenger.of(context).hideCurrentSnackBar();
   final snackBar = SnackBar(
     content: Container(
       height: 60.h,
@@ -29,9 +30,9 @@ void showCustomTopSnackBar({
     duration: const Duration(seconds: 3),
     behavior: SnackBarBehavior.floating,
     margin: EdgeInsets.only(
+      bottom: 85.h,
       left: 16.w,
       right: 16.w,
-      bottom: 80.0,
     ),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.r),
@@ -42,6 +43,58 @@ void showCustomTopSnackBar({
     ),
     elevation: 8,
   );
-
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
+void showCustomTopOverlaySnackBar({
+  required BuildContext context,
+  required String message,
+  Color? backgroundColor,
+  Duration duration = const Duration(seconds: 3),
+}) {
+  late OverlayEntry overlayEntry;
+
+  overlayEntry = OverlayEntry(
+    builder: (context) => Positioned(
+      top: MediaQuery.of(context).padding.top + 10.h,
+      left: 16.w,
+      right: 16.w,
+      child: Material(
+        color: Colors.transparent,
+        child: Container(
+          padding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 12.h,
+          ),
+          decoration: BoxDecoration(
+            color: backgroundColor ?? AppColors.getPrimaryColor(context),
+            borderRadius: BorderRadius.circular(10.r),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 8,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  message,
+                  style: Styles.font16WhiteBold(context),
+                  textAlign: TextAlign.right,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+
+  Overlay.of(context).insert(overlayEntry);
+  Future.delayed(duration, () {
+    overlayEntry.remove();
+  });
 }

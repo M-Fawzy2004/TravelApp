@@ -38,8 +38,7 @@ class ShareLocationViewBody extends StatelessWidget {
         FlutterMap(
           mapController: mapController,
           options: MapOptions(
-            initialCenter: currentLocation ??
-                const LatLng(30.0444, 31.2357), // Cairo, Egypt as default
+            initialCenter: currentLocation ?? const LatLng(30.0444, 31.2357),
             initialZoom: 15.0,
             minZoom: 3.0,
             maxZoom: 18.0,
@@ -51,7 +50,6 @@ class ShareLocationViewBody extends StatelessWidget {
               userAgentPackageName: 'com.travel_app',
               tileProvider: NetworkTileProvider(),
             ),
-            // Current location marker
             if (currentLocation != null)
               MarkerLayer(
                 markers: [
@@ -61,7 +59,8 @@ class ShareLocationViewBody extends StatelessWidget {
                     point: currentLocation!,
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppColors.getPrimaryColor(context).withOpacity(0.4),
+                        color:
+                            AppColors.getPrimaryColor(context).withOpacity(0.4),
                         shape: BoxShape.circle,
                       ),
                       child: Center(
@@ -75,7 +74,6 @@ class ShareLocationViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-            // Selected location marker
             if (selectedLocation != null && selectedLocation != currentLocation)
               MarkerLayer(
                 markers: [
@@ -91,7 +89,6 @@ class ShareLocationViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-            // Destination location marker
             if (destinationLocation != null)
               MarkerLayer(
                 markers: [
@@ -107,7 +104,6 @@ class ShareLocationViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-            // Route polyline
             if (isRouteVisible && route.isNotEmpty)
               PolylineLayer(
                 polylines: [
@@ -120,7 +116,6 @@ class ShareLocationViewBody extends StatelessWidget {
               ),
           ],
         ),
-        // Search bar at the top
         Positioned(
           top: 10.h,
           left: 16.w,
@@ -130,7 +125,6 @@ class ShareLocationViewBody extends StatelessWidget {
             onSearchSubmitted: onSearchSubmitted,
           ),
         ),
-        // Loading indicator
         if (currentLocation == null)
           Center(
             child: SpinKitCircle(

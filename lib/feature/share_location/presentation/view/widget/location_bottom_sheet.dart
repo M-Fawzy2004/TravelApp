@@ -26,18 +26,19 @@ class LocationBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        // Listen for auth state changes
         BlocListener<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthError) {
-              showCustomTopSnackBar(
+              showCustomTopOverlaySnackBar(
                 context: context,
                 message: state.message,
+                backgroundColor: Colors.red,
               );
             } else if (state is AuthSaved) {
-              showCustomTopSnackBar(
+              showCustomTopOverlaySnackBar(
                 context: context,
                 message: 'تم حفظ الموقع بنجاح',
+                backgroundColor: AppColors.darkPrimaryColor,
               );
               Navigator.pop(context);
             }
@@ -47,7 +48,7 @@ class LocationBottomSheet extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppColors.getBackgroundColor(context),
           borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
         ),
         child: Column(
@@ -60,35 +61,17 @@ class LocationBottomSheet extends StatelessWidget {
                 width: 40.w,
                 height: 5.h,
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
+                  color: AppColors.getPrimaryColor(context),
                   borderRadius: BorderRadius.circular(5.r),
                 ),
               ),
             ),
             heightBox(16),
-
-            // Location information section
             _buildLocationInfoSection(context),
-
             heightBox(24),
-
-            // Location image placeholder
-            _buildLocationImagePlaceholder(context),
-
-            heightBox(24),
-
-            // Action buttons
+            _buildOpenStreetMapImage(context),
+            heightBox(10),
             _buildActionButtons(context),
-
-            heightBox(16),
-
-            // Use current location button
-            ActionButton(
-              icon: FontAwesomeIcons.locationCrosshairs,
-              label: 'استخدام موقعي الحالي',
-              onPressed: () => Navigator.pop(context),
-              isFullWidth: true,
-            ),
           ],
         ),
       ),
@@ -101,11 +84,9 @@ class LocationBottomSheet extends StatelessWidget {
         final bool isLoading = state is AddressLoading;
         final String? locationName =
             state is AddressLoaded ? state.address : null;
-
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Location name with icon
             Row(
               children: [
                 Icon(
@@ -140,39 +121,69 @@ class LocationBottomSheet extends StatelessWidget {
                 ),
               ],
             ),
-            heightBox(8),
-            // Coordinates
-            Text(
-              'الإحداثيات: ${point.latitude.toStringAsFixed(6)}, ${point.longitude.toStringAsFixed(6)}',
-              style:
-                  Styles.font14GreyExtraBold(context).copyWith(color: Colors.grey[600]),
-            ),
           ],
         );
       },
     );
   }
 
-  Widget _buildLocationImagePlaceholder(BuildContext context) {
+  Widget _buildOpenStreetMapImage(BuildContext context) {
+    final mapImageUrl = _generateOpenStreetMapImageUrl();
     return Container(
       height: 150.h,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.grey[300],
         borderRadius: BorderRadius.circular(10.r),
-        image: const DecorationImage(
-          image: AssetImage('assets/images/map_placeholder.png'),
-          fit: BoxFit.cover,
-        ),
       ),
-      child: Center(
-        child: Icon(
-          FontAwesomeIcons.mapLocation,
-          size: 40.sp,
-          color: AppColors.getPrimaryColor(context).withOpacity(0.7),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10.r),
+        child: Image.network(
+          mapImageUrl,
+          width: double.infinity,
+          height: double.infinity,
+          fit: BoxFit.cover,
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Center(
+              child: SpinKitCircle(
+                color: AppColors.getPrimaryColor(context),
+                size: 30.h,
+              ),
+            );
+          },
+          errorBuilder: (context, error, stackTrace) {
+            return Container(
+              color: AppColors.getSurfaceColor(context),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.mapLocation,
+                      size: 40.sp,
+                      color:
+                          AppColors.getPrimaryColor(context).withOpacity(0.7),
+                    ),
+                    heightBox(8),
+                    Text(
+                      'لا يمكن تحميل صورة الخريطة',
+                      style: Styles.font14GreyExtraBold(context),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
+  }
+
+  String _generateOpenStreetMapImageUrl() {
+    final lat = point.latitude;
+    final lng = point.longitude;
+
+    return 'https://render.openstreetmap.org/cgi-bin/export?bbox=${lng - 0.01},${lat - 0.01},${lng + 0.01},${lat + 0.01}&scale=1&format=png';
   }
 
   Widget _buildActionButtons(BuildContext context) {
@@ -187,7 +198,6 @@ class LocationBottomSheet extends StatelessWidget {
                 (previous is AuthLoading && current is! AuthLoading),
             builder: (context, state) {
               final bool isSaving = state is AuthLoading;
-
               return ActionButton(
                 icon: isSaving
                     ? FontAwesomeIcons.spinner
@@ -199,17 +209,6 @@ class LocationBottomSheet extends StatelessWidget {
             },
           ),
         ),
-        widthBox(16),
-
-        // Navigate button
-        Expanded(
-          child: ActionButton(
-            icon: FontAwesomeIcons.route,
-            label: 'التنقل إلى هنا',
-            onPressed: onNavigatePressed,
-            isPrimary: true,
-          ),
-        ),
       ],
     );
   }
@@ -217,16 +216,13 @@ class LocationBottomSheet extends StatelessWidget {
   void _saveLocationToUserProfile(BuildContext context) {
     final authCubit = context.read<AuthCubit>();
     final state = authCubit.state;
-
     if (state is AuthAuthenticated) {
       final currentUser = state.user;
       final addressCubit = context.read<AddressCubit>();
       final addressState = addressCubit.state;
       final locationName =
           addressState is AddressLoaded ? addressState.address : 'موقع محفوظ';
-
       try {
-        // Use AuthCubit's saveUserLocation instead of AddressCubit
         authCubit.saveUserLocation(
           currentUser.id,
           point.latitude,
@@ -235,16 +231,18 @@ class LocationBottomSheet extends StatelessWidget {
         );
       } catch (e) {
         debugPrint('Error saving location: $e');
-        showCustomTopSnackBar(
+        showCustomTopOverlaySnackBar(
           context: context,
           message: 'حدث خطأ أثناء حفظ الموقع',
+          backgroundColor: Colors.red,
         );
       }
     } else {
       // Show error message - user not authenticated
-      showCustomTopSnackBar(
+      showCustomTopOverlaySnackBar(
         context: context,
         message: 'يجب تسجيل الدخول أولاً لحفظ الموقع',
+        backgroundColor: AppColors.primaryColor,
       );
     }
   }

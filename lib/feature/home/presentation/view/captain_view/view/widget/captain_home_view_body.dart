@@ -8,6 +8,7 @@ import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/feature/add_travel/presentation/manager/trip_cubit/trip_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/captain_view/view/widget/captain_home_header.dart';
+import 'package:travel_app/feature/home/presentation/view/widget/app_header.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/travel_sliver_grid_bloc_builder.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
 
@@ -69,7 +70,7 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
         thumbVisibility: false,
         scrollbarOrientation: ScrollbarOrientation.left,
         interactive: true,
-        thickness: 4,
+        thickness: 2.r,
         radius: const Radius.circular(8),
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0.w),
@@ -94,6 +95,8 @@ class _CaptainHomeViewBodyState extends State<CaptainHomeViewBody> {
               controller: _scrollController,
               physics: const BouncingScrollPhysics(),
               slivers: [
+                SliverToBoxAdapter(child: heightBox(15)),
+                const SliverToBoxAdapter(child: AppHeader()),
                 SliverToBoxAdapter(child: heightBox(15)),
                 const SliverToBoxAdapter(child: CaptainHomeHeader()),
                 SliverToBoxAdapter(child: heightBox(20)),

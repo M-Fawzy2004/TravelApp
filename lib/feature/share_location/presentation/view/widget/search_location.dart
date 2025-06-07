@@ -34,12 +34,9 @@ class _SearchLocationState extends State<SearchLocation> {
   Widget build(BuildContext context) {
     return BlocListener<LocationCubit, LocationState>(
       listener: (context, state) {
-        // Update loading state based on LocationCubit state
         setState(() {
           _isLoading = state is LocationLoading;
         });
-
-        // If location is loaded, unfocus the text field
         if (state is LocationLoaded && state.selectedLocation != null) {
           _focusNode.unfocus();
         }
@@ -74,9 +71,10 @@ class _SearchLocationState extends State<SearchLocation> {
                     height: 18.sp,
                     child: Center(
                       child: SizedBox(
-                          width: 18.sp,
-                          height: 18.sp,
-                          child: const CustomLoadingCircle()),
+                        width: 18.sp,
+                        height: 18.sp,
+                        child: const CustomLoadingCircle(),
+                      ),
                     ),
                   )
                 : Icon(
@@ -124,8 +122,10 @@ class _SearchLocationState extends State<SearchLocation> {
             ),
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.r),
-              borderSide:
-                  BorderSide(color: Colors.grey.withOpacity(0.3), width: 1),
+              borderSide: BorderSide(
+                color: Colors.grey.withOpacity(0.3),
+                width: 1,
+              ),
             ),
           ),
         ),

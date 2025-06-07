@@ -61,15 +61,6 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
               ),
             ),
             DropdownMenuItem(
-              value: 'كابتن توصيل مباشر',
-              child: Text(
-                'كابتن توصيل مباشر',
-                style: Styles.font16BlackBold(context).copyWith(
-                  fontFamily: 'font',
-                ),
-              ),
-            ),
-            DropdownMenuItem(
               value: 'راكب',
               child: Text(
                 'راكب',
@@ -93,8 +84,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
             fillColor: AppColors.getSurfaceColor(context),
           ),
         ),
-        if (selectedRole == 'كابتن رحلات' ||
-            selectedRole == 'كابتن توصيل مباشر') ...[
+        if (selectedRole == 'كابتن رحلات') ...[
           heightBox(20),
           DropdownButtonFormField<String>(
             dropdownColor: AppColors.getSurfaceColor(context),

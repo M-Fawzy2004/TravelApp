@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
@@ -20,7 +19,6 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final role = getUser()?.role;
     return Container(
       decoration: BoxDecoration(
         color: AppColors.getBackgroundColor(context),
@@ -40,32 +38,29 @@ class CustomBottomNavBar extends StatelessWidget {
               'الرئيسيه',
               0,
             ),
-            if (role == UserRole.captain || role == UserRole.passenger) ...[
-              _buildNavItem(
-                context,
-                FontAwesomeIcons.car,
-                'الحجز',
-                1,
-              ),
-            ] else ...[
-              _buildNavItem(
-                context,
-                FontAwesomeIcons.clipboardList,
-                'السجل',
-                1,
-              ),
-            ],
+            _buildNavItem(
+              context,
+              FontAwesomeIcons.car,
+              'الحجوزات',
+              1,
+            ),
+            _buildNavItem(
+              context,
+              FontAwesomeIcons.bus,
+              'مواقف',
+              2,
+            ),
             _buildNavItem(
               context,
               FontAwesomeIcons.facebookMessenger,
               'الرسائل',
-              2,
+              3,
             ),
             _buildNavItem(
               context,
               FontAwesomeIcons.solidUserCircle,
               'الحساب',
-              3,
+              4,
             ),
           ],
         ),
@@ -79,14 +74,29 @@ class CustomBottomNavBar extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap(index),
       child: AnimatedContainer(
-        width: isSelected ? 90.w : 80.w,
+        width: 80.w,
         duration: const Duration(milliseconds: 250),
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
         decoration: BoxDecoration(
-          color: isSelected
-              ? AppColors.getPrimaryColor(context).withOpacity(0.3)
-              : Colors.transparent,
           borderRadius: BorderRadius.circular(10.r),
+          border: BorderDirectional(
+            bottom: BorderSide(
+              color: isSelected
+                  ? AppColors.getPrimaryColor(context)
+                  : Colors.transparent,
+              width: 2.w,
+            ),
+          ),
+          gradient: isSelected
+              ? LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    AppColors.getPrimaryColor(context).withOpacity(0.15),
+                    Colors.transparent,
+                  ],
+                )
+              : null,
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

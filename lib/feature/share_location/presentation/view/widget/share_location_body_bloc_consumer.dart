@@ -33,7 +33,7 @@ class _ShareLocationBodyBlocListenerState
     return BlocConsumer<LocationCubit, LocationState>(
       listener: (context, state) {
         if (state is LocationError) {
-          showCustomTopSnackBar(
+          showCustomTopOverlaySnackBar(
             context: context,
             message: state.message,
           );

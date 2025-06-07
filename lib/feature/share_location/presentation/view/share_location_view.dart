@@ -60,11 +60,7 @@ class _ShareLocationViewState extends State<ShareLocationView> {
 
   void _showLocationBottomSheet(LatLng point) {
     if (!mounted) return;
-
-    // First get the address
     context.read<AddressCubit>().getAddressFromCoordinates(point);
-
-    // Then show the bottom sheet with BlocProvider to pass both cubits
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -73,11 +69,9 @@ class _ShareLocationViewState extends State<ShareLocationView> {
       ),
       builder: (bottomSheetContext) => MultiBlocProvider(
         providers: [
-          // Pass the existing AddressCubit from parent context to bottom sheet
           BlocProvider.value(
             value: context.read<AddressCubit>(),
           ),
-          // Pass the existing AuthCubit from parent context to bottom sheet
           BlocProvider.value(
             value: context.read<AuthCubit>(),
           ),
@@ -100,7 +94,7 @@ class _ShareLocationViewState extends State<ShareLocationView> {
     if (state is LocationLoaded && state.currentLocation != null) {
       mapController.move(state.currentLocation!, 15);
     } else {
-      showCustomTopSnackBar(context: context, message: 'هذا الموقع غير متوفر');
+      showCustomTopOverlaySnackBar(context: context, message: 'هذا الموقع غير متوفر');
     }
   }
 
