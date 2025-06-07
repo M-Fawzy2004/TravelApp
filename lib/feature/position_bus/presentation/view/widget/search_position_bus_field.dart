@@ -6,36 +6,48 @@ import 'package:travel_app/core/theme/styles.dart';
 class SearchPoistionBusField extends StatelessWidget {
   const SearchPoistionBusField({
     super.key,
+    required this.hintText,
+    this.controller,
+    this.onChanged,
   });
+
+  final String hintText;
+  final TextEditingController? controller;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.h),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.r),
-        border: Border.all(
-          color: AppColors.getLightGreyColor(context).withOpacity(0.2),
+    return TextField(
+      controller: controller,
+      onChanged: onChanged,
+      style: Styles.font16BlackBold(context),
+      decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 16.w,
         ),
-      ),
-      child: TextField(
-        style: Styles.font16BlackBold(context),
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(
-            vertical: 15.h,
-            horizontal: 16.w,
-          ),
-          fillColor: AppColors.getSurfaceColor(context),
-          filled: true,
-          hintText: 'ابحث عن موقف',
-          hintStyle: Styles.font14DarkGreyExtraBold(context).copyWith(
-            fontWeight: FontWeight.w900,
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
-            borderSide: BorderSide.none,
-          ),
+        fillColor: AppColors.getSurfaceColor(context),
+        filled: true,
+        hintText: hintText,
+        hintStyle: Styles.font14DarkGreyExtraBold(context).copyWith(
+          fontWeight: FontWeight.w900,
         ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: BorderSide.none,
+        ),
+        suffixIcon: controller?.text.isNotEmpty == true
+            ? IconButton(
+                icon: Icon(
+                  Icons.clear,
+                  size: 18.sp,
+                  color: AppColors.darkPrimaryColor.withOpacity(0.6),
+                ),
+                onPressed: () {
+                  controller?.clear();
+                  onChanged?.call('');
+                },
+              )
+            : null,
       ),
     );
   }

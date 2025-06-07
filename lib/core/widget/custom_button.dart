@@ -55,7 +55,7 @@ class CustomButton extends StatelessWidget {
       child: FittedBox(
         child: Text(
           buttonText,
-          style: Styles.font14DarkGreyBold(context).copyWith(
+          style: Styles.font16WhiteBold(context).copyWith(
             color: AppColors.getSurfaceColor(context),
           ),
         ),
