@@ -1,4 +1,4 @@
-// comment_model.dart
+// comment_model.dart - Updated to include userId
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CommentModel {
@@ -9,7 +9,8 @@ class CommentModel {
   final double rating;
   final String ratingText;
   final DateTime createdAt;
-  final String userId; 
+  final String userId;
+  final String userName; 
 
   CommentModel({
     required this.id,
@@ -20,6 +21,7 @@ class CommentModel {
     required this.ratingText,
     required this.createdAt,
     required this.userId,
+    required this.userName,
   });
 
   static String getRatingText(double rating) {
@@ -49,6 +51,7 @@ class CommentModel {
       'ratingText': ratingText,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'userId': userId,
+      'userName': userName,
     };
   }
 
@@ -62,6 +65,7 @@ class CommentModel {
       ratingText: map['ratingText'] ?? '',
       createdAt: DateTime.fromMillisecondsSinceEpoch(map['createdAt'] ?? 0),
       userId: map['userId'] ?? '',
+      userName: map['userName'] ?? 'مستخدم',
     );
   }
 
@@ -85,6 +89,7 @@ class CommentModel {
     String? ratingText,
     DateTime? createdAt,
     String? userId,
+    String? userName,
   }) {
     return CommentModel(
       id: id ?? this.id,
@@ -95,12 +100,13 @@ class CommentModel {
       ratingText: ratingText ?? this.ratingText,
       createdAt: createdAt ?? this.createdAt,
       userId: userId ?? this.userId,
+      userName: userName ?? this.userName,
     );
   }
 
   @override
   String toString() {
-    return 'CommentModel(id: $id, stationId: $stationId, comment: $comment, rating: $rating, ratingText: $ratingText)';
+    return 'CommentModel(id: $id, stationId: $stationId, userId: $userId, comment: $comment, rating: $rating, ratingText: $ratingText)';
   }
 
   @override
