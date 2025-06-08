@@ -1,5 +1,4 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/theme/app_color.dart';
@@ -23,6 +22,7 @@ class CustomTextFormField extends StatefulWidget {
     this.onChanged,
     this.errorText,
     this.prefixIcon,
+    this.showClearIcon,
   });
 
   final String? hintText;
@@ -40,23 +40,64 @@ class CustomTextFormField extends StatefulWidget {
   final int? maxLines;
   final Function(String)? onChanged;
   final String? errorText;
+  final bool? showClearIcon;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  late TextEditingController _controller;
+  TextEditingController? _internalController;
+  bool _showClearButton = false;
+
+  TextEditingController get _effectiveController =>
+      widget.controller ?? _internalController!;
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
+    if (widget.controller == null) {
+      _internalController = TextEditingController();
+    }
+    _effectiveController.addListener(_updateClearButtonVisibility);
+    _updateClearButtonVisibility();
+  }
+
+  @override
+  void didUpdateWidget(CustomTextFormField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.controller != widget.controller) {
+      if (oldWidget.controller != null) {
+        oldWidget.controller!.removeListener(_updateClearButtonVisibility);
+      } else {
+        _internalController?.removeListener(_updateClearButtonVisibility);
+      }
+      _effectiveController.addListener(_updateClearButtonVisibility);
+      _updateClearButtonVisibility();
+    }
+  }
+
+  void _updateClearButtonVisibility() {
+    if (mounted) {
+      setState(() {
+        _showClearButton = _effectiveController.text.isNotEmpty;
+      });
+    }
+  }
+
+  void _clearText() {
+    _effectiveController.clear();
+    if (widget.onChanged != null) {
+      widget.onChanged!('');
+    }
+    _updateClearButtonVisibility();
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _effectiveController.removeListener(_updateClearButtonVisibility);
+    _internalController?.dispose();
     super.dispose();
   }
 
@@ -74,8 +115,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               return null;
             }
           },
-          onChanged: widget.onChanged,
-          controller: widget.controller,
+          onChanged: (value) {
+            _updateClearButtonVisibility();
+            if (widget.onChanged != null) {
+              widget.onChanged!(value);
+            }
+          },
+          controller: _effectiveController,
           maxLines: widget.maxLines ?? 1,
           obscureText: widget.obscureText ?? false,
           style: Styles.font14DarkGreyExtraBold(context),
@@ -90,7 +136,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   horizontal: 16.w,
                 ),
             hintText: widget.hintText,
-            hintStyle: widget.inputTextStyle ?? Styles.font14GreyExtraBold(context),
+            hintStyle:
+                widget.inputTextStyle ?? Styles.font14GreyExtraBold(context),
             filled: true,
             fillColor: widget.fillColor ?? AppColors.getSurfaceColor(context),
             focusedBorder: OutlineInputBorder(
@@ -105,7 +152,16 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               borderRadius: BorderRadius.circular(10.r),
               borderSide: BorderSide.none,
             ),
-            suffixIcon: widget.suffixIcon,
+            suffixIcon: widget.showClearIcon == true && _showClearButton
+                ? IconButton(
+                    icon: Icon(
+                      Icons.clear,
+                      size: 20.sp,
+                      color: AppColors.getPrimaryColor(context),
+                    ),
+                    onPressed: _clearText,
+                  )
+                : widget.suffixIcon,
           ),
         ),
         if (widget.errorText != null)

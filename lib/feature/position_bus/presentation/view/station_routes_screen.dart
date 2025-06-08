@@ -3,23 +3,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/core/widget/icon_back.dart';
+import 'package:travel_app/core/widget/custom_text_form_field.dart';
 import 'package:travel_app/feature/position_bus/data/model/governorate_model.dart';
-import 'package:travel_app/feature/position_bus/presentation/view/widget/route_list_tile.dart';
+import 'package:travel_app/feature/position_bus/presentation/view/widget/empty_state_widget.dart';
+import 'package:travel_app/feature/position_bus/presentation/view/widget/station_feedback_form.dart';
+import 'package:travel_app/feature/position_bus/presentation/view/widget/station_header.dart';
+import 'package:travel_app/feature/position_bus/presentation/view/widget/station_routes_list.dart';
 
 class StationRoutesScreen extends StatelessWidget {
   final Station station;
 
-  const StationRoutesScreen({
-    super.key,
-    required this.station,
-  });
+  const StationRoutesScreen({super.key, required this.station});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.all(16.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,33 +34,16 @@ class StationRoutesScreen extends StatelessWidget {
                   color: AppColors.getPrimaryColor(context).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12.r),
                 ),
-                child: Stack(
-                  children: [
-                    const IconBack(),
-                    Positioned.fill(
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            size: 40.sp,
-                            color: AppColors.primaryColor,
-                          ),
-                          heightBox(8),
-                          Text(
-                            station.name,
-                            style: Styles.font18BlackBold(context),
-                            textAlign: TextAlign.center,
-                          ),
-                          heightBox(4),
-                          Text(
-                            'عدد المواصلات: ${station.routes.length}',
-                            style: Styles.font14GreyExtraBold(context),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                child: StationHeader(station: station),
+              ),
+              heightBox(10),
+              Text(
+                'عاوز تروح فين من ${station.name} واحنا ندلك علي اقرب خط فى حال عدم وحود موقف للمكان اللى انت رايحه',
+                style: Styles.font14GreyExtraBold(context),
+              ),
+              heightBox(10),
+              const CustomTextFormField(
+                hintText: 'ابحث عن المكان اللى تريده',
               ),
               heightBox(20),
               Text(
@@ -66,35 +51,11 @@ class StationRoutesScreen extends StatelessWidget {
                 style: Styles.font16BlackBold(context),
               ),
               heightBox(12),
-              Expanded(
-                child: station.routes.isEmpty
-                    ? Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.info_outline,
-                              size: 48.sp,
-                              color: AppColors.primaryColor.withOpacity(0.5),
-                            ),
-                            heightBox(16),
-                            Text(
-                              'لا توجد مواقف متاحة',
-                              style: Styles.font16BlackBold(context),
-                            ),
-                          ],
-                        ),
-                      )
-                    : ListView.separated(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: station.routes.length,
-                        separatorBuilder: (context, index) => heightBox(8),
-                        itemBuilder: (context, index) {
-                          final route = station.routes[index];
-                          return RouteListTile(route: route);
-                        },
-                      ),
-              ),
+              station.routes.isEmpty
+                  ? const EmptyStateWidget()
+                  : StationRoutesList(station: station),
+              heightBox(16),
+              StationFeedbackForm(station: station),
             ],
           ),
         ),

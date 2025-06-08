@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_app/core/widget/custom_loading_circle.dart';
-import 'package:travel_app/feature/position_bus/presentation/manager/cubit/governorate_cubit.dart';
+import 'package:travel_app/feature/position_bus/presentation/manager/governorate/governorate_cubit.dart';
 import 'package:travel_app/feature/position_bus/presentation/view/widget/poistion_bus_view_body.dart';
 
 class PoistionBusViewBodyBuilder extends StatelessWidget {
