@@ -47,8 +47,8 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
               _buildNavItem(
                 context,
-                FontAwesomeIcons.car,
-                'الحجوزات',
+                FontAwesomeIcons.landmark,
+                'السياحه',
                 1,
                 screenWidth,
               ),

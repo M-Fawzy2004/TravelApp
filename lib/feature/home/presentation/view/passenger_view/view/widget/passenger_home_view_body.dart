@@ -36,36 +36,37 @@ class _PassengerHomeViewBodyState extends State<PassengerHomeViewBody> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: SmartRefresher(
-              controller: _refreshController,
-              onRefresh: _onRefresh,
-              enablePullDown: true,
-              header: ClassicHeader(
-                height: 65.h,
-                refreshStyle: RefreshStyle.Follow,
-                refreshingText: "جارِ التحديث...",
-                releaseText: "إفلت للتحديث",
-                completeText: "تم التحديث!",
-                failedText: "فشل التحديث!",
-                idleText: "اسحب للتحديث",
-                iconPos: IconPosition.left,
-              ),
-              child: CustomScrollView(
-                controller: _scrollController,
-                physics: const BouncingScrollPhysics(),
-                slivers: [
-                  const SliverToBoxAdapter(child: AppHeader()),
-                  SliverPersistentHeader(
-                    pinned: true,
-                    delegate: SearchBarDelegate(
-                      hintText: 'أبحث عن رحله معينه....',
-                    ),
+            controller: _refreshController,
+            onRefresh: _onRefresh,
+            enablePullDown: true,
+            header: ClassicHeader(
+              height: 65.h,
+              refreshStyle: RefreshStyle.Follow,
+              refreshingText: "جارِ التحديث...",
+              releaseText: "إفلت للتحديث",
+              completeText: "تم التحديث!",
+              failedText: "فشل التحديث!",
+              idleText: "اسحب للتحديث",
+              iconPos: IconPosition.left,
+            ),
+            child: CustomScrollView(
+              controller: _scrollController,
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                const SliverToBoxAdapter(child: AppHeader()),
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: SearchBarDelegate(
+                    hintText: 'أبحث عن رحله معينه....',
                   ),
-                  const SliverToBoxAdapter(
-                    child: PassengerMainContent(),
-                  ),
-                  const TravelSliverGridBlocConsumer(),
-                ],
-              )),
+                ),
+                const SliverToBoxAdapter(
+                  child: PassengerMainContent(),
+                ),
+                const TravelSliverGridBlocConsumer(),
+              ],
+            ),
+          ),
         ),
       ),
     );

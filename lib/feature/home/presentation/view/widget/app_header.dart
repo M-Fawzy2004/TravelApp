@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:travel_app/core/helper/app_router.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/theme/app_color.dart';
 import 'package:travel_app/core/theme/styles.dart';
-import 'package:travel_app/core/utils/assets.dart';
 
 class AppHeader extends StatelessWidget {
-  const AppHeader({
-    super.key,
-  });
+  const AppHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +15,15 @@ class AppHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Image.asset(Assets.imagesRihlaLogo, height: 60.h),
+        IconButton(
+          onPressed: () {
+            context.push(AppRouter.tripBooking);
+          },
+          icon: Icon(
+            FontAwesomeIcons.calendar,
+            color: AppColors.getPrimaryColor(context),
+          ),
+        ),
         const Spacer(),
         Text(
           'أهلا بك $getUserName',
@@ -30,7 +36,6 @@ class AppHeader extends StatelessWidget {
           onPressed: () {},
           icon: Icon(
             FontAwesomeIcons.solidBell,
-            size: 22.sp,
             color: AppColors.getPrimaryColor(context),
           ),
         ),

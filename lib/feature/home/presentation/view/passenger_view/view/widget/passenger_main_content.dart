@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/core/helper/spacing.dart';
-import 'package:travel_app/feature/home/presentation/view/passenger_view/view/widget/featured_travel_list_view.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/category_filter.dart';
 import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
 
@@ -14,8 +13,6 @@ class PassengerMainContent extends StatelessWidget {
     return Column(
       children: [
         const DetailsLocation(),
-        heightBox(10),
-        const FeaturedTravelListView(),
         heightBox(20),
         const Align(
           alignment: Alignment.centerRight,

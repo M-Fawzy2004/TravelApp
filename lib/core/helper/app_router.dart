@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/feature/add_travel/data/model/trip_model.dart';
 import 'package:travel_app/feature/add_travel/presentation/view/add_travel_view.dart';
-import 'package:travel_app/feature/featured_view/presentation/view/featured_home_view.dart';
 import 'package:travel_app/feature/message/presentation/view/chat_view.dart';
 import 'package:travel_app/feature/message/presentation/view/message_view.dart';
 import 'package:travel_app/feature/position_bus/presentation/view/poistion_bus_view.dart';
@@ -139,12 +138,6 @@ abstract class AppRouter {
         path: shareLocationView,
         builder: (BuildContext context, GoRouterState state) {
           return const ShareLocationView();
-        },
-      ),
-      GoRoute(
-        path: featuredHomeView,
-        builder: (BuildContext context, GoRouterState state) {
-          return const FeaturedHomeView();
         },
       ),
       GoRoute(

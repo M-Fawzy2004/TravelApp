@@ -3,7 +3,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -64,46 +63,42 @@ class AuthService {
 
     await _auth.verifyPhoneNumber(
       phoneNumber: phoneNumber,
+      // تعطيل التحقق التلقائي من Google
       verificationCompleted: (PhoneAuthCredential credential) async {
-        try {
-          await _auth.currentUser?.linkWithCredential(credential);
-          completer.complete();
-        } catch (e) {
-          completer.completeError(e);
-        }
+        // لا تعمل sign in تلقائي - فقط أكمل العملية
+        print("تم إرسال كود التحقق");
+        completer.complete();
       },
       verificationFailed: (FirebaseAuthException e) {
         completer.completeError(e);
       },
       codeSent: (String verificationId, int? resendToken) async {},
       codeAutoRetrievalTimeout: (String verificationId) {},
+      // إضافة إعدادات لتعطيل التحقق التلقائي
+      timeout: const Duration(seconds: 60),
     );
 
     return completer.future;
   }
 
-  // Sign in with phone number
+  // تسجيل الدخول برقم الهاتف مع تعطيل التحقق التلقائي
   Future<UserEntity> signInWithPhone(String phoneNumber) async {
     try {
       final completer = Completer<UserEntity>();
 
       await _auth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
+        // تعطيل التحقق التلقائي - لا تقوم بتسجيل دخول تلقائي
         verificationCompleted: (PhoneAuthCredential credential) async {
-          final userCredential = await _auth.signInWithCredential(credential);
-          final user = userCredential.user;
-          if (user != null) {
-            final userModel = await _getOrCreateUser(user);
-            completer.complete(userModel);
-          } else {
-            completer
-                .completeError(Exception('فشل في تسجيل الدخول برقم الهاتف'));
-          }
+          // بدلاً من تسجيل الدخول، فقط أرسل رسالة أن الكود وصل
+          print("تم التحقق التلقائي ولكن سيتم تجاهله - يرجى إدخال الكود");
+          // لا تستدعي signInWithCredential هنا
         },
         verificationFailed: (FirebaseAuthException e) {
           completer.completeError(Exception(e.message ?? 'فشل التحقق'));
         },
         codeSent: (String verificationId, int? resendToken) {
+          // إرجاع UserEntity مع verification ID للاستخدام في التحقق اليدوي
           completer.complete(
             UserEntity(
               id: verificationId,
@@ -114,7 +109,7 @@ class AuthService {
         codeAutoRetrievalTimeout: (String verificationId) {
           if (!completer.isCompleted) {
             completer.completeError(
-              Exception('انتهاء مهلة الاسترجاع التلقائي لـ OTP'),
+              Exception('انتهاء مهلة الاسترجاء التلقائي لـ OTP'),
             );
           }
         },
@@ -127,7 +122,7 @@ class AuthService {
     }
   }
 
-  // Verify OTP code
+  // التحقق من OTP بشكل يدوي فقط
   Future<UserEntity> verifyOTP(String verificationId, String smsCode) async {
     try {
       final credential = PhoneAuthProvider.credential(

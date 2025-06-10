@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
@@ -51,11 +50,11 @@ class _TripBookingViewBodyState extends State<TripBookingViewBody> {
             ),
           ),
           if (role == UserRole.passenger && !_showFavoritesOnly)
-            Positioned(
+            const Positioned(
               right: 0,
               left: 0,
-              bottom: 75.h,
-              child: const BookingActionButton(),
+              bottom: 0,
+              child: BookingActionButton(),
             ),
         ],
       ),

@@ -7,7 +7,6 @@ import 'package:travel_app/feature/home/presentation/view/widget/custom_bottom_n
 import 'package:travel_app/feature/message/presentation/view/message_view.dart';
 import 'package:travel_app/feature/position_bus/presentation/view/poistion_bus_view.dart';
 import 'package:travel_app/feature/profile/presentation/view/profile_view.dart';
-import 'package:travel_app/feature/trip_booking/presentation/view/trip_booking_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -29,7 +28,15 @@ class _MainViewState extends State<MainView> {
         index: screenIndex,
         children: [
           buildHomeScreenByRole(role),
-          const TripBookingView(),
+          const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('واجهه السياحه التجريبية'),
+                Text('قريبا'),
+              ],
+            ),
+          ),
           const PoistionBusView(),
           const MessageView(),
           const ProfileView(),
