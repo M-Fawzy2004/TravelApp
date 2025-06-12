@@ -37,7 +37,6 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
     'ميكروباص',
     'ميني باص',
     'باص',
-    'موتسيكل',
   ];
 
   @override
@@ -90,7 +89,7 @@ class _RoleDropdownTextFieldState extends State<RoleDropdownTextField> {
             dropdownColor: AppColors.getSurfaceColor(context),
             style: Styles.font20ExtraBlackBold(context),
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(25.r),
             value: selectedVehicleType,
             items: vehicleTypes.map((type) {
               return DropdownMenuItem(

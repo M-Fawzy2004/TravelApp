@@ -41,8 +41,8 @@ class TripSummaryCard extends StatelessWidget {
             backgroundColor: const Color(0xFFFE4A49),
             icon: FontAwesomeIcons.trashAlt,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20.r),
-              bottomRight: Radius.circular(20.r),
+              topRight: Radius.circular(25.r),
+              bottomRight: Radius.circular(25.r),
             ),
             label: 'حذف',
           ),
@@ -66,8 +66,8 @@ class TripSummaryCard extends StatelessWidget {
         elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10.r),
-            bottomLeft: Radius.circular(10.r),
+            topLeft: Radius.circular(25.r),
+            bottomLeft: Radius.circular(25.r),
           ),
         ),
         color: AppColors.getBackgroundColor(context),
@@ -78,8 +78,8 @@ class TripSummaryCard extends StatelessWidget {
             );
           },
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.r),
-            bottomLeft: Radius.circular(20.r),
+            topLeft: Radius.circular(25.r),
+            bottomLeft: Radius.circular(25.r),
           ),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 10.w),

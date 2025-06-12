@@ -24,7 +24,7 @@ class ContactCaptian extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           color: AppColors.getBackgroundColor(context),
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(25.r),
         ),
         child: Icon(
           FontAwesomeIcons.message,

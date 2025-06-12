@@ -20,8 +20,8 @@ class TripSummaryListView extends StatelessWidget {
     final role = getUser()?.role;
     return ListView.builder(
       padding: role == UserRole.passenger
-          ? EdgeInsets.only(bottom: 270.h)
-          : EdgeInsets.only(bottom: 80.h),
+          ? EdgeInsets.only(bottom: 240.h)
+          : EdgeInsets.zero,
       dragStartBehavior: DragStartBehavior.down,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, index) {

@@ -32,7 +32,7 @@ class StationRoutesScreenBody extends StatelessWidget {
             padding: EdgeInsets.all(16.w),
             decoration: BoxDecoration(
               color: AppColors.getPrimaryColor(context).withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12.r),
+              borderRadius: BorderRadius.circular(25.r),
             ),
             child: StationHeader(station: station),
           ),

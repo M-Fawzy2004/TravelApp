@@ -17,14 +17,10 @@ class AddTravelCaptain extends StatelessWidget {
       onTap: () {
         context.push(
           AppRouter.detailsTrip,
-          extra: {
-            'trip': trip,
-          },
+          extra: {'trip': trip},
         );
       },
-      child: AddTravelCaptainSection(
-        trip: trip,
-      ),
+      child: AddTravelCaptainSection(trip: trip),
     );
   }
 }

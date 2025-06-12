@@ -15,7 +15,7 @@ class MessageInputTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8.w),
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       child: TextField(
         controller: _messageController,
         focusNode: _focusNode,

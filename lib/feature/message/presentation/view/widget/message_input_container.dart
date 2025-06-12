@@ -27,7 +27,7 @@ class _MessageInputContainerState extends State<MessageInputContainer> {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.getSurfaceColor(context),
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(25.r),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,

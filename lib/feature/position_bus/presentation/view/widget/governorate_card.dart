@@ -48,7 +48,7 @@ class _GovernorateCardState extends State<GovernorateCard> {
       margin: EdgeInsets.only(bottom: 8.h),
       decoration: BoxDecoration(
         color: AppColors.getBackgroundColor(context),
-        borderRadius: BorderRadius.circular(10.r),
+        borderRadius: BorderRadius.circular(25.r),
         border: Border.all(
           color: AppColors.getPrimaryColor(context).withOpacity(0.1),
         ),
@@ -67,7 +67,7 @@ class _GovernorateCardState extends State<GovernorateCard> {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: AppColors.getPrimaryColor(context).withOpacity(0.1),
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(25.r),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

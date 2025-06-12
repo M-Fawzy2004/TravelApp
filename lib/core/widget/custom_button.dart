@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
       style: ButtonStyle(
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius ?? 10.0.r),
+            borderRadius: BorderRadius.circular(borderRadius ?? 25.r),
           ),
         ),
         overlayColor:

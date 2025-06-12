@@ -18,7 +18,7 @@ class ImageFavorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(10.r),
+      borderRadius: BorderRadius.circular(15.r),
       child: Image.network(
         trip.imageUrl,
         width: widget ?? 80.w,

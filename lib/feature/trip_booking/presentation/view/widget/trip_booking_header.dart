@@ -47,7 +47,7 @@ class _TripBookingHeaderState extends State<TripBookingHeader> {
             padding: EdgeInsets.all(16.w),
             decoration: BoxDecoration(
               color: AppColors.getPrimaryColor(context).withOpacity(0.08),
-              borderRadius: BorderRadius.circular(10.r),
+              borderRadius: BorderRadius.circular(25.r),
             ),
             child: Center(
               child: Text(
@@ -76,7 +76,7 @@ class _TripBookingHeaderState extends State<TripBookingHeader> {
                 color: _isFavoriteMode
                     ? AppColors.getPrimaryColor(context).withOpacity(0.3)
                     : AppColors.getPrimaryColor(context).withOpacity(0.1),
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(25.r),
               ),
               child: Center(
                 child: Icon(

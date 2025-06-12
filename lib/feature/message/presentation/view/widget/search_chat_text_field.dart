@@ -34,7 +34,7 @@ class SearchChatTextField extends StatelessWidget {
             vertical: 12.h,
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30.r),
+            borderRadius: BorderRadius.circular(25.r),
             borderSide: BorderSide.none,
           ),
         ),

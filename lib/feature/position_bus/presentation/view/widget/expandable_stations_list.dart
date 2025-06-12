@@ -29,8 +29,8 @@ class ExpandableStationsList extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.getSurfaceColor(context).withOpacity(0.1),
                 borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10.r),
-                  bottomRight: Radius.circular(10.r),
+                  bottomLeft: Radius.circular(25.r),
+                  bottomRight: Radius.circular(25.r),
                 ),
               ),
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
@@ -60,7 +60,7 @@ class ExpandableStationsList extends StatelessWidget {
                         ),
                         decoration: BoxDecoration(
                           color: AppColors.getSurfaceColor(context),
-                          borderRadius: BorderRadius.circular(8.r),
+                          borderRadius: BorderRadius.circular(25.r),
                         ),
                         child: AviliablePoistion(
                           station: station,

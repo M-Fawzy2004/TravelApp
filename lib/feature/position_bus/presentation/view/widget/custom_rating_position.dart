@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:travel_app/core/helper/spacing.dart';
 
 class CustomRatingPosition extends StatefulWidget {
   final double initialRating;
@@ -75,7 +76,7 @@ class _CustomRatingPositionState extends State<CustomRatingPosition> {
             widget.onRatingUpdate(rating);
           },
         ),
-        const SizedBox(height: 8),
+        heightBox(8),
         Text(
           _getRatingText(currentRating),
           style: TextStyle(

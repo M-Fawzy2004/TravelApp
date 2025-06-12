@@ -60,7 +60,7 @@ class TripModel {
       'duration': duration,
       'price': price,
       'additionalDetails': additionalDetails,
-      'imageUrl': imageUrl, 
+      'imageUrl': imageUrl,
     };
   }
 
@@ -73,7 +73,7 @@ class TripModel {
       creatorPhone: json['creatorPhone'],
       tripType: TripType.values.firstWhere(
         (e) => e.toString().split('.').last == json['tripType'],
-        orElse: () => TripType.cargoShipping,
+        orElse: () => TripType.privateDelivery,
       ),
       destinationName: json['destinationName'],
       departureLocation: json['departureLocation'],
@@ -87,7 +87,7 @@ class TripModel {
       duration: json['duration'],
       price: json['price'].toDouble(),
       additionalDetails: json['additionalDetails'] ?? '',
-      imageUrl: json['imageUrl'] ?? '', 
+      imageUrl: json['imageUrl'] ?? '',
     );
   }
 
@@ -146,4 +146,4 @@ class TripModel {
   }
 }
 
-enum TripType { specialTrip, cargoShipping }
+enum TripType { specialTrip, privateDelivery }

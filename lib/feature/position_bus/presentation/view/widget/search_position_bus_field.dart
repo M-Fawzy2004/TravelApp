@@ -32,7 +32,7 @@ class SearchPoistionBusField extends StatelessWidget {
           fontWeight: FontWeight.w900,
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(25.r),
           borderSide: BorderSide.none,
         ),
         suffixIcon: controller?.text.isNotEmpty == true

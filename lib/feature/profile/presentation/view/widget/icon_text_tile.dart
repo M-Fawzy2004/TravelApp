@@ -27,10 +27,11 @@ class IconTextTile extends StatelessWidget {
       child: Container(
         height: 60.h,
         margin: EdgeInsets.only(bottom: 10.h),
-        padding: EdgeInsets.symmetric(horizontal: 10.w),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         decoration: BoxDecoration(
-          color: backgroundColor?.withOpacity(0.2) ?? AppColors.getSurfaceColor(context),
-          borderRadius: BorderRadius.circular(10.r),
+          color: backgroundColor?.withOpacity(0.2) ??
+              AppColors.getSurfaceColor(context),
+          borderRadius: BorderRadius.circular(25.r),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -43,6 +44,11 @@ class IconTextTile extends StatelessWidget {
             widthBox(15),
             Text(title, style: Styles.font16BlackBold(context)),
             const Spacer(),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: AppColors.getLightGreyColor(context),
+              size: 20.h,
+            ),
           ],
         ),
       ),

@@ -34,7 +34,7 @@ class _EditTravelFormState extends State<EditTravelForm> {
 
   final List<String> _travelTypes = [
     'رحلة خاصة',
-    'شحن أغراض',
+    'توصيل خاص',
   ];
 
   @override
@@ -52,7 +52,7 @@ class _EditTravelFormState extends State<EditTravelForm> {
       case TripType.specialTrip:
         _selectedType = 'رحلة خاصة';
         break;
-      case TripType.cargoShipping:
+      case TripType.privateDelivery:
         _selectedType = 'شحن أغراض';
         break;
     }

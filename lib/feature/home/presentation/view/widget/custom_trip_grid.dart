@@ -18,14 +18,13 @@ class CustomTripGrid extends StatelessWidget {
       sliver: SliverGrid(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          mainAxisExtent: 220.h,
+          mainAxisExtent: 240.h,
+          mainAxisSpacing: 15.w,
         ),
         delegate: SliverChildBuilderDelegate(
           (context, index) {
             final trip = trips[index];
-            return AddTravelCaptain(
-              trip: trip,
-            );
+            return AddTravelCaptain(trip: trip);
           },
           childCount: trips.length,
         ),

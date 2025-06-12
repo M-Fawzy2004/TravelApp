@@ -16,10 +16,10 @@ class TripFormState extends Equatable {
   final bool isSubmitting;
   final String? error;
   final Map<String, String> fieldErrors;
-  final String imageUrl; // تم استبدال gradientIndex بـ imageUrl
+  final String imageUrl;
 
   const TripFormState({
-    this.tripType = TripType.cargoShipping,
+    this.tripType = TripType.specialTrip,
     this.destinationName = '',
     this.departureLocation = '',
     this.arrivalLocation = '',
@@ -32,7 +32,7 @@ class TripFormState extends Equatable {
     this.isSubmitting = false,
     this.error,
     this.fieldErrors = const {},
-    this.imageUrl = '', // قيمة افتراضية فارغة
+    this.imageUrl = '', 
   });
 
   @override

@@ -10,12 +10,13 @@ class TripImageCard extends StatelessWidget {
   });
 
   final TripModel trip;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(25.r),
           child: Image.network(
             trip.imageUrl,
             width: double.infinity,
@@ -23,44 +24,58 @@ class TripImageCard extends StatelessWidget {
             fit: BoxFit.cover,
             loadingBuilder: (context, child, loadingProgress) {
               if (loadingProgress == null) return child;
-              return Center(
-                child: CircularProgressIndicator(
-                  value: loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded /
-                          loadingProgress.expectedTotalBytes!
-                      : null,
+              return Container(
+                width: double.infinity,
+                height: 250.h,
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(25.r),
+                ),
+                child: Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                            loadingProgress.expectedTotalBytes!
+                        : null,
+                  ),
                 ),
               );
             },
           ),
         ),
+        Positioned.fill(
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(25.r),
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.transparent,
+                    Colors.black,
+                  ],
+                  stops: [0.7, 1.0],
+                ),
+              ),
+            ),
+          ),
+        ),
         Positioned(
-          bottom: 0,
+          bottom: 20,
           left: 0,
           right: 0,
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16.w,
-              vertical: 12.h,
-            ),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [
-                  Colors.black.withOpacity(0.7),
-                  Colors.transparent,
-                ],
-              ),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10.r),
-                bottomRight: Radius.circular(10.r),
-              ),
-            ),
-            child: Text(
-              trip.destinationName,
-              style: Styles.font20BlackBold(context).copyWith(
-                color: Colors.white,
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              child: Text(
+                trip.destinationName,
+                style: Styles.font20BlackBold(context).copyWith(
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),

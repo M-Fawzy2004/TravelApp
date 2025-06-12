@@ -17,7 +17,7 @@ class AccountTextContainer extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 7.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.r),
+        borderRadius: BorderRadius.circular(25.r),
         color: AppColors.getPrimaryColor(context).withOpacity(0.1),
       ),
       child: Center(

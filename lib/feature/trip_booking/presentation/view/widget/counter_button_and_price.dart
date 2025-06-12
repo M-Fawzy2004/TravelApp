@@ -34,7 +34,7 @@ class CounterButtonAndPrice extends StatelessWidget {
               height: 45.h,
               decoration: BoxDecoration(
                 color: AppColors.getPrimaryColor(context).withOpacity(0.1),
-                borderRadius: BorderRadius.circular(10.r),
+                borderRadius: BorderRadius.circular(25.r),
               ),
               child: Row(
                 children: [

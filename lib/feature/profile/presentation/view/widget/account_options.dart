@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:travel_app/core/helper/get_user.dart';
 import 'package:travel_app/core/utils/show_logout_dialog.dart';
+import 'package:travel_app/feature/auth/domain/entity/user_entity.dart';
 import 'package:travel_app/feature/profile/presentation/view/widget/icon_text_tile.dart';
 
 class AccountOptions extends StatelessWidget {
@@ -10,6 +12,7 @@ class AccountOptions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final role = getUser()?.role;
     return Column(
       children: [
         IconTextTile(
@@ -37,15 +40,17 @@ class AccountOptions extends StatelessWidget {
           title: 'الرحلات السابقه',
           icon: FontAwesomeIcons.history,
         ),
-        IconTextTile(
-          onTap: () {},
-          title: 'المستندات الشخصيه',
-          icon: FontAwesomeIcons.file,
-        ),
+        role == UserRole.captain
+            ? IconTextTile(
+                onTap: () {},
+                title: 'المستندات الشخصيه',
+                icon: FontAwesomeIcons.file,
+              )
+            : const SizedBox.shrink(),
         IconTextTile(
           onTap: () {},
           title: 'اللغه',
-          icon: FontAwesomeIcons.language,
+          icon: Icons.language,
         ),
         IconTextTile(
           onTap: () {},

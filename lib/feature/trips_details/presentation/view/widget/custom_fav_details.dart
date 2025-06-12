@@ -29,7 +29,7 @@ class CustomFavDetails extends StatelessWidget {
           color: isFavorite
               ? AppColors.primaryColor.withOpacity(0.4)
               : AppColors.getBackgroundColor(context),
-          borderRadius: BorderRadius.circular(10.r),
+          borderRadius: BorderRadius.circular(25.r),
         ),
         child: Icon(
           isFavorite ? FontAwesomeIcons.solidHeart : FontAwesomeIcons.heart,

@@ -8,6 +8,7 @@ import 'package:travel_app/feature/auth/presentation/view/login_view.dart';
 import 'package:travel_app/feature/home/presentation/manager/cubit/connectivity_cubit.dart';
 import 'package:travel_app/feature/home/presentation/view/captain_view/view/captain_home_view.dart';
 import 'package:travel_app/feature/home/presentation/view/passenger_view/view/passenger_home_view.dart';
+import 'package:travel_app/feature/trip_booking/presentation/manager/booking_cubit/booking_cubit.dart';
 
 Widget buildHomeScreenByRole(UserRole? role) {
   final user = getUser();
@@ -17,6 +18,7 @@ Widget buildHomeScreenByRole(UserRole? role) {
         providers: [
           BlocProvider(create: (_) => getIt<TripCubit>()..getAllTrips()),
           BlocProvider(create: (_) => getIt<ConnectivityCubit>()),
+          BlocProvider(create: (_) => getIt<BookingCubit>()),
         ],
         child: const PassengerHomeView(),
       );
@@ -27,6 +29,7 @@ Widget buildHomeScreenByRole(UserRole? role) {
             create: (_) => getIt<TripCubit>()..getTripsByCaptainId(user!.id),
           ),
           BlocProvider(create: (_) => getIt<ConnectivityCubit>()),
+          BlocProvider(create: (_) => getIt<BookingCubit>()),
         ],
         child: const CaptainHomeView(),
       );

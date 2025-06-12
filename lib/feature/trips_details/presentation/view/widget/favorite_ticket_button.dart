@@ -24,8 +24,8 @@ class FavoriteTicketButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.getSurfaceColor(context),
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10.r),
-          topRight: Radius.circular(10.r),
+          topLeft: Radius.circular(25.r),
+          topRight: Radius.circular(25.r),
         ),
       ),
       child: Column(

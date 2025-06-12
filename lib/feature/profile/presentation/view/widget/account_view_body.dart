@@ -9,7 +9,7 @@ class AccountViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(bottom: 90.h),
+      padding: EdgeInsets.only(bottom: 85.h),
       physics: const BouncingScrollPhysics(),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

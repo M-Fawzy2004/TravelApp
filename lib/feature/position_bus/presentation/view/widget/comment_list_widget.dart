@@ -68,7 +68,7 @@ class CommentsListWidget extends StatelessWidget {
       padding: EdgeInsets.all(24.w),
       decoration: BoxDecoration(
         color: AppColors.getPrimaryColor(context).withOpacity(0.05),
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(25.r),
         border: Border.all(
           color: AppColors.getPrimaryColor(context).withOpacity(0.1),
         ),

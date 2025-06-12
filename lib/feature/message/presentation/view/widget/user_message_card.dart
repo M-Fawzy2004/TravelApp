@@ -20,6 +20,9 @@ class UserMessageCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Card(
           elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25.r),
+          ),
           color: AppColors.getSurfaceColor(context),
           child: ListTile(
             title: Text(

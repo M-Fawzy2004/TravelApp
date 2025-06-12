@@ -141,7 +141,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             filled: true,
             fillColor: widget.fillColor ?? AppColors.getSurfaceColor(context),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.r),
+              borderRadius: BorderRadius.circular(25.r),
               borderSide: BorderSide(
                 color: AppColors.getPrimaryColor(context),
                 width: 2.w,
@@ -149,7 +149,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             ),
             prefixIcon: widget.prefixIcon,
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10.r),
+              borderRadius: BorderRadius.circular(25.r),
               borderSide: BorderSide.none,
             ),
             suffixIcon: widget.showClearIcon == true && _showClearButton

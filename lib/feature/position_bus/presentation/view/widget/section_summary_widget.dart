@@ -25,7 +25,7 @@ class StationRatingSummary extends StatelessWidget {
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: AppColors.getPrimaryColor(context).withOpacity(0.05),
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(25.r),
         border: Border.all(
           color: AppColors.getPrimaryColor(context).withOpacity(0.1),
         ),
@@ -57,7 +57,7 @@ class StationRatingSummary extends StatelessWidget {
             ],
           ),
           widthBox(16),
-          
+
           // Rating Text and Stats
           Expanded(
             child: Column(

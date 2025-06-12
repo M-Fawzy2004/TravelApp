@@ -4,21 +4,19 @@ import 'package:travel_app/feature/home/presentation/view/widget/category_filter
 import 'package:travel_app/feature/home/presentation/view/widget/details_location.dart';
 
 class PassengerMainContent extends StatelessWidget {
-  const PassengerMainContent({
-    super.key,
-  });
+  const PassengerMainContent({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const DetailsLocation(),
-        heightBox(20),
+        heightBox(15),
         const Align(
           alignment: Alignment.centerRight,
           child: CategoryFilter(),
         ),
-        heightBox(10),
+        heightBox(15),
       ],
     );
   }

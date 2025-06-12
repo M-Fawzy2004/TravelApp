@@ -4,8 +4,8 @@ String getTripTypeInArabic(TripType type) {
   switch (type) {
     case TripType.specialTrip:
       return 'رحلة خاصة';
-    case TripType.cargoShipping:
-      return 'شحن أغراض';
+    case TripType.privateDelivery:
+      return 'توصيل خاص';
   }
 }
 
@@ -13,8 +13,8 @@ TripType mapStringToTripType(String type) {
   switch (type) {
     case 'رحلة خاصة':
       return TripType.specialTrip;
-    case 'شحن أغراض':
-      return TripType.cargoShipping;
+    case 'توصيل خاص':
+      return TripType.privateDelivery;
     default:
       return TripType.specialTrip;
   }

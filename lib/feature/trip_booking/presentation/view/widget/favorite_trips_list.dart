@@ -24,7 +24,7 @@ class FavoriteTripsList extends StatelessWidget {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.r),
+        borderRadius: BorderRadius.circular(25.r),
       ),
       color: AppColors.getBackgroundColor(context),
       child: InkWell(
@@ -33,7 +33,7 @@ class FavoriteTripsList extends StatelessWidget {
             DetailsTripView(trip: trip),
           );
         },
-        borderRadius: BorderRadius.circular(10.r),
+        borderRadius: BorderRadius.circular(25.r),
         child: Padding(
           padding: EdgeInsets.all(12.w),
           child: Row(

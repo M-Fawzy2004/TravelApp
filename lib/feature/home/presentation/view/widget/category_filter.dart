@@ -16,7 +16,7 @@ class _CategorySelectorState extends State<CategoryFilter> {
   List<String> filterText = [
     'الكل',
     'رحلة خاصه',
-    'شحن أغراض',
+    'توصيل خاص',
   ];
 
   int isSelected = 0;
@@ -40,7 +40,6 @@ class _CategorySelectorState extends State<CategoryFilter> {
               child: CategoryFilterItem(
                 text: filterText[index],
                 isSelected: isSelected == index,
-                color: filterColors[index],
               ),
             );
           }),
@@ -54,38 +53,14 @@ void _filterTrips(int index, BuildContext context) {
   final tripCubit = context.read<TripCubit>();
 
   switch (index) {
-    case 0: // All trips
+    case 0:
       tripCubit.getAllTrips();
       break;
-    case 1: // Special Trip
+    case 1: 
       tripCubit.filterTripsByType(TripType.specialTrip);
       break;
-    case 2: // Cargo Shipping
-      tripCubit.filterTripsByType(TripType.cargoShipping);
+    case 2:
+      tripCubit.filterTripsByType(TripType.privateDelivery);
       break;
   }
 }
-
-Color mixColors(List<Color> colors) {
-  int r = 0, g = 0, b = 0;
-
-  for (var color in colors) {
-    r += color.red;
-    g += color.green;
-    b += color.blue;
-  }
-
-  int count = colors.length;
-  return Color.fromARGB(255, r ~/ count, g ~/ count, b ~/ count);
-}
-
-List<Color> filterColors = [
-  mixColors([
-    Colors.blue,
-    Colors.green,
-    Colors.orange,
-  ]),
-  Colors.blue,
-  Colors.green,
-  Colors.orange,
-];

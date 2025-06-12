@@ -113,12 +113,11 @@ class _CommentItemWidgetState extends State<CommentItemWidget> {
   @override
   Widget build(BuildContext context) {
     final isMyComment = _isMyComment();
-    
     return Container(
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(12.r),
+        color: AppColors.getSurfaceColor(context),
+        borderRadius: BorderRadius.circular(25.r),
         border: Border.all(
           color: AppColors.getPrimaryColor(context).withOpacity(0.1),
         ),
@@ -160,7 +159,6 @@ class _CommentItemWidgetState extends State<CommentItemWidget> {
                   ],
                 ),
               ),
-              // Rating stars - Fixed to handle invalid rating values
               Row(
                 children: List.generate(5, (index) {
                   final rating = widget.comment.rating.clamp(0.0, 5.0);
@@ -175,7 +173,9 @@ class _CommentItemWidgetState extends State<CommentItemWidget> {
           ),
           heightBox(12),
           Text(
-            widget.comment.comment.isNotEmpty ? widget.comment.comment : 'لا يوجد تعليق',
+            widget.comment.comment.isNotEmpty
+                ? widget.comment.comment
+                : 'لا يوجد تعليق',
             style: Styles.font14GreyExtraBold(context),
           ),
           heightBox(12),
@@ -277,7 +277,7 @@ class _CommentItemWidgetState extends State<CommentItemWidget> {
     try {
       final name = _getUserName();
       if (name.trim().isEmpty || name == 'مستخدم') return 'م';
-      
+
       final parts = name.trim().split(' ');
       if (parts.length >= 2 && parts[0].isNotEmpty && parts[1].isNotEmpty) {
         return '${parts[0][0]}${parts[1][0]}';
@@ -295,7 +295,7 @@ class _CommentItemWidgetState extends State<CommentItemWidget> {
     try {
       final now = DateTime.now();
       final difference = now.difference(date);
-      
+
       if (difference.inDays > 7) {
         return '${date.day}/${date.month}/${date.year}';
       } else if (difference.inDays > 0) {

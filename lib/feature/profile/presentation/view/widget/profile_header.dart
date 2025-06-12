@@ -29,8 +29,11 @@ class ProfileHeader extends StatelessWidget {
           CircleAvatar(
             radius: 35.r,
             backgroundColor: AppColors.getLightGreyColor(context),
-            child: Icon(Icons.person,
-                color: AppColors.getSurfaceColor(context), size: 35.h),
+            child: Icon(
+              Icons.person,
+              color: AppColors.getSurfaceColor(context),
+              size: 35.h,
+            ),
           ),
           const Spacer(),
           Column(

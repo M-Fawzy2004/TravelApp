@@ -76,7 +76,7 @@ class _DetailsLocationState extends State<DetailsLocation> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.r),
+        borderRadius: BorderRadius.circular(25.r),
         color: AppColors.getSurfaceColor(context),
         border: Border.all(
           color: AppColors.getPrimaryColor(context).withOpacity(0.1),

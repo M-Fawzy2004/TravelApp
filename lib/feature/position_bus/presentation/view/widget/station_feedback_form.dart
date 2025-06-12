@@ -5,6 +5,7 @@ import 'package:travel_app/core/helper/spacing.dart';
 import 'package:travel_app/core/theme/styles.dart';
 import 'package:travel_app/core/utils/top_snakbar_app.dart';
 import 'package:travel_app/core/widget/custom_button.dart';
+import 'package:travel_app/core/widget/custom_loading_circle.dart';
 import 'package:travel_app/core/widget/custom_text_form_field.dart';
 import 'package:travel_app/feature/position_bus/data/model/governorate_model.dart';
 import 'package:travel_app/feature/position_bus/presentation/manager/cubit/comment_cubit.dart';
@@ -32,7 +33,6 @@ class _StationFeedbackFormState extends State<StationFeedbackForm> {
   @override
   void initState() {
     super.initState();
-    // Load comments when widget initializes
     context.read<CommentCubit>().getStationComments(widget.station.name);
   }
 
@@ -106,12 +106,11 @@ class _StationFeedbackFormState extends State<StationFeedbackForm> {
             onPressed: _isSubmitting ? null : _submitComment,
           ),
           heightBox(20),
-          // Comments Section
           BlocBuilder<CommentCubit, CommentState>(
             builder: (context, state) {
               if (state is CommentLoading) {
                 return const Center(
-                  child: CircularProgressIndicator(),
+                  child: CustomLoadingCircle(),
                 );
               } else if (state is CommentsLoaded) {
                 return CommentsListWidget(
@@ -135,7 +134,7 @@ class _StationFeedbackFormState extends State<StationFeedbackForm> {
                               .read<CommentCubit>()
                               .getStationComments(widget.station.name);
                         },
-                        child: Text('إعادة المحاولة'),
+                        child: const Text('إعادة المحاولة'),
                       ),
                     ],
                   ),

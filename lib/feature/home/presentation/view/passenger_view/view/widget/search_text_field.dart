@@ -34,9 +34,9 @@ class _SearchTextFieldState extends State<SearchTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:  EdgeInsets.symmetric(vertical: 10.h),
+      margin: EdgeInsets.symmetric(vertical: 10.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.r),
+        borderRadius: BorderRadius.circular(25.r),
         border: Border.all(
           color: AppColors.getLightGreyColor(context).withOpacity(0.2),
         ),
@@ -60,7 +60,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
             fontWeight: FontWeight.w900,
           ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(25.r),
             borderSide: BorderSide.none,
           ),
           suffixIcon: GestureDetector(
@@ -78,13 +78,11 @@ class _SearchTextFieldState extends State<SearchTextField> {
               ),
             ),
           ),
-          // Add clear button when text is entered
           prefixIcon: _searchController.text.isNotEmpty
               ? IconButton(
                   icon: const Icon(Icons.clear),
                   onPressed: () {
                     _searchController.clear();
-                    // Reset to show all trips when search is cleared
                     context.read<TripCubit>().getAllTrips();
                   },
                 )
@@ -96,10 +94,8 @@ class _SearchTextFieldState extends State<SearchTextField> {
 
   void _performSearch(String query) {
     if (query.isEmpty) {
-      // If search query is empty, show all trips
       context.read<TripCubit>().getAllTrips();
     } else {
-      // Search trips by query
       context.read<TripCubit>().searchTrips(query);
     }
   }

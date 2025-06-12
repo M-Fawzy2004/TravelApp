@@ -84,7 +84,7 @@ class _EditCommentDialogState extends State<EditCommentDialog> {
       },
       child: Dialog(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.r),
+          borderRadius: BorderRadius.circular(25.r),
         ),
         child: Padding(
           padding: EdgeInsets.all(20.w),
@@ -117,7 +117,6 @@ class _EditCommentDialogState extends State<EditCommentDialog> {
               CustomRatingPosition(
                 initialRating: _currentRating,
                 onRatingUpdate: (rating) {
-                  // Check if widget is still mounted before setting state
                   if (mounted) {
                     setState(() {
                       _currentRating = rating;

@@ -23,7 +23,6 @@ class _PoistionBusViewBodyState extends State<PoistionBusViewBody> {
   @override
   void initState() {
     super.initState();
-    // تحضير قائمة كل المحافظات
     allGovernorates = widget.governorateModel
         .expand((g) => g.data.entries.map((entry) => MapEntry(
               entry.value.namegovernorate,

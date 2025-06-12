@@ -249,7 +249,7 @@ Widget _buildAppButton({
           width: 50.w,
           height: 50.w,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.r),
+            borderRadius: BorderRadius.circular(25.r),
             border: Border.all(color: color.withOpacity(0.7), width: 2.w),
           ),
           child: Icon(

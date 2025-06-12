@@ -28,16 +28,18 @@ class _MainViewState extends State<MainView> {
         index: screenIndex,
         children: [
           buildHomeScreenByRole(role),
-          const Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('واجهه السياحه التجريبية'),
-                Text('قريبا'),
-              ],
+          if (role == UserRole.passenger) ...[
+            const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('واجهه السياحه التجريبية'),
+                  Text('قريبا'),
+                ],
+              ),
             ),
-          ),
-          const PoistionBusView(),
+            const PoistionBusView(),
+          ],
           const MessageView(),
           const ProfileView(),
         ],

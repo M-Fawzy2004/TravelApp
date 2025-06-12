@@ -20,8 +20,8 @@ class CustomLoadingGrid extends StatelessWidget {
       sliver: SliverGrid(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 1,
-          crossAxisSpacing: 10.w,
-          mainAxisExtent: 220.h,
+          mainAxisExtent: 240.h,
+          mainAxisSpacing: 15.w,
         ),
         delegate: SliverChildBuilderDelegate(
           (context, index) {

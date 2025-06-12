@@ -20,8 +20,8 @@ class MessagesTitleDelegate extends SliverPersistentHeaderDelegate {
           BoxShadow(color: Colors.grey, blurRadius: 2),
         ],
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20.r),
-          bottomRight: Radius.circular(20.r),
+          bottomLeft: Radius.circular(25.r),
+          bottomRight: Radius.circular(25.r),
         ),
         color: AppColors.getBackgroundColor(context),
       ),
