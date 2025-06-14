@@ -58,7 +58,7 @@ class _SearchTextFieldState extends State<SearchTextField> {
       child: TextField(
         controller: _searchController,
         focusNode: _focusNode,
-        style: Styles.font14BlackBold(context),
+        style: Styles.font14GreyExtraBold(context),
         textAlignVertical: TextAlignVertical.center,
         onChanged: (value) {
           _debouncedSearch(value);
