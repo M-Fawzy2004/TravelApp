@@ -74,4 +74,5 @@ class Styles {
     fontWeight: FontWeightHelper.bold,
     color: AppColors.getSurfaceColor(context),
   );
+
 }
